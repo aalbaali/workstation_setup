@@ -7,7 +7,7 @@ on:
 
 jobs:
   base:
-    runs-on:ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -15,7 +15,7 @@ jobs:
         run: yes "" | make base
 
   user-config:
-    runs-on:ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -23,7 +23,7 @@ jobs:
         run: yes "" | make user_config
 
   install-vscode:
-    runs-on:ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -31,19 +31,30 @@ jobs:
         run: yes "" | make vscode
 
   vscode-config:
-    runs-on:ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: vscode_config
         run: yes "" | make vscode_config
   latex-classes:
-    runs-on:ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: latex_classes
-        run: |
-          apt-get update -y
-          apt-get install -y latexmk
-          yes "" | make latex_classes
+        run: |yes "" | make latex_classes
+  base:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: base
+        run: yes "" | make base
+  base:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: base
+        run: yes "" | make base
