@@ -5,7 +5,7 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-wget -c https://raw.githubusercontent.com/aalbaali/latex_classes/master/install.sh
+wget -c https://raw.githubusercontent.com/aalbaali/latex_classes/master/install.sh -O /workspace/install_tex.sh
 source $DIR/install_tex.sh
 rm $DIR/install_tex.sh
 
