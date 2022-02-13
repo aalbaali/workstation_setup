@@ -48,3 +48,8 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y latexmk
           yes "" | make latex_classes
+          if [[ -z $(kpsewhich amro-common.styu) ]]; \
+          then \
+            echo -e "\033[93;1mDidn't install latex classes properly\033[0m" \
+            exit 0 \
+          fi;
