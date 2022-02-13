@@ -1,4 +1,4 @@
-defaults: base programs vscode vscode_config docker user_config
+defaults: base vscode_config user_config
 
 devcontainer: base user_config
 

@@ -20,7 +20,11 @@ case $yn in
     cp $DIR/../user/.bash_aliases* $HOME/
 
     if [ -f $HOME/.zshrc ]; then
-      echo "source $HOME/.bash_aliases" >> $HOME/.zshrc
+      # Add `source` to only if it's not there already
+      if [[ -z $(cat ~/.zshrc | grep bash_aliases) ]]
+      then
+        echo "source $HOME/.bash_aliases" >> $HOME/.zshrc
+      fi
     fi
   ;;
 esac
