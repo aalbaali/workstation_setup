@@ -1,0 +1,332 @@
+{
+  // Place your snippets for latex here. Each snippet is defined under a snippet name and has a prefix, body and 
+  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+  // same ids are connected.
+  // Example:
+  // "Print to console": {
+  //   "prefix": "log",
+  //   "body": [
+  //   "console.log('$1');",
+  //   "$2"
+  //   ],
+  //   "description": "Log output to console"
+  // }
+  // 
+  // Checkout the snippet generator: https://snippet-generator.app/
+  // 
+  "Generate figure": {
+  "prefix": "BFIG",
+  "body": [
+    "\\begin{figure}[${1:Hhtbp}]",
+    "  \\centering",
+    "  \\includegraphics[width=${2:0.8\\textwidth}]{$3}  ",
+    "  \\caption{${4:caption}}",
+    "  \\label{fig:${5:label}}",
+    "\\end{figure}"
+  ],
+  "description": "Generate figure"
+  },
+  
+  "Generate subfigure": {
+  "prefix": "BSFIG",
+  "body": [
+    "\\begin{figure}[${1:Hhtbp}]",
+    "  \\centering",
+    "  \\begin{subfigure}{${2:0.45\\textwidth}}",
+    "  \\includegraphics[width=\\textwidth]{$3}",
+    "  \\caption{${4:subfig_1_caption>}}",
+    "  \\label{fig:${5:subfig_1_label}}",
+    "  \\end{subfigure}",
+    "  %",
+    "  \\begin{subfigure}{${2:0.45\\textwidth}}",
+    "  \\includegraphics[width=\\textwidth]{$6}",
+    "  \\caption{${7:subfig_2_caption}}",
+    "  \\label{fig:${8:subfig_2_label}}",
+    "  \\end{subfigure}",
+    "  \\caption{${9:fig_caption}}",
+    "  \\label{fig:${10:fig_label}}",
+    "\\end{figure}"
+  ],
+  "description": "Generate subfigure"
+  },
+  
+  "Generate columns": {
+  "prefix": "bcols",
+  "body": [
+    "\\begin{columns}",
+    "  \\begin{column}[c]{${1:0.5\\textwidth}}",
+    "  ${3} ",
+    "  \\end{column}",
+    "  \\begin{column}[c]{${2:0.5\\textwidth}}",
+    "  ",
+    "  \\end{column}",
+    "\\end{columns}",
+  ],
+  "description": "Presentation columns"
+  },
+  
+
+  "Section": {
+  "prefix": "sec",
+  "body": [
+    "\\section{${1}}",
+    "\\label{sec:${1}}"    
+  ],
+  "description": "section"
+  },
+  "Subsection": {
+  "prefix": "ssec",
+  "body": [
+    "\\subsection{${1}}",
+    "\\label{sec:${1}}"    
+  ],
+  "description": "subsection"
+  },
+  "Sububsection": {
+  "prefix": "sssec",
+  "body": [
+    "\\subsubsection{${1}}",
+    "\\label{sec:${1}}"    
+  ],
+  "description": "subsection"
+  },
+
+  "My align": {
+  "prefix": "mali",
+  "body": [
+    "\\begin{align}",
+    "  ${1}",
+    "\\end{align}"
+  ],
+  "description": "My align"
+  },
+
+  "Box definition": {
+  "prefix": "bdef",
+  "body": [
+    "\\begin{definitionBox}[${1:Title}]",
+    "  ${2}",
+    "\\end{definitionBox}"
+  ],
+  "description": "Definition box"
+  },
+
+
+  "Remark box": {
+  "prefix": "bremark",
+  "body": [
+    "\\begin{remarkBox}",
+    "\t${1}",
+    "\\end{remarkBox}"
+  ],
+  "description": "Remark in a black box"
+  },
+
+  "Proposition box": {
+  "prefix": "bproposition",
+  "body": [
+    "\\begin{propositionBox}",
+    "\t${1}",
+    "\\end{propositionBox}"
+  ],
+  "description": "Proposition in a black box"
+  },
+  
+  "Bluebox": {
+  "prefix": "blueBox",
+  "body": [
+    "\\begin{blueBox}",
+    "\t${1}",
+    "\\end{blueBox}"
+  ],
+  "description": "Blue box"
+  },
+
+  "Blackbox": {
+  "prefix": "blackBox",
+  "body": [
+    "\\begin{blackBox}",
+    "\t${1}",
+    "\\end{blackBox}"
+  ],
+  "description": "Black box"
+  },
+
+  "Greykbox": {
+  "prefix": "greykBox",
+  "body": [
+    "\\begin{greyBox}",
+    "\t${1}",
+    "\\end{greyBox}"
+  ],
+  "description": "Grey box"
+  },
+
+  "Theorem box": {
+  "prefix": "bthm",
+  "body": [
+    "\\begin{theoremBox}",
+    "   [${1:Title}]  ",
+    "   ${2}",
+    "\\end{theoremBox}"
+  ],
+  "description": "My theorem"
+  },
+
+  "Tufte definition": {
+  "prefix": "tdef",
+  "body": [
+    "\\begin{tuftedefinition}[${1:Title}]",
+    "  ${2}",
+    "\\end{tuftedefinition}"
+  ],
+  "description": "My definition"
+  },
+
+  "Tufte theorem": {
+  "prefix": "tthm",
+  "body": [
+    "\\begin{tuftetheorem}",
+    "   [${1:Title}]  ",
+    "   ${2}",
+    "\\end{tuftetheorem}"
+  ],
+  "description": "Tufte theorem"
+  },
+
+  "Tufte lemma": {
+  "prefix": "tlemma",
+  "body": [
+    "\\begin{tuftelemma}",
+    "   ${1}",
+    "\\end{tuftelemma}"
+  ],
+  "description": "Tufte lemma"
+  },
+
+  "Tufte proposition": {
+  "prefix": "tproposition",
+  "body": [
+    "\\begin{tufteproposition}",
+    "   ${1}",
+    "\\end{tufteproposition}"
+  ],
+  "description": "Tufte proposition"
+  },
+
+  "Tufte corollary": {
+  "prefix": "tcor",
+  "body": [
+    "\\begin{tuftecorollary}",
+    "   ${1}",
+    "\\end{tuftecorollary}"
+  ],
+  "description": "Tufte corollary"
+  },
+
+  "Tufte remark": {
+  "prefix": "trem",
+  "body": [
+    "\\begin{tufteremark}",
+    "   ${1}",
+    "\\end{tufteremark}"
+  ],
+  "description": "Tufte remark"
+  },
+
+  "Tufte property": {
+  "prefix": "tproperty",
+  "body": [
+    "\\begin{tufteproperty}",
+    "   ${1}",
+    "\\end{tufteproperty}"
+  ],
+  "description": "Tufte property"
+  },
+
+  "Label": {
+  "prefix": "lab",
+  "body": [
+    "\\label{${1|eq,fig,tab,sec,chap,thm,def|}:${2:label}}"
+  ],
+  "description": "Label"
+  },
+    
+  "BBMrows": {
+  "prefix": "bbmrows",
+  "body": [
+    "\\bbm", 
+    "  ${1}",
+    "\\ebm"
+  ],
+  "description": "BBM multi rows"
+  },
+
+  "BBM": {
+  "prefix": "bbm",
+  "body": [
+    "\\bbm ${1} \\ebm"
+  ],
+  "description": "BBM"
+  },
+  "%%": {
+  "prefix": "%%",
+  "body": [
+    "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+  ],
+  "description": "Line comment"
+  },
+  "%=": {
+    "prefix": "%=",
+    "body": [
+    "%==============================================================================="
+    ],
+    "description": "Line comment"
+  },
+  "%-": {
+    "prefix": "%-",
+    "body": [
+    "%-------------------------------------------------------------------------------"
+    ],
+    "description": "Line comment"
+  },
+
+  "Expnential": {
+  "prefix": "myexp",
+  "body": [
+    "\\exp\\left(${1}\\right)"
+  ],
+  "description": "BBM"
+  },
+
+  "Packed enumerate": {
+    "prefix": "penum",
+    "body": [
+    "\\begin{packed_enum}",
+    "  \\item ${1}",
+    "\\end{packed_enum}"
+    ],
+    "description": "Packed enumeration"
+  },
+
+  "Packed itemize": {
+    "prefix": "pitem",
+    "body": [
+    "\\begin{packed_itemize}",
+    "  \\item ${1}",
+    "\\end{packed_itemize}"
+    ],
+    "description": "Packed itemize"
+  },
+
+  "Equation break": {
+    "prefix": "eqnbrk",
+    "body": [
+    "  \\nonumber \\\\\\\\",
+    "&\\mathrel{\\phantom{=}} \\negmedspace {} ${1}"    
+    ],
+    "description": "Equation break"
+  },
+  
+}

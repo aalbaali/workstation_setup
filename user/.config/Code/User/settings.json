@@ -1,0 +1,176 @@
+{
+  // Editor
+  "editor.tabSize": 2,
+  "editor.suggestSelection": "first",
+  "editor.fontSize": 16,
+  "editor.wordWrapColumn": 100,
+  "editor.minimap.maxColumn": 100,
+  "editor.rulers": [80],
+  "editor.detectIndentation": false,
+  "editor.minimap.enabled": false,
+
+  "diffEditor.wordWrap": "off",
+  "diffEditor.ignoreTrimWhitespace": false,
+
+  // Terminal
+  "terminal.integrated.commandsToSkipShell": [
+    "language-julia.interrupt"
+  ],
+  "terminal.integrated.fontFamily": "monospace",
+  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.tabs.enabled": true,
+
+
+  // Language-sepcific settings
+  "[json]": {
+    "editor.tabSize": 2
+  },
+  
+  "[dockerfile]": {
+    "editor.quickSuggestions": {
+      "strings": true
+    }
+  },
+
+  "[jsonc]": {
+      "editor.defaultFormatter": "vscode.json-language-features"
+  },
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Git
+  "git.autofetch": true,
+  "gitlens.hovers.annotations.over": "annotation",
+  "gitlens.hovers.avatars": false,
+  "gitlens.codeLens.recentChange.command": false,
+  "gitlens.codeLens.recentChange.enabled": false,
+  "gitlens.codeLens.enabled": false,
+  //////////////////////////////////////////////////////////////////////////////
+
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Python
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.tabSize": 4
+  },
+
+  "python.formatting.autopep8Args": [
+    "--max-line-length",
+    "100"
+  ],
+  //////////////////////////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////////////////////////
+  // C++ settings
+  "[cpp]": {
+    "editor.rulers": [
+        100
+    ],
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+
+  // C/C++ extension
+  "C_Cpp.vcFormat.indent.namespaceContents": false,
+  "C_Cpp.vcFormat.indent.caseContents": false,
+  "C_Cpp.clang_format_fallbackStyle": "",
+  "C_Cpp.suggestSnippets": false,
+
+  // Clang-tidy
+  "clang-tidy.buildPath": "build/",
+  "clang-tidy.lintOnSave": false,
+
+  // CMake
+  "cmake.configureOnEdit": false,
+  "cmake.buildEnvironment": {
+      "BUILD_MATPLOT_EXAMPLES": "ON"
+  },
+  "cmake.buildBeforeRun": false,
+
+  // Doxygen
+  //  File copyright documentation tag.  Array of strings will be converted to one line per element.  Can template {year}.
+  "doxdocgen.file.copyrightTag": [
+    "Copyright {year}, Amro Al-Baali"
+  ],
+  //  Set the e-mail address of the author.  Replaces {email}.
+  "doxdocgen.generic.authorEmail": "albaalia@live.com",
+  // Set the name of the author.  Replaces {author}.
+  "doxdocgen.generic.authorName": "Amro Al-Baali",
+  // The template of the brief Doxygen line that is generated. If empty it won't get generated at all.
+  "doxdocgen.generic.briefTemplate": "@brief {text}",
+  // Additional file documentation. One tag per line will be added. Can template `{year}`, `{date}`, `{author}`, `{email}` and `{file}`. You have to specify the prefix.
+  "doxdocgen.file.customTag": [],
+  // The format to use for the date.
+  "doxdocgen.generic.dateFormat": "YYYY-MMM-DD",
+  "doxdocgen.file.fileOrder": [
+      "custom",
+      "copyright",
+      "file",
+      "brief",
+      "author",
+      // "version",
+      "date",
+      // "empty",
+  ],
+  //////////////////////////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Latex
+  "[latex]": {
+    "editor.tabSize": 2,
+    "editor.formatOnPaste": false,
+    "editor.suggestSelection": "recentlyUsedByPrefix"
+  },
+
+  // Latex-workshop
+  "latex-workshop.latex.outDir": "%DIR%/build",
+  "latex-workshop.latex.autoBuild.run": "never",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-preview.command": "latexmk",
+  "latex-workshop.latex.clean.fileTypes": [
+      "*.aux",
+      "*.bbl",
+      "*.blg",
+      "*.idx",
+      "*.ind",
+      "*.lof",
+      "*.lot",
+      "*.out",
+      "*.toc",
+      "*.acn",
+      "*.acr",
+      "*.alg",
+      "*.glg",
+      "*.glo",
+      "*.gls",
+      "*.fls",
+      "*.log",
+      "*.fdb_latexmk",
+      "*.snm",
+      "*.synctex(busy)",
+      "*.synctex.gz(busy)",
+      "*.nav",
+      "*.xml",
+      "*.ilg",
+      "*-blx.bib",
+      "*bib.bak"
+  ],
+
+  // CSpell (used in Latex)
+  "cSpell.userWords": [
+    "Amro",
+    "Al",
+    "Baali"
+  ],
+
+  //////////////////////////////////////////////////////////////////////////////
+
+  // Julia
+  "julia.symbolCacheDownload": true,
+  "julia.enableTelemetry": false,
+  
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "security.workspace.trust.untrustedFiles": "open",
+
+  "json.maxItemsComputed": 524288,
+}
