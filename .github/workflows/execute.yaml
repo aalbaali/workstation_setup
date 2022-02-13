@@ -49,9 +49,9 @@ jobs:
           sudo apt-get install -y latexmk
           yes "" | make latex_classes
           if [[ -z $(kpsewhich amro-common.sty) ]]; \
-          then; \
+          then \
             echo -e "\033[93;1mDidn't install latex classes properly\033[0m" \
             exit 0 \
-          else; \
+          else \
             echo -e "amro-common.sty installed to \033[96;1m$(kpsewhich amro-common.sty)\033[0m" \
-          fi;
+          fi
