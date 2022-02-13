@@ -45,4 +45,15 @@ case $yn in
   ;;
 esac
 
+# Update latxmk
+read -p "Update .latexmkrc? (Y/n): " yn
+case $yn in
+  "" | [Yy]* )
+    if [ -f $HOME/.latexmkrc ]; then
+      cp $HOME/.latexmkrc $HOME/.latexmkrc.bak
+    fi
+    cp $DIR/../user/.latexmkrc $HOME/
+  ;;
+esac
+
 source ~/.bashrc
