@@ -6,10 +6,44 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  base:
+    runs-on:ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: default-Make
-        run: yes "" | make
+      - name: base
+        run: yes "" | make base
+
+  user-config:
+    runs-on:ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: user_config
+        run: yes "" | make user_config
+
+  install-vscode:
+    runs-on:ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: vscode
+        run: yes "" | make vscode
+
+  vscode-config:
+    runs-on:ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: vscode_config
+        run: yes "" | make vscode_config
+  latex-classes:
+    runs-on:ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: latex_classes
+        run: |
+          apt-get update -y
+          apt-get install -y latexmk
+          yes "" | make latex_classes
