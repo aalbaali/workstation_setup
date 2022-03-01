@@ -5,7 +5,6 @@ This repo contains script to setup a Linux workstation.
 ## Default installations
 The install scripts can be activated using a Makefile.
 The default scripts are
-which are
 - [`install_base.sh`](scripts/install_base.sh)
 - [`install_vscode_conf.sh`](scripts/install_vscode_config.sh)
 - [`install_user_config.sh`](scripts/install_user_config.sh)
