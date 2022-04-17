@@ -26,6 +26,26 @@ $SU apt-get install -y \
   ssh \
   wget
 
+# Fzf
+read -p "Install fzf? (Y/n): " yn
+case $yn in
+  "" | [Yy]* )
+    # Check if repo already exists
+    if [ ! -d $HOME/.fzf ]; then
+      echo "Cloning fzf into ~/.fzf"
+      git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    fi
+
+    if [ -f $HOME/.fzf/install ]; then
+      echo "Installing fzf"
+      y | $HOME/.fzf/install
+    else
+      echo "$HOME/.fzf/install does not exist"
+    fi
+  ;;
+esac
+
+
 # python3-pip \
 # snapd \
 
