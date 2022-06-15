@@ -29,3 +29,4 @@ yes "" | make
 
 # Resources
 - Allison Thackston's [workstation setup](https://github.com/athackst/workstation_setup/)
+- Hiding terminal titlebar: [AskUbuntu Question](https://askubuntu.com/questions/1230157/how-to-remove-title-bar-from-terminal-on-the-new-ubuntu-20-04)
