@@ -36,14 +36,14 @@ __bash_prompt
 ########################
 if [ -f $HOME/.aliases/git_aliases.sh ]; then
   source $HOME/.aliases/git_aliases.sh
-
-  alias gll="git log --graph --oneline --all --decorate"
-  alias gs="git status"
-  alias gm="git commit"
-  alias ga="git add"
-  alias gb="git branch"
-  alias gc="git checkout"
 fi
+
+alias gll="git log --graph --oneline --all --decorate"
+alias gs="git status"
+alias gm="git commit"
+alias ga="git add"
+alias gb="git branch"
+alias gc="git checkout"
 
 alias vsc="code -n ."
 
