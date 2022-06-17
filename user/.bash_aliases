@@ -99,3 +99,5 @@ alias di="docker image"
 alias dils="docker image ls"
 alias drm="docker rm"
 alias drmi="docker rmi"
+
+alias fd="fdfind"
