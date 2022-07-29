@@ -54,3 +54,8 @@ To run quake from anywhere in Linux, add a keyboard shortcut in the shortcuts se
 I have mine set to `Super + -`, which calls the command `tilix --quake`
 
 To run tilix using the `ctrl + alt + T` shortcut, disable the terminal's shortcut and enable a tilix shortcut.
+
+# Dock settings
+The auto-dock can be customized so that it doesn't pop up when switching applications using shortcuts.
+To configure the autodock, an [editor is to be installed](https://linuxconfig.org/how-to-customize-dock-panel-on-ubuntu-22-04-jammy-jellyfish-linux).
+Once installed, launch the *dconf Editor* application and go to `/org/gnome/shell/extensions/dash-to-dock/hot-keys` and turn off the *hotkeys-overlay* and *hotkeys-show-dock* options.
