@@ -1,7 +1,12 @@
 #!/bin/bash
 
-# Install custom latex scripts
-# Amro Al-Baali
+# @brief Install custom latex scripts
+# @detail Installing the custom latex scripts allows latex to be compiled from anywhere on the 
+#         computer without needing to specify the custom commands location.
+#         It is a better practice to keep custom commands within the same file.
+#         A better alternative is to use Docker containers.
+# @author Amro Al-Baali
+#
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 

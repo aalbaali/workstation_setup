@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Set up VSCode settings
+# Install VSCode custom configurations
 # Amro Al-Baali
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"

@@ -5,9 +5,8 @@ This repo contains script to setup a Linux workstation.
 ## Default installations
 The install scripts can be activated using a Makefile.
 The default scripts are
-- [`install_base.sh`](scripts/install_base.sh)
-- [`install_vscode_conf.sh`](scripts/install_vscode_config.sh)
-- [`install_user_config.sh`](scripts/install_user_config.sh)
+- [`post_install_setup.sh`](scripts/post_install_setup.sh)
+- [`post_install_setup.sh`](scripts/post_install_setup.sh)
 
 To run the default scripts, run
 ```bash
@@ -27,9 +26,6 @@ There are some prompts for some installations. To bypass these prompts, run the 
 yes "" | make
 ```
 
-# Resources
-- Allison Thackston's [workstation setup](https://github.com/athackst/workstation_setup/)
-- Hiding terminal titlebar: [AskUbuntu Question](https://askubuntu.com/questions/1230157/how-to-remove-title-bar-from-terminal-on-the-new-ubuntu-20-04)
 
 # Tilix
 Install tilix by running
@@ -55,7 +51,13 @@ I have mine set to `Super + -`, which calls the command `tilix --quake`
 
 To run tilix using the `ctrl + alt + T` shortcut, disable the terminal's shortcut and enable a tilix shortcut.
 
-# Dock settings
+# Ubuntu
+## Dock settings
 The auto-dock can be customized so that it doesn't pop up when switching applications using shortcuts.
 To configure the autodock, an [editor is to be installed](https://linuxconfig.org/how-to-customize-dock-panel-on-ubuntu-22-04-jammy-jellyfish-linux).
 Once installed, launch the *dconf Editor* application and go to `/org/gnome/shell/extensions/dash-to-dock/hot-keys` and turn off the *hotkeys-overlay* and *hotkeys-show-dock* options.
+
+# Resources
+- Allison Thackston's [workstation setup](https://github.com/athackst/workstation_setup/)
+- Hiding terminal titlebar: [AskUbuntu Question](https://askubuntu.com/questions/1230157/how-to-remove-title-bar-from-terminal-on-the-new-ubuntu-20-04)
+- Marc Gallant's dotfiles [kam3k/dot_files](https://github.com/kam3k/dot_files)

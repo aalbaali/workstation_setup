@@ -44,6 +44,8 @@ alias gm="git commit"
 alias ga="git add"
 alias gb="git branch"
 alias gc="git checkout"
+alias gd="git diff"
+alias gdc="git diff --cached"
 
 alias vsc="code -n ."
 

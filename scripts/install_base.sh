@@ -1,6 +1,9 @@
 #/bin/sh
 set -e
 
+# Minimum requireements for development. This script is usually used to install scripts in a
+# minimal temporary container
+
 # Sometime `sudo` is not available and instead the `sudo` is the default.
 # Thus, check if `sudo` exists, and if not, then ignore it.
 if command -v sudo &> /dev/null;
@@ -45,10 +48,3 @@ case $yn in
   ;;
 esac
 
-
-# python3-pip \
-# snapd \
-
-# $SU apt-get install -y python-is-python3
-# $SU update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1
-# pip install -U pip

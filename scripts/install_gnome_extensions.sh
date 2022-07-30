@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Install gnome extensions such as the `tweaks` app. These extensions allow customization to Ubuntu
+# such as customizing the auto dock
+
 apt-get install -y \
   gnome-tweaks \
   gnome-shell-extensions \

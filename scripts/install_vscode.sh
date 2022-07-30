@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Install and configure visual studio code
+#
 # Imported from https://raw.githubusercontent.com/athackst/workstation_setup/main/scripts/install_vscode.sh
 
 set -e
