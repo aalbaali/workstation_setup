@@ -3,7 +3,8 @@
 apt-get install -y \
   gnome-tweaks \
   gnome-shell-extensions \
-  gnome-shell-extension-ubuntu-dock
+  gnome-shell-extension-ubuntu-dock \
+  dconf-editor
 
 # Activate the ubuntu dock extension
 gnome-extensions enable ubuntu-dock@ubuntu.com
