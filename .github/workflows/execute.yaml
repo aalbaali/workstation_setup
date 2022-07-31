@@ -20,7 +20,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: vscode
-        run: yes "" | make vscode
+        run: yes "" 2>/dev/null | make vscode
 
   install-devenv:
     runs-on: ubuntu-latest
