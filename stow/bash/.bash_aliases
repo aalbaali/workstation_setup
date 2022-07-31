@@ -31,11 +31,20 @@ __bash_prompt() {
 }
 __bash_prompt
 
+# Source bashrc
+alias srb="source ~/.bashrc"
+
+########################
+# Package-related aliases
+########################
+alias fd="fdfind"
+alias vsc="code -n ."
+
 ########################
 # git shortcus
 ########################
-if [ -f $HOME/.aliases/git_aliases.sh ]; then
-  source $HOME/.aliases/git_aliases.sh
+if [ -f $HOME/git_aliases.sh ]; then
+  source $HOME/git_aliases.sh
 fi
 
 alias gll="git log --graph --oneline --all --decorate"
@@ -47,7 +56,6 @@ alias gc="git checkout"
 alias gd="git diff"
 alias gdc="git diff --cached"
 
-alias vsc="code -n ."
 
 ########################
 # workspaces
@@ -102,4 +110,3 @@ alias dils="docker image ls"
 alias drm="docker rm"
 alias drmi="docker rmi"
 
-alias fd="fdfind"

@@ -129,3 +129,6 @@ alias nv=nvim
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+
+# Source git-related functions
+[ -f ~/git/git_aliases.sh ] && source ~/git/git_aliases.sh
