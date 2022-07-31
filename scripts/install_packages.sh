@@ -35,6 +35,9 @@ apt-get install -y \
   tilix \
   tmux \
 
+# Install pre-commit
+pip install pre-commit
+
 # Install fzf if it doesn't already exist
 if [ ! command -v fzf &> /dev/null ]; then
   read -p "Install fzf? (Y/n): " yn

@@ -134,3 +134,6 @@ alias nv=nvim
 
 # Common functions, including git-related functions
 [ -f ~/.functions.sh ] && source ~/.functions.sh
+
+# Add local bin to path
+export PATH="$PATH:~/.local/bin"
