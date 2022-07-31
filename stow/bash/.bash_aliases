@@ -1,17 +1,9 @@
+# bash-specific functions and aliases
+
 title() {
   ORIG=$PS1
   TITLE="\e]2;$@\a"
   PS1=${ORIG}${TITLE}
-}
-
-zipall() {
-  for dir in *
-  do
-    if [[ -d $dir ]]
-    then
-      zip -r $dir.zip $dir
-    fi
-  done
 }
 
 __bash_prompt() {
@@ -34,30 +26,6 @@ __bash_prompt
 # Source bashrc
 alias srb="source ~/.bashrc"
 
-########################
-# Package-related aliases
-########################
-alias fd="fdfind"
-alias vsc="code -n ."
-
-########################
-# git shortcus
-########################
-if [ -f $HOME/git_aliases.sh ]; then
-  source $HOME/git_aliases.sh
-fi
-
-alias gll="git log --graph --oneline --all --decorate"
-alias gs="git status"
-alias gm="git commit"
-alias ga="git add"
-alias gb="git branch"
-alias gc="git checkout"
-alias gd="git diff"
-alias gdc="git diff --cached"
-
-
-########################
 # workspaces
 ########################
 if [ -d $HOME/.workspace ]; then
@@ -90,23 +58,4 @@ fi
 function noetic_gazebo() {
   docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -u ros athackst/ros:noetic-gazebo gazebo
 }
-
-
-# Open tmux after a restart. It creates a new session then deletes it.
-alias mux='pgrep -vx tmux > /dev/null && \
-		tmux new -d -s delete-me && \
-		tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh && \
-		tmux kill-session -t delete-me && \
-		tmux attach || tmux attach'
-
-
-################################################################################
-# Docker
-################################################################################
-alias dps="docker ps"
-alias dpsa="docker ps -a"
-alias di="docker image"
-alias dils="docker image ls"
-alias drm="docker rm"
-alias drmi="docker rmi"
 
