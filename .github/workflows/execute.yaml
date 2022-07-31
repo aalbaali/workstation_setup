@@ -14,14 +14,6 @@ jobs:
       - name: base
         run: yes "" | make base
 
-  user-config:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: user_config
-        run: yes "" | make user_config
-
   install-vscode:
     runs-on: ubuntu-latest
     steps:
@@ -29,6 +21,14 @@ jobs:
         uses: actions/checkout@v2
       - name: vscode
         run: yes "" | make vscode
+
+  install-devenv:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: dev
+        run: yes "" | make dev
 
   vscode-config:
     runs-on: ubuntu-latest
