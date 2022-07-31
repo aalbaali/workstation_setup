@@ -30,6 +30,14 @@ jobs:
       - name: dev
         run: yes "" | sudo make dev
 
+  install-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: docker
+        run: sudo make docker
+
   latex-classes:
     runs-on: ubuntu-latest
     steps:

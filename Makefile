@@ -21,3 +21,7 @@ vscode: scripts/install_vscode.sh
 # Install custom latex classes
 latex_classes: scripts/install_custom_tex_classes.sh
 	bash scripts/install_custom_tex_classes.sh
+
+# Install docker
+latex_classes: scripts/install_docker.sh
+	bash scripts/install_docker.sh
