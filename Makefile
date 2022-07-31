@@ -13,7 +13,7 @@ base: scripts/install_base.sh
 # Install packages for a full development environment (e.g., nvim, tmux, etc.)
 dev: scripts/install_packages.sh scripts/post_install_setup.sh
 	bash scripts/install_packages.sh
-	yes | bash scripts/post_install_setup.sh
+	bash scripts/post_install_setup.sh
 
 vscode: scripts/install_vscode.sh
 	bash scripts/install_vscode.sh

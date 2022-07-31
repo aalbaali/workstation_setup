@@ -28,15 +28,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: dev
-        run: yes "" | make dev
-
-  vscode-config:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: vscode_config
-        run: yes "" | make vscode_config
+        run: yes "" | sudo make dev
 
   latex-classes:
     runs-on: ubuntu-latest
