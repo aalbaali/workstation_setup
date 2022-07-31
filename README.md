@@ -1,5 +1,11 @@
 # Workstation setup
 This repo contains script to setup a Linux workstation.
+Some configs (e.g., the [gdb config](stow/gdb/.gdbinit)) assume this repo is cloned in `~/.dot`.
+Thus, the repo can be cloned using
+To do so, run
+```bash
+git clone git@github.com:aalbaali/workstation_setup.git ~/.dot
+```
 
 # Running the installation
 ## Default installations
