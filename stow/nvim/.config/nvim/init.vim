@@ -32,12 +32,13 @@ Plug 'mhinz/vim-startify'             " Manage vim sessions
 Plug 'vim-airline/vim-airline'        " Custom status bar
 Plug 'vim-airline/vim-airline-themes' " Themes
 Plug 'lervag/vimtex'                  " Latex support
+Plug 'justinmk/vim-sneak'             " Fast navigation
+Plug 'tpope/vim-surround'             " Operations for surrounding words with paranthesis
 
 Plug 'arcticicestudio/nord-vim'       " Build for vim's terminal and GUI mode with true colors
 Plug 'tmsvg/pear-tree'                " Pair brackets, braces, etc.
 Plug 'jamestthompson3/nvim-remote-containers'  " similar to vscode remote container
 Plug 'neoclide/coc.nvim', {'branch': 'v0.0.81'} " Autocompletion
-
 
 " CMake support
 if has('nvim-0.5+' )
