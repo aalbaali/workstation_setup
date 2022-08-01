@@ -29,6 +29,8 @@ Plug 'airblade/vim-gitgutter'         " Git status on side bar and git operation
 Plug 'rhysd/vim-clang-format'         " Commands for applying clang-formatting
 Plug 'preservim/nerdtree'             " Navigate files using a tree structure
 Plug 'mhinz/vim-startify'             " Manage vim sessions
+Plug 'vim-airline/vim-airline'      " Custom status bar
+Plug 'vim-airline/vim-airline-themes' " Themes
 
 Plug 'arcticicestudio/nord-vim'       " Build for vim's terminal and GUI mode with true colors
 Plug 'tmsvg/pear-tree'                " Pair brackets, braces, etc.
@@ -98,6 +100,11 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 " ======================================
 " Plugin settings and shortcuts
 " ======================================
+" Go to next tab
+map gn :bn<cr>
+" Go to previous tab
+map gp :bp<cr>
+
 " Copy to clipboard. Note: requires `vim-gtk` (install using `sudo apt-get install vim-gtk`)
 vnoremap <leader>y "+y
 nnoremap <leader>yy V"+y
@@ -341,3 +348,12 @@ let g:startify_session_autoload = 0
 let g:startify_session_persistence = 0
 " Open startify buffer
 nnoremap <leader>s :Startify<cr>
+
+" vim-airline
+" Display all buffers if a single tab is used
+let g:airline#extensions#tabline#enabled = 1
+" Customize sepraters
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+" Set theme
+let g:airline_theme='papercolor'
