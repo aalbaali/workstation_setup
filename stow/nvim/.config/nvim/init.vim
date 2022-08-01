@@ -32,7 +32,6 @@ Plug 'mhinz/vim-startify'             " Manage vim sessions
 Plug 'vim-airline/vim-airline'        " Custom status bar
 Plug 'vim-airline/vim-airline-themes' " Themes
 Plug 'lervag/vimtex'                  " Latex support
-Plug 'nathanaelkane/vim-indent-guides' " Indentation guides
 
 Plug 'arcticicestudio/nord-vim'       " Build for vim's terminal and GUI mode with true colors
 Plug 'tmsvg/pear-tree'                " Pair brackets, braces, etc.
@@ -344,9 +343,10 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>w
 
 " Global extensions to install
-let g:coc_global_extensions = ['coc-json',
-                               \ 'coc-git',
+let g:coc_global_extensions = ['coc-json'    ,
+                               \ 'coc-git'   ,
                                \ 'coc-python',
+                               \ 'coc-cmake' ,
                                \ 'coc-clangd',
                                \ 'coc-ccls']
 
