@@ -63,6 +63,14 @@ The auto-dock can be customized so that it doesn't pop up when switching applica
 To configure the autodock, an [editor is to be installed](https://linuxconfig.org/how-to-customize-dock-panel-on-ubuntu-22-04-jammy-jellyfish-linux).
 Once installed, launch the *dconf Editor* application and go to `/org/gnome/shell/extensions/dash-to-dock/hot-keys` and turn off the *hotkeys-overlay* and *hotkeys-show-dock* options.
 
+# FAQs and common issues
+## Neovim's [coc-ccls](https://github.com/Maxattax97/coc-ccls) may give an error of *unable to load global extension*.
+The error can be [resolved](https://github.com/Maxattax97/coc-ccls/issues/5) by running
+```bash
+cd ~/.config/coc/extensions/node_modules/coc-ccls
+ln -s node_modules/ws/lib lib
+```
+
 # Resources
 - Allison Thackston's [workstation setup](https://github.com/athackst/workstation_setup/)
 - Hiding terminal titlebar: [AskUbuntu Question](https://askubuntu.com/questions/1230157/how-to-remove-title-bar-from-terminal-on-the-new-ubuntu-20-04)

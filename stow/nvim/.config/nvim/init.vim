@@ -343,6 +343,13 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>w
 
+" Global extensions to install
+let g:coc_global_extensions = ['coc-json',
+                               \ 'coc-git',
+                               \ 'coc-python',
+                               \ 'coc-clangd',
+                               \ 'coc-ccls']
+
 " vim-startify
 " Load session if `(n)vim` is invoked in a directory that contains a `Session.vim` file
 let g:startify_session_autoload = 0
