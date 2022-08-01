@@ -160,6 +160,7 @@ let NERDTreeMapActivateNode='<space>'
 
 " -- vim-fugitive
 nnoremap <leader>gb :Git blame<CR>
+xnoremap <leader>gb :Git blame<CR>
 
 " coc
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
