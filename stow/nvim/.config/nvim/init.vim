@@ -19,7 +19,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'vim-utils/vim-man'              " View `man` pages in vim
 Plug 'mrtazz/DoxygenToolkit.vim'      " Auto-insert Doxygen comments
 Plug 'tpope/vim-commentary'           " Easily comment / uncomment blocks
-Plug 'skywind3000/asyncrun.vim'       " Run commands / builds in background 
+Plug 'skywind3000/asyncrun.vim'       " Run commands / builds in background
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'sheerun/vim-polyglot'           " Better syntax highlighting
 Plug 'w0ng/vim-hybrid'                " Colorscheme
@@ -89,8 +89,8 @@ if executable('rg')
   let g:rg_derive_root='true'
 endif
 
-" Never automatically continue comment when starting next line and 
-" delete comment character when joining commented lines
+" Never automatically continue comment when starting next line and delete comment character
+" when joining commented lines
 au FileType * set fo-=c fo-=r fo-=o fo+=j
 
 " Set C++ comment strings to `//` instead of `/* */`
