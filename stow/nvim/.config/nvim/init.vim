@@ -28,6 +28,7 @@ Plug 'junegunn/fzf.vim'               " fzf vim extension
 Plug 'airblade/vim-gitgutter'         " Git status on side bar and git operations
 Plug 'rhysd/vim-clang-format'         " Commands for applying clang-formatting
 Plug 'preservim/nerdtree'             " Navigate files using a tree structure
+Plug 'mhinz/vim-startify'             " Manage vim sessions
 
 Plug 'arcticicestudio/nord-vim'       " Build for vim's terminal and GUI mode with true colors
 Plug 'tmsvg/pear-tree'                " Pair brackets, braces, etc.
@@ -332,3 +333,10 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>w
 
+" vim-startify
+" Load session if `(n)vim` is invoked in a directory that contains a `Session.vim` file
+let g:startify_session_autoload = 0
+" Automaticall update session before leaving (i.e., closing) vim
+let g:startify_session_persistence = 0
+" Open startify buffer
+nnoremap <leader>s :Startify<cr>
