@@ -32,6 +32,7 @@ Plug 'mhinz/vim-startify'             " Manage vim sessions
 Plug 'vim-airline/vim-airline'        " Custom status bar
 Plug 'vim-airline/vim-airline-themes' " Themes
 Plug 'lervag/vimtex'                  " Latex support
+Plug 'nathanaelkane/vim-indent-guides' " Indentation guides
 
 Plug 'arcticicestudio/nord-vim'       " Build for vim's terminal and GUI mode with true colors
 Plug 'tmsvg/pear-tree'                " Pair brackets, braces, etc.
