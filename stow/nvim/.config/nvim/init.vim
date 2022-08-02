@@ -132,8 +132,10 @@ nnoremap <leader>w :Windows<CR>
 " nnoremap <leader>* :execute ':Ag ' . expand('<cWORD>')<CR>
 
 " Call commands for words under the curser
-nnoremap <leader>eo :call fzf#vim#files('.', {'options':'--query '.expand('<cWORD>')})<CR>
-nnoremap <leader>ei :call fzf#vim#buffers('.', {'options':'--query '.expand('<cWORD>')})<CR>
+nnoremap <leader>eo :call fzf#vim#files('.', {'options':'--query '.expand('<cword>')})<CR>
+nnoremap <leader>eO :call fzf#vim#files('.', {'options':'--query '.expand('<cWORD>')})<CR>
+nnoremap <leader>ei :call fzf#vim#buffers('.', {'options':'--query '.expand('<cword>')})<CR>
+nnoremap <leader>eI :call fzf#vim#buffers('.', {'options':'--query '.expand('<cWORD>')})<CR>
 nnoremap <leader>* :call fzf#vim#ag('.', {'options':'--query '.expand('<cword>')})<CR>
 
 let $FZF_DEFAULT_COMMAND = 'ag -g ""' " ignore files in .gitignore
