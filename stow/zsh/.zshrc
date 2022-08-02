@@ -37,8 +37,8 @@ zplug load
 # configure spaceship prompt
 SPACESHIP_PROMPT_ORDER=(
   user          # Username section
-  dir           # Current directory section
   host          # Hostname (e.g., computer name) section
+  dir           # Current directory section
   git           # Git section (git_branch + git_status)
   char          # Prompt character
 )
@@ -61,11 +61,11 @@ SPACESHIP_CHAR_COLOR_FAILURE='red'
 SPACESHIP_CHAR_COLOR_SECONDARY='yellow'
 
 SPACESHIP_USER_PREFIX=''
-SPACESHIP_USER_SUFFIX=': '
+SPACESHIP_USER_SUFFIX=''
 SPACESHIP_USER_COLOR='green'
 SPACESHIP_USER_COLOR_ROOT='red'
 
-SPACESHIP_HOST_SHOW=true
+SPACESHIP_HOST_SHOW=always
 SPACESHIP_HOST_SHOW_FULL=true
 SPACESHIP_HOST_PREFIX='@'
 SPACESHIP_HOST_SUFFIX=': '
