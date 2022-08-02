@@ -123,10 +123,19 @@ nmap <leader>cb : CMakeBuild<cr>
 " -- fzf
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>i :Buffers<CR>
-nnoremap <leader>/ :Lines<CR>
+nnoremap <leader>l :Lines<CR>
 nnoremap <leader>a :Ag<space>
 nnoremap <leader>p :History<CR>
 nnoremap <leader>: :History:<CR>
+nnoremap <leader>/ :History/<CR>
+nnoremap <leader>w :Windows<CR>
+" nnoremap <leader>* :execute ':Ag ' . expand('<cWORD>')<CR>
+
+" Call commands for words under the curser
+nnoremap <leader>eo :call fzf#vim#files('.', {'options':'--query '.expand('<cWORD>')})<CR>
+nnoremap <leader>ei :call fzf#vim#buffers('.', {'options':'--query '.expand('<cWORD>')})<CR>
+nnoremap <leader>* :call fzf#vim#ag('.', {'options':'--query '.expand('<cword>')})<CR>
+
 let $FZF_DEFAULT_COMMAND = 'ag -g ""' " ignore files in .gitignore
 let g:fzf_layout = { 'down': '~40%' }
 
