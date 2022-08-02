@@ -111,6 +111,9 @@ map gp :bp<cr>
 " Go to file in vertical split
 nnoremap <C-W><C-F> <C-W>vgf
 
+" Close tab
+nnoremap <C-W>C :tabclose<CR>
+
 " Copy to clipboard. Note: requires `vim-gtk` (install using `sudo apt-get install vim-gtk`)
 vnoremap <leader>y "+y
 nnoremap <leader>yy V"+y
