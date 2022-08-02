@@ -36,20 +36,59 @@ zplug load
 
 # configure spaceship prompt
 SPACESHIP_PROMPT_ORDER=(
+  user          # Username section
   dir           # Current directory section
-#  user          # Username section
-#  host          # Hostname section
-#  git           # Git section (git_branch + git_status)
-#  line_sep      # Line break
+  host          # Hostname (e.g., computer name) section
+  git           # Git section (git_branch + git_status)
   char          # Prompt character
 )
+
+SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_PROMPT_SEPARATE_LINE=false
+SPACESHIP_PROMPT_FIRST_PREFIX_SHOW=true
+SPACESHIP_PROMPT_PREFIXES_SHOW=true
+SPACESHIP_PROMPT_SUFFIXES_SHOW=true
+SPACESHIP_PROMPT_DEFAULT_PREFIX=true
+SPACESHIP_PROMPT_DEFAULT_SUFFIX=true
+
+SPACESHIP_CHAR_PREFIX=''
+SPACESHIP_CHAR_SUFFIX=' '
+SPACESHIP_CHAR_SYMBOL='$'
+SPACESHIP_CHAR_SYMBOL_ROOT=$SPACESHIP_CHAR_SYMBOL
+SPACESHIP_CHAR_SYMBOL_SECONDARY='-'
+SPACESHIP_CHAR_COLOR_SUCCESS='green'
+SPACESHIP_CHAR_COLOR_FAILURE='red'
+SPACESHIP_CHAR_COLOR_SECONDARY='yellow'
+
+SPACESHIP_USER_PREFIX=''
+SPACESHIP_USER_SUFFIX=': '
+SPACESHIP_USER_COLOR='green'
+SPACESHIP_USER_COLOR_ROOT='red'
+
+SPACESHIP_HOST_SHOW=true
+SPACESHIP_HOST_SHOW_FULL=true
+SPACESHIP_HOST_PREFIX='@'
+SPACESHIP_HOST_SUFFIX=': '
+SPACESHIP_HOST_COLOR='magenta'
+SPACESHIP_HOST_COLOR_SSH='red'
+
+SPACESHIP_DIR_SHOW=true
+SPACESHIP_DIR_PREFIX=''
+SPACESHIP_DIR_SUFFIX=' '
 SPACESHIP_DIR_TRUNC=0
+SPACESHIP_DIR_TRUNC_PREFIX='.../'
 SPACESHIP_DIR_TRUNC_REPO=false
-#SPACESHIP_PROMPT_ADD_NEWLINE=true
-#SPACESHIP_PROMPT_SEPARATE_LINE=true
-#SPACESHIP_PROMPT_FIRST_PREFIX_SHOW=true
-SPACESHIP_USER_SHOW=never # When to show user name
-SPACESHIP_USER_PREFIX='no '
+SPACESHIP_DIR_COLOR='cyan'
+
+SPACESHIP_GIT_SHOW=true
+SPACESHIP_GIT_PREFIX='('
+SPACESHIP_GIT_SUFFIX=') '
+SPACESHIP_GIT_BRANCH_PREFIX='➜ '
+SPACESHIP_GIT_BRANCH_COLOR='blue'
+
+SPACESHIP_USER_SHOW=always # When to show user name
+SPACESHIP_GIT_STATUS_SHOW=true
+SPACESHIP_GIT_STATUS_COLOR='magenta'
 
 # Stop prompt from setting tmux title
 DISABLE_AUTO_TITLE=true
@@ -74,7 +113,6 @@ bindkey '^x' edit-command-line
 
 # Add local to path
 export PATH="$HOME/.local/bin:$PATH"
-
 
 
 #setopt autocd 

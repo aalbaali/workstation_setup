@@ -1,6 +1,9 @@
 # @brief Generic functions and aliases used by bash and zsh (i.e., they're sourced)
 # @author Amro Al-Baali
 
+# Set default editor as nvim
+export EDITOR=nvim
+
 ################################################
 # Software abbreviations
 ################################################
@@ -49,13 +52,16 @@ logpid() { while sleep 1; do  ps -p $1 -o pcpu= -o pmem= ; done; }
 # Git
 ####################
 alias gll="git log --graph --oneline --all --decorate"
-alias gs="git status"
+alias gs="git status -s"
 alias gm="git commit -s"
 alias ga="git add"
 alias gb="git branch"
 alias gc="git checkout"
 alias gd="git diff"
 alias gdc="git diff --cached"
+
+alias g="git"
+complete -o default -o nospace -F _git g
 
 
 # Fuzzy checkout git branch with fzf

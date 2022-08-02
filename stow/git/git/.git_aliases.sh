@@ -31,9 +31,6 @@ CYAN="\e[36m"
 WHITE="\e[37m"
 UNSET="\e[0m"
 
-alias g="git"
-complete -o default -o nospace -F _git g
-
 _g_base_branch() {
   echo "$(_g_remote)/$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)"
 }

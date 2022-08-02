@@ -71,6 +71,11 @@ cd ~/.config/coc/extensions/node_modules/coc-ccls
 ln -s node_modules/ws/lib lib
 ```
 
+
+## ZSH fonts
+Additional packages may be required for the ZSH font to be displayed correctly.
+Check the [spaceship-prompt](https://github.com/spaceship-prompt/spaceship-prompt) and [this answer](https://askubuntu.com/questions/271566/how-to-get-ubuntu-to-display-unicode-supplementary-characters).
+
 # Resources
 - Allison Thackston's [workstation setup](https://github.com/athackst/workstation_setup/)
 - Hiding terminal titlebar: [AskUbuntu Question](https://askubuntu.com/questions/1230157/how-to-remove-title-bar-from-terminal-on-the-new-ubuntu-20-04)

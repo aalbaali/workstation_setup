@@ -25,6 +25,8 @@ if [ ! -f ${fonts}/iosevka-term-regular.ttf ]; then
   cp /tmp/iosevka-term/*.ttf ${fonts}
 fi
 
+apt-get install fonts-arphic-uming fonts-arphic-ukai fonts-powerline
+
 # Refresh font cache
 fc-cache
 
