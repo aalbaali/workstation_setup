@@ -17,6 +17,7 @@ source $ZPLUG_HOME/init.zsh
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "lib/history", from:oh-my-zsh
+zplug "plugins/web-search", from:oh-my-zsh
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 zplug "arzzen/calc.plugin.zsh"
 
