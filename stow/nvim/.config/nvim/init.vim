@@ -34,6 +34,7 @@ Plug 'vim-airline/vim-airline-themes' " Themes
 Plug 'lervag/vimtex'                  " Latex support
 Plug 'justinmk/vim-sneak'             " Fast navigation
 Plug 'tpope/vim-surround'             " Operations for surrounding words with paranthesis
+Plug 'cdelledonne/vim-cmake'          " CMake shortcuts
 
 Plug 'arcticicestudio/nord-vim'       " Build for vim's terminal and GUI mode with true colors
 Plug 'tmsvg/pear-tree'                " Pair brackets, braces, etc.
@@ -396,3 +397,9 @@ let g:vimtex_compiler_method = 'latexrun'
 " Most VimTeX mappings rely on localleader and this can be changed with the
 " following line. The default is usually fine and is the symbol "\".
 let maplocalleader = ","
+
+" cmake
+g:cmake_link_compile_commands = 1
+" Show cmake version in status line
+set statusline=%{cmake#GetInfo().cmake_version.string}
+map <F7> <Plug>(CMakeOpen)
