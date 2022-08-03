@@ -119,7 +119,7 @@ nnoremap <C-W>C :tabclose<CR>
 vnoremap <leader>y "+y
 nnoremap <leader>yy V"+y
 " Copy current file to clipboard
-nmap <leader>Y :let @+ = expand("%")<cr>
+nmap <leader>Y :let @+ = expand("%:p")<cr>
 
 " Variables
 let g:cmake_link_complie_commands = 1
