@@ -1,9 +1,6 @@
 # @brief Generic functions and aliases used by bash and zsh (i.e., they're sourced)
 # @author Amro Al-Baali
 
-# Set default editor as nvim
-export EDITOR=nvim
-
 ################################################
 # Software abbreviations
 ################################################
