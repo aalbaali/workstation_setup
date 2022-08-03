@@ -80,6 +80,7 @@ set showmatch               " Show matching brackets.
 set nohlsearch              " Highlight search results
 set autoindent              " Indent a new line the same amount as the line just typed
 set cc=100                  " Set an 100 column border for good coding style
+set cursorline              " Highlight cursor line
 
 " colorscheme
 colorscheme gruvbox
@@ -135,14 +136,14 @@ nnoremap <leader>p :History<CR>
 nnoremap <leader>: :History:<CR>
 nnoremap <leader>/ :History/<CR>
 nnoremap <leader>w :Windows<CR>
-" nnoremap <leader>* :execute ':Ag ' . expand('<cWORD>')<CR>
 
 " Call commands for words under the curser
 nnoremap <leader>eo :call fzf#vim#files('.', {'options':'--query '.expand('<cword>')})<CR>
 nnoremap <leader>eO :call fzf#vim#files('.', {'options':'--query '.expand('<cWORD>')})<CR>
 nnoremap <leader>ei :call fzf#vim#buffers('.', {'options':'--query '.expand('<cword>')})<CR>
 nnoremap <leader>eI :call fzf#vim#buffers('.', {'options':'--query '.expand('<cWORD>')})<CR>
-nnoremap <leader>* :call fzf#vim#ag('.', {'options':'--query '.expand('<cword>')})<CR>
+" nnoremap <leader>* :call fzf#vim#ag({'options':'--query '.expand('<cword>')})<CR>
+nnoremap <leader>* :execute ':Ag ' . expand('<cword>')<CR>
 
 let $FZF_DEFAULT_COMMAND = 'ag -g ""' " ignore files in .gitignore
 let g:fzf_layout = { 'down': '~40%' }
