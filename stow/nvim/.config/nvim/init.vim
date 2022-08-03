@@ -118,6 +118,8 @@ nnoremap <C-W>C :tabclose<CR>
 " Copy to clipboard. Note: requires `vim-gtk` (install using `sudo apt-get install vim-gtk`)
 vnoremap <leader>y "+y
 nnoremap <leader>yy V"+y
+" Copy current file to clipboard
+nmap <leader>Y :let @+ = expand("%")<cr>
 
 " Variables
 let g:cmake_link_complie_commands = 1
