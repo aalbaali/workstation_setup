@@ -104,9 +104,9 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 " ======================================
 " Plugin settings and shortcuts
 " ======================================
-" Go to next tab
+" Go to next buffer
 map gn :bn<cr>
-" Go to previous tab
+" Go to previous buffer
 map gp :bp<cr>
 
 " Go to file in vertical split
@@ -132,7 +132,8 @@ nmap <leader>cb : CMakeBuild<cr>
 " -- fzf
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>i :Buffers<CR>
-nnoremap <leader>l :Lines<CR>
+nnoremap <leader>l :BLines<CR>
+nnoremap <leader>L :Lines<CR>
 nnoremap <leader>a :Ag<space>
 nnoremap <leader>p :History<CR>
 nnoremap <leader>: :History:<CR>
@@ -260,11 +261,13 @@ nmap <silent> ]G <Plug>(coc-diagnostic-next-error)
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gD :vsp<CR><Plug>(coc-definition)
+nmap <silent> gsD :sp<CR><Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gh <C-u>:CocCommand clangd.switchSourceHeader<cr>
 nmap <silent> gH :vsp<CR><C-u>:CocCommand clangd.switchSourceHeader<cr>
+nmap <silent> gsH :sp<CR><C-u>:CocCommand clangd.switchSourceHeader<cr>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call ShowDocumentation()<CR>
