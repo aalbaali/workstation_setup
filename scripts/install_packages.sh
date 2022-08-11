@@ -34,7 +34,8 @@ apt-get install -y \
   brightnessctl \
   tilix \
   tmux \
-  nodejs
+  nodejs \
+  npm
 
 # Install pre-commit
 pip install pre-commit
