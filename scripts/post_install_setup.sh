@@ -160,8 +160,10 @@ case $yn in
     nvim +CocUpdateSync +qall
 
     # This fixes a coc-ccls related typo
-    cd ~/.config/coc/extensions/node_modules/coc-ccls
-    ln -s node_modules/ws/lib lib
+    if [ -d ~/.config/coc/extensions/node_modules/coc-ccls ]; then
+      cd ~/.config/coc/extensions/node_modules/coc-ccls
+      ln -s node_modules/ws/lib lib
+    fi
 
     ;;
     [Nn]* ) ;;
