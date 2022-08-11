@@ -1,6 +1,31 @@
 #!/bin/bash
 
 # Install dotfiles and setup some applications (e.g., neovim, tmux, etc.)
+#
+# Usage
+#   List the stow files to link. The options include
+#     --all           Install all stow links and setup all packages
+#     --all-stow      Install all stow packages but do not necessarily setup all packages
+#     --bash          Install bash stow
+#     --zsh           Install zsh stow
+#     --function      Install .functions.sh stow
+#     --git           Install .gitignore stow
+#     --nvim          Install nvim configs
+#     --vim           Install vim configs
+#     --tmux          Install tmux configs
+#     --clang_format  Install clang_format configs
+#     --gdb           Install gdb configs
+#     --latex         Install latex configs
+#     --vscode        Install vscode configs
+#
+#     --nvim-setup    Install neovim plugins
+#     --vim-setup     Install vim plugins
+#
+# Example
+#   ./scripts/post_install_setup.sh --zsh --functions --git --nvim --clang_format --gdb --nvim-setup
+#
+# Note that the --no-[package] option is currently not working as expected.
+#
 # Amro Al-Baali
 
 # Exit if package is not installed

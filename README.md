@@ -11,8 +11,8 @@ git clone git@github.com:aalbaali/workstation_setup.git ~/.dot
 ## Default installations
 The install scripts can be activated using a Makefile.
 The default scripts are
-- [`post_install_setup.sh`](scripts/post_install_setup.sh)
-- [`post_install_setup.sh`](scripts/post_install_setup.sh)
+- [`install_packages.sh`](scripts/install_packages.sh), and
+- [`post_install_setup.sh`](scripts/post_install_setup.sh) using the arguments `--zsh --functions --git --nvim --clang_format --gdb --nvim-setup`
 
 To run the default scripts, run
 ```bash
@@ -31,6 +31,20 @@ There are some prompts for some installations. To bypass these prompts, run the 
 ```bash
 yes "" | make
 ```
+
+## Post-processing scripts
+Package-specific config files are stored under the `stow` directory.
+These config files can be linked to the home directory using [`stow`](https://www.gnu.org/software/stow/manual/stow.html).
+The config files can be set up using the [`post_install_setup.sh`](scripts/post_install_setup.sh).
+The takes multiple arguments based on the config files to link (using `stow`).
+Furthermore, the script can set up some packages (e.g., neovim plugins installations).
+
+For example, running (from the root of this repo)
+```bash
+./scripts/post_install_setup.sh --zsh --functions --git --nvim --clang_format --gdb --nvim-setup
+```
+will install the config files for zsh, git, neovim, clang-format, gdb debugginer, the custom [`.functions.sh`](`stow/functions/.functions.sh`) script, and install the packages for neovim.
+
 
 
 # Tilix
