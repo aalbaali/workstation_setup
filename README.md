@@ -70,6 +70,8 @@ The error can be [resolved](https://github.com/Maxattax97/coc-ccls/issues/5) by 
 cd ~/.config/coc/extensions/node_modules/coc-ccls
 ln -s node_modules/ws/lib lib
 ```
+This snippet is executed in the [`post_install_setup.sh`](`scripts/post_install_setup.sh`) script when passing the `--nvim-setup` flag.
+Note that this script will only work after installing the `coc-ccls` plugin first (i.e., it sufficies to launch `nvim` before launching the script).
 
 
 ## ZSH fonts
