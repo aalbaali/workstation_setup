@@ -35,7 +35,7 @@ while true; do
   case "$1" in
     -a | --all ) INSTALL_ALL=true; shift ;;
     --all-stow ) ALL_STOW=true; shift ;;
-    --no-prompt ) EXIT_IF_ERROR=false ;;
+    --no-prompt ) EXIT_IF_ERROR=false; shift ;;
     --bash ) STOW_PACKAGES[bash]=true; shift ;;
     --no-bash ) STOW_PACKAGES[bash]=false; shift ;;
     --clang-format ) STOW_PACKAGES[clang_format]=true; shift ;;
@@ -62,8 +62,10 @@ while true; do
     --no-vscode ) STOW_PACKAGES[vscode]=false; shift ;;
     --zsh ) STOW_PACKAGES[zsh]=true; shift ;;
     --no-zsh ) STOW_PACKAGES[zsh]=false; shift ;;
+    --functions ) STOW_PACKAGES[functions]=true; shift ;;
+    --no-functions ) STOW_PACKAGES[no-functions]=false; shift ;;
     -- ) shift; break ;;
-    * ) break ;;
+    * ) shift; break ;;
   esac
 done
 
