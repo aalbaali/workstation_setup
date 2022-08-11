@@ -1,5 +1,38 @@
 # Docker-related functions for starting containers
 
+alias dps="docker ps"
+alias dpsa="docker ps -a"
+alias di="docker image"
+alias ds="docker start"
+alias dils="docker image ls"
+alias drm="docker rm"
+alias drmi="docker rmi"
+alias ds="docker start"
+
+# List running container names
+function dn() {
+  docker ps $@ | awk 'FNR > 1 {print $(NF)}'
+}
+
+alias dna="dn -a"
+
+# Execute already running containers
+function dex() {
+  # Start container if not started
+  if [ $(docker container inspect -f '{{.State.Status}}' $1) != "running" ]; then
+    echo -e "\033[93mContainer \033[36;1m$1\033[0;93m not running. Will start it\033[0m"
+    ds $1;
+  fi
+  docker exec -it $1 bash
+}
+
+# Complete `dex` with a list of running containers
+#   1. Get all docker *running* containers (i.e., witout the `-a` flag)
+#   2. Get all rows after the first row (FNR > 1)
+#   3. Print last column ($(NF))
+complete -C "dn" dex
+
+
 drun() {
   # First argument: image repo
   # Second argument: image tag
