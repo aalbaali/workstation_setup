@@ -77,6 +77,7 @@ gz()
 alias dps="docker ps"
 alias dpsa="docker ps -a"
 alias di="docker image"
+alias ds="docker start"
 alias dils="docker image ls"
 alias drm="docker rm"
 alias drmi="docker rmi"
