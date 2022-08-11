@@ -155,7 +155,13 @@ case $yn in
     # Install vim-plug plugin manager
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    nvim +'PlugInstall --sync' +'PlugUpdate' +qa
+
+    nvim +'PlugInstall --sync' +'CocInstall -sync coc-json coc-ccls' +qa
+    nvim +CocUpdateSync +qall
+
+    # This fixes a coc-ccls related typo
+    cd ~/.config/coc/extensions/node_modules/coc-ccls
+    ln -s node_modules/ws/lib lib
 
     ;;
     [Nn]* ) ;;
