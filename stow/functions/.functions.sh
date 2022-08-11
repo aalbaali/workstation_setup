@@ -80,6 +80,7 @@ alias di="docker image"
 alias dils="docker image ls"
 alias drm="docker rm"
 alias drmi="docker rmi"
+alias ds="docker start"
 
 # List running container names
 function dn() {
