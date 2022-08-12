@@ -35,7 +35,8 @@ apt-get install -y \
   tilix \
   tmux \
   nodejs \
-  npm
+  npm \
+  exuberant-ctags
 
 # Install pre-commit
 pip install pre-commit

@@ -35,6 +35,9 @@ Plug 'lervag/vimtex'                  " Latex support
 Plug 'justinmk/vim-sneak'             " Fast navigation
 Plug 'tpope/vim-surround'             " Operations for surrounding words with paranthesis
 Plug 'cdelledonne/vim-cmake'          " CMake shortcuts
+Plug 'chrisbra/csv.vim'               " Handle CSV files
+Plug 'kkoomen/vim-doge'               " (Do)cument (Ge)nerator for various file systems
+Plug 'preservim/tagbar'               " Browse tags of current file
 
 Plug 'arcticicestudio/nord-vim'       " Build for vim's terminal and GUI mode with true colors
 Plug 'tmsvg/pear-tree'                " Pair brackets, braces, etc.
@@ -393,6 +396,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 " Set theme
 let g:airline_theme='papercolor'
+let g:airline#extensions#tagbar#enabled = 1
 
 " vimtex
 " This is necessary for VimTeX to load properly. The "indent" is optional.
@@ -428,3 +432,6 @@ g:cmake_link_compile_commands = 1
 " Show cmake version in status line
 set statusline=%{cmake#GetInfo().cmake_version.string}
 map <F7> <Plug>(CMakeOpen)
+
+" tagbar
+nmap <F8> :TagbarToggle<CR>
