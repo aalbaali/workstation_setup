@@ -434,4 +434,4 @@ set statusline=%{cmake#GetInfo().cmake_version.string}
 map <F7> <Plug>(CMakeOpen)
 
 " tagbar
-nmap <F8> :TagbarToggle<CR>
+nmap <leader>t :TagbarToggle f<CR>
