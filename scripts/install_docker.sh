@@ -12,7 +12,8 @@ apt-get install -y \
   ca-certificates \
   curl \
   gnupg \
-  lsb-release
+  lsb-release \
+  docker-compose
 
 # Add docker’s official GPG key:
 mkdir -p /etc/apt/keyrings
