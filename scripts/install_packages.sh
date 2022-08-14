@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Install packages I normally use
-apt-get update
+sudo apt-get update
 
-apt-get install -y \
+sudo apt-get install -y \
   vim-gtk \
   neovim \
   tmux \
