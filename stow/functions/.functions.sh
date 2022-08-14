@@ -45,6 +45,14 @@ mkcd()
 # Log CPU and memory usage of a process
 logpid() { while sleep 1; do  ps -p $1 -o pcpu= -o pmem= ; done; }
 
+# Add to path
+# https://superuser.com/a/39995
+pathadd() {
+  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    export PATH="${PATH:+"$PATH:"}$1"
+  fi
+}
+
 ####################
 # Git
 ####################
@@ -70,6 +78,9 @@ gz()
            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
+
+# lazygit
+alias lg=lazygit
 
 ####################
 # Docker

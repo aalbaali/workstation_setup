@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Install packages I normally use
-
 apt-get update
 
 apt-get install -y \
@@ -36,7 +35,10 @@ apt-get install -y \
   tmux \
   nodejs \
   npm \
-  exuberant-ctags
+  golang
+
+# Install lazygit using golang
+go install github.com/jesseduffield/lazygit@latest
 
 # Install pre-commit
 pip install pre-commit
