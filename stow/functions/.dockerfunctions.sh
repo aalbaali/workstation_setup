@@ -40,27 +40,31 @@ drun() {
   # Second argument: image tag
   # Third argument: container name
 
+  local image_repo="$1"
+  local image_tag="$2"
   if [ $# -lt 3 ]; then
-    echo -e "\033[91mOnly two arguments passed. Should pass at least 3 arguments:\033[0m"
+    echo -e "\033[93mLess than three arguments passed. Should pass at least three args:\033[0m"
     echo "   \$1  : image repo"
     echo "   \$2  : image tag"
     echo "   \$3  : container name"
     echo "   \$4-*: arguments passed to \`docker run\`"
     return 1
   fi
+  local cont_name="$3"
 
-  # First argument is the image repo:tag. Will use the tag as the container's hostname.
-  # tag=$(echo "$1" | awk '{split($0,a,":"); print(a[2])}')
-  tag=$2
+  # Container username is the image repo without the remote name (i.e., ignore string before '/')
+  local cont_username=$(echo $image_repo | awk -F/ '{print $NF}')
+  local cont_hostname=$cont_name
 
   docker run -it \
     -e DISPLAY=$DISPLAY \
+    -e DOCKER_REPO_TAG="$image_repo:$image_tag" \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -v ~/.ssh:/home/cpp/.ssh \
-    -v ~/.zsh_history:/home/cpp/.zsh_history  \
+    -v ~/.ssh:/home/$cont_username/.ssh \
+    -v ~/.zsh_history:/home/$cont_username/.zsh_history  \
     --network host \
-    --hostname $tag \
-    --name "$3" \
+    --hostname $cont_hostname \
+    --name $cont_name \
     ${@:4} \
     "$1:$2"
 }
