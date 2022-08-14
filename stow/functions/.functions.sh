@@ -82,6 +82,46 @@ gz()
 # lazygit
 alias lg=lazygit
 
+ghttptossh() {
+  # First argument is the repo location. Default value is "."
+  local repo_dir="."
+  if [[ -n "$1" ]]; then
+    repo_dir="$1"
+  fi
+
+  # Replace git https with ssh links
+  local remote_http=$(git remote -v | awk '{print $2}' | head -n 1 )
+
+  # Replace links if doesn't have git@ (i.e., it's an ssh link)
+  if [[ "$remote_http" != *"git@"* ]]; then
+    # Get the link without the https
+    remote_bare=$(echo "$remote_http" | awk -F'https://' '{print $NF}')
+
+    # Remove the 'github' part
+    remote_site=$(echo $remote_bare | awk -F'/' '{print $1}')
+    remote_username=$(echo $remote_bare | awk -F'/' '{print $2}')
+    remote_repo=$(echo $remote_bare | awk -F'/' '{print $3}')
+
+
+    # Add ssh to it
+    remote_ssh="git@$remote_site:$remote_username/$remote_repo"
+
+    # Remove remote
+    git remote remove origin
+
+    # Add ssh
+    git remote add origin $remote_ssh
+
+    # Track current branch to master
+    local local_branch=$(git branch | awk '{print $NF}')
+    git branch -u origin/master
+
+  fi
+
+  echo "git remote -v"
+  git remote -v
+}
+
 ####################
 # Docker
 ####################
