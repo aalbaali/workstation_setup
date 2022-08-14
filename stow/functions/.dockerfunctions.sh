@@ -18,12 +18,14 @@ alias dna="dn -a"
 
 # Execute already running containers
 function dex() {
+  # $1: Container name
+  # $2-*: Arguments passed to the container
   # Start container if not started
   if [ $(docker container inspect -f '{{.State.Status}}' $1) != "running" ]; then
     echo -e "\033[93mContainer \033[36;1m$1\033[0;93m not running. Will start it\033[0m"
     ds $1;
   fi
-  docker exec -it $1 bash
+  docker exec -it $1 ${@:2}
 }
 
 # Complete `dex` with a list of running containers
@@ -38,6 +40,15 @@ drun() {
   # Second argument: image tag
   # Third argument: container name
 
+  if [ $# -lt 3 ]; then
+    echo -e "\033[91mOnly two arguments passed. Should pass at least 3 arguments:\033[0m"
+    echo "   \$1  : image repo"
+    echo "   \$2  : image tag"
+    echo "   \$3  : container name"
+    echo "   \$4-*: arguments passed to \`docker run\`"
+    return 1
+  fi
+
   # First argument is the image repo:tag. Will use the tag as the container's hostname.
   # tag=$(echo "$1" | awk '{split($0,a,":"); print(a[2])}')
   tag=$2
@@ -45,10 +56,11 @@ drun() {
   docker run -it \
     -e DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -v ~/.ssh/id_ed25519:/home/cpp/.ssh/id_ed25519 \
+    -v ~/.ssh:/home/cpp/.ssh \
     -v ~/.zsh_history:/home/cpp/.zsh_history  \
     --network host \
     --hostname $tag \
+    --name "$3" \
     ${@:4} \
     "$1:$2"
 }
