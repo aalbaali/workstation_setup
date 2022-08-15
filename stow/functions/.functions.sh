@@ -1,6 +1,16 @@
 # @brief Generic functions and aliases used by bash and zsh (i.e., they're sourced)
 # @author Amro Al-Baali
 
+####################
+# Docker
+####################
+[ -f ~/.dockerfunctions.sh ] && source ~/.dockerfunctions.sh
+
+####################
+# ROS
+####################
+[ -f ~/.rosfunctions.sh ] && source ~/.rosfunctions.sh
+
 ################################################
 # Software abbreviations
 ################################################
@@ -121,11 +131,6 @@ ghttptossh() {
   echo "git remote -v"
   git remote -v
 }
-
-####################
-# Docker
-####################
-[ -f ~/.dockerfunctions.sh ] && source ~/.dockerfunctions.sh
 
 ####################
 # Zip
