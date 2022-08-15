@@ -385,6 +385,10 @@ let g:coc_global_extensions = ['coc-json'    ,
 let g:startify_session_autoload = 0
 " Automaticall update session before leaving (i.e., closing) vim
 let g:startify_session_persistence = 0
+" Bookmarked directories/files
+let g:startify_bookmarks = [ '~/.config/nvim/init.vim' ,
+                          \ '~/Dev/workstation_setup/' ]
+
 " Open startify buffer
 nnoremap <leader>s :Startify<cr>
 
