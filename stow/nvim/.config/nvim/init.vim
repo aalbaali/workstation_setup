@@ -287,7 +287,7 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+nmap <F2> <Plug>(coc-rename)
 
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -387,7 +387,10 @@ let g:startify_session_autoload = 0
 let g:startify_session_persistence = 0
 " Bookmarked directories/files
 let g:startify_bookmarks = [ '~/.config/nvim/init.vim' ,
-                          \ '~/Dev/workstation_setup/' ]
+                          \ '~/Dev/workstation_setup/' ,
+                          \ '~/Dev/repos/perception_tools/localization_rework_scripts/' ,
+                          \ '~/Dev/repos/autonomy/' ,
+                          \ '~/Dev/repos/localization-validation/']
 
 " Open startify buffer
 nnoremap <leader>s :Startify<cr>
@@ -438,4 +441,12 @@ set statusline=%{cmake#GetInfo().cmake_version.string}
 map <F7> <Plug>(CMakeOpen)
 
 " tagbar
-nmap <leader>t :TagbarToggle f<CR>
+nmap <leader>tt :TagbarToggle f<CR>
+nmap <leader>to :TagbarOpen f<CR>
+nmap <leader>tc :TagbarClose<CR>
+nmap <leader>tn :TagbarJumpNext<CR>
+nmap <leader>tN :TagbarJumpPrev<CR>
+
+" Doge
+" Set Python standard to Numpy
+let g:doge_doc_standard_python = 'numpy'
