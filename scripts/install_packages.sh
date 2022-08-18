@@ -35,7 +35,8 @@ sudo apt-get install -y \
   tmux \
   nodejs \
   npm \
-  golang
+  golang \
+  exuberant-ctags
 
 # Install lazygit using golang
 go install github.com/jesseduffield/lazygit@latest
