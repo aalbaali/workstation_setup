@@ -18,7 +18,6 @@ Plug 'tpope/vim-fugitive'             " Git comments
 Plug 'leafgarland/typescript-vim'
 Plug 'vim-utils/vim-man'              " View `man` pages in vim
 Plug 'mrtazz/DoxygenToolkit.vim'      " Auto-insert Doxygen comments
-Plug 'tpope/vim-commentary'           " Easily comment / uncomment blocks
 Plug 'skywind3000/asyncrun.vim'       " Run commands / builds in background
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'sheerun/vim-polyglot'           " Better syntax highlighting
@@ -38,6 +37,7 @@ Plug 'cdelledonne/vim-cmake'          " CMake shortcuts
 Plug 'chrisbra/csv.vim'               " Handle CSV files
 Plug 'kkoomen/vim-doge'               " (Do)cument (Ge)nerator for various file systems
 Plug 'preservim/tagbar'               " Browse tags of current file
+Plug 'preservim/nerdcommenter'        " Commenting plugin
 
 Plug 'arcticicestudio/nord-vim'       " Build for vim's terminal and GUI mode with true colors
 Plug 'tmsvg/pear-tree'                " Pair brackets, braces, etc.
@@ -47,7 +47,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'v0.0.81'} " Autocompletion
 " CMake support
 if has('nvim-0.5+' )
   Plug 'cdelledonne/vim-cmake'
-  Plug 'lyuts/vim-rtags'
+  " Plug 'lyuts/vim-rtags'
 else
   Plug 'cdelledonne/vim-cmake', {'branch': 'v0.7.1'}
 endif
@@ -371,6 +371,8 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>w
+" Show function signature while in isert mode
+inoremap <C-P> <C-\><C-O>:call CocActionAsync('showSignatureHelp')<cr>
 
 " Global extensions to install
 let g:coc_global_extensions = ['coc-json'    ,
@@ -450,3 +452,8 @@ nmap <leader>tN :TagbarJumpPrev<CR>
 " Doge
 " Set Python standard to Numpy
 let g:doge_doc_standard_python = 'numpy'
+
+" Nerdcommenter
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+imap <C-_> <esc><Plug>NERDCommenterToggle 
