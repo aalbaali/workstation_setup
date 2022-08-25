@@ -87,6 +87,8 @@ while true; do
     --no-vscode ) STOW_PACKAGES[vscode]=false; shift ;;
     --zsh ) STOW_PACKAGES[zsh]=true; shift ;;
     --no-zsh ) STOW_PACKAGES[zsh]=false; shift ;;
+    --zsh-setup ) STOW_PACKAGES[zsh-setup]=true; shift ;;
+    --no-zsh-setup ) STOW_PACKAGES[zsh-setup]=false; shift ;;
     --functions ) STOW_PACKAGES[functions]=true; shift ;;
     --no-functions ) STOW_PACKAGES[no-functions]=false; shift ;;
     -- ) shift; break ;;
@@ -196,7 +198,6 @@ case $yn in
     * )     ;;
 esac
 
-
 # Set up tmux
 if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[tmux-setup]}" = true ]; then
   yn=y
@@ -225,3 +226,18 @@ case $yn in
     * )     ;;
 esac
 
+# Zsh zplug
+if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh-setup]}" = true ]; then
+  yn=y
+elif [ "${STOW_PACKAGES[zsh-setup]}" = false ]; then
+  yn=n
+else
+  read -p "Install zsh zplug plugins? (y/N): " yn
+fi
+case $yn in
+    [Yy]* )
+      zplug install
+    ;;
+    [Nn]* ) ;;
+    * )     ;;
+esac
