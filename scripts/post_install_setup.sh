@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Install dotfiles and setup some applications (e.g., neovim, tmux, etc.)
 #
