@@ -172,5 +172,5 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 [ -f ~/.functions.sh ] && source ~/.functions.sh
 
 # Append PATHs (function imported from .functions)
-pathadd "/home/$USERNAME/.local/bin"
-pathadd "/home/$USERNAME/go/bin"
+export PATH="PATH:/home/$USERNAME/.local/bin"
+export PATH="PATH:/home/$USERNAME/go/bin"
