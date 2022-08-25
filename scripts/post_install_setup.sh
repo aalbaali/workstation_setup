@@ -183,7 +183,7 @@ case $yn in
 
     nvim +'PlugInstall --sync' +'CocInstall -sync coc-json coc-ccls' +qa
     nvim +CocUpdateSync +qall
-    nvim +':call doge#install()'
+    nvim +':call doge#install()' +qall
 
     # This fixes a coc-ccls related typo
     if [ -d ~/.config/coc/extensions/node_modules/coc-ccls ]; then
