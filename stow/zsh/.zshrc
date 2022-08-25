@@ -165,17 +165,12 @@ if command -v gh &> /dev/null; then
   eval "$(gh completion -s bash)"
 fi
 
-########################
-# ROS
-########################
-function noetic_gazebo() {
-  docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -u ros athackst/ros:noetic-gazebo gazebo
-}
-
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Load custom functions and aliases
 [ -f ~/.functions.sh ] && source ~/.functions.sh
+[ -f ~/.dockerfunctions.sh ] && source ~/.dockerfunctions.sh
+[ -f ~/.rosfunctions.sh ] && source ~/.rosfunctions.sh
 
 # Append PATHs (function imported from .functions)
 pathadd "/home/$USERNAME/.local/bin"
