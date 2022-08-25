@@ -4,12 +4,12 @@
 ####################
 # Docker
 ####################
-[ -f ~/.dockerfunctions.sh ] && source ~/.dockerfunctions.sh
+[[ $(docker --help 2>/dev/null) ]] && [ -f ~/.dockerfunctions.sh ] && source ~/.dockerfunctions.sh
 
 ####################
 # ROS
 ####################
-[ -f ~/.rosfunctions.sh ] && source ~/.rosfunctions.sh
+[[ -n $ROS_DISTRO ]] && [ -f ~/.rosfunctions.sh ] && source ~/.rosfunctions.sh
 
 ################################################
 # Software abbreviations
