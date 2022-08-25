@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Install dotfiles and setup some applications (e.g., neovim, tmux, etc.)
 #
@@ -226,5 +226,5 @@ esac
 
 # Zsh zplug
 if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh]}" = true ]; then
-  zplug install
+  zsh -c 'ZSH_NONINTERACTIVE=true; source ~/.zshrc; zplug install'
 fi
