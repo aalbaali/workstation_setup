@@ -156,8 +156,6 @@ case $yn in
     * )     ;;
 esac
 
-
-
 # Set up nvim
 if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[nvim-setup]}" = true ]; then
   yn=y
@@ -195,6 +193,28 @@ case $yn in
     [Nn]* ) ;;
     * )     ;;
 esac
+
+# Set up vim
+if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[vim-setup]}" = true ]; then
+  yn=y
+elif [ "${STOW_PACKAGES[vim-setup]}" = false ]; then
+  yn=n
+else
+  read -p "Install vim plugin manager and plugins? (y/N): " yn
+fi
+case $yn in
+    [Yy]* )
+    # Install vim plugins
+    vim +PlugInstall +qall
+
+    # Compile YouCompleteMe
+    ~/.vim/plugged/YouCompleteMe/install.py --clangd-completer
+
+    ;;
+    [Nn]* ) ;;
+    * )     ;;
+esac
+
 
 # Set up tmux
 if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[tmux-setup]}" = true ]; then
