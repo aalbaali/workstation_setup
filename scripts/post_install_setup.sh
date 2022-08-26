@@ -181,7 +181,7 @@ case $yn in
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-    nvim +'PlugInstall --sync' +'CocInstall -sync coc-json coc-ccls' +qa
+    nvim +'PlugInstall --sync' +'CocInstall -sync coc-json coc-ccls coc-git coc-cmake coc-clangd coc-ccls' +qa
     nvim +CocUpdateSync +qall
     nvim +':call doge#install()' +qall
 
