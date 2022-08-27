@@ -18,6 +18,7 @@
 #     --latex         Install latex configs
 #     --vscode        Install vscode configs
 #
+#     --zsh-setup     Install zsh zplugins
 #     --nvim-setup    Install neovim plugins
 #     --vim-setup     Install vim plugins
 #
@@ -31,6 +32,9 @@
 # Exit if package is not installed
 EXIT_IF_ERROR=true
 
+# Script directory
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 # Packages to check if installed
 PACKAGES_TO_CHECK=(
   git
@@ -42,6 +46,7 @@ PACKAGES_TO_CHECK=(
 declare -A STOW_PACKAGES=(
   [bash]=false
   [zsh]=false
+  [zsh-setup]=false
   [functions]=false
   [git]=false
   [nvim]=false
@@ -87,6 +92,8 @@ while true; do
     --no-vscode ) STOW_PACKAGES[vscode]=false; shift ;;
     --zsh ) STOW_PACKAGES[zsh]=true; shift ;;
     --no-zsh ) STOW_PACKAGES[zsh]=false; shift ;;
+    --zsh-setup ) STOW_PACKAGES[zsh-setup]=true; shift ;;
+    --no-zsh-setup ) STOW_PACKAGES[zsh-setup]=false; shift ;;
     --functions ) STOW_PACKAGES[functions]=true; shift ;;
     --no-functions ) STOW_PACKAGES[no-functions]=false; shift ;;
     -- ) shift; break ;;
@@ -245,7 +252,7 @@ case $yn in
 esac
 
 # Zsh zplug
-if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh]}" = true ]; then
-  zsh -ic 'ZSH_NONINTERACTIVE=true; source ~/.zshrc; echo; zplug install' | \
-    echo 'ZPlug exited early... Could be due to the zsh bug https://github.com/zplug/zplug/issues/272'
+if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh-setup]}" = true ]; then
+  # Install only if zsh is installed
+  command -v zsh &>/dev/null && $SCRIPT_DIR/install_zplug.zsh
 fi
