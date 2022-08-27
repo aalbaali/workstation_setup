@@ -246,5 +246,5 @@ esac
 
 # Zsh zplug
 if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh]}" = true ]; then
-  zsh <<< 'ZSH_NONINTERACTIVE=true; source ~/.zshrc; zplug install'
+  zsh <<< 'ZSH_NONINTERACTIVE=true; source ~/.zshrc; zplug install' 2>&1 >/dev/null
 fi
