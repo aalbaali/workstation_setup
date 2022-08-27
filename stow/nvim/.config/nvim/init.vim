@@ -38,6 +38,10 @@ Plug 'chrisbra/csv.vim'               " Handle CSV files
 Plug 'kkoomen/vim-doge'               " (Do)cument (Ge)nerator for various file systems
 Plug 'preservim/tagbar'               " Browse tags of current file
 Plug 'preservim/nerdcommenter'        " Commenting plugin
+Plug 'nvim-lua/plenary.nvim'          " Asynchronous programming using coroutines used with diffview.nvim
+Plug 'kyazdani42/nvim-web-devicons'   " Icons used for nvim diffview
+Plug 'sindrets/diffview.nvim'         " Neovim diffview
+
 
 Plug 'arcticicestudio/nord-vim'       " Build for vim's terminal and GUI mode with true colors
 Plug 'tmsvg/pear-tree'                " Pair brackets, braces, etc.
@@ -84,6 +88,8 @@ set nohlsearch              " Highlight search results
 set autoindent              " Indent a new line the same amount as the line just typed
 set cc=100                  " Set an 100 column border for good coding style
 set cursorline              " Highlight cursor line
+set splitright
+set diffopt+=vertical       " Set vertical split as the default split
 
 " colorscheme
 colorscheme gruvbox
@@ -372,7 +378,7 @@ inoremap <C-P> <C-\><C-O>:call CocActionAsync('showSignatureHelp')<cr>
 " Global extensions to install
 let g:coc_global_extensions = ['coc-json'    ,
                                \ 'coc-git'   ,
-                               \ 'coc-python',
+                               \ 'coc-pyright',
                                \ 'coc-cmake' ,
                                \ 'coc-clangd',
                                \ 'coc-ccls']
