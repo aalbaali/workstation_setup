@@ -246,5 +246,6 @@ esac
 
 # Zsh zplug
 if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh]}" = true ]; then
-  zsh <<< 'ZSH_NONINTERACTIVE=true; source ~/.zshrc; zplug install' 2>&1 >/dev/null
+  zsh -ic 'ZSH_NONINTERACTIVE=true; source ~/.zshrc; zplug install' | \
+    echo 'ZPlug exited early... Could be due to the zsh bug https://github.com/zplug/zplug/issues/272'
 fi
