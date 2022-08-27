@@ -36,7 +36,13 @@ sudo apt-get install -y \
   nodejs \
   npm \
   golang \
-  exuberant-ctags
+  exuberant-ctags \
+  software-properties-common
+
+# Install latest nvim release
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo apt-get update
+sudo apt-get install neovim
 
 # Install lazygit using golang
 go install github.com/jesseduffield/lazygit@latest
