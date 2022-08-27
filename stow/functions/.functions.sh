@@ -122,9 +122,10 @@ ghttptossh() {
     # Add ssh
     git remote add origin $remote_ssh
 
+    git fetch --prune
     # Track current branch to master
     local local_branch=$(git branch | awk '{print $NF}')
-    git branch -u origin/master
+    git branch -u origin/$local_branch
 
   fi
 
