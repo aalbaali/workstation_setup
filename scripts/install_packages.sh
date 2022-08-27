@@ -10,6 +10,7 @@ sudo apt-get install -y \
   git \
   htop \
   curl \
+  ripgrep \
   silversearcher-ag \
   stow \
   unzip \
