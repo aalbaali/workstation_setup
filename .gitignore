@@ -5,3 +5,4 @@ stow/i3/.config/*
 *dconf*
 **/plugged/**
 **/coc/**
+stow/nvim/.config/**
