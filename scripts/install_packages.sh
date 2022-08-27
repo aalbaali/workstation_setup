@@ -39,10 +39,10 @@ sudo apt-get install -y \
   exuberant-ctags \
   software-properties-common
 
-# Install latest nvim release
-sudo add-apt-repository ppa:neovim-ppa/stable
+# install latest nvim release
+sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo apt-get update
-sudo apt-get install neovim
+sudo apt-get install -y neovim
 
 # Install lazygit using golang
 go install github.com/jesseduffield/lazygit@latest
