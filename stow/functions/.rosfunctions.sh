@@ -1,4 +1,7 @@
-# ROS2-related functions
+# Get rosbag topics
+# $1: bag name
+gettopics() { rosbag info -k topics "$1" -y | ag topic: | awk -F': ' '{print $2}'}
+
 
 # Ros workspace
 export ROS_WORKSPACE="/home/ros/ros_ws"
