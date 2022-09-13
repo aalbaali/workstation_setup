@@ -462,3 +462,7 @@ let g:doge_doc_standard_python = 'numpy'
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 imap <C-_> <esc><Plug>NERDCommenterToggle 
+
+" Diffview
+" Open vimdiff
+nmap <leader>gd :DiffviewOpen :input()<CR>
