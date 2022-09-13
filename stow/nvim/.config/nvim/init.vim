@@ -453,6 +453,7 @@ nmap <leader>to :TagbarOpen f<CR>
 nmap <leader>tc :TagbarClose<CR>
 nmap <leader>tn :TagbarJumpNext<CR>
 nmap <leader>tN :TagbarJumpPrev<CR>
+let g:tagbar_autoclose=1
 
 " Doge
 " Set Python standard to Numpy
