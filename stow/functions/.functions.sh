@@ -12,13 +12,14 @@
 [[ -n $ROS_DISTRO ]] && [ -f ~/.rosfunctions.sh ] && source ~/.rosfunctions.sh
 
 ################################################
-# Software abbreviations
+# Application aliases
 ################################################
 alias fd="fdfind"
 alias vsc="code -n ."
 alias jj=julia
 alias jfranklin="julia -e 'using Franklin; serve()'"
 alias jpluto="julia -e 'using Pluto; Pluto.run()'"
+alias vpdf="sioyek"
 
 # File sizes
 alias sz=ncdu
