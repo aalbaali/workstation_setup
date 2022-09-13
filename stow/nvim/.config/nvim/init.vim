@@ -135,6 +135,9 @@ nmap <leader>Y :let @+ = expand("%:p")<cr>
 let g:cmake_link_complie_commands = 1
 let g:cmake_default_config = 'build'
 
+" vimdiff commands
+nmap <buffer> dg :diffget
+nmap <buffer> dp :diffput
 " CMake shortcuts
 nmap <leader>cg : CMakeGenerate<cr>
 nmap <leader>cb : CMakeBuild<cr>
