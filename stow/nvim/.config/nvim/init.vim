@@ -41,6 +41,7 @@ Plug 'preservim/nerdcommenter'        " Commenting plugin
 Plug 'nvim-lua/plenary.nvim'          " Asynchronous programming using coroutines used with diffview.nvim
 Plug 'kyazdani42/nvim-web-devicons'   " Icons used for nvim diffview
 Plug 'sindrets/diffview.nvim'         " Neovim diffview
+Plug 'vim-scripts/AnsiEsc.vim'        " Ansi escape colors
 
 
 Plug 'arcticicestudio/nord-vim'       " Build for vim's terminal and GUI mode with true colors
