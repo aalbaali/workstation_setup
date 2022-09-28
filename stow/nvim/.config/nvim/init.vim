@@ -19,6 +19,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'vim-utils/vim-man'              " View `man` pages in vim
 Plug 'mrtazz/DoxygenToolkit.vim'      " Auto-insert Doxygen comments
 Plug 'skywind3000/asyncrun.vim'       " Run commands / builds in background
+Plug 'w0rp/ale'                       " Asynchronous linting
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'sheerun/vim-polyglot'           " Better syntax highlighting
 Plug 'w0ng/vim-hybrid'                " Colorscheme
@@ -41,7 +42,7 @@ Plug 'preservim/nerdcommenter'        " Commenting plugin
 Plug 'nvim-lua/plenary.nvim'          " Asynchronous programming using coroutines used with diffview.nvim
 Plug 'kyazdani42/nvim-web-devicons'   " Icons used for nvim diffview
 Plug 'sindrets/diffview.nvim'         " Neovim diffview
-Plug 'vim-scripts/AnsiEsc.vim'        " Ansi escape colors
+"Plug 'vim-scripts/AnsiEsc.vim'        " Ansi escape colors
 
 
 Plug 'arcticicestudio/nord-vim'       " Build for vim's terminal and GUI mode with true colors
@@ -91,6 +92,7 @@ set cc=100                  " Set an 100 column border for good coding style
 set cursorline              " Highlight cursor line
 set splitright
 set diffopt+=vertical       " Set vertical split as the default split
+set autoread                " Automatically read latest changes on a file
 
 " colorscheme
 colorscheme gruvbox
@@ -138,6 +140,7 @@ let g:cmake_default_config = 'build'
 " vimdiff commands
 nmap <buffer> dg :diffget
 nmap <buffer> dp :diffput
+
 " CMake shortcuts
 nmap <leader>cg : CMakeGenerate<cr>
 nmap <leader>cb : CMakeBuild<cr>
@@ -424,7 +427,7 @@ syntax enable
 
 " Viewer options: One may configure the viewer either by specifying a built-in
 " viewer method:
-let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_method = 'general'
 
 " Or with a generic interface:
 let g:vimtex_view_general_viewer = 'okular'
@@ -435,7 +438,7 @@ let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 " want another compiler backend, you can change it as follows. The list of
 " supported backends and further explanation is provided in the documentation,
 " see ":help vimtex-compiler".
-let g:vimtex_compiler_method = 'latexrun'
+let g:vimtex_compiler_method = 'latexmk'
 
 " Most VimTeX mappings rely on localleader and this can be changed with the
 " following line. The default is usually fine and is the symbol "\".
@@ -467,3 +470,23 @@ imap <C-_> <esc><Plug>NERDCommenterToggle
 " Diffview
 " Open vimdiff
 nmap <leader>gd :DiffviewOpen :input()<CR>
+
+" Ruler has column and AsyncRun status
+set rulerformat=%60(%=%t\ %c\ %{g:asyncrun_status}%)
+
+
+" -- asyncrun
+noremap <leader>b :AsyncRun -cwd=<root> catkin build<CR>
+noremap <leader>t :AsyncRun -cwd=<root> catkin build --make-args tests<CR>
+noremap <leader>n :AsyncStop<CR>
+noremap <leader><leader> :call asyncrun#quickfix_toggle(20)<CR>
+let g:asyncrun_open = 4
+fun! OnAsyncRunFinished()
+    if g:asyncrun_status == 'success'
+      sleep 1
+      cclose
+    else
+      copen 20
+    endif
+endf
+let g:asyncrun_exit = "call OnAsyncRunFinished()"
