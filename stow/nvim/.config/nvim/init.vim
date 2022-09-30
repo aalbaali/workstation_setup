@@ -93,6 +93,7 @@ set cursorline              " Highlight cursor line
 set splitright
 set diffopt+=vertical       " Set vertical split as the default split
 set autoread                " Automatically read latest changes on a file
+set spell spellang=en_ca    " Set spelling correction language
 
 " colorscheme
 colorscheme gruvbox
