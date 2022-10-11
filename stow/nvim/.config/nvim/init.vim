@@ -478,6 +478,9 @@ map <F7> <Plug>(CMakeOpen)
 " CMake build
 map <F5> <Plug>(CMakeBuild)
 
+" Run make
+nmap <leader>m :make<cr>
+
 " ======================================
 " Tagbar
 " ======================================
