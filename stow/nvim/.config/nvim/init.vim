@@ -145,10 +145,22 @@ nmap <buffer> dg :diffget
 nmap <buffer> dp :diffput
 
 " ======================================
-" CMake shortcuts
+" CMake
 " ======================================
+" Variables
+let g:cmake_link_complie_commands = 1
+let g:cmake_default_config = 'build'
+let g:cmake_jump=1
+let g:cmake_jump_on_completion=1
+" Open CMake window
+
+" CMake build
+nmap <leader>co : CMakeOpen<cr>
 nmap <leader>cg : CMakeGenerate<cr>
 nmap <leader>cb : CMakeBuild<cr>
+
+" Show CMake version in status line
+set statusline=%{cmake#GetInfo().cmake_version.string}
 
 " ======================================
 " Fzf
@@ -426,7 +438,7 @@ let g:startify_bookmarks = [ '~/.config/nvim/init.vim' ,
                           \ '~/Dev/repos/localization-validation/']
 
 " Open startify buffer
-nnoremap <leader>s :Startify<cr>
+nnoremap <leader>ss :Startify<cr>
 
 " ======================================
 " Vim-airline
@@ -470,20 +482,6 @@ let g:vimtex_compiler_method = 'latexmk'
 " Most VimTeX mappings rely on localleader and this can be changed with the
 " following line. The default is usually fine and is the symbol "\".
 let maplocalleader = ","
-
-" ======================================
-" CMake
-" ======================================
-g:cmake_link_compile_commands=1
-" Show cmake version in status line
-set statusline=%{cmake#GetInfo().cmake_version.string}
-map <F7> <Plug>(CMakeOpen)
-
-" CMake build
-map <F5> <Plug>(CMakeBuild)
-
-" Run make
-nmap <leader>m :make<cr>
 
 " ======================================
 " Tagbar
