@@ -203,6 +203,10 @@ function! GitStatus()
 endfunction
 set statusline+=%{GitStatus()}
 
+" Git commands that are not necessarily part of vim-gutter
+nmap <leader>gc :G commit -s<cr>
+nmap <leader>gp :G push<cr>
+
 " ======================================
 " Vim-clang-format
 " ======================================
