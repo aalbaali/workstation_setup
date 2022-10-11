@@ -470,10 +470,13 @@ let maplocalleader = ","
 " ======================================
 " CMake
 " ======================================
-g:cmake_link_compile_commands = 1
+g:cmake_link_compile_commands=1
 " Show cmake version in status line
 set statusline=%{cmake#GetInfo().cmake_version.string}
 map <F7> <Plug>(CMakeOpen)
+
+" CMake build
+map <F5> <Plug>(CMakeBuild)
 
 " ======================================
 " Tagbar
