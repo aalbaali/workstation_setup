@@ -42,7 +42,7 @@ Plug 'preservim/nerdcommenter'        " Commenting plugin
 Plug 'nvim-lua/plenary.nvim'          " Asynchronous programming using coroutines used with diffview.nvim
 Plug 'kyazdani42/nvim-web-devicons'   " Icons used for nvim diffview
 Plug 'sindrets/diffview.nvim'         " Neovim diffview
-"Plug 'vim-scripts/AnsiEsc.vim'        " Ansi escape colors
+Plug 'vim-scripts/AnsiEsc.vim'        " Ansi escape colors
 
 
 Plug 'arcticicestudio/nord-vim'       " Build for vim's terminal and GUI mode with true colors
@@ -93,7 +93,7 @@ set cursorline              " Highlight cursor line
 set splitright
 set diffopt+=vertical       " Set vertical split as the default split
 set autoread                " Automatically read latest changes on a file
-set spell spellang=en_ca    " Set spelling correction language
+set spell spelllang=en_ca    " Set spelling correction language
 
 " colorscheme
 colorscheme gruvbox
@@ -138,15 +138,21 @@ nmap <leader>Y :let @+ = expand("%:p")<cr>
 let g:cmake_link_complie_commands = 1
 let g:cmake_default_config = 'build'
 
+" ======================================
 " vimdiff commands
+" ======================================
 nmap <buffer> dg :diffget
 nmap <buffer> dp :diffput
 
+" ======================================
 " CMake shortcuts
+" ======================================
 nmap <leader>cg : CMakeGenerate<cr>
 nmap <leader>cb : CMakeBuild<cr>
 
-" -- fzf
+" ======================================
+" Fzf
+" ======================================
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>i :Buffers<CR>
 nnoremap <leader>l :BLines<CR>
@@ -188,29 +194,39 @@ nnoremap <leader>fL :call FZFSameName('rightbelow vsplit', '', 'wincmd l')<CR>
 nnoremap <leader>fK :call FZFSameName('leftabove split', '', 'wincmd k')<CR>
 nnoremap <leader>fJ :call FZFSameName('rightbelow split', '', 'wincmd j')<CR>
 
-" vim-gutter
+" ======================================
+" Vim-gutter
+" ======================================
 function! GitStatus()
   let [a,m,r] = GitGutterGetHunkSummary()
   return printf('+%d ~%d -%d', a, m, r)
 endfunction
 set statusline+=%{GitStatus()}
 
-" vim-clang-format
+" ======================================
+" Vim-clang-format
+" ======================================
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 
-" nerdtree mappings
+" ======================================
+" Nerdtree mappings
+" ======================================
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR><C-w>w
 let NERDTreeMapActivateNode='<space>'
 
-" -- vim-fugitive
+" ======================================
+" Vim-fugitive
+" ======================================
 nnoremap <leader>gb :Git blame<CR>
 xnoremap <leader>gb :Git blame<CR>
 
-" coc
+" ======================================
+" Coc (conquer of completion)
+" ======================================
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
@@ -391,7 +407,9 @@ let g:coc_global_extensions = ['coc-json'    ,
                                \ 'coc-clangd',
                                \ 'coc-ccls']
 
-" vim-startify
+" ======================================
+" Vim-startify
+" ======================================
 " Load session if `(n)vim` is invoked in a directory that contains a `Session.vim` file
 let g:startify_session_autoload = 0
 " Automaticall update session before leaving (i.e., closing) vim
@@ -406,7 +424,9 @@ let g:startify_bookmarks = [ '~/.config/nvim/init.vim' ,
 " Open startify buffer
 nnoremap <leader>s :Startify<cr>
 
-" vim-airline
+" ======================================
+" Vim-airline
+" ======================================
 " Display all buffers if a single tab is used
 let g:airline#extensions#tabline#enabled = 1
 " Customize sepraters
@@ -416,7 +436,9 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme='papercolor'
 let g:airline#extensions#tagbar#enabled = 1
 
-" vimtex
+" ======================================
+" Vimtex
+" ======================================
 " This is necessary for VimTeX to load properly. The "indent" is optional.
 " Note that most plugin managers will do this automatically.
 filetype plugin indent on
@@ -445,13 +467,17 @@ let g:vimtex_compiler_method = 'latexmk'
 " following line. The default is usually fine and is the symbol "\".
 let maplocalleader = ","
 
-" cmake
+" ======================================
+" CMake
+" ======================================
 g:cmake_link_compile_commands = 1
 " Show cmake version in status line
 set statusline=%{cmake#GetInfo().cmake_version.string}
 map <F7> <Plug>(CMakeOpen)
 
-" tagbar
+" ======================================
+" Tagbar
+" ======================================
 nmap <leader>tt :TagbarToggle f<CR>
 nmap <leader>to :TagbarOpen f<CR>
 nmap <leader>tc :TagbarClose<CR>
@@ -459,16 +485,22 @@ nmap <leader>tn :TagbarJumpNext<CR>
 nmap <leader>tN :TagbarJumpPrev<CR>
 let g:tagbar_autoclose=1
 
+" ======================================
 " Doge
+" ======================================
 " Set Python standard to Numpy
 let g:doge_doc_standard_python = 'numpy'
 
+" ======================================
 " Nerdcommenter
+" ======================================
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 imap <C-_> <esc><Plug>NERDCommenterToggle 
 
+" ======================================
 " Diffview
+" ======================================
 " Open vimdiff
 nmap <leader>gd :DiffviewOpen :input()<CR>
 
@@ -476,7 +508,11 @@ nmap <leader>gd :DiffviewOpen :input()<CR>
 set rulerformat=%60(%=%t\ %c\ %{g:asyncrun_status}%)
 
 
-" -- asyncrun
+" ======================================
+" Asyncrun
+" ======================================
+" C++ builds/run
+" Catkin builds
 noremap <leader>b :AsyncRun -cwd=<root> catkin build<CR>
 noremap <leader>t :AsyncRun -cwd=<root> catkin build --make-args tests<CR>
 noremap <leader>n :AsyncStop<CR>
