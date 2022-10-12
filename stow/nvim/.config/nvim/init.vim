@@ -134,9 +134,26 @@ nnoremap <leader>yy V"+y
 " Copy current file to clipboard
 nmap <leader>Y :let @+ = expand("%:p")<cr>
 
-" Variables
-let g:cmake_link_complie_commands = 1
-let g:cmake_default_config = 'build'
+" ======================================
+" Built-in make
+" ======================================
+" Note that this make is built-in system that is different than the `make` build system
+
+" Set make program
+function SetLocalMakeprg(expr)
+  let &makeprg = a:expr
+endfunction
+function SetLocalMakeprgFromPrompt()
+  let fname = expand("%:r")
+  let response = input("Executable? ", "./build/" . fname)
+  call SetLocalMakeprg(response)
+endfunction
+
+" Function to set executable
+nmap <leader>ms :call SetLocalMakeprgFromPrompt()<cr>
+
+" Run :make
+nmap <leader>mm :make<cr>
 
 " ======================================
 " vimdiff commands
