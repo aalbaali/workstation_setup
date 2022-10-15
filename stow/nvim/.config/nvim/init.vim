@@ -92,6 +92,7 @@ set autoread                " Automatically read latest changes on a file
 set spell spelllang=en_ca    " Set spelling correction language
 
 " colorscheme
+let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 set background=dark
 
@@ -150,11 +151,6 @@ nmap <leader>ms :call SetLocalMakeprgFromPrompt()<cr>
 
 " Run :make
 nmap <leader>mm :make<cr>
-
-" ======================================
-" Gruvbox settings
-" ======================================
-let g:gruvbox_contrast_dark='soft'
 
 " ======================================
 " vimdiff commands
