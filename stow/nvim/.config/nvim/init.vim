@@ -12,17 +12,16 @@ endif
 " ======================================
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'morhetz/gruvbox'
-Plug 'jremmen/vim-ripgrep'
+Plug 'morhetz/gruvbox'                " Colorscheme
+Plug 'EdenEast/nightfox.nvim'         " Colorscheme
+Plug 'jremmen/vim-ripgrep'            " Ripgrep fuzzy searcher
 Plug 'tpope/vim-fugitive'             " Git comments
-Plug 'leafgarland/typescript-vim'
 Plug 'vim-utils/vim-man'              " View `man` pages in vim
 Plug 'mrtazz/DoxygenToolkit.vim'      " Auto-insert Doxygen comments
 Plug 'skywind3000/asyncrun.vim'       " Run commands / builds in background
 Plug 'w0rp/ale'                       " Asynchronous linting
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'sheerun/vim-polyglot'           " Better syntax highlighting
-Plug 'w0ng/vim-hybrid'                " Colorscheme
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " Install fzf (fast fuzzy searcher)
 Plug 'junegunn/fzf.vim'               " fzf vim extension
 Plug 'airblade/vim-gitgutter'         " Git status on side bar and git operations
@@ -43,9 +42,6 @@ Plug 'nvim-lua/plenary.nvim'          " Asynchronous programming using coroutine
 Plug 'kyazdani42/nvim-web-devicons'   " Icons used for nvim diffview
 Plug 'sindrets/diffview.nvim'         " Neovim diffview
 Plug 'vim-scripts/AnsiEsc.vim'        " Ansi escape colors
-
-
-Plug 'arcticicestudio/nord-vim'       " Build for vim's terminal and GUI mode with true colors
 Plug 'tmsvg/pear-tree'                " Pair brackets, braces, etc.
 Plug 'jamestthompson3/nvim-remote-containers'  " similar to vscode remote container
 Plug 'neoclide/coc.nvim', {'tag': 'v0.0.82'} " Autocompletion
@@ -154,6 +150,11 @@ nmap <leader>ms :call SetLocalMakeprgFromPrompt()<cr>
 
 " Run :make
 nmap <leader>mm :make<cr>
+
+" ======================================
+" Gruvbox settings
+" ======================================
+let g:gruvbox_contrast_dark='soft'
 
 " ======================================
 " vimdiff commands
