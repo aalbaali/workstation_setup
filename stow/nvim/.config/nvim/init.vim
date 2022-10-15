@@ -224,7 +224,7 @@ nnoremap <leader>fK :call FZFSameName('leftabove split', '', 'wincmd k')<CR>
 nnoremap <leader>fJ :call FZFSameName('rightbelow split', '', 'wincmd j')<CR>
 
 " ======================================
-" Vim-gutter
+" Git-gutter
 " ======================================
 function! GitStatus()
   let [a,m,r] = GitGutterGetHunkSummary()
@@ -232,7 +232,10 @@ function! GitStatus()
 endfunction
 set statusline+=%{GitStatus()}
 
-" Git commands that are not necessarily part of vim-gutter
+" ======================================
+" Vim-fugitive
+" ======================================
+" Git commands
 nmap <leader>gm :G commit -s<cr>
 nmap <leader>gp :G push<cr>
 
@@ -288,16 +291,19 @@ set signcolumn=yes
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
+" Change from v0.0.81 -> v0.0.82. See `:h coc-completion-example` for more info
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
+
+" Insert <tab> when previous text is space, refresh completion if not.
+inoremap <silent><expr> <C-N>
+  \ coc#pum#visible() ? coc#pum#next(1):
+  \ <SID>check_back_space() ? "\<Tab>" :
+  \ coc#refresh()
+inoremap <expr><C-P> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+"let g:coc_snippet_next = '<tab>'
 
 " Use <c-space> to trigger completion.
 if has('nvim')
@@ -310,7 +316,10 @@ endif
 " format on enter, <cr> could be remapped by other vim plugin
 " inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 "                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Change from v0.0.81 -> v0.0.82. See `:h coc-completion-example` for more info
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm()
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -424,13 +433,13 @@ nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
 nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+nnoremap <silent><nowait> <space>l  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+nnoremap <silent><nowait> <space>h  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>w
-" Show function signature while in isert mode
-inoremap <C-P> <C-\><C-O>:call CocActionAsync('showSignatureHelp')<cr>
+" Show function signature while in insert mode
+inoremap <C-O> <C-\><C-O>:call CocActionAsync('showSignatureHelp')<cr>
 
 " Global extensions to install
 let g:coc_global_extensions = ['coc-json'    ,
