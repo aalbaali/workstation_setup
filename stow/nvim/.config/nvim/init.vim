@@ -172,9 +172,9 @@ let g:cmake_jump_on_completion=1
 " Open CMake window
 
 " CMake build
-nmap <leader>co : CMakeOpen<cr>
-nmap <leader>cg : CMakeGenerate<cr>
-nmap <leader>cb : CMakeBuild<cr>
+autocmd BufRead *.cpp nmap <leader>co : CMakeOpen<cr>
+autocmd BufRead *.cpp nmap <leader>cg : CMakeGenerate<cr>
+autocmd BufRead *.cpp nmap <leader>cb : CMakeBuild<cr>
 
 " Show CMake version in status line
 set statusline=%{cmake#GetInfo().cmake_version.string}
