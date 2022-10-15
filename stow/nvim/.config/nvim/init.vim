@@ -233,7 +233,7 @@ endfunction
 set statusline+=%{GitStatus()}
 
 " Git commands that are not necessarily part of vim-gutter
-nmap <leader>gc :G commit -s<cr>
+nmap <leader>gm :G commit -s<cr>
 nmap <leader>gp :G push<cr>
 
 " ======================================
@@ -272,7 +272,7 @@ set nobackup
 set nowritebackup
 
 " Give more space for displaying messages.
-set cmdheight=2
+set cmdheight=1
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -519,9 +519,19 @@ let g:doge_doc_standard_python = 'numpy'
 " ======================================
 " Nerdcommenter
 " ======================================
+" Create default mappings
+let g:NERDCreateDefaultMappings = 0
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 imap <C-_> <esc><Plug>NERDCommenterToggle 
+
+" Default mappings. Check NERDCommenter Github page for more info
+map <leader>cc <Plug>NERDCommenterComment
+map <leader>cu <Plug>NERDCommenterUncomment
+map <leader>ci <Plug>NERDCommenterInvert
+map <leader>cs <Plug>NERDCommenterSexy
+map <leader>cy <Plug>NERDCommenterYank
+nmap <leader>c$ <Plug>NERDCommenterToEOL
 
 " ======================================
 " Diffview
