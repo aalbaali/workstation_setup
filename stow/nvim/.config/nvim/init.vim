@@ -36,7 +36,7 @@ Plug 'justinmk/vim-sneak'             " Fast navigation
 Plug 'tpope/vim-surround'             " Operations for surrounding words with paranthesis
 Plug 'cdelledonne/vim-cmake'          " CMake shortcuts
 Plug 'chrisbra/csv.vim'               " Handle CSV files
-Plug 'kkoomen/vim-doge'               " (Do)cument (Ge)nerator for various file systems
+Plug 'kkoomen/vim-doge', {'do': { -> doge#install() }} " (Do)cument (Ge)nerator for various file systems
 Plug 'preservim/tagbar'               " Browse tags of current file
 Plug 'preservim/nerdcommenter'        " Commenting plugin
 Plug 'nvim-lua/plenary.nvim'          " Asynchronous programming using coroutines used with diffview.nvim
@@ -513,8 +513,10 @@ let g:tagbar_autoclose=1
 " ======================================
 " Doge
 " ======================================
-" Set Python standard to Numpy
+" Check Doge documentation for the meaning of these vars
 let g:doge_doc_standard_python = 'numpy'
+let g:doge_doc_standard_cpp = 'doxygen_javadoc'
+let g:doge_mapping = '<Leader>dg'
 
 " ======================================
 " Nerdcommenter
