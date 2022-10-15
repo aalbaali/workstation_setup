@@ -539,7 +539,7 @@ nmap <leader>c$ <Plug>NERDCommenterToEOL
 " Diffview
 " ======================================
 " Open vimdiff
-nmap <leader>gd :DiffviewOpen :input()<CR>
+nmap <leader>gd :DiffviewOpen<CR>
 
 " Ruler has column and AsyncRun status
 set rulerformat=%60(%=%t\ %c\ %{g:asyncrun_status}%)
