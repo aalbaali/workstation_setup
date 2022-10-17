@@ -174,7 +174,7 @@ let g:cmake_jump_on_completion=1
 " Open CMake window
 
 " CMake build
-autocmd BufRead *.cpp nmap <leader>co : CMakeOpen<cr>
+autocmd BufRead *.cpp,*.cc,*.h,*.hpp nmap <leader>co : CMakeOpen<cr>
 autocmd BufRead *.cpp nmap <leader>cg : CMakeGenerate<cr>
 autocmd BufRead *.cpp nmap <leader>cb : CMakeBuild<cr>
 
