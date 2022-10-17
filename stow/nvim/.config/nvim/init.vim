@@ -202,7 +202,7 @@ nnoremap <leader>eI :call fzf#vim#buffers('.', {'options':'--query '.expand('<cW
 " nnoremap <leader>* :call fzf#vim#ag({'options':'--query '.expand('<cword>')})<CR>
 nnoremap <leader>* :execute ':Ag ' . expand('<cword>')<CR>
 
-let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""' " ignore files in .gitignore
+let $FZF_DEFAULT_COMMAND = 'ag -g ""' " ignore files in .gitignore
 let g:fzf_layout = { 'down': '~40%' }
 
 function! FZFSameName(sink, pre_command, post_command)
