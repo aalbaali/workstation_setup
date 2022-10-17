@@ -112,6 +112,11 @@ autocmd FileType c,cpp setlocal commentstring=//\ %s
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " ======================================
+" Terminal mode
+" ======================================
+tnoremap <Esc> <C-\><C-n>
+
+" ======================================
 " Plugin settings and shortcuts
 " ======================================
 " Go to next buffer
