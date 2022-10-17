@@ -316,12 +316,9 @@ endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-"                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Change from v0.0.81 -> v0.0.82. See `:h coc-completion-example` for more info
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm()
-      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <tab> coc#pum#visible() ? coc#_select_confirm()
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -448,8 +445,7 @@ let g:coc_global_extensions = ['coc-json'    ,
                                \ 'coc-git'   ,
                                \ 'coc-pyright',
                                \ 'coc-cmake' ,
-                               \ 'coc-clangd',
-                               \ 'coc-ccls']
+                               \ 'coc-clangd']
 
 " ======================================
 " Vim-startify
