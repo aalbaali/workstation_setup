@@ -76,6 +76,7 @@ To run tilix using the `ctrl + alt + T` shortcut, disable the terminal's shortcu
 The auto-dock can be customized so that it doesn't pop up when switching applications using shortcuts.
 To configure the autodock, an [editor is to be installed](https://linuxconfig.org/how-to-customize-dock-panel-on-ubuntu-22-04-jammy-jellyfish-linux).
 Once installed, launch the *dconf Editor* application and go to `/org/gnome/shell/extensions/dash-to-dock/hot-keys` and turn off the *hotkeys-overlay* and *hotkeys-show-dock* options.
+Also, set `/org/gnome/shell/extensions/dash-to-dock/shortcut-timeout` timeout value to `0` (you need to turn off `Use default value`, and set the `Custom value` to 0).
 
 # FAQs and common issues
 ## Neovim's [coc-ccls](https://github.com/Maxattax97/coc-ccls) may give an error of *unable to load global extension*.
