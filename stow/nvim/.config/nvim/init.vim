@@ -45,6 +45,7 @@ Plug 'vim-scripts/AnsiEsc.vim'        " Ansi escape colors
 Plug 'tmsvg/pear-tree'                " Pair brackets, braces, etc.
 Plug 'jamestthompson3/nvim-remote-containers'  " similar to vscode remote container
 Plug 'neoclide/coc.nvim', {'tag': 'v0.0.82'} " Autocompletion
+Plug 'kshenoy/vim-signature'          " Place, toggle, and display marks
 
 " CMake support
 if has('nvim-0.5+' )
