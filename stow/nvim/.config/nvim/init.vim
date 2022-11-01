@@ -46,6 +46,7 @@ Plug 'tmsvg/pear-tree'                " Pair brackets, braces, etc.
 Plug 'jamestthompson3/nvim-remote-containers'  " similar to vscode remote container
 Plug 'neoclide/coc.nvim', {'tag': 'v0.0.82'} " Autocompletion
 Plug 'kshenoy/vim-signature'          " Place, toggle, and display marks
+Plug 'drmikehenry/vim-headerguard'    " C++ header guards
 
 " CMake support
 if has('nvim-0.5+' )
@@ -552,7 +553,6 @@ nmap <leader>gd :DiffviewOpen<CR>
 " Ruler has column and AsyncRun status
 set rulerformat=%60(%=%t\ %c\ %{g:asyncrun_status}%)
 
-
 " ======================================
 " Asyncrun
 " ======================================
@@ -572,3 +572,26 @@ fun! OnAsyncRunFinished()
     endif
 endf
 let g:asyncrun_exit = "call OnAsyncRunFinished()"
+
+" ======================================
+" C++ header guards
+" ======================================
+" Get the tail of a path `path`, where it's split of at the string `chopstr`. For example,
+"  PathTail('a/b/c/d/e/f', 'd') returns 'e/f'
+function! g:PathTail(path, chopstr)
+  return substitute(a:path, '.*\/' . a:chopstr . '\/', '', '')
+endfunction
+
+" Strip off `include`, and everything before it from a path. This is used to generate the path
+" for a header guard
+function! g:ChopInclude(string)
+  return PathTail(a:string, 'include')
+endfunction
+
+" G++ Google standard compliant header guard.
+" The function `HeaderGuardName` is used by the `drmikehenry/vim-headerguard` package to generate
+" the header guard names
+function! g:HeaderguardName()
+  return toupper(substitute(ChopInclude(expand('%:p:gs/\./_/g')), '[^0-9a-zA-Z_\.]', '_', ':s_g')) . '_'
+endfunction
+let g:headerguard_use_cpp_comments = 1
