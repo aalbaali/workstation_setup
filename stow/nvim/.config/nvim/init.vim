@@ -594,4 +594,9 @@ endfunction
 function! g:HeaderguardName()
   return toupper(substitute(ChopInclude(expand('%:p:gs/\./_/g')), '[^0-9a-zA-Z_\.]', '_', ':s_g')) . '_'
 endfunction
+
+" Mapping to generate guards
+nmap <leader>hg :HeaderguardAdd<cr>
+
+" Use `//` style comments
 let g:headerguard_use_cpp_comments = 1
