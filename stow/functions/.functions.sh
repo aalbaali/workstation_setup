@@ -20,8 +20,6 @@ alias jj=julia
 alias jfranklin="julia -e 'using Franklin; serve()'"
 alias jpluto="julia -e 'using Pluto; Pluto.run()'"
 alias vpdf="sioyek"
-
-# File sizes
 alias sz=ncdu
 alias nv=nvim
 
@@ -37,11 +35,16 @@ alias o=xdg-open
 alias k='k -h'
 alias cdg='cd "$(git rev-parse --show-cdup)"'
 alias cds='cd "$(git rev-parse --show-superproject-working-tree)"'
+alias cdd='cd ~/case/common/shared/data'
+alias cdsh='cd ~/case/common/shared'
 alias ja='ninja'
 alias ctest='ctest --output-on-failure'
 alias cm='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=RelWithDebInfo'
 alias cmd='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=Debug'
 alias a="apt-cache search '' | sort | cut --delimiter ' ' --fields 1 | fzf --multi --cycle --reverse --preview 'apt-cache show {1}' | xargs -r sudo apt install -y"
+
+# Open current path in file explorer (fe) for a given directory and current directory
+alias fe="nautilus --browser"
 
 # Copy current working directory
 cpwd() { pwd | tr -d '\n' | xclip -selection clipboard; }
@@ -67,7 +70,8 @@ pathadd() {
 ####################
 # Git
 ####################
-alias gll="git log --graph --oneline --all --decorate"
+alias gll="git log --graph --oneline --decorate"
+alias gla="git log --graph --oneline --all --decorate"
 alias gs="git status -s"
 alias gm="git commit -s"
 alias ga="git add"
