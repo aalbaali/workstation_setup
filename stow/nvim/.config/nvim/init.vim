@@ -47,6 +47,7 @@ Plug 'jamestthompson3/nvim-remote-containers'  " similar to vscode remote contai
 Plug 'neoclide/coc.nvim', {'tag': 'v0.0.82'} " Autocompletion
 Plug 'kshenoy/vim-signature'          " Place, toggle, and display marks
 Plug 'drmikehenry/vim-headerguard'    " C++ header guards
+Plug 'easymotion/vim-easymotion'      " Quick jumping around documents
 
 " CMake support
 if has('nvim-0.5+' )
