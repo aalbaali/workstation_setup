@@ -178,7 +178,7 @@ let g:cmake_jump_on_completion=1
 " CMake build
 autocmd BufRead *.cpp,*.cc,*.h,*.hpp nmap <leader>co : CMakeOpen<cr>
 autocmd BufRead *.cpp nmap <leader>cg : CMakeGenerate<cr>
-autocmd BufRead *.cpp nmap <leader>cb : CMakeBuild<cr>
+autocmd BufRead *.cpp,CMakeLists.txt nmap <leader>cb : CMakeBuild<cr>
 
 " Show CMake version in status line
 set statusline=%{cmake#GetInfo().cmake_version.string}
