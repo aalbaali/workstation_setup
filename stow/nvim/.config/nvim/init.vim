@@ -34,7 +34,6 @@ Plug 'lervag/vimtex'                  " Latex support
 Plug 'justinmk/vim-sneak'             " Fast navigation
 Plug 'tpope/vim-surround'             " Operations for surrounding words with paranthesis
 Plug 'cdelledonne/vim-cmake'          " CMake shortcuts
-Plug 'chrisbra/csv.vim'               " Handle CSV files
 Plug 'kkoomen/vim-doge', {'do': { -> doge#install() }} " (Do)cument (Ge)nerator for various file systems
 Plug 'preservim/tagbar'               " Browse tags of current file
 Plug 'preservim/nerdcommenter'        " Commenting plugin
