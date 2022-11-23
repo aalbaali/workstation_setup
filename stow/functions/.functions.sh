@@ -67,6 +67,12 @@ pathadd() {
   fi
 }
 
+# Go up multiple directories
+function cd_up() {
+  cd $(printf "%0.s../" $(seq 1 $1 ));
+}
+alias 'cd..'='cd_up'
+
 ####################
 # Git
 ####################
