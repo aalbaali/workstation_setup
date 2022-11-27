@@ -71,6 +71,13 @@ I have mine set to `Super + -`, which calls the command `tilix --quake`
 
 To run tilix using the `ctrl + alt + T` shortcut, disable the terminal's shortcut and enable a tilix shortcut.
 
+# Sioyek
+To make Sioyek the default PDF viewer, the `sioyek.desktop` needs to be installed.
+This is done as follows:
+1. Link `sioyek.desktop` from `stow/sioyek/.local/share/applications/sioyek.desktop` into `~/.local/share/application`
+2. Link `sioyek-icon-linux.png` from `stow/sioyek/.local/share/Sioyek/sioyek-icon-linux.png` into `~/.local/share/Sioyek`
+3. Install the application by running `sudo desktop-file-install sioyek.desktop` from `~/.local/share/application`
+
 # Ubuntu
 ## Dock settings
 The auto-dock can be customized so that it doesn't pop up when switching applications using shortcuts.
