@@ -560,7 +560,7 @@ set rulerformat=%60(%=%t\ %c\ %{g:asyncrun_status}%)
 noremap <leader>b :AsyncRun -cwd=<root> catkin build<CR>
 noremap <leader>t :AsyncRun -cwd=<root> catkin build --make-args tests<CR>
 noremap <leader>n :AsyncStop<CR>
-noremap <leader><leader> :call asyncrun#quickfix_toggle(20)<CR>
+noremap <leader><space> :call asyncrun#quickfix_toggle(20)<CR>
 let g:asyncrun_open = 4
 fun! OnAsyncRunFinished()
     if g:asyncrun_status == 'success'
