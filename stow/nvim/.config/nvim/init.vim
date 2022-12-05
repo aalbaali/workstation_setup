@@ -47,6 +47,7 @@ Plug 'neoclide/coc.nvim', {'tag': 'v0.0.82'} " Autocompletion
 Plug 'kshenoy/vim-signature'          " Place, toggle, and display marks
 Plug 'drmikehenry/vim-headerguard'    " C++ header guards
 Plug 'easymotion/vim-easymotion'      " Quick jumping around documents
+Plug 'mbbill/undotree'
 
 " CMake support
 if has('nvim-0.5+' )
@@ -614,3 +615,9 @@ nmap <leader>hg :HeaderguardAdd<cr>
 
 " Use `//` style comments
 let g:headerguard_use_cpp_comments = 1
+
+" ======================================
+" Undo tree
+" ======================================
+nnoremap <F5> :UndotreeToggle<CR>
+
