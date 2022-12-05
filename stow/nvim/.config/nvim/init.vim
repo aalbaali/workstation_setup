@@ -59,7 +59,7 @@ endif
 call plug#end()
 
 " ======================================
-" Settings
+" Options
 " ======================================
 syntax on                   " Sets syntax highlighting to on
 set noerrorbells            " Turns off error sounds/bells after end of line
@@ -137,6 +137,11 @@ vnoremap <leader>y "+y
 nnoremap <leader>yy V"+y
 " Copy current file to clipboard
 nmap <leader>Y :let @+ = expand("%:p")<cr>
+
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzz
+nnoremap N Nzz
 
 " ======================================
 " Built-in make
