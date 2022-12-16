@@ -1,0 +1,8 @@
+# Default flags passed to `cmdef` bash function. Each parameter is added as a line, where
+# the `-D` phrase is prepended to the param before passing it to cmake.
+# For example, `CMAKE_EXPORT_COMPILE_COMMANDS=ON` is passed as `-DCMAKE_EXPORT_COMPILE_COMMANDS=ON`
+#
+# Note: Lines starting with `#` are discarded (i.e., they're comments)
+#
+# Amro Al-Baali
+CMAKE_EXPORT_COMPILE_COMMANDS=true

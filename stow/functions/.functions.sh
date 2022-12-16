@@ -166,3 +166,19 @@ alias mux='pgrep -vx tmux > /dev/null && \
 		tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh && \
 		tmux kill-session -t delete-me && \
 		tmux attach || tmux attach'
+
+####################
+# CMake
+####################
+# Run CMake using default arguments stored in `~/.cmake/default_flags`
+cmdef() {
+    local args
+    if [ -f ~/.cmake/default_flags ]; then
+        args=$(cat ~/.cmake/default_flags | sed '/^#/d' | awk '{print "-D"$0}' | tr '\n' ' ')
+    else
+        echo "~/.cmake/default_flags doesn't exist. Not passing any args"
+        args=""
+    fi
+    echo -e "CMake args:\n\033[96;1m${args}\033[0m"
+    cmake $@ $args
+}
