@@ -240,6 +240,9 @@ function! GitStatus()
 endfunction
 set statusline+=%{GitStatus()}
 
+" Git status
+nnoremap <leader>gs :G status<cr>
+
 " ======================================
 " Vim-fugitive
 " ======================================
