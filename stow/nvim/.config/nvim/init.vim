@@ -48,6 +48,8 @@ Plug 'kshenoy/vim-signature'          " Place, toggle, and display marks
 Plug 'drmikehenry/vim-headerguard'    " C++ header guards
 Plug 'easymotion/vim-easymotion'      " Quick jumping around documents
 Plug 'mbbill/undotree'
+Plug 'mhinz/vim-sayonara'             " Kill buffers well
+Plug 'asheq/close-buffers.vim'        " Kill buffers well
 
 " CMake support
 if has('nvim-0.5+' )
@@ -113,6 +115,34 @@ au FileType * set fo-=c fo-=r fo-=o fo+=j
 " Set C++ comment strings to `//` instead of `/* */`
 autocmd FileType c,cpp setlocal commentstring=//\ %s
 autocmd FileType json syntax match Comment +\/\/.\+$+
+
+" ======================================
+" Windowing commands
+" ======================================
+" Open buffer
+nnoremap <c-w>q :Sayonara<CR>
+nnoremap <silent> <c-j> <c-w>j
+nnoremap <silent> <c-k> <c-w>k
+nnoremap <silent> <c-l> <c-w>l
+nnoremap <silent> <c-h> <c-w>h
+nnoremap <silent> <leader>wj :below new<CR>
+nnoremap <silent> <leader>wk :above new<CR>
+nnoremap <silent> <leader>wl :rightbelow vnew<CR>
+nnoremap <silent> <leader>wh :leftabove vnew<CR>
+nnoremap <silent> <leader>mj <C-W>J
+nnoremap <silent> <leader>mk <C-W>K
+nnoremap <silent> <leader>ml <C-W>L
+nnoremap <silent> <leader>mh <C-W>H
+
+" ======================================
+" Buffer commands
+" ======================================
+" Prev/next buffer
+nnoremap <c-p> :bp<CR>
+nnoremap <c-n> :bn<CR>
+" Delete the current buffer but preserves the current window.
+nnoremap <leader>x :Sayonara!<CR>
+nnoremap Q :Bdelete menu<CR>
 
 " ======================================
 " Terminal mode
@@ -230,6 +260,9 @@ nnoremap <leader>fH :call FZFSameName('leftabove vsplit', '', 'wincmd h')<CR>
 nnoremap <leader>fL :call FZFSameName('rightbelow vsplit', '', 'wincmd l')<CR>
 nnoremap <leader>fK :call FZFSameName('leftabove split', '', 'wincmd k')<CR>
 nnoremap <leader>fJ :call FZFSameName('rightbelow split', '', 'wincmd j')<CR>
+
+" Search for name of current file ([s]earch [f]ile)
+nnoremap <leader>sf :Ag <C-R>=expand('%:t')<CR><CR>
 
 " ======================================
 " Git-gutter
@@ -524,6 +557,16 @@ nmap <leader>tc :TagbarClose<CR>
 nmap <leader>tn :TagbarJumpNext<CR>
 nmap <leader>tN :TagbarJumpPrev<CR>
 let g:tagbar_autoclose=1
+
+" ======================================
+" DoxygenToolkit.vim
+" ======================================
+let g:DoxygenToolkit_paramTag_pre = "@param[in] "
+" Doxygen comment
+nnoremap <leader>dd :Dox<CR>
+
+" Inline class member colmment
+nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " ======================================
 " Doge
