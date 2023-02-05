@@ -73,6 +73,7 @@ set expandtab               " Converts tabs to white space
 set smartindent             " Attempts smart indentation (auto indent) for different languages
 set nu                      " Set line numbering
 set nowrap                  " Do not wrap
+set nowrapscan              " Do not wrap search using # and *
 set noswapfile              " Do not swap files when writing in vim
 set nobackup                " No backup file. Instead, use undodir/undofile.
 set undodir=~/.nvim/undodir " Undo directory for 'backup'
@@ -121,10 +122,6 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 " ======================================
 " Open buffer
 nnoremap <c-w>q :Sayonara<CR>
-nnoremap <silent> <c-j> <c-w>j
-nnoremap <silent> <c-k> <c-w>k
-nnoremap <silent> <c-l> <c-w>l
-nnoremap <silent> <c-h> <c-w>h
 nnoremap <silent> <leader>wj :below new<CR>
 nnoremap <silent> <leader>wk :above new<CR>
 nnoremap <silent> <leader>wl :rightbelow vnew<CR>
@@ -307,6 +304,9 @@ xnoremap <leader>gb :Git blame<CR>
 " ======================================
 " Coc (conquer of completion)
 " ======================================
+" Set node path
+let g:coc_node_path = trim(system('which node'))
+
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
