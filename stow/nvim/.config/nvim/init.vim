@@ -336,18 +336,17 @@ set signcolumn=yes
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 " Change from v0.0.81 -> v0.0.82. See `:h coc-completion-example` for more info
-function! s:check_back_space() abort
+function! CheckBackspace() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Insert <tab> when previous text is space, refresh completion if not.
 inoremap <silent><expr> <C-N>
   \ coc#pum#visible() ? coc#pum#next(1):
-  \ <SID>check_back_space() ? "\<Tab>" :
+  \ CheckBackspace() ? "\<Tab>" :
   \ coc#refresh()
 inoremap <expr><C-P> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-"let g:coc_snippet_next = '<tab>'
 
 " Use <c-space> to trigger completion.
 if has('nvim')
@@ -356,11 +355,12 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
+" Make <tab> auto-select the first completion item and notify coc.nvim to
+" format on enter, <tab> could be remapped by other vim plugin
 " Change from v0.0.81 -> v0.0.82. See `:h coc-completion-example` for more info
 inoremap <silent><expr> <tab> coc#pum#visible() ? coc#_select_confirm()
-      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()"
+      \: "\<TAB>"
+inoremap <silent><expr> <s-tab> "<BS>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
