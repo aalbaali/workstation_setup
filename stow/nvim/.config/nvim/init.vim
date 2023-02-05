@@ -565,8 +565,11 @@ let g:DoxygenToolkit_paramTag_pre = "@param[in] "
 " Doxygen comment
 nnoremap <leader>dd :Dox<CR>
 
-" Inline class member colmment
+" Inline class member comment
 nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
+
+" Inline comment
+nnoremap <leader>dc O//<space>
 
 " ======================================
 " Doge
