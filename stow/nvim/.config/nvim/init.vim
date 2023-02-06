@@ -485,7 +485,6 @@ inoremap <C-O> <C-\><C-O>:call CocActionAsync('showSignatureHelp')<cr>
 
 " Global extensions to install
 let g:coc_global_extensions = ['coc-json'    ,
-                               \ 'coc-git'   ,
                                \ 'coc-cmake' ,
                                \ 'coc-clangd']
 
