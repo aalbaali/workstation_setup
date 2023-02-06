@@ -19,7 +19,7 @@ Plug 'tpope/vim-fugitive'             " Git comments
 Plug 'vim-utils/vim-man'              " View `man` pages in vim
 Plug 'mrtazz/DoxygenToolkit.vim'      " Auto-insert Doxygen comments
 Plug 'skywind3000/asyncrun.vim'       " Run commands / builds in background
-Plug 'w0rp/ale'                       " Asynchronous linting
+Plug 'dense-analysis/ale'             " Asynchronous linting
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'sheerun/vim-polyglot'           " Better syntax highlighting
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " Install fzf (fast fuzzy searcher)
@@ -669,3 +669,18 @@ let g:headerguard_use_cpp_comments = 1
 " ======================================
 nnoremap <F5> :UndotreeToggle<CR>
 
+" ======================================
+"ale (Asynchronous Lint Engine)
+" ======================================
+let g:ale_linters = {
+  "\ 'cpp': ['ccls', 'clangcheck', 'clangd', 'clazy', 'cpplint', 'cquery', 'cspell', 'cppcheck'],
+  \ }
+
+" The virtual text cursor shows the errors/warnings as inline comments, which may be confused with
+" actual in-line comments from the code. So I prefer to remove them.
+let g:ale_virtualtext_cursor = 0
+let g:ale_set_highlights = 0
+let g:ale_cpp_clangtidy_checks = ['-*,cppcoreguidelines*,modernize*,readability*,
+      \ bugprone*,performance*,-modernize-use-trailing-return-type,
+      \ -google-runtime-references,-cppcoreguidelines-pro-bounds-array-to-pointer-decay']
+let g:ale_c_build_dir_names = ['build', 'release', 'debug']
