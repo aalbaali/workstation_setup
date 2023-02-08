@@ -166,6 +166,9 @@ nnoremap <leader>yy V"+y
 " Copy current file to clipboard
 nmap <leader>Y :let @+ = expand("%:p")<cr>
 
+" Paste without loosing the cut register
+xnoremap <leader>p "_dP
+
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 
