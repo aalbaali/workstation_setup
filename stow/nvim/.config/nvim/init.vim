@@ -169,6 +169,14 @@ nmap <leader>Y :let @+ = expand("%:p")<cr>
 " Paste without loosing the cut register
 xnoremap <leader>p "_dP
 
+" C++ block comment
+autocmd BufRead *.cpp,*.cc,*.h,*.hpp vnoremap <leader>* c/*<C-R>"*/<Esc>
+autocmd BufRead *.cpp,*.cc,*.h,*.hpp nnoremap <leader>& F/xxf*xx<Esc>
+
+" Search and replace
+nnoremap <leader>sr :%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><Left>
+
+" Center cursor when scrolling
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 
