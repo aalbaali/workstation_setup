@@ -17,9 +17,7 @@ source $ZPLUG_HOME/init.zsh
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "lib/history", from:oh-my-zsh
-zplug "plugins/web-search", from:oh-my-zsh
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
-zplug "arzzen/calc.plugin.zsh"
 
 # Install plugins if there are plugins that have not been installed
 # Toggle prompt by setting/unsetting the env variable `ZSH_NONINTERACTIVE`
@@ -34,7 +32,7 @@ fi
 zplug load
 
 # Options
-# setopt autopushd pushdignoredups
+setopt autopushd pushdignoredups
 
 # configure spaceship prompt
 SPACESHIP_PROMPT_ORDER=(
@@ -102,28 +100,14 @@ bindkey '^ ' autosuggest-accept
 # Autosuggestion completion and execution ('^M' is the return key)
 bindkey '^;' autosuggest-execute
 
-# Source fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPS="--extended"
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-# Enable Ctrl-x to edit command line in vim
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '^x' edit-command-line
-
 # Add local to path
 export PATH="$HOME/.local/bin:$PATH"
-
 
 #setopt autocd 
 #autoload -Uz compinit
 #compinit
 
-source ~/Dev/robot-dev/docker_init.sh &> /dev/null
 # Networking alias
-# Check https://avidbots.atlassian.net/wiki/spaces/ROBOTSYS/pages/24838213/D
 if [ -f ~/avidbots_networking/aliases ]; then
     . ~/avidbots_networking/aliases
 fi
@@ -165,6 +149,16 @@ fi
 if command -v gh &> /dev/null; then
   eval "$(gh completion -s bash)"
 fi
+
+###############################
+## fzf
+###############################
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Enable Ctrl-x to edit command line in vim
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x' edit-command-line
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 

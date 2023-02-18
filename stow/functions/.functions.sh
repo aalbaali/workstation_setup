@@ -22,6 +22,8 @@ alias jpluto="julia -e 'using Pluto; Pluto.run()'"
 alias vpdf="sioyek"
 alias sz=ncdu
 alias nv=nvim
+alias h=htop
+alias e="exa"  # Alternative to `ls`
 
 ################################################
 # System-related aliases and functions
@@ -34,7 +36,7 @@ alias now='watch -x -t -n 0.01 date +%s.%N'
 alias o=xdg-open
 alias k='k -h'
 alias cdg='cd "$(git rev-parse --show-cdup)"'
-alias cds='cd "$(git rev-parse --show-superproject-working-tree)"'
+alias cdr='cd "$(git rev-parse --show-superproject-working-tree)"' # Change to git root director
 alias cdd='cd ~/case/common/shared/data'
 alias cdsh='cd ~/case/common/shared'
 alias ja='ninja'
@@ -42,6 +44,8 @@ alias ctest='ctest --output-on-failure'
 alias cm='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=RelWithDebInfo'
 alias cmd='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=Debug'
 alias a="apt-cache search '' | sort | cut --delimiter ' ' --fields 1 | fzf --multi --cycle --reverse --preview 'apt-cache show {1}' | xargs -r sudo apt install -y"
+alias nn="nnn-static"
+alias zz="source ~/.zshrc"
 
 # Open current path in file explorer (fe) for a given directory and current directory
 alias fe="nautilus --browser"
@@ -73,12 +77,55 @@ function cd_up() {
 }
 alias 'cd..'='cd_up'
 
+# Symbolic link using full path
+lnn()
+{
+  CMD="ln -s "$(pwd)/$1" ${@:2}"
+  echo "$CMD"
+  eval "$CMD"
+}
+
+# Link binaries to local
+lnb() {
+  CMD="ln -s "$(pwd)/$1" /usr/local/bin ${@:2}"
+  echo "$CMD"
+  eval "$CMD"
+}
+
+###############################
+## fzf
+###############################
+export FZF_DEFAULT_OPS="--extended"
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# Preview file content using bat (https://github.com/sharkdp/bat)
+export FZF_CTRL_T_OPTS="
+  --preview 'bat -n --color=always {}'
+  --bind 'ctrl-e:become(nvim {+})'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'
+  --bind 'ctrl-y:execute-silent(echo -n {} | xclip -selection clipboard)+abort'"
+# CTRL-/ to toggle small preview window to see the full command
+# CTRL-Y to copy the command into clipboard using pbcopy
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {}' --preview-window up:3:hidden:wrap
+  --bind 'ctrl-/:toggle-preview'
+  --bind 'ctrl-e:become(vim)'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -selection clipboard)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
+# Print tree structure in the preview window
+export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
+
 ####################
 # Git
 ####################
+# Git fuzzy
+alias gf="git fuzzy"
+
 alias gll="git log --graph --oneline --decorate"
 alias gla="git log --graph --oneline --all --decorate"
-alias gs="git status -s"
+alias gss="git status -s"
+alias gs="git status"
 alias gm="git commit -s"
 alias ga="git add"
 alias gb="git branch"
@@ -145,7 +192,7 @@ ghttptossh() {
 }
 
 ####################
-# Zip
+# Zip/tar
 ####################
 zipall() {
   for dir in *
@@ -155,6 +202,11 @@ zipall() {
       zip -r $dir.zip $dir
     fi
   done
+}
+
+# Expand tar.gz files
+untar() {
+  tar -xvf $@
 }
 
 ####################
