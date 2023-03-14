@@ -23,17 +23,17 @@ Plug 'skywind3000/asyncrun.vim'       " Run commands / builds in background
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'sheerun/vim-polyglot'           " Better syntax highlighting
 Plug 'w0ng/vim-hybrid'                " Colorscheme
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " Install fzf (fast fuzzy searcher)
+Plug 'junegunn/fzf'  
 Plug 'junegunn/fzf.vim'               " fzf vim extension
 Plug 'airblade/vim-gitgutter'         " Git status on side bar and git operations
 Plug 'rhysd/vim-clang-format'         " Commands for applying clang-formatting
 Plug 'preservim/nerdtree'             " Navigate files using a tree structure
 
-if has('patch-8.1.2269')
-  Plug 'ycm-core/YouCompleteMe' " Autocomplete and much more
-else
-  Plug 'ycm-core/YouCompleteMe', { 'commit':'d98f896' }
-endif
+" if has('patch-8.1.2269')
+"   Plug 'ycm-core/YouCompleteMe' " Autocomplete and much more
+" else
+"   Plug 'ycm-core/YouCompleteMe', { 'commit':'d98f896' }
+" endif
 call plug#end()
 
 " ======================================

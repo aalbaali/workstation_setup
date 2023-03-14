@@ -5,4 +5,4 @@
 # Note: Lines starting with `#` are discarded (i.e., they're comments)
 #
 # Amro Al-Baali
-CMAKE_EXPORT_COMPILE_COMMANDS=true
+CMAKE_EXPORT_COMPILE_COMMANDS=ON

@@ -191,7 +191,7 @@ case $yn in
     nvim +':call doge#install()' +qall
 
     # This fixes a coc-ccls related typo/issue
-    ln -s ~/.config/coc/extensions/node_modules/coc-ccls/node_modules/ws/lib ~/.config/coc/extensions/node_modules/coc-ccls/lib
+    [ -f ~/.config/coc/extensions/node_modules/coc-ccls/node_modules/ws/lib ] && ln -s ~/.config/coc/extensions/node_modules/coc-ccls/node_modules/ws/lib ~/.config/coc/extensions/node_modules/coc-ccls/lib
 
     ;;
     [Nn]* ) ;;
@@ -226,7 +226,7 @@ if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[tmux-setup]}" = true ]; then
 elif [ "${STOW_PACKAGES[tmux-setup]}" = false ]; then
   yn=n
 else
-  read -p "Install neovim plugin manager and plugins? (y/N): " yn
+  read -p "Install tmux plugin manager and plugins? (y/N): " yn
 fi
 case $yn in
     [Yy]* )

@@ -1,4 +1,4 @@
-" ======================================
+" ========================
 " install vim-plug if it isn't installed
 " ======================================
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -50,6 +50,7 @@ Plug 'easymotion/vim-easymotion'      " Quick jumping around documents
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-sayonara'             " Kill buffers well
 Plug 'asheq/close-buffers.vim'        " Kill buffers well
+Plug 'mindriot101/vim-yapf'           " Python formatting using Yapf
 
 " CMake support
 if has('nvim-0.5+' )
@@ -95,7 +96,12 @@ set cursorline              " Highlight cursor line
 set splitright
 set diffopt+=vertical       " Set vertical split as the default split
 set autoread                " Automatically read latest changes on a file
-set spell spelllang=en_ca    " Set spelling correction language
+set spell spelllang=en_ca   " Set spelling correction language
+set mouse=a                 " Enable mouse usage
+set wildmode=list:longest,full " list completions on command line, cycle through with tab
+
+"" Set leader key
+"let mapleader = " "
 
 " colorscheme
 let g:gruvbox_contrast_dark='hard'
@@ -140,6 +146,14 @@ nnoremap <c-n> :bn<CR>
 " Delete the current buffer but preserves the current window.
 nnoremap <leader>x :Sayonara!<CR>
 nnoremap Q :Bdelete menu<CR>
+
+" ======================================
+" Quickfix list (see `:h quickfix`)
+" ======================================
+nnoremap <leader>qo :copen<CR>
+nnoremap <leader>qc :cclose<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [q :cprevious<CR>
 
 " ======================================
 " Terminal mode
@@ -218,7 +232,6 @@ let g:cmake_jump_on_completion=1
 " Open CMake window
 
 " CMake build
-autocmd BufRead *.cpp,*.cc,*.h,*.hpp nmap <leader>co : CMakeOpen<cr>
 autocmd BufRead *.cpp nmap <leader>cg : CMakeGenerate<cr>
 autocmd BufRead *.cpp,CMakeLists.txt nmap <leader>cb : CMakeBuild<cr>
 
@@ -410,8 +423,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <F2> <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+"xmap <leader>f  <Plug>(coc-format-selected)
+"nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -619,7 +632,6 @@ set rulerformat=%60(%=%t\ %c\ %{g:asyncrun_status}%)
 " ======================================
 " Asyncrun
 " ======================================
-" C++ builds/run
 " Catkin builds
 noremap <leader>b :AsyncRun -cwd=<root> catkin build<CR>
 noremap <leader>t :AsyncRun -cwd=<root> catkin build --make-args tests<CR>
@@ -689,8 +701,16 @@ let g:ale_linters = {
 " The virtual text cursor shows the errors/warnings as inline comments, which may be confused with
 " actual in-line comments from the code. So I prefer to remove them.
 let g:ale_virtualtext_cursor = 0
-let g:ale_set_highlights = 0
+let g:ale_set_highlights = 1
 let g:ale_cpp_clangtidy_checks = ['-*,cppcoreguidelines*,modernize*,readability*,
       \ bugprone*,performance*,-modernize-use-trailing-return-type,
       \ -google-runtime-references,-cppcoreguidelines-pro-bounds-array-to-pointer-decay']
 let g:ale_c_build_dir_names = ['build', 'release', 'debug']
+
+"let g:ale_set_loclist = 0
+"let g:ale_set_quickfix = 1
+
+" ======================================
+" Yapf
+" ======================================
+autocmd BufRead *.py nnoremap <leader>fp :call Yapf()<cr>

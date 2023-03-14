@@ -169,3 +169,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # Append PATHs (function imported from .functions)
 export PATH="$PATH:/home/$USERNAME/.local/bin"
 export PATH="$PATH:/home/$USERNAME/go/bin"
+
+# Source avidbots
+[ -f ~/.avidbotsrc.zsh ] && source ~/.avidbotsrc.zsh
+export PATH="/home/amro.al-baali/case/common/shared/repos/git-fuzzy/bin:$PATH"

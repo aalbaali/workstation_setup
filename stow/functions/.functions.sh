@@ -24,13 +24,15 @@ alias sz=ncdu
 alias nv=nvim
 alias h=htop
 alias e="exa"  # Alternative to `ls`
+alias cls=clear
 
 ################################################
 # System-related aliases and functions
 ################################################
 alias ls='ls --color=auto'
-alias ll='ls -alF'
-alias l='ls -CF'
+#alias ll='ls -alF'
+alias ll='e -l'
+alias l='exa'
 alias ta='tmux a -t'
 alias now='watch -x -t -n 0.01 date +%s.%N' 
 alias o=xdg-open
@@ -49,6 +51,9 @@ alias zz="source ~/.zshrc"
 
 # Open current path in file explorer (fe) for a given directory and current directory
 alias fe="nautilus --browser"
+
+# Copy to clipboarx
+alias cpc="xclip -selection clipboard"
 
 # Copy current working directory
 cpwd() { pwd | tr -d '\n' | xclip -selection clipboard; }
@@ -92,8 +97,20 @@ lnb() {
   eval "$CMD"
 }
 
+#pathadd $(fd "git-fuzzy/bin" "$HOME" -a)
+
 ###############################
-## fzf
+# bat and bat extras
+###############################
+alias b="bat"
+alias bd="batdiff"
+alias bg="batgrep"
+alias bw="batwatch"
+alias bp="batpipe"
+alias bm="batman"
+
+###############################
+# fzf
 ###############################
 export FZF_DEFAULT_OPS="--extended"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
@@ -114,7 +131,10 @@ export FZF_CTRL_R_OPTS="
   --color header:italic
   --header 'Press CTRL-Y to copy command into clipboard'"
 # Print tree structure in the preview window
-export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
+export FZF_ALT_C_OPTS="--preview 'tree -C {}'
+  --color header:italic
+  --bind 'ctrl-y:execute-silent(echo -n {} | xclip -selection clipboard)+abort'
+  --header 'Press CTRL-Y to copy command into clipboard'"
 
 ####################
 # Git
@@ -132,6 +152,16 @@ alias gb="git branch"
 alias gc="git checkout"
 alias gd="git diff"
 alias gdc="git diff --cached"
+alias gfll="git fuzzy log --graph --oneline --decorate"
+alias gfla="git fuzzy log --graph --oneline --all --decorate"
+alias gfss="git fuzzy status -s"
+alias gfs="git fuzzy status"
+alias gfm="git commit fuzzy -s"
+alias gfa="git fuzzy add"
+alias gfb="git fuzzy branch"
+alias gfc="git fuzzy checkout"
+alias gfd="git fuzzy diff"
+alias gfdc="git fuzzy diff --cached"
 
 alias g="git"
 complete -o default -o nospace -F _git g
@@ -233,4 +263,22 @@ cmdef() {
     fi
     echo -e "CMake args:\n\033[96;1m${args}\033[0m"
     cmake $@ $args
+}
+
+####################
+# Evo plotting
+####################
+# Plot a topic from a bag
+plot_topic() {
+  evo_traj bag $1 $2 --plot --plot_mode=xy ${@:3}
+}
+
+# Plot SLAM pose
+plot_slam_pose() {
+  plot_topic $1 /slam/pose  evo_traj bag $1 --plot --plot_mode=xy ${@:2}
+}
+
+# Plot dead-reckoning
+plot_dead_reckon() {
+  plot_topic $1 avidbots/base/dead_reckon ${@:2}
 }

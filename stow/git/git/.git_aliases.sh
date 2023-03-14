@@ -87,6 +87,7 @@ g_sync() {
   git fetch -p
   git rebase $(_g_base_branch)
 }
+
 # Scan all local branches for changes
 g_scan() {
   git fetch -p
