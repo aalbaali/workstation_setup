@@ -6,3 +6,7 @@ stow/i3/.config/*
 **/plugged/**
 **/coc/**
 stow/nvim/.config/**
+
+**/*.log
+
+**/vscode/*

@@ -165,6 +165,8 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # Load custom functions and aliases
 [ -f ~/.functions.sh ] && source ~/.functions.sh
 [ -f ~/.rosfunctions.sh ] && source ~/.rosfunctions.sh
+[[ $(docker --help 2>/dev/null) ]] && [ -f ~/.dockerfunctions.sh ] && source ~/.dockerfunctions.sh
+
 
 # Append PATHs (function imported from .functions)
 export PATH="$PATH:/home/$USERNAME/.local/bin"

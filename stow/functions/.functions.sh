@@ -2,11 +2,6 @@
 # @author Amro Al-Baali
 
 ####################
-# Docker
-####################
-[[ $(docker --help 2>/dev/null) ]] && [ -f ~/.dockerfunctions.sh ] && source ~/.dockerfunctions.sh
-
-####################
 # ROS
 ####################
 [[ -n $ROS_DISTRO ]] && [ -f ~/.rosfunctions.sh ] && source ~/.rosfunctions.sh
@@ -17,7 +12,7 @@
 alias fd="fdfind"
 alias vsc="code -n ."
 alias jj=julia
-alias jfranklin="julia -e 'using Franklin; serve()'"
+alias jfranklin="julia --project=Project.toml -e 'using Franklin; serve()'"
 alias jpluto="julia -e 'using Pluto; Pluto.run()'"
 alias vpdf="sioyek"
 alias sz=ncdu
