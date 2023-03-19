@@ -1,5 +1,6 @@
 # Docker-related functions for starting containers
 
+# Aliases
 alias dps="docker ps"
 alias dpsa="docker ps -a"
 alias di="docker image"
@@ -10,14 +11,14 @@ alias drmi="docker rmi"
 alias ds="docker start"
 
 # List running container names
-function dn() {
+dn() {
   docker ps $@ | awk 'FNR > 1 {print $(NF)}'
 }
 
 alias dna="dn -a"
 
 # Execute already running containers
-function dex() {
+dex() {
   # $1: Container name
   # $2-*: Arguments passed to the container
   # Start container if not started
@@ -34,6 +35,38 @@ function dex() {
 #   3. Print last column ($(NF))
 complete -C "dn" dex
 
+
+# Docker run with fully customizeable args
+drun_full() {
+  local image_repo="$1"
+  local image_tag="$2"
+  if [ $# -lt 3 ]; then
+    echo -e "\033[93mLess than three arguments passed. Should pass at least three args:\033[0m"
+    echo "   \$1  : image repo"
+    echo "   \$2  : image tag"
+    echo "   \$3  : container name"
+    echo "   \$4  : container username"
+    echo "   \$5  : container hostname"
+    echo "   \$6-*: arguments passed to \`docker run\`"
+    return 1
+  fi
+  local cont_name="$3"
+  local cont_username="$4"
+  local cont_hostname="$5"
+
+  docker run -it \
+    -e DISPLAY=$DISPLAY \
+    -e DOCKER_REPO_TAG="$image_repo:$image_tag" \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v ~/.ssh:/home/$cont_username/.ssh \
+    -v ~/.zsh_history:/home/$cont_username/.zsh_history  \
+    -v ~/shared:/home/$cont_username/shared  \
+    --network host \
+    --hostname $cont_hostname \
+    --name $cont_name \
+    ${@:6} \
+    "$1:$2"
+}
 
 drun() {
   # First argument: image repo
@@ -56,17 +89,7 @@ drun() {
   local cont_username=$(echo $image_repo | awk -F/ '{print $NF}')
   local cont_hostname=$cont_name
 
-  docker run -it \
-    -e DISPLAY=$DISPLAY \
-    -e DOCKER_REPO_TAG="$image_repo:$image_tag" \
-    -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -v ~/.ssh:/home/$cont_username/.ssh \
-    -v ~/.zsh_history:/home/$cont_username/.zsh_history  \
-    --network host \
-    --hostname $cont_hostname \
-    --name $cont_name \
-    ${@:4} \
-    "$1:$2"
+  drun_full $1 $2 $cont_name $cont_username $cont_hostname
 }
 
 
