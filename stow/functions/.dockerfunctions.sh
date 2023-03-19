@@ -40,7 +40,7 @@ complete -C "dn" dex
 drun_full() {
   local image_repo="$1"
   local image_tag="$2"
-  if [ $# -lt 3 ]; then
+  if [ $# -lt 5 ]; then
     echo -e "\033[93mLess than three arguments passed. Should pass at least three args:\033[0m"
     echo "   \$1  : image repo"
     echo "   \$2  : image tag"
