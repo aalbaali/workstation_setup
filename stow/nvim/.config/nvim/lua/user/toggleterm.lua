@@ -48,28 +48,24 @@ end
 
 -- Ncdu size storage
 local ncdu = Terminal:new({ cmd = "ncdu", hidden = true })
-
 function _NCDU_TOGGLE()
 	ncdu:toggle()
 end
 
 -- Htop
 local htop = Terminal:new({ cmd = "htop", hidden = true })
-
 function _HTOP_TOGGLE()
 	htop:toggle()
 end
 
 -- Python
 local python = Terminal:new({ cmd = "python", hidden = true })
-
 function _PYTHON_TOGGLE()
 	python:toggle()
 end
 
 -- Julia
 local julia = Terminal:new({ cmd = "julia", hidden = true })
-
 function _JULIA_TOGGLE()
 	julia:toggle()
 end
