@@ -41,34 +41,33 @@ vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 
+-- Lazygit
 function _LAZYGIT_TOGGLE()
 	lazygit:toggle()
 end
 
-local node = Terminal:new({ cmd = "node", hidden = true })
-
-function _NODE_TOGGLE()
-	node:toggle()
-end
-
+-- Ncdu size storage
 local ncdu = Terminal:new({ cmd = "ncdu", hidden = true })
 
 function _NCDU_TOGGLE()
 	ncdu:toggle()
 end
 
+-- Htop
 local htop = Terminal:new({ cmd = "htop", hidden = true })
 
 function _HTOP_TOGGLE()
 	htop:toggle()
 end
 
+-- Python
 local python = Terminal:new({ cmd = "python", hidden = true })
 
 function _PYTHON_TOGGLE()
 	python:toggle()
 end
 
+-- Julia
 local julia = Terminal:new({ cmd = "julia", hidden = true })
 
 function _JULIA_TOGGLE()

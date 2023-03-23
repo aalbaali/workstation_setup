@@ -94,21 +94,21 @@ cmp.setup {
       "s",
     }),
   },
---  formatting = {
---    fields = { "kind", "abbr", "menu" },
---    format = function(entry, vim_item)
---      -- Kind icons
---      vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
---      -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
---      vim_item.menu = ({
---        nvim_lsp = "[LSP]",
---        luasnip = "[Snippet]",
---        buffer = "[Buffer]",
---        path = "[Path]",
---      })[entry.source.name]
---      return vim_item
---    end,
---  },
+ formatting = {
+   fields = { "kind", "abbr", "menu" },
+   format = function(entry, vim_item)
+     -- Kind icons
+     vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+     -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+     vim_item.menu = ({
+       nvim_lsp = "[LSP]",
+       luasnip = "[Snippet]",
+       buffer = "[Buffer]",
+       path = "[Path]",
+     })[entry.source.name]
+     return vim_item
+   end,
+ },
   sources = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
