@@ -41,6 +41,7 @@ Plug 'nvim-lua/plenary.nvim'          " Asynchronous programming using coroutine
 Plug 'kyazdani42/nvim-web-devicons'   " Icons used for nvim diffview
 Plug 'sindrets/diffview.nvim'         " Neovim diffview
 Plug 'vim-scripts/AnsiEsc.vim'        " Ansi escape colors
+Plug 'arcticicestudio/nord-vim'       " Build for vim's terminal and GUI mode with true colors
 Plug 'tmsvg/pear-tree'                " Pair brackets, braces, etc.
 Plug 'jamestthompson3/nvim-remote-containers'  " similar to vscode remote container
 Plug 'neoclide/coc.nvim', {'tag': 'v0.0.82'} " Autocompletion
