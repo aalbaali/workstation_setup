@@ -72,3 +72,16 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
+-- Set executable to run, where the default value is the filename appended to './build/'
+local function SetLocalMakeprgFromPrompt()
+  local fname = vim.fn.expand("%:r")
+  local response = vim.fn.input("Executable? ", "./build/" .. fname)
+  vim.bo.makeprg = response
+end
+
+-- Function to set executable
+vim.keymap.set("n", vim.g.altleader .. "ms", SetLocalMakeprgFromPrompt)
+
+ -- Run :make
+vim.keymap.set("n", vim.g.altleader .. "mm", ":make<cr>")
+

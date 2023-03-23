@@ -7,8 +7,8 @@ vim.g.cmake_jump_on_completion=1
 
 -- CMake build
 vim.cmd [[
-  autocmd BufRead *.cpp nmap vim.g.altleader . "cg" ":CMakeGenerate<cr>"
-  autocmd BufRead *.cpp,CMakeLists.txt nmap vim.g.altleader . "cb" ":CMakeBuild<cr>"
+  autocmd BufRead *.cpp nmap \cg : CMakeGenerate<cr>
+  autocmd BufRead *.cpp,CMakeLists.txt nmap \cb : CMakeBuild<cr>
 ]]
 
 -- Show CMake version in status line
