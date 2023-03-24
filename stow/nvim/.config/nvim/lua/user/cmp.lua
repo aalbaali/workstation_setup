@@ -1,10 +1,12 @@
-local cmp_status_ok, cmp = pcall(requtire, "cmp")
+local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
+  print("Couldn't load 'cmp'")
   return
 end
 
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
+  print("Couldn't load 'luasnip'")
   return
 end
 
@@ -98,7 +100,7 @@ cmp.setup {
    fields = { "kind", "abbr", "menu" },
    format = function(entry, vim_item)
      -- Kind icons
-     vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+     -- vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
      -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
      vim_item.menu = ({
        nvim_lsp = "[LSP]",
@@ -130,3 +132,5 @@ cmp.setup {
     native_menu = false,
   },
 }
+
+return cmp.setup
