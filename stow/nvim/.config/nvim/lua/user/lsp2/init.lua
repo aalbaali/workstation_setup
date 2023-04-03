@@ -34,26 +34,26 @@ lsp.configure('lua_ls', {
     }
 })
 
--- local cmp = require('cmp')
--- local cmp_select = {behavior = cmp.SelectBehavior.Select}
--- local cmp_mappings = lsp.defaults.cmp_mappings({
---   ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
---   ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
---   ['<C-y>'] = cmp.mapping.confirm({ select = true }),
---   ["<C-Space>"] = cmp.mapping.complete(),
--- })
---
+local cmp = require('cmp')
+local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_mappings = lsp.defaults.cmp_mappings({
+  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+  ["<C-Space>"] = cmp.mapping.complete(),
+})
 
--- cmp_mappings['<Tab>'] = nil
--- cmp_mappings['<S-Tab>'] = nil
 
---lsp.setup_nvim_cmp({
---  mapping = cmp_mappings
---})
+cmp_mappings['<Tab>'] = nil
+cmp_mappings['<S-Tab>'] = nil
 
--- local cmp = require("user.cmp")
--- lsp.setup_nvim_cmp(cmp)
---
+lsp.setup_nvim_cmp({
+  mapping = cmp_mappings
+})
+
+local usr_cmp = require("user.cmp")
+lsp.setup_nvim_cmp(usr_cmp)
+
 lsp.set_preferences({
     suggest_lsp_servers = true,
     sign_icons = {
@@ -99,7 +99,6 @@ local function lsp_keymaps(bufnr)
 end
 
 lsp.on_attach = function(client, bufnr)
-  print("HII")
 	if client.name == "tsserver" then
 		client.server_capabilities.documentFormattingProvider = false
 	end
@@ -131,7 +130,6 @@ lsp.on_attach = function(client, bufnr)
 	lsp_keymaps(bufnr)
 	local status_ok, illuminate = pcall(require, "illuminate")
 	if not status_ok then
-    print("NOOO")
 		return
 	end
 	illuminate.on_attach(client)
