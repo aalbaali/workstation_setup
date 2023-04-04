@@ -10,6 +10,9 @@
 # Application aliases
 ################################################
 alias fd="fdfind"
+alias fdh="fdfind -H"
+alias agh="ag --hidden"
+alias rgh="rg --hidden"
 alias vsc="code -n ."
 alias jj=julia
 alias jfranklin="julia --project=Project.toml -e 'using Franklin; serve()'"
@@ -33,7 +36,7 @@ alias k='k -h'
 alias cdg='cd "$(git rev-parse --show-cdup)"'
 alias cdr='cd "$(git rev-parse --show-superproject-working-tree)"' # Change to git root director
 alias cdd='cd ~/case/common/shared/data'
-alias cdsh='cd ~/case/common/shared'
+alias cdsh='cd ~/shared'
 alias ja='ninja'
 alias ctest='ctest --output-on-failure'
 alias cm='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=RelWithDebInfo'
