@@ -62,6 +62,7 @@ Open tilix (by searching for the app) and then open the user preferences
 - Appearance
   - Window style : set to *Borderless*
   - Uncheck the *Show the terminal title even if it's the only terminal*
+  - Set font to a nerd font (make sure to install the font first by running the [installation script](./scripts/install_nerd_fonts.sh))
 - Quake
   - Adjusut height percentage (I have mine set at 70%)
   - Adjust width percentage (I have mine set at 75%)
