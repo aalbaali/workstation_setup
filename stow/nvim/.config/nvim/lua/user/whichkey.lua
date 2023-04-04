@@ -204,6 +204,9 @@ local mapping_alt = {
     b = { "<cmd>Git blame<CR>", "Git blame"},
     m = { "<cmd>Git commit -s<CR>", "Git commit"},
     p = { "<cmd>Git push<CR>", "Git push"},
+    h = { "<cmd>DiffviewFileHistory<CR>", "File history"},
+    l = { "<cmd>DiffviewLog<CR>", "Git log"},
+    c = { "<cmd>DiffviewClose<CR>", "Close diffview"}
   },
   u = { "<cmd>lua vim.cmd.UndotreeToggle()<CR>", "Undo tree"},
 }
