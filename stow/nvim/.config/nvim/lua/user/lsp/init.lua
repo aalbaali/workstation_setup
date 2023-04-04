@@ -12,13 +12,11 @@ lsp.preset({
 })
 
 local servers = {
-	-- "xml",
-	-- "html",
-	-- "tsserver",
 	"pyright",
 	"jsonls",
   "clangd",
 	"lua_ls",
+  "cmake",
 }
 lsp.ensure_installed(servers)
 
