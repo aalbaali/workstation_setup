@@ -227,6 +227,13 @@ local mapping_nav = {
 
   ["["] = {
     c = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Next Hunk" },
+  },
+
+  g = {
+   name = "Go to",
+   n = { "<cmd>bnext<cr>", "Next buffer"},
+   N = { "<cmd>bprev<cr>", "Previous buffer"},
+   L = { "<cmd>blast<cr>", "Last buffer"},
   }
 }
 
