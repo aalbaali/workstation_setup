@@ -7,9 +7,9 @@ local setup = {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-    spelling = {
+   spelling = {
       enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-      suggestions = 20, -- how many suggestions should be shown in the list?
+      suggestions = 30, -- how many suggestions should be shown in the list?
     },
     -- the presets plugin, adds help for a bunch of default keybindings in Neovim
     -- No actual key bindings are created
@@ -25,7 +25,7 @@ local setup = {
   },
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
-  -- operators = { gc = "Comments" },
+  operators = { gc = "Comments" },
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
     -- For example:
@@ -86,7 +86,8 @@ local mappings = {
   },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Toggle explorer" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
-  ["q"] = { "<cmd>q!<CR>", "Quit" },
+  ["X"] = { "<cmd>q!<CR>", "Quit without save" },
+  ["q"] = { "<cmd>wqa<CR>", "Save all and quit" },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
   ["f"] = {
@@ -143,11 +144,11 @@ local mappings = {
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
     j = {
-      "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
+      "<cmd>lua vim.diagnostic.goto_next()<CR>",
       "Next Diagnostic",
     },
     k = {
-      "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
+      "<cmd>lua vim.diagnostic.goto_prev()<cr>",
       "Prev Diagnostic",
     },
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
@@ -161,6 +162,7 @@ local mappings = {
   },
   s = {
     name = "Search",
+    a = { "<cmd>Ag<cr>", "Ag search" },
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
     h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
@@ -172,8 +174,8 @@ local mappings = {
   },
 
   t = {
-    name = "Terminal",
     n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
+    name = "Terminal",
     u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
     t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
     p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
@@ -184,5 +186,51 @@ local mappings = {
   },
 }
 
+-- Mappings using alternative leader
+local opts_alt = {
+  mode = {"n", "v"}, -- NORMAL and VISUAL mode
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  prefix = vim.g.altleader,
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+}
+
+local mapping_alt = {
+  g = {
+    name = "Git",
+    d = { "<cmd>DiffviewOpen<CR>", "Diff with current tree" },
+    s = { "<cmd>lua vim.cmd.Git()<CR>", "Git status"},
+    b = { "<cmd>Git blame<CR>", "Git blame"},
+    m = { "<cmd>Git commit -s<CR>", "Git commit"},
+    p = { "<cmd>Git push<CR>", "Git push"},
+  },
+  u = { "<cmd>lua vim.cmd.UndotreeToggle()<CR>", "Undo tree"},
+}
+
+-- Mappings without prefix
+local opts_nav = {
+  mode = "n", -- NORMAL mode
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+}
+
+local mapping_nav = {
+  ["]"] = {
+    c = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
+  },
+
+  ["["] = {
+    c = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Next Hunk" },
+  }
+}
+
+
+
+-- Add options and mappings
 which_key.setup(setup)
 which_key.register(mappings, opts)
+which_key.register(mapping_nav, opts_nav)
+which_key.register(mapping_alt, opts_alt)

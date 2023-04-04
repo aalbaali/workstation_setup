@@ -87,11 +87,11 @@ return packer.startup(function(use)
     }
   }
 
-	use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
+  use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
   use { "RRethy/vim-illuminate" }
-	use { "nvim-telescope/telescope.nvim" }
-	use { "nvim-treesitter/nvim-treesitter" }
-	use { "lewis6991/gitsigns.nvim" }
+  use { "nvim-telescope/telescope.nvim" }
+  use { "nvim-treesitter/nvim-treesitter" }
+  use { "lewis6991/gitsigns.nvim" }
 
   use('tpope/vim-fugitive')              --  Git comments
   use('vim-utils/vim-man')               --  View `man` pages in vim
@@ -108,9 +108,9 @@ return packer.startup(function(use)
   use('mhinz/vim-startify')              --  Manage vim sessions
   -- use('vim-airline/vim-airline')         --  Custom status bar
   -- use('vim-airline/vim-airline-themes')  --  Themes
-  use('lervag/vimtex')                   --  Latex support
-  use('justinmk/vim-sneak')              --  Fast navigation
-  use('tpope/vim-surround')              --  Operations for surrounding words with paranthesis
+  use('lervag/vimtex')                   --  latex support
+  use('justinmk/vim-sneak')              --  fast navigation
+  use('tpope/vim-surround')              --  operations for surrounding words with paranthesis
   use {'kkoomen/vim-doge', run = function() vim.cmd("silent! call doge#install()") end} --  (Do)cument (Ge)nerator for various file systems
   use('preservim/tagbar')                --  Browse tags of current file
   use('preservim/nerdcommenter')         --  Commenting plugin

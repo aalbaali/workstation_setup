@@ -38,11 +38,11 @@ local function diffviewopen()
       return
     end
 
-    vim.cmd(":DiffviewOpen<CR>")
+    vim.cmd("DiffviewOpen")
 end
 
 -- Open vimdiff
-vim.keymap.set("n", vim.g.altleader .. "gd", diffviewopen)
+-- vim.keymap.set("n", vim.g.altleader .. "gd", diffviewopen)
 
 -- Ruler has column and AsyncRun status
 vim.o.rulerformat = '%60(%=%t\\ %c\\ %{g:asyncrun_status}%)'
