@@ -57,11 +57,22 @@ return packer.startup(function(use)
   -- use { "goolord/alpha-nvim" }
 	use {"folke/which-key.nvim"}
 
-	-- Colorschemes
+  -- Colorschemes
   use { "folke/tokyonight.nvim" }
   use { "lunarvim/darkplus.nvim" }
   use { "morhetz/gruvbox" }
-
+  use { "bluz71/vim-moonfly-colors", as = "moonfly" }
+  use { "savq/melange-nvim" }
+  use { "mcchrish/zenbones.nvim", requires = "rktjmp/lush.nvim"}
+  use { "nyoom-engineering/oxocarbon.nvim" }
+  use { "patstockwell/vim-monokai-tasty" }
+  use { "rmehri01/onenord.nvim" }
+  use { "luisiacc/gruvbox-baby", branch = 'main' }
+  use { "Shatur/neovim-ayu" }
+  use { "AlexvZyl/nordic.nvim" }
+  use { "kartikp10/noctis.nvim" }
+  use { "doums/darcula" }
+  use { "briones-gabriel/darcula-solid.nvim", requires = "rktjmp/lush.nvim" }
 
   use('jremmen/vim-ripgrep')             --  Ripgrep fuzzy searcher
   use {

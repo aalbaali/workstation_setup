@@ -1,7 +1,4 @@
-local status_ok, tagbar = pcall(require, "tagbar")
-if not status_ok then
-	return
-end
+pcall(require, "tagbar")
 
 vim.keymap.set("n", vim.g.altleader .. "tt", "<cmd>TagbarToggle f<CR>")
 vim.keymap.set("n", vim.g.altleader .. "to", "<cmd>TagbarOpen f<CR>")
