@@ -38,7 +38,8 @@ sudo apt-get install -y \
   npm \
   golang \
   exuberant-ctags \
-  software-properties-common
+  software-properties-common \
+  python3-venv
 
 # install latest nvim release
 sudo add-apt-repository -y ppa:neovim-ppa/stable
