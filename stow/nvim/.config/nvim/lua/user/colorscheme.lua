@@ -70,11 +70,11 @@
 ---- Noctis (similar to vscode. A little 'too' blue)
 --local colorscheme = "noctis"
 
----- Darcula (CLion's theme. background is a little light)
---local colorscheme = "darcula"
+-- Darcula (CLion's theme. background is a little light)
+local colorscheme = "darcula"
 
--- Darcula solid (background a little darker than darcula, The colors are not very rich)
-local colorscheme = "darcula-solid"
+---- Darcula solid (background a little darker than darcula, The colors are not very rich)
+--local colorscheme = "darcula-solid"
 
 -- Background options
 vim.opt.background = 'dark'
