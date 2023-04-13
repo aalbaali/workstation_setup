@@ -33,7 +33,6 @@ sudo apt-get install -y \
   zsh \
   brightnessctl \
   tilix \
-  tmux \
   nodejs \
   npm \
   golang \
