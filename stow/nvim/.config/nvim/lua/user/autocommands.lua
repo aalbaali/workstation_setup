@@ -5,6 +5,8 @@ vim.cmd [[
     autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200}) 
     autocmd BufWinEnter * :set formatoptions-=cro
     autocmd FileType qf set nobuflisted
+    autocmd FileType qf nested nnoremap <buffer> <CR> <CR>:cclose<CR>
+    autocmd FileType qf nnoremap <buffer> <Tab> <CR>zz<CR><C-W>p<C-W>h
   augroup end
 
   augroup _git
