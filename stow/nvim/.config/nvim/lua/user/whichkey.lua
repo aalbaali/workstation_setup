@@ -209,6 +209,11 @@ local mapping_alt = {
     c = { "<cmd>DiffviewClose<CR>", "Close diffview"}
   },
   u = { "<cmd>lua vim.cmd.UndotreeToggle()<CR>", "Undo tree"},
+  q = {
+    name = "Quickfix",
+    q = { "<cmd>copen<CR>", "Open quick fix"},
+    c = { "<cmd>cclose<CR>", "Close quick fix"},
+  }
 }
 
 -- Mappings without prefix
@@ -223,10 +228,12 @@ local opts_nav = {
 local mapping_nav = {
   ["]"] = {
     c = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
+    q = { "<cmd>cnext<cr>", "Next quickfix" },
   },
 
   ["["] = {
     c = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Next Hunk" },
+    q = { "<cmd>cprev<cr>", "Previous quickfix" },
   },
 
   g = {
