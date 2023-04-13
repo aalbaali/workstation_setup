@@ -8,6 +8,8 @@ export ROS_WORKSPACE="/home/ros/ros_ws"
 
 # Change to ros workspace
 alias cdr="cd $ROS_WORKSPACE"
+alias cdi="cd $ROS_WORKSPACE"
+alias cds="cd $ROS_WORKSPACE/src"
 
 # Rosdeup UPDATE existing packages
 alias rupdate="rosdep update"
@@ -30,10 +32,21 @@ rucbuild() {
 
 
 # Source overlay
-alias sro="source $ROS_WORKSPACE/install/setup.zsh"
+if [[ $ROS_VERSION -eq 1 ]] then
+  alias sro="source $ROS_WORKSPACE/devel/setup.zsh"
+else
+  alias sro="source $ROS_WORKSPACE/install/setup.zsh"
+fi
 
 
 # https://github.com/ros2/ros2cli/issues/534#issuecomment-957516107
 # argcomplete for ros2 & colcon
 eval "$(register-python-argcomplete3 ros2)"
 eval "$(register-python-argcomplete3 colcon)"
+
+
+# Ros local
+export ROS_MASTER_URI=http://localhost:11311
+export ROS_HOSTNAME=localhost
+unset ROS_IP
+
