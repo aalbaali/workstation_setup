@@ -129,6 +129,16 @@ _G.packer_plugins = {
     path = "/home/aa/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  darcula = {
+    loaded = true,
+    path = "/home/aa/.local/share/nvim/site/pack/packer/start/darcula",
+    url = "https://github.com/doums/darcula"
+  },
+  ["darcula-solid.nvim"] = {
+    loaded = true,
+    path = "/home/aa/.local/share/nvim/site/pack/packer/start/darcula-solid.nvim",
+    url = "https://github.com/briones-gabriel/darcula-solid.nvim"
+  },
   ["darkplus.nvim"] = {
     loaded = true,
     path = "/home/aa/.local/share/nvim/site/pack/packer/start/darkplus.nvim",
@@ -164,6 +174,11 @@ _G.packer_plugins = {
     path = "/home/aa/.local/share/nvim/site/pack/packer/start/gruvbox",
     url = "https://github.com/morhetz/gruvbox"
   },
+  ["gruvbox-baby"] = {
+    loaded = true,
+    path = "/home/aa/.local/share/nvim/site/pack/packer/start/gruvbox-baby",
+    url = "https://github.com/luisiacc/gruvbox-baby"
+  },
   ["impatient.nvim"] = {
     loaded = true,
     path = "/home/aa/.local/share/nvim/site/pack/packer/start/impatient.nvim",
@@ -184,6 +199,11 @@ _G.packer_plugins = {
     path = "/home/aa/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["lush.nvim"] = {
+    loaded = true,
+    path = "/home/aa/.local/share/nvim/site/pack/packer/start/lush.nvim",
+    url = "https://github.com/rktjmp/lush.nvim"
+  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/home/aa/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -194,6 +214,21 @@ _G.packer_plugins = {
     path = "/home/aa/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  ["melange-nvim"] = {
+    loaded = true,
+    path = "/home/aa/.local/share/nvim/site/pack/packer/start/melange-nvim",
+    url = "https://github.com/savq/melange-nvim"
+  },
+  moonfly = {
+    loaded = true,
+    path = "/home/aa/.local/share/nvim/site/pack/packer/start/moonfly",
+    url = "https://github.com/bluz71/vim-moonfly-colors"
+  },
+  ["neovim-ayu"] = {
+    loaded = true,
+    path = "/home/aa/.local/share/nvim/site/pack/packer/start/neovim-ayu",
+    url = "https://github.com/Shatur/neovim-ayu"
+  },
   nerdcommenter = {
     loaded = true,
     path = "/home/aa/.local/share/nvim/site/pack/packer/start/nerdcommenter",
@@ -203,6 +238,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/aa/.local/share/nvim/site/pack/packer/start/nerdtree",
     url = "https://github.com/preservim/nerdtree"
+  },
+  ["noctis.nvim"] = {
+    loaded = true,
+    path = "/home/aa/.local/share/nvim/site/pack/packer/start/noctis.nvim",
+    url = "https://github.com/kartikp10/noctis.nvim"
+  },
+  ["nordic.nvim"] = {
+    loaded = true,
+    path = "/home/aa/.local/share/nvim/site/pack/packer/start/nordic.nvim",
+    url = "https://github.com/AlexvZyl/nordic.nvim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
@@ -243,6 +288,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/aa/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
+  },
+  ["onenord.nvim"] = {
+    loaded = true,
+    path = "/home/aa/.local/share/nvim/site/pack/packer/start/onenord.nvim",
+    url = "https://github.com/rmehri01/onenord.nvim"
+  },
+  ["oxocarbon.nvim"] = {
+    loaded = true,
+    path = "/home/aa/.local/share/nvim/site/pack/packer/start/oxocarbon.nvim",
+    url = "https://github.com/nyoom-engineering/oxocarbon.nvim"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -329,6 +384,11 @@ _G.packer_plugins = {
     path = "/home/aa/.local/share/nvim/site/pack/packer/start/vim-man",
     url = "https://github.com/vim-utils/vim-man"
   },
+  ["vim-monokai-tasty"] = {
+    loaded = true,
+    path = "/home/aa/.local/share/nvim/site/pack/packer/start/vim-monokai-tasty",
+    url = "https://github.com/patstockwell/vim-monokai-tasty"
+  },
   ["vim-ripgrep"] = {
     loaded = true,
     path = "/home/aa/.local/share/nvim/site/pack/packer/start/vim-ripgrep",
@@ -378,6 +438,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/aa/.local/share/nvim/site/pack/packer/start/which-key.nvim",
     url = "https://github.com/folke/which-key.nvim"
+  },
+  ["zenbones.nvim"] = {
+    loaded = true,
+    path = "/home/aa/.local/share/nvim/site/pack/packer/start/zenbones.nvim",
+    url = "https://github.com/mcchrish/zenbones.nvim"
   }
 }
 
