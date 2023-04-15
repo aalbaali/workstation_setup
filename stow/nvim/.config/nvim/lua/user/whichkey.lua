@@ -208,6 +208,10 @@ local mapping_alt = {
     l = { "<cmd>DiffviewLog<CR>", "Git log"},
     c = { "<cmd>DiffviewClose<CR>", "Close diffview"}
   },
+  h = {
+    name = "Hunk",
+    s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage hunk"},
+  },
   u = { "<cmd>lua vim.cmd.UndotreeToggle()<CR>", "Undo tree"},
   q = {
     name = "Quickfix",
@@ -216,6 +220,20 @@ local mapping_alt = {
   }
 }
 
+-- Window mappings
+local opts_window = {
+  mode = "n", -- NORMAL mode
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  prefix = "<c-w>",
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+}
+
+local window_mappings = {
+  ["q"] = { "<cmd>Sayonara<cr>", "Close window and delete from buffer"},
+  ["c"] = { "<cmd>close<cr>", "Close tab"},
+}
 -- Mappings without prefix
 local opts_nav = {
   mode = "n", -- NORMAL mode
@@ -251,3 +269,4 @@ which_key.setup(setup)
 which_key.register(mappings, opts)
 which_key.register(mapping_nav, opts_nav)
 which_key.register(mapping_alt, opts_alt)
+which_key.register(window_mappings, opts_window)
