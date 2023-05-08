@@ -71,6 +71,9 @@ vnoremap <leader>y "+y
 nnoremap <leader>yy V"+y
 
 
+nnoremap j gj
+nnoremap k gk
+
 " Ruler has column and AsyncRun status
 " set rulerformat=%60(%=%t\ %c\ %{g:asyncrun_status}%)
 
@@ -152,3 +155,5 @@ nnoremap <leader>yc :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>yn :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>ya :YcmCompleter GoToReference<CR>
 nnoremap <leader>ym :YcmCompleter GoToImplementation<CR>
+
+nnoremap <Space>q :wqa!<cr>

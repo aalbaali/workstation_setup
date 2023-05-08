@@ -137,3 +137,4 @@ alias nv=nvim
 
 # Add local bin to path
 export PATH="$PATH:~/.local/bin"
+. "$HOME/.cargo/env"

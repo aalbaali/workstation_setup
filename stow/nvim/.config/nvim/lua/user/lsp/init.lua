@@ -17,6 +17,7 @@ local servers = {
   "clangd",
 	"lua_ls",
   "cmake",
+  "rust_analyzer",
 }
 lsp.ensure_installed(servers)
 

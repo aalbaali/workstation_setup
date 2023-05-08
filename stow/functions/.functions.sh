@@ -22,6 +22,7 @@ alias sz=ncdu
 alias nv=nvim
 alias h=htop
 alias e="exa"  # Alternative to `ls`
+alias plot=gnuplot
 
 ################################################
 # System-related aliases and functions
@@ -235,3 +236,6 @@ cmdef() {
     echo -e "CMake args:\n\033[96;1m${args}\033[0m"
     cmake $@ $args
 }
+
+# Temporary: read latest screenshot and copy to clipboard
+alias ri="ls /home/aa/Pictures/Screenshots/Screen* -t | head -n 1 | xargs -I{} tesseract "{}" ddd && cat ddd.txt | xclip -selection clipboard"

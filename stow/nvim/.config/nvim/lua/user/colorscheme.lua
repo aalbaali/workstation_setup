@@ -4,9 +4,9 @@
 ---- Darkplus (autocompletion not working properly on this color scheme)
 --local colorscheme = "darkplus"
 
----- Gruvbox
---local colorscheme = "gruvbox"
---vim.g.gruvbox_contrast_dark = 'hard'
+-- Gruvbox
+local colorscheme = "gruvbox"
+vim.g.gruvbox_contrast_dark = 'hard'
 
 ---- Gruvbox baby (similar to gruvbox but with higher contrast)
 ----vim.g.gruvbox_baby_function_style = "NONE"
@@ -64,8 +64,8 @@
 --})
 --local colorscheme = "ayu"
 
--- Nordic (auto completion is not quite visible)
-local colorscheme = "nordic"
+---- Nordic (auto completion is not quite visible)
+--local colorscheme = "nordic"
 
 ---- Noctis (similar to vscode. A little 'too' blue)
 --local colorscheme = "noctis"

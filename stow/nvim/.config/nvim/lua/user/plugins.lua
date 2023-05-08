@@ -97,6 +97,7 @@ return packer.startup(function(use)
       { 'rafamadriz/friendly-snippets' }, -- Optional
     }
   }
+  use 'simrat39/rust-tools.nvim'
 
   use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
   use { "RRethy/vim-illuminate" }

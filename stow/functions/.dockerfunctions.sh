@@ -89,7 +89,7 @@ drun() {
   local cont_username=$(echo $image_repo | awk -F/ '{print $NF}')
   local cont_hostname=$cont_name
 
-  drun_full $1 $2 $cont_name $cont_username $cont_hostname
+  drun_full $1 $2 $cont_name $cont_username $cont_hostname ${@:4}
 }
 
 

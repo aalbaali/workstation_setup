@@ -155,6 +155,12 @@ fi
 ###############################
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Autojump
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
+
+autoload -U compinit && compinit -u
+
+
 # Enable Ctrl-x to edit command line in vim
 autoload -U edit-command-line
 zle -N edit-command-line
@@ -166,7 +172,12 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 [ -f ~/.functions.sh ] && source ~/.functions.sh
 [ -f ~/.rosfunctions.sh ] && source ~/.rosfunctions.sh
 [[ $(docker --help 2>/dev/null) ]] && [ -f ~/.dockerfunctions.sh ] && source ~/.dockerfunctions.sh
+if [[ -f  ~/.zsh/git-completion.bash ]] then
+  zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+  fpath=(~/.zsh $fpath)
 
+  autoload -Uz compinit && compinit
+fi
 
 # Append PATHs (function imported from .functions)
 export PATH="$PATH:/home/$USERNAME/.local/bin"
