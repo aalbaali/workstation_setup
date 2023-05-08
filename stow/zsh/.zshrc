@@ -13,11 +13,13 @@ fi
 # Source zplug
 source $ZPLUG_HOME/init.zsh
 
+# Source starship
+eval "$(starship init zsh)"
+
 # Plugins
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "lib/history", from:oh-my-zsh
-zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 
 # Install plugins if there are plugins that have not been installed
 # Toggle prompt by setting/unsetting the env variable `ZSH_NONINTERACTIVE`
@@ -34,87 +36,29 @@ zplug load
 # Options
 setopt autopushd pushdignoredups
 
-# configure spaceship prompt
-SPACESHIP_PROMPT_ORDER=(
-  user          # Username section
-  host          # Hostname (e.g., computer name) section
-  dir           # Current directory section
-  git           # Git section (git_branch + git_status)
-  char          # Prompt character
-)
-
-SPACESHIP_PROMPT_ADD_NEWLINE=false
-SPACESHIP_PROMPT_SEPARATE_LINE=false
-SPACESHIP_PROMPT_FIRST_PREFIX_SHOW=true
-SPACESHIP_PROMPT_PREFIXES_SHOW=true
-SPACESHIP_PROMPT_SUFFIXES_SHOW=true
-SPACESHIP_PROMPT_DEFAULT_PREFIX=true
-SPACESHIP_PROMPT_DEFAULT_SUFFIX=true
-
-SPACESHIP_CHAR_PREFIX=''
-SPACESHIP_CHAR_SUFFIX=' '
-SPACESHIP_CHAR_SYMBOL='$'
-SPACESHIP_CHAR_SYMBOL_ROOT=$SPACESHIP_CHAR_SYMBOL
-SPACESHIP_CHAR_SYMBOL_SECONDARY='-'
-SPACESHIP_CHAR_COLOR_SUCCESS='green'
-SPACESHIP_CHAR_COLOR_FAILURE='red'
-SPACESHIP_CHAR_COLOR_SECONDARY='yellow'
-
-SPACESHIP_USER_PREFIX=''
-SPACESHIP_USER_SUFFIX=''
-SPACESHIP_USER_COLOR='green'
-SPACESHIP_USER_COLOR_ROOT='red'
-
-SPACESHIP_HOST_SHOW=always
-SPACESHIP_HOST_SHOW_FULL=true
-SPACESHIP_HOST_PREFIX='@'
-SPACESHIP_HOST_SUFFIX=': '
-SPACESHIP_HOST_COLOR='blue'
-SPACESHIP_HOST_COLOR_SSH='red'
-
-SPACESHIP_DIR_SHOW=true
-SPACESHIP_DIR_PREFIX=''
-SPACESHIP_DIR_SUFFIX=' '
-SPACESHIP_DIR_TRUNC=0
-SPACESHIP_DIR_TRUNC_PREFIX='.../'
-SPACESHIP_DIR_TRUNC_REPO=false
-SPACESHIP_DIR_COLOR='cyan'
-
-SPACESHIP_GIT_SHOW=true
-SPACESHIP_GIT_PREFIX='('
-SPACESHIP_GIT_SUFFIX=') '
-SPACESHIP_GIT_BRANCH_PREFIX='➜ '
-SPACESHIP_GIT_BRANCH_COLOR='blue'
-
-SPACESHIP_USER_SHOW=always # When to show user name
-SPACESHIP_GIT_STATUS_SHOW=true
-SPACESHIP_GIT_STATUS_COLOR='magenta'
-
-# Stop prompt from setting tmux title
-DISABLE_AUTO_TITLE=true
-
 # Autosuggestion colour
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#707880"
 # Autosuggest completion
-bindkey '^ ' autosuggest-accept
+bindkey '^@' autosuggest-accept
 # Autosuggestion completion and execution ('^M' is the return key)
-bindkey '^;' autosuggest-execute
+bindkey '^[;' autosuggest-execute
+bindkey '^[l' clear-screen
 
 # Add local to path
 export PATH="$HOME/.local/bin:$PATH"
 
+## The set of commands below slow zsh
 #setopt autocd 
 #autoload -Uz compinit
 #compinit
 
-# Networking alias
-if [ -f ~/avidbots_networking/aliases ]; then
-    . ~/avidbots_networking/aliases
-fi
+## Networking alias
+#if [ -f ~/avidbots_networking/aliases ]; then
+#    . ~/avidbots_networking/aliases
+#fi
 
 # Source localrc
 [ -f ~/.localrc ] && source ~/.localrc
-
 
 unsetopt menu_complete
 #setopt list_ambiguous
@@ -158,9 +102,10 @@ fi
 # Autojump
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
 
-autoload -U compinit && compinit -u
+# NOTE: The command below sometimes slows loading zsh. It could be that the commands are configured for bash and not for zsh
+#autoload -U compinit && compinit -u
 
-
+export KEYTIMEOUT=0
 # Enable Ctrl-x to edit command line in vim
 autoload -U edit-command-line
 zle -N edit-command-line
@@ -172,6 +117,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 [ -f ~/.functions.sh ] && source ~/.functions.sh
 [ -f ~/.rosfunctions.sh ] && source ~/.rosfunctions.sh
 [[ $(docker --help 2>/dev/null) ]] && [ -f ~/.dockerfunctions.sh ] && source ~/.dockerfunctions.sh
+
 if [[ -f  ~/.zsh/git-completion.bash ]] then
   zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
   fpath=(~/.zsh $fpath)
@@ -182,3 +128,9 @@ fi
 # Append PATHs (function imported from .functions)
 export PATH="$PATH:/home/$USERNAME/.local/bin"
 export PATH="$PATH:/home/$USERNAME/go/bin"
+
+# Solve a tilix issue
+# https://gnunn1.github.io/tilix-web/manual/vteconfig/
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        source /etc/profile.d/vte.sh
+fi

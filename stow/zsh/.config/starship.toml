@@ -1,0 +1,97 @@
+## Get editor completions based on the config schema
+#"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts blank line between shell prompts
+add_newline = false
+
+# PURE preset
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$git_metrics\
+$line_break\
+$python\
+$container\
+$docker_context\
+$status\
+$sudo\
+$character"""
+
+# Timeout for starship to scan files (in milliseconds)
+scan_timeout=30
+
+# Timeout for commands executed by starship (in milliseconds)
+command_timeout=500
+
+[username]
+show_always = true
+format = '[$user]($style)[@](bold white)'
+#style_user = 'bold green'
+style_user = 'bold #A9A9A9'
+
+[hostname]
+ssh_only = false
+#style = 'bold cyan'
+style = 'bold #A0A0A0'
+format = '[$ssh_symbol$hostname]($style):'
+
+# Disable line break
+[line_break]
+disabled = true
+
+# Inserts blank line between shell prompts.
+[package]
+disabled = true
+
+[directory]
+#style = "#00FF33 bold"
+style = "#00FFFF bold"
+truncation_length = 10
+truncate_to_repo = false
+truncation_symbol = '.../'
+
+[character]
+success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+error_symbol = '[➜](bold red)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+#error_symbol = "[❯](red)"
+#vimcmd_symbol = "[❮](green)"
+
+
+[git_branch]
+format = '[(\($branch\))]($style)'
+style = "bold #909090"
+#style = "bold #CCFF00"
+truncation_length = 8
+#ignore_branches = ['master', 'main']
+symbol = ':'
+
+[git_commit]
+tag_disabled = false
+#commit_hash_length = 4
+#tag_symbol = '🔖 '
+#tag_disabled = false
+
+[git_status]
+style = "bold #686868"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[git_metrics]
+added_style = 'bold blue'
+format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "bold yellow"
+
+[python]
+format = "[$virtualenv]($style) "
+style = "bright-black"
+

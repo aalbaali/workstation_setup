@@ -248,8 +248,20 @@ case $yn in
     * )     ;;
 esac
 
-# Zsh zplug
+# Zsh setup
 if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh-setup]}" = true ]; then
-  # Install only if zsh is installed
-  command -v zsh &>/dev/null && $SCRIPT_DIR/install_zplug.zsh
+
+  # Install items only if zsh is installed
+  if ! command -v zsh &>/dev/null ; then
+    echo "Zsh is not installed"
+    exit -1
+  fi
+
+  # Install zsh plug
+  $SCRIPT_DIR/install_zplug.zsh
+
+  # Install starship
+  curl -sS https://starship.rs/install.sh | sh
+
+  # Link starship config
 fi

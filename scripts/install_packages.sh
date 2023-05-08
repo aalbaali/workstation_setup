@@ -5,7 +5,7 @@ sudo apt-get update
 
 sudo apt-get install -y \
   vim-gtk \
-  neovim \
+  #neovim \
   tmux \
   git \
   htop \
@@ -35,21 +35,20 @@ sudo apt-get install -y \
   tilix \
   nodejs \
   npm \
-  golang \
   exuberant-ctags \
   software-properties-common \
   python3-venv
 
-# install latest nvim release
-sudo add-apt-repository -y ppa:neovim-ppa/stable
-sudo apt-get update
-sudo apt-get install -y neovim
+## install latest nvim release
+#sudo add-apt-repository -y ppa:neovim-ppa/stable
+#sudo apt-get update
+#sudo apt-get install -y neovim
 
 # Install lazygit using golang
-go install github.com/jesseduffield/lazygit@latest
+# go install github.com/jesseduffield/lazygit@latest
 
 # Install pre-commit
-pip install pre-commit
+#pip install pre-commit
 
 # Install fzf if it doesn't already exist
 if [ ! command -v fzf &> /dev/null ]; then
