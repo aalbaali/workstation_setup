@@ -94,6 +94,22 @@ To load dconf settings, run
 dconf load / < dconf-settings.ini
 ```
 
+# Node
+To install different versions of NodeJS, you can use the [`n` npm package](https://blog.hubspot.com/website/update-node-js).
+```bash
+# Make sure npm is installed
+sudo apt-get install npm
+
+# Install n manager
+sudo npm install -g n
+
+# Install latest node version
+sudo n latest
+
+# Or, install specific version
+# sudo n 16.20
+```
+
 # FAQs and common issues
 ## Neovim's [coc-ccls](https://github.com/Maxattax97/coc-ccls) may give an error of *unable to load global extension*.
 The error can be [resolved](https://github.com/Maxattax97/coc-ccls/issues/5) by running
