@@ -103,13 +103,12 @@ fi
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
 
 # NOTE: The command below sometimes slows loading zsh. It could be that the commands are configured for bash and not for zsh
-#autoload -U compinit && compinit -u
+autoload -U compinit && compinit -u
 
-export KEYTIMEOUT=0
 # Enable Ctrl-x to edit command line in vim
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey '^x' edit-command-line
+bindkey "^x^e" edit-command-line
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
