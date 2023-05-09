@@ -23,6 +23,7 @@ alias nv=nvim
 alias h=htop
 alias e="exa"  # Alternative to `ls`
 alias plot=gnuplot
+alias tk=tokei  # Info about code
 
 ################################################
 # System-related aliases and functions
@@ -89,7 +90,7 @@ lnn()
 
 # Link binaries to local
 lnb() {
-  CMD="ln -s "$(pwd)/$1" /usr/local/bin ${@:2}"
+  CMD="sudo ln -s "$(pwd)/$1" /usr/local/bin ${@:2}"
   echo "$CMD"
   eval "$CMD"
 }

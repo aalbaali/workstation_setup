@@ -101,8 +101,6 @@ fi
 
 # Autojump
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
-
-# NOTE: The command below sometimes slows loading zsh. It could be that the commands are configured for bash and not for zsh
 autoload -U compinit && compinit -u
 
 # Enable Ctrl-x to edit command line in vim

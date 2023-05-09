@@ -94,6 +94,11 @@ To load dconf settings, run
 dconf load / < dconf-settings.ini
 ```
 
+## Borderless windows
+```
+sudo apt install gnome-tweaks
+```
+
 # Node
 To install different versions of NodeJS, you can use the [`n` npm package](https://blog.hubspot.com/website/update-node-js).
 ```bash

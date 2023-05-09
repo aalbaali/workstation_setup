@@ -211,8 +211,8 @@ case $yn in
     # Install vim plugins
     vim +PlugInstall +qall
 
-    # Compile YouCompleteMe
-    ~/.vim/plugged/YouCompleteMe/install.py --clangd-completer
+    ## Compile YouCompleteMe
+    #~/.vim/plugged/YouCompleteMe/install.py --clangd-completer
 
     ;;
     [Nn]* ) ;;
