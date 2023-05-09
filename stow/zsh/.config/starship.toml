@@ -71,10 +71,13 @@ truncation_length = 8
 symbol = ':'
 
 [git_commit]
+format = '[\($tag\)]($style) '
 tag_disabled = false
 #commit_hash_length = 4
-#tag_symbol = '🔖 '
-#tag_disabled = false
+style = "bold #909090"
+#tag_symbol = '🏷  '
+tag_symbol = ''
+disabled = false
 
 [git_status]
 style = "bold #686868"
