@@ -5,7 +5,6 @@ sudo apt-get update
 
 sudo apt-get install -y \
   vim-gtk \
-  #neovim \
   tmux \
   git \
   htop \
