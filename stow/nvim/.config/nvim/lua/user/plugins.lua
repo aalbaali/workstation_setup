@@ -46,7 +46,7 @@ return packer.startup(function(use)
   use { "numToStr/Comment.nvim" }
   use { "JoosepAlviste/nvim-ts-context-commentstring" }
   use { "kyazdani42/nvim-web-devicons" }
-  use { "kyazdani42/nvim-tree.lua", commit = '9c97e6449b0b0269bd44e1fd4857184dfa57bb4c'}
+  use { "kyazdani42/nvim-tree.lua", commit = '9c97e6449b0b0269bd44e1fd4857184dfa57bb4c' }
   use { "akinsho/bufferline.nvim" }
   use { "moll/vim-bbye" }
   use { "nvim-lualine/lualine.nvim" }
@@ -136,6 +136,24 @@ return packer.startup(function(use)
   use('asheq/close-buffers.vim')                                                          --  Kill buffers well
   use('mindriot101/vim-yapf')                                                             --  Python formatting using Yapf
   use('cdelledonne/vim-cmake')                                                            --  Construct and build CMake projects
+
+  -- The configs are needed to be here to make sure the plugin is loaded before its used
+  use {                                                                                   --  Github copilot
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("user.copilot")
+    end,
+  }
+  -- Copilot autocompletion
+  use {
+    "zbirenbaum/copilot-cmp",
+    after = { "copilot.lua" },
+    config = function()
+      require("copilot_cmp").setup()
+    end
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

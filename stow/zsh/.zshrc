@@ -131,3 +131,6 @@ export PATH="$PATH:/home/$USERNAME/go/bin"
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
+
+# Import OPENAI_API_KEY
+[ -f ~/.chat_gpt_key.zsh ] && source ~/.chat_gpt_key.zsh

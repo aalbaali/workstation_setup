@@ -9,6 +9,7 @@
 ################################################
 # Application aliases
 ################################################
+alias nv=nvim
 alias fd="fdfind"
 alias fdh="fdfind -H"
 alias agh="ag --hidden"
@@ -17,20 +18,28 @@ alias vsc="code -n ."
 alias jj=julia
 alias jfranklin="julia --project=Project.toml -e 'using Franklin; serve()'"
 alias jpluto="julia -e 'using Pluto; Pluto.run()'"
-alias vpdf="sioyek"
-alias sz=ncdu
-alias nv=nvim
-alias h=htop
-alias e="exa"  # Alternative to `ls`
-alias plot=gnuplot
-alias tk=tokei  # Info about code
+#alias vpdf=sioyek
+alias vpdf=evince       # Pdf viewer
+alias sz=ncdu           # view file usage
+alias h=htop            # View system performance
+alias e=exa             # Alternative to `ls`
+alias plot=gnuplot      # Data plotter
+alias tk=tokei          # Info about code
+alias c=sgpt            # Shell GPT
 
 ################################################
 # System-related aliases and functions
 ################################################
-alias ls='ls --color=auto'
-alias ll='ls -alF'
-alias l='ls -CF'
+# Set ls as exa, if the command is installed
+if command -v exa >/dev/null 2>&1; then
+  alias ls='exa'
+  alias ll='exa -alF'
+  alias l='exa -1'
+else
+  alias ls='ls --color=auto'
+  alias ll='ls -alF'
+  alias l='ls -1'
+fi
 alias ta='tmux a -t'
 alias now='watch -x -t -n 0.01 date +%s.%N' 
 alias o=xdg-open
