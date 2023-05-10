@@ -40,6 +40,12 @@ else
   alias ll='ls -alF'
   alias l='ls -1'
 fi
+
+# Set bat as cat, if the command is installed
+if command -v bat >/dev/null 2>&1; then
+  alias cat='bat'
+fi
+
 alias ta='tmux a -t'
 alias now='watch -x -t -n 0.01 date +%s.%N' 
 alias o=xdg-open
