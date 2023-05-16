@@ -73,6 +73,10 @@ return packer.startup(function(use)
   use { "kartikp10/noctis.nvim" }
   use { "doums/darcula" }
   use { "briones-gabriel/darcula-solid.nvim", requires = "rktjmp/lush.nvim" }
+  use { "cocopon/iceberg.vim" }
+  use { "sonph/onehalf" }
+  use { "tomasr/molokai" }
+  use { "w0ng/vim-hybrid" }
 
   use('jremmen/vim-ripgrep') --  Ripgrep fuzzy searcher
   use {

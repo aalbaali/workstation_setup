@@ -1,4 +1,4 @@
----- Tokyo (dark and high contrast)
+------ Tokyo (dark and high contrast)
 --local colorscheme = "tokyonight-night"
 
 ---- Darkplus (autocompletion not working properly on this color scheme)
@@ -7,6 +7,19 @@
 -- Gruvbox
 local colorscheme = "gruvbox"
 vim.g.gruvbox_contrast_dark = 'hard'
+
+---- Iceberg
+--local colorscheme = "iceberg"
+
+---- Onehalf light
+--local colorscheme = "onehalflight"
+
+---- Molokai (Very colorful)
+--local colorscheme = "molokai"
+
+---- Vim hybrid (similar to gruvbox but with higher contrast)
+--local colorscheme = "hybrid"
+--vim.g.gruvbox_contrast_dark = 'hard'
 
 ---- Gruvbox baby (similar to gruvbox but with higher contrast)
 ----vim.g.gruvbox_baby_function_style = "NONE"
