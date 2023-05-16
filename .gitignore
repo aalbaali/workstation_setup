@@ -3,7 +3,7 @@
 *.pyc
 stow/i3/.config/*
 !stow/i3/.config/i3
-*dconf*
+dconf
 **/plugged/**
 **/packer_compiled.lua
 **/coc/**
