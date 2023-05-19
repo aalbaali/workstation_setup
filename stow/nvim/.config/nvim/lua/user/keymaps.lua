@@ -29,6 +29,10 @@ keymap("n", vim.g.altleader .. "o", ":Files<CR>", opts)
 -- keymap("n", "<C-k>", "<C-w>k", opts)
 -- keymap("n", "<C-l>", "<C-w>l", opts)
 
+-- Jumping between split lines should be the default
+keymap("n", "j", "gj", opts)
+keymap("n", "k", "gk", opts)
+
 -- Close tab
 keymap("n", "<C-w>C", "<cmd>tabclose<cr>", opts)
 

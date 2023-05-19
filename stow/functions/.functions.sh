@@ -134,6 +134,23 @@ export FZF_CTRL_R_OPTS="
 # Print tree structure in the preview window
 export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
 
+# Find files that contain regex expressions and preview them using fzf previewer
+agp () {
+  local str files
+  str="$1"
+  file=$(ag -l "$str" ${@:2} | fzf-tmux --preview 'bat -n --color=always {}')
+  
+  # Abort if no file is selected
+  [ -z "$file" ] && return
+
+  # Find line number
+  local line_num
+  line_nums=$(ag "$str" "$file" --column | ag "^[0-9]" | head -n 1)
+  line_num=$(echo "$line_nums" | awk -F':' '{print $1}')
+  col_num=$(echo "$line_nums" | awk -F':' '{print $2}')
+  nv +$line_num "$file" +"normal $col_num|"
+}
+
 ####################
 # Git
 ####################
