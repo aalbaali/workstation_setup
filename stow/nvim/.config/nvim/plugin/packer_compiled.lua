@@ -199,6 +199,11 @@ _G.packer_plugins = {
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/gruvbox-baby",
     url = "https://github.com/luisiacc/gruvbox-baby"
   },
+  ["iceberg.vim"] = {
+    loaded = true,
+    path = "/home/amro/.local/share/nvim/site/pack/packer/start/iceberg.vim",
+    url = "https://github.com/cocopon/iceberg.vim"
+  },
   ["impatient.nvim"] = {
     loaded = true,
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/impatient.nvim",
@@ -238,6 +243,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/melange-nvim",
     url = "https://github.com/savq/melange-nvim"
+  },
+  molokai = {
+    loaded = true,
+    path = "/home/amro/.local/share/nvim/site/pack/packer/start/molokai",
+    url = "https://github.com/tomasr/molokai"
   },
   moonfly = {
     loaded = true,
@@ -308,6 +318,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
+  },
+  onehalf = {
+    loaded = true,
+    path = "/home/amro/.local/share/nvim/site/pack/packer/start/onehalf",
+    url = "https://github.com/sonph/onehalf"
   },
   ["onenord.nvim"] = {
     loaded = true,
@@ -398,6 +413,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/vim-headerguard",
     url = "https://github.com/drmikehenry/vim-headerguard"
+  },
+  ["vim-hybrid"] = {
+    loaded = true,
+    path = "/home/amro/.local/share/nvim/site/pack/packer/start/vim-hybrid",
+    url = "https://github.com/w0ng/vim-hybrid"
   },
   ["vim-illuminate"] = {
     loaded = true,
