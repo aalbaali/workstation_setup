@@ -14,7 +14,7 @@ base: scripts/install_base.sh
 dev: scripts/install_packages.sh scripts/post_install_setup.sh
 	bash scripts/install_packages.sh
 	bash scripts/post_install_setup.sh --zsh --functions --git --nvim --clang_format --gdb --nvim-setup
-
+	bash scripts/install_nerd_fonts.sh
 
 vscode: scripts/install_vscode.sh
 	bash scripts/install_vscode.sh
