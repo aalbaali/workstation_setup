@@ -36,8 +36,10 @@ sudo apt-get install -y \
   npm \
   exuberant-ctags \
   software-properties-common \
-  python3-venv \
-  gnome-tweaks
+  python3-venv 
+
+# To install gnome-tweaks
+# sudo apt-get install -y gnome-tweaks
 
 ## install latest nvim release
 #sudo add-apt-repository -y ppa:neovim-ppa/stable
