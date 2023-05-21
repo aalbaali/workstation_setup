@@ -50,7 +50,6 @@ then
     echo "Symbolic link created from bat to batcat"
 fi
 
-
 ## install latest nvim release
 #sudo add-apt-repository -y ppa:neovim-ppa/stable
 #sudo apt-get update
