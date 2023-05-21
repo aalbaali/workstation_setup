@@ -36,10 +36,19 @@ sudo apt-get install -y \
   npm \
   exuberant-ctags \
   software-properties-common \
+  bat \
   python3-venv 
 
 # To install gnome-tweaks
 # sudo apt-get install -y gnome-tweaks
+
+# Installing `bat` using apt-get creates `batcat` as the default binary. To set `bat`, create a
+# symbolic link
+if command -v batcat &> /dev/null && ! command -v bat &> /dev/null
+then
+    sudo ln -s "$(command -v batcat)" "$(dirname $(command -v batcat))/bat"
+    echo "Symbolic link created from bat to batcat"
+fi
 
 ## install latest nvim release
 #sudo add-apt-repository -y ppa:neovim-ppa/stable
