@@ -19,14 +19,15 @@ alias jj=julia
 alias jfranklin="julia --project=Project.toml -e 'using Franklin; serve()'"
 alias jpluto="julia -e 'using Pluto; Pluto.run()'"
 #alias vpdf=sioyek
-alias vpdf=evince       # Pdf viewer
-alias sz=ncdu           # view file usage
-alias h=htop            # View system performance
-alias e=exa             # Alternative to `ls`
-alias plot=gnuplot      # Data plotter
-alias tk=tokei          # Info about code
-alias c=sgpt            # Shell GPT
-alias mex="chmod +x "   # Make executable
+alias vpdf=evince            # Pdf viewer
+alias sz=ncdu                # view file usage
+alias h=htop                 # View system performance
+alias e=exa                  # Alternative to `ls`
+alias plot=gnuplot           # Data plotter
+alias tk=tokei               # Info about code
+alias c=sgpt                 # Shell GPT
+alias mex="chmod +x "        # Make executable
+alias pwdt="echo ${PWD##*/}" # Print truncated directory (i.e., without the full path)
 
 ################################################
 # System-related aliases and functions
