@@ -281,10 +281,13 @@ alias ri="ls /home/aa/Pictures/Screenshots/Screen* -t | head -n 1 | xargs -I{} t
 # Create a Python virtual environment
 _default_venv="venv"
 
+# Comment out this line if you don't want to see warnings if a venv doesn't exist
+#SHOW_WARNING=1
+
 # Checks if given virtual env exist, and updates variable if it doesn't
 _check_venv() {
   if [[ -z "$venv_name" ]]; then
-    echo -e "\033[95mVenv not provided. Will use the default \033[93;1m$_default_venv\033[0m"
+    [[ -n $SHOW_WARNING ]] && echo -e "\033[95mVenv not provided. Will use the default \033[93;1m$_default_venv\033[0m"
     venv_name=$_default_venv
   fi
 }
