@@ -26,6 +26,7 @@ alias e=exa             # Alternative to `ls`
 alias plot=gnuplot      # Data plotter
 alias tk=tokei          # Info about code
 alias c=sgpt            # Shell GPT
+alias mex="chmod +x "   # Make executable
 
 ################################################
 # System-related aliases and functions
@@ -166,6 +167,7 @@ alias ga="git add"
 alias gb="git branch"
 alias gc="git checkout"
 alias gd="git diff"
+alias gdn="git diff --name-only"
 alias gdc="git diff --cached"
 
 alias g="git"
@@ -272,3 +274,46 @@ cmdef() {
 
 # Temporary: read latest screenshot and copy to clipboard
 alias ri="ls /home/aa/Pictures/Screenshots/Screen* -t | head -n 1 | xargs -I{} tesseract "{}" ddd && cat ddd.txt | xclip -selection clipboard"
+
+####################
+# Python venv
+####################
+# Create a Python virtual environment
+_default_venv="venv"
+
+# Checks if given virtual env exist, and updates variable if it doesn't
+_check_venv() {
+  if [[ -z "$venv_name" ]]; then
+    echo -e "\033[95mVenv not provided. Will use the default \033[93;1m$_default_venv\033[0m"
+    venv_name=$_default_venv
+  fi
+}
+
+penv() {
+  local venv_name
+  venv_name="$1"
+  _check_venv
+
+  # Create the virtual environment
+  python3 -m venv "$venv_name"
+}
+
+# Source a Python virtual environment
+psrc() {
+  local venv_name
+  venv_name="$1"
+  _check_venv
+
+  # Check if the virtual environment exists
+  if [[ ! -d "$venv_name" ]]; then
+    echo -e "\033[93mVirtual environment \033[1m$_default_venv\033[0;93m doesn't exist\033[0m"
+    return
+  fi
+
+  # Source the virtual environment
+  source "$venv_name/bin/activate"
+}
+
+# Deactivate
+alias pdeact="deactivate"
+

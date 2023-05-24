@@ -274,6 +274,6 @@ local mapping_nav = {
 -- Add options and mappings
 which_key.setup(setup)
 which_key.register(mappings, opts)
-which_key.register(mapping_nav, opts_nav)
+which_key.register(mapping_no_pref, opts_no_pref)
 which_key.register(mapping_alt, opts_alt)
 which_key.register(window_mappings, opts_window)
