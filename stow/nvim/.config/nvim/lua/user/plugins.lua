@@ -107,6 +107,7 @@ return packer.startup(function(use)
   use { "RRethy/vim-illuminate" }
   use { "nvim-telescope/telescope.nvim" }
   use { "nvim-treesitter/nvim-treesitter" }
+  use { "nvim-treesitter/nvim-treesitter-context" }   -- View context at the current cursor functions/classes
   use { "lewis6991/gitsigns.nvim" }
 
   use('tpope/vim-fugitive')             --  Git comments
@@ -140,9 +141,13 @@ return packer.startup(function(use)
   use('asheq/close-buffers.vim')                                                          --  Kill buffers well
   use('mindriot101/vim-yapf')                                                             --  Python formatting using Yapf
   use('cdelledonne/vim-cmake')                                                            --  Construct and build CMake projects
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  })
 
   -- The configs are needed to be here to make sure the plugin is loaded before its used
-  use {                                                                                   --  Github copilot
+  use { --  Github copilot
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
@@ -156,6 +161,35 @@ return packer.startup(function(use)
     after = { "copilot.lua" },
     config = function()
       require("copilot_cmp").setup()
+    end
+  }
+
+  -- ChatGPT
+  use({
+    "jackMort/ChatGPT.nvim",
+    config = function()
+      require("chatgpt").setup()
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  })
+
+  -- Markdown table-of-contents generation
+  use { "mzlogin/vim-markdown-toc" }
+
+  -- View PlantUML diagrams
+  use { "tyru/open-browser.vim" }
+  use { "weirongxu/plantuml-previewer.vim" }
+
+  -- Highlight and color todo comments
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup {}
     end
   }
 

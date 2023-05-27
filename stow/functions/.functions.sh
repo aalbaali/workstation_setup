@@ -11,7 +11,7 @@
 ################################################
 alias nv=nvim
 alias fd="fdfind"
-alias fdh="fdfind -H"
+alias fdh="fdfind -H -I"
 alias agh="ag --hidden"
 alias rgh="rg --hidden"
 alias vsc="code -n ."
@@ -153,6 +153,12 @@ agp () {
   nv +$line_num "$file" +"normal $col_num|"
 }
 
+# Search for strings in git-changed files
+agd() {
+  files=$(git diff --name-only)
+  agp "$1" $files
+}
+
 ####################
 # Git
 ####################
@@ -222,7 +228,6 @@ ghttptossh() {
     # Track current branch to master
     local local_branch=$(git branch | awk '{print $NF}')
     git branch -u origin/$local_branch
-
   fi
 
   echo "git remote -v"
@@ -316,6 +321,21 @@ psrc() {
 
   # Source the virtual environment
   source "$venv_name/bin/activate"
+}
+
+# Install requirements
+_default_requirements="requirements.txt"
+pinst() {
+  local requirements_file
+  requirements_file="$1"
+
+  if [[ -z "$requirements_file" ]]; then
+    [[ -n $SHOW_WARNING ]] && echo -e "\033[95mRequirements not provided. Will use the default \033[93;1m$_default_requirements\033[0m"
+    requirements_file=$_default_requirements
+  fi
+
+  # Install requirements
+  pip install -r "$requirements_file"
 }
 
 # Deactivate

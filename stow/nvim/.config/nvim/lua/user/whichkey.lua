@@ -97,6 +97,11 @@ local mappings = {
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 
+  r = {
+    name = "run",
+    p = { "<cmd>split<CR><cmd>term python %<CR>", "Run python" },
+  },
+
   p = {
     name = "Packer",
     c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -160,6 +165,13 @@ local mappings = {
       "Workspace Symbols",
     },
   },
+  m = {
+    name = "Markdown",
+    p = { "<cmd>MarkdownPreview<cr>", "Preview" },
+    P = { "<cmd>MarkdownPreviewStop<cr>", "Stop Preview" },
+    t = { "<cmd>MarkdownPreviewToggle<cr>", "Toggle Markdown preview" }
+  },
+
   s = {
     name = "Search",
     a = { "<cmd>Ag<cr>", "Ag search" },
@@ -174,8 +186,8 @@ local mappings = {
   },
 
   t = {
-    n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
     name = "Terminal",
+    n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
     u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
     t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
     p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
@@ -189,35 +201,44 @@ local mappings = {
 -- Mappings using alternative leader
 local opts_alt = {
   mode = { "n", "v" }, -- NORMAL and VISUAL mode
-  buffer = nil,      -- Global mappings. Specify a buffer number for buffer local mappings
+  buffer = nil,        -- Global mappings. Specify a buffer number for buffer local mappings
   prefix = vim.g.altleader,
-  silent = true,     -- use `silent` when creating keymaps
-  noremap = true,    -- use `noremap` when creating keymaps
-  nowait = true,     -- use `nowait` when creating keymaps
+  silent = true,       -- use `silent` when creating keymaps
+  noremap = true,      -- use `noremap` when creating keymaps
+  nowait = true,       -- use `nowait` when creating keymaps
 }
 
 local mapping_alt = {
   d = {
-    name = "Doxygen",
+    name = "Documentation",
     a = { ":DoxAuth<CR>", "Doxygen author (documents)" },
+    c = { "O//<space>", "C++ inline comment" },
     d = { ":Dox<CR>", "Doxygen documentation" },
-    s = { "O/**<space><space>*/<Esc>F<space>i", "Inline member comment" },
-    c = { "O//<space>", "Inline comment" },
+    g = { ":DogeGenerate<CR>", "DoGe documentation" },
+    s = { "O/**<space><space>*/<Esc>F<space>i", "C++ inline member comment" },
   },
   g = {
     name = "Git",
-    d = { "<cmd>DiffviewOpen<CR>", "Diff with current tree" },
-    s = { "<cmd>lua vim.cmd.Git()<CR>", "Git status" },
     b = { "<cmd>Git blame<CR>", "Git blame" },
-    m = { "<cmd>Git commit -s<CR>", "Git commit" },
-    p = { "<cmd>Git push<CR>", "Git push" },
+    c = { "<cmd>DiffviewClose<CR>", "Close diffview" },
+    d = { "<cmd>DiffviewOpen<CR>", "Diff with current tree" },
+    f = { "<cmd>DiffviewToggleFiles<CR>", "Toggle files sidebar" },
     h = { "<cmd>DiffviewFileHistory<CR>", "File history" },
     l = { "<cmd>DiffviewLog<CR>", "Git log" },
-    c = { "<cmd>DiffviewClose<CR>", "Close diffview" }
+    m = { "<cmd>Git commit -s<CR>", "Git commit" },
+    p = { "<cmd>Git push<CR>", "Git push" },
+    s = { "<cmd>lua vim.cmd.Git()<CR>", "Git status" },
   },
   h = {
     name = "Hunk",
     s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage hunk" },
+  },
+  t = {
+    name = "Tab/Tag/Todo",
+    ["n"] = { "<cmd>tabnext<cr>", "Next tab" },
+    ["c"] = { "<cmd>tabprev<cr>", "Prev tab" },
+    ["C"] = { "<cmd>tabclose<cr>", "Close tab" },
+    ["d"] = { "<cmd>TodoQuickFix<cr>", "Populate quickfix with TODOs" },
   },
   q = {
     name = "Quickfix",
@@ -237,12 +258,14 @@ local opts_window = {
   nowait = true,  -- use `nowait` when creating keymaps
 }
 
-local window_mappings = {
+local mapping_window = {
   ["q"] = { "<cmd>Sayonara<cr>", "Close window and delete from buffer" },
-  ["c"] = { "<cmd>close<cr>", "Close tab" },
+  ["c"] = { "<cmd>close<cr>", "Close window" },
+  ["C"] = { "<cmd>tabclose<cr>", "Close tab" },
 }
+
 -- Mappings without prefix
-local opts_nav = {
+local opts_no_pref = {
   mode = "n",     -- NORMAL mode
   buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
   silent = true,  -- use `silent` when creating keymaps
@@ -250,15 +273,17 @@ local opts_nav = {
   nowait = true,  -- use `nowait` when creating keymaps
 }
 
-local mapping_nav = {
+local mapping_no_pref = {
   ["]"] = {
     c = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     q = { "<cmd>cnext<cr>", "Next quickfix" },
+    t = { "<cmd>TagbarJumpNext<CR>", "Next tag" },
   },
 
   ["["] = {
     c = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Next Hunk" },
     q = { "<cmd>cprev<cr>", "Previous quickfix" },
+    t = { "<cmd>TagbarJumpPrev<CR>", "Prev tag" },
   },
 
   g = {
@@ -266,6 +291,11 @@ local mapping_nav = {
     n = { "<cmd>bnext<cr>", "Next buffer" },
     N = { "<cmd>bprev<cr>", "Previous buffer" },
     L = { "<cmd>blast<cr>", "Last buffer" },
+  },
+
+  ["<C-w>"] = {
+    name = "Window",
+    n = { "<cmd>split<cr>", "Split window" },
   }
 }
 
@@ -276,4 +306,4 @@ which_key.setup(setup)
 which_key.register(mappings, opts)
 which_key.register(mapping_no_pref, opts_no_pref)
 which_key.register(mapping_alt, opts_alt)
-which_key.register(window_mappings, opts_window)
+which_key.register(mapping_window, opts_window)

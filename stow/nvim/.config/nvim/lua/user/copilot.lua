@@ -4,7 +4,7 @@ if not status_ok then
   return
 end
 
-M = require("copilot").setup({
+copilot.setup({
   panel = {
     enabled = true,
     auto_refresh = true,
@@ -48,4 +48,4 @@ M = require("copilot").setup({
   server_opts_overrides = {},
 })
 
-return M
+return copilot
