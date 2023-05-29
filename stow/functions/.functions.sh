@@ -138,7 +138,7 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
 
 # Find files that contain regex expressions and preview them using fzf previewer
 agp () {
-  local str files
+  local str files file
   str="$1"
   file=$(ag -l "$str" ${@:2} | fzf-tmux --preview 'bat -n --color=always {}')
   
@@ -153,10 +153,33 @@ agp () {
   nv +$line_num "$file" +"normal $col_num|"
 }
 
+# Takes a list of files as arguments
+fzfedit() {
+  files=$(cat - | tr ' ' '\n')
+  file=$( echo $files | fzf-tmux --preview 'bat -n --color=always {}')
+
+  # Abort if no file is selected
+  [ -z "$file" ] && return
+
+  # Find line number
+  nv "$file"
+}
+
 # Search for strings in git-changed files
 agd() {
-  files=$(git diff --name-only)
-  agp "$1" $files
+  local str file
+  str="$1"
+  file=$(git diff --name-only -G "$str" | fzf-tmux --preview 'bat -n --color=always {}')
+
+  # Abort if no file is selected
+  [ -z "$file" ] && return
+
+  # Find line number
+  local line_num
+  line_nums=$(ag "$str" "$file" --column | ag "^[0-9]" | head -n 1)
+  line_num=$(echo "$line_nums" | awk -F':' '{print $1}')
+  col_num=$(echo "$line_nums" | awk -F':' '{print $2}')
+  nv +$line_num "$file" +"normal $col_num|"
 }
 
 ####################
