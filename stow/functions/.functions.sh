@@ -117,11 +117,12 @@ lnb() {
 ###############################
 export FZF_DEFAULT_OPS="--extended"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+#export FZF_DEFAULT_COMMAND='fdfind -H -I'
 #export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # Preview file content using bat (https://github.com/sharkdp/bat)
 export FZF_CTRL_T_OPTS="
   --preview 'bat -n --color=always {}'
-  --bind 'ctrl-e:become(nvim {+})'
+  --bind 'ctrl-e:become(vim {+})'
   --bind 'ctrl-/:change-preview-window(down|hidden|)'
   --bind 'ctrl-y:execute-silent(echo -n {} | xclip -selection clipboard)+abort'"
 # CTRL-/ to toggle small preview window to see the full command
@@ -153,8 +154,8 @@ agp () {
   nv +$line_num "$file" +"normal $col_num|"
 }
 
-# Takes a list of files as arguments
-fzfedit() {
+# Takes a list of files as arguments and opens the selection in neovim
+fnv() {
   files=$(cat - | tr ' ' '\n')
   file=$( echo $files | fzf-tmux --preview 'bat -n --color=always {}')
 

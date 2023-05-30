@@ -6,6 +6,7 @@ local servers = {
 	"jsonls",
   "clangd",
   "rust_analyzer",
+  "tsserver",
 }
 
 local settings = {

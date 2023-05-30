@@ -28,8 +28,8 @@ sudo apt-get install -y \
   xclip \
   libpython3-dev \
   gawk \
-  xsel \
-  meld \
+#  xsel \
+#  meld \
   tree \
   fd-find \
   zsh \
