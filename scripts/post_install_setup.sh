@@ -61,6 +61,9 @@ declare -A STOW_PACKAGES=(
   [vscode]=false
 )
 
+# If true, will prompt the user if a stow package is not found
+PROMPT_USER=false
+
 while true; do
   case "$1" in
     -a | --all ) INSTALL_ALL=true; shift ;;
@@ -96,6 +99,7 @@ while true; do
     --no-zsh-setup ) STOW_PACKAGES[zsh-setup]=false; shift ;;
     --functions ) STOW_PACKAGES[functions]=true; shift ;;
     --no-functions ) STOW_PACKAGES[no-functions]=false; shift ;;
+    --prompt ) PROMPT_USER=true; shift ;;
     -- ) shift; break ;;
     * ) shift; break ;;
   esac
@@ -124,7 +128,7 @@ for app_full in */; do
     yn=y
   elif [ "${STOW_PACKAGES[$app]}" = false ]; then
     yn=n
-  else
+  elif [ $PROMPT_USER = true ]; then
     # Prompt user if stow directory is not found in the dictionary
     read -p "Install $app? (y/N): " yn
   fi
@@ -261,7 +265,10 @@ if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh-setup]}" = true ]; then
   $SCRIPT_DIR/install_zplug.zsh
 
   # Install starship
-  curl -sS https://starship.rs/install.sh | sh
+  curl -sS https://starship.rs/install.sh -o /tmp/install.sh
+  sudo sh /tmp/install.sh -y
+  rm /tmp/install.sh
 
   # Link starship config
+  ln -s $SCRIPT_DIR/../stow/zsh/.config/starship.toml ~/.config -f
 fi
