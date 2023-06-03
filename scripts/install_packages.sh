@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Add exa apt packages
-sudo add-apt-repository -y ppa:spvkgn/exa
-
 # Install packages I normally use
 sudo apt-get update
 
@@ -37,11 +34,14 @@ sudo apt-get install -y \
   exuberant-ctags \
   software-properties-common \
   bat \
-  exa \
   python3-venv 
 
 # To install gnome-tweaks
 # sudo apt-get install -y gnome-tweaks
+
+# Add exa apt packages
+sudo add-apt-repository -y ppa:spvkgn/exa
+sudo apt-get update && sudo apt-get install exa
 
 # Installing `bat` using apt-get creates `batcat` as the default binary. To set `bat`, create a
 # symbolic link
