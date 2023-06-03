@@ -262,7 +262,8 @@ if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh-setup]}" = true ]; then
   fi
 
   # Install zsh plug
-  $SCRIPT_DIR/install_zplug.zsh
+  source $HOME/.zshrc
+  zplug install
 
   # Install starship
   curl -sS https://starship.rs/install.sh -o /tmp/install.sh
