@@ -136,6 +136,16 @@ Note that this script will only work after installing the `coc-ccls` plugin firs
 Additional packages may be required for the ZSH font to be displayed correctly.
 Check the [spaceship-prompt](https://github.com/spaceship-prompt/spaceship-prompt) and [this answer](https://askubuntu.com/questions/271566/how-to-get-ubuntu-to-display-unicode-supplementary-characters).
 
+## Docker detach bindings
+Docker has detach binding set to `ctrl+p` by default.
+This causes issues while inside a container such as accessing the previous command.
+To fix this issue, [change the default Docker detach binding](https://stackoverflow.com/a/20863838/15749309) by modifying `~/.docker/config.json` to be
+```json
+{
+    "detachKeys": "ctrl-z,z"
+}
+```
+
 # Resources
 - Allison Thackston's [workstation setup](https://github.com/athackst/workstation_setup/)
 - Hiding terminal titlebar: [AskUbuntu Question](https://askubuntu.com/questions/1230157/how-to-remove-title-bar-from-terminal-on-the-new-ubuntu-20-04)
