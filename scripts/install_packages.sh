@@ -35,8 +35,6 @@ sudo apt-get install -y \
   zsh \
   brightnessctl \
   tilix \
-  nodejs \
-  npm \
   exuberant-ctags \
   software-properties-common \
   bat \
@@ -84,4 +82,10 @@ if [ ! command -v fzf &> /dev/null ]; then
       fi
     ;;
   esac
+fi
+
+# Check if NodeJS installed
+if [ ! command -v node &> /dev/null ]; then
+  curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+  sudo apt-get install -y nodejs
 fi
