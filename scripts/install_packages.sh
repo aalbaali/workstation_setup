@@ -39,9 +39,24 @@ sudo apt-get install -y \
 # To install gnome-tweaks
 # sudo apt-get install -y gnome-tweaks
 
-# Add exa apt packages
-sudo add-apt-repository -y ppa:spvkgn/exa
-sudo apt-get update && sudo apt-get install exa
+# Add exa apt packages. Installation depends on the system version
+if ! command dpkg -s exa > /dev/null 2>&1 && [ -f /etc/os-release ]; then
+  . /etc/os-release
+  if [ "$NAME" == "Ubuntu" ]; then
+    VERSION=$(echo $VERSION_ID | cut -d '.' -f 1)
+    if [ $VERSION -gt 20 ]; then
+      # The current system is Ubuntu and its version is higher than 20.04"
+      wget http://archive.ubuntu.com/ubuntu/pool/universe/r/rust-exa/exa_0.10.1-2_amd64.deb
+      sudo apt install ./exa_0.10.1-2_amd64.deb
+      rm exa_0.10.1-2_amd64.deb
+    else
+      # The current system is Ubuntu but its version is not higher than 20.04
+      sudo add-apt-repository -y ppa:spvkgn/exa
+      sudo apt-get update && sudo apt-get install exa
+    fi
+  fi
+fi
+
 
 # Installing `bat` using apt-get creates `batcat` as the default binary. To set `bat`, create a
 # symbolic link

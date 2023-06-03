@@ -63,6 +63,7 @@ drun_full() {
     -v ~/shared:/home/$cont_username/shared  \
     --network host \
     --hostname $cont_hostname \
+    --add-hostname $cont_hostname:127.0.0.1 \
     --name $cont_name \
     ${@:6} \
     "$1:$2"
