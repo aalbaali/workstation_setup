@@ -114,6 +114,12 @@ sudo n latest
 # Or, install specific version
 # sudo n 16.20
 ```
+Alternatively, use the node version manager `nvm`:
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+source ~/.zshrc # Or source ~/.bashrc
+nvm install 16.20
+```
 
 # FAQs and common issues
 ## Neovim's [coc-ccls](https://github.com/Maxattax97/coc-ccls) may give an error of *unable to load global extension*.
