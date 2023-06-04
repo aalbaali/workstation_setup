@@ -1,4 +1,10 @@
 # Get rosbag topics
+
+# Do not continue sourcing this file if ROS is not installed
+if [[ -z $ROS_VERSION ]] then
+  return
+fi
+
 # $1: bag name
 gettopics() { rosbag info -k topics "$1" -y | ag topic: | awk -F': ' '{print $2}'}
 
