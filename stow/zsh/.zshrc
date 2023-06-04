@@ -17,9 +17,9 @@ source $ZPLUG_HOME/init.zsh
 eval "$(starship init zsh)"
 
 # Plugins
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "lib/history", from:oh-my-zsh
+zplug "zsh-users/zsh-autosuggestions", as:plugin
+zplug "zsh-users/zsh-syntax-highlighting", as:plugin
+zplug "lib/history", as:plugin, from:oh-my-zsh
 
 # Install plugins if there are plugins that have not been installed
 # Toggle prompt by setting/unsetting the env variable `ZSH_NONINTERACTIVE`
