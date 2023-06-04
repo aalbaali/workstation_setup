@@ -35,6 +35,7 @@ sudo apt-get install -y \
   software-properties-common \
   bat \
   python3-venv \
+  npm \
   autojump
 
 # To install gnome-tweaks
