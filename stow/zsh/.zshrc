@@ -23,8 +23,8 @@ zplug "lib/history", from:oh-my-zsh
 
 # Install plugins if there are plugins that have not been installed
 # Toggle prompt by setting/unsetting the env variable `ZSH_NONINTERACTIVE`
-if [ ! -v ZSH_NONINTERACTIVE ] && ! zplug check --verbose; then
-  echo; zplug install
+if ! zplug check --verbose; then
+  zplug install
 fi
 
 # Source plugins

@@ -282,6 +282,7 @@ if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh-setup]}" = true ]; then
   fi
   ZPLUG_PIPE_FIX=true
   source ~/.zshrc
+  zplug install
 
   # Install starship
   curl -sS https://starship.rs/install.sh -o /tmp/install.sh
