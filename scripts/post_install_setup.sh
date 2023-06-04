@@ -261,6 +261,18 @@ if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh-setup]}" = true ]; then
     exit -1
   fi
 
+  # Check if zshrc exists
+  if [ ! -f $HOME/.zshrc ]; then
+    echo -e "\033[93mZshrc does not exist. Make sure to run `--zsh` before running `--zsh-setup`\033[0m"
+    exit -1
+  fi
+
+  # Apply the patch diff in zplug to allow zplug installation:
+  #  - https://github.com/zplug/zplug/issues/272#issuecomment-850644485
+  #  - https://github.com/nemanjan00/dev-environment/blob/53e946b3790642a13bbfbfe6598bea415f666a5e/zplug/patch/pipe_fix.diff
+  patch $HOME/.zplug/base/core/add.zsh $SCRIPT_DIR/../zplug/pipe_fix.diff
+
+
   # Install zsh plug
   source $HOME/.zshrc
   zplug install
