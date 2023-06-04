@@ -177,7 +177,7 @@ else
 fi
 case $yn in
     [Yy]* )
-    # Ensure nodejs is installed (for COC plugin)
+    # Ensure nodejs is installed
     if [[ ! -a $(which node) ]]; then
       echo "Error: nodejs is not installed. Please install nodejs first by running."
       echo -e "\033[93;1m"
@@ -186,16 +186,11 @@ case $yn in
       exit 1
     fi
 
-    # Install vim-plug plugin manager
-    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-    nvim +'PlugInstall --sync' +'CocInstall -sync coc-json coc-ccls coc-git coc-cmake coc-clangd coc-ccls' +qa
-    nvim +CocUpdateSync +qall
+    # Install plugin manager
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim \
+         ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
     nvim +':call doge#install()' +qall
-
-    # This fixes a coc-ccls related typo/issue
-    ln -s ~/.config/coc/extensions/node_modules/coc-ccls/node_modules/ws/lib ~/.config/coc/extensions/node_modules/coc-ccls/lib
 
     ;;
     [Nn]* ) ;;
