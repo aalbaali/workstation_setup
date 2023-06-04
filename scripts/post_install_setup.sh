@@ -270,8 +270,7 @@ if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh-setup]}" = true ]; then
   # Apply the patch diff in zplug to allow zplug installation:
   #  - https://github.com/zplug/zplug/issues/272#issuecomment-850644485
   #  - https://github.com/nemanjan00/dev-environment/blob/53e946b3790642a13bbfbfe6598bea415f666a5e/zplug/patch/pipe_fix.diff
-  patch $HOME/.zplug/base/core/add.zsh $SCRIPT_DIR/../zplug/pipe_fix.diff
-
+  patch $HOME/.zplug/base/core/add.zsh $SCRIPT_DIR/../zplug/patch/pipe_fix.diff
 
   # Install zsh plug
   ZPLUG_PIPE_FIX=true
