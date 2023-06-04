@@ -267,15 +267,21 @@ if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh-setup]}" = true ]; then
     exit -1
   fi
 
+  # Install zsh plug
+  source $HOME/.zshrc
+
   # Apply the patch diff in zplug to allow zplug installation:
   #  - https://github.com/zplug/zplug/issues/272#issuecomment-850644485
   #  - https://github.com/nemanjan00/dev-environment/blob/53e946b3790642a13bbfbfe6598bea415f666a5e/zplug/patch/pipe_fix.diff
-  patch $HOME/.zplug/base/core/add.zsh $SCRIPT_DIR/../zplug/patch/pipe_fix.diff
-
-  # Install zsh plug
+  # Warn user if ~/.zplug directory doesn't exist
+  if [ -d $HOME/.zplug ]; then
+    patch $HOME/.zplug/base/core/add.zsh $SCRIPT_DIR/../zplug/patch/pipe_fix.diff
+  else
+    echo -e "\033[93mZplug directory does not exist\033[0m"
+    exit -1
+  fi
   ZPLUG_PIPE_FIX=true
-  source $HOME/.zshrc
-  zplug install
+  source ~/.zshrc
 
   # Install starship
   curl -sS https://starship.rs/install.sh -o /tmp/install.sh
