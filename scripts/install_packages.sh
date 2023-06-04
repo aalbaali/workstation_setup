@@ -34,7 +34,8 @@ sudo apt-get install -y \
   exuberant-ctags \
   software-properties-common \
   bat \
-  python3-venv 
+  python3-venv \
+  autojump
 
 # To install gnome-tweaks
 # sudo apt-get install -y gnome-tweaks
