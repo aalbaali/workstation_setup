@@ -274,6 +274,7 @@ if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh-setup]}" = true ]; then
 
 
   # Install zsh plug
+  ZPLUG_PIPE_FIX=true
   source $HOME/.zshrc
   zplug install
 
