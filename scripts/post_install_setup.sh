@@ -17,6 +17,7 @@
 #     --gdb           Install gdb configs
 #     --latex         Install latex configs
 #     --vscode        Install vscode configs
+#     --terminal      Install terminal configs
 #
 #     --zsh-setup     Install zsh zplugins
 #     --nvim-setup    Install neovim plugins
@@ -59,6 +60,7 @@ declare -A STOW_PACKAGES=(
   [gdb]=false
   [latex]=false
   [vscode]=false
+  [terminal]=false
 )
 
 # If true, will prompt the user if a stow package is not found
@@ -93,6 +95,7 @@ while true; do
     --no-tmux-setup ) STOW_PACKAGES[tmux-setup]=false; shift ;;
     --vscode ) STOW_PACKAGES[vscode]=true; shift ;;
     --no-vscode ) STOW_PACKAGES[vscode]=false; shift ;;
+    --terminal ) STOW_PACKAGES[terminal]=true; shift ;;
     --zsh ) STOW_PACKAGES[zsh]=true; shift ;;
     --no-zsh ) STOW_PACKAGES[zsh]=false; shift ;;
     --zsh-setup ) STOW_PACKAGES[zsh-setup]=true; shift ;;
