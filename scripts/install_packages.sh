@@ -31,6 +31,7 @@ sudo apt-get install -y \
   zsh \
   brightnessctl \
   tilix \
+  kitty \
   exuberant-ctags \
   software-properties-common \
   bat \
