@@ -147,6 +147,18 @@ To fix this issue, [change the default Docker detach binding](https://stackoverf
 }
 ```
 
+## Quick bluetooth connections
+I use a Keychron K2 keyboard, which supports bluetooth connection.
+When the computer goes to sleep, the keyboard disconnects.
+However, reconnecting to the computer after waking it up takes quite some time.
+To fix this, make the following changes inside `sudo vim /etc/bluetooth/main.conf`:
+```bash
+# Uncomment the following lines
+FastConnectable = false
+ReconnectIntervals=1, 2, 4, 8, 16, 32, 64
+AutoEnable=true
+```
+
 # Resources
 - Allison Thackston's [workstation setup](https://github.com/athackst/workstation_setup/)
 - Hiding terminal titlebar: [AskUbuntu Question](https://askubuntu.com/questions/1230157/how-to-remove-title-bar-from-terminal-on-the-new-ubuntu-20-04)
