@@ -167,9 +167,10 @@ local mappings = {
   },
   m = {
     name = "Markdown",
+    c = { "<cmd>GenTocGFM<cr>", "Insert table of contents" },
     p = { "<cmd>MarkdownPreview<cr>", "Preview" },
     P = { "<cmd>MarkdownPreviewStop<cr>", "Stop Preview" },
-    t = { "<cmd>MarkdownPreviewToggle<cr>", "Toggle Markdown preview" }
+    t = { "<cmd>MarkdownPreviewToggle<cr>", "Toggle Markdown preview" },
   },
 
   s = {

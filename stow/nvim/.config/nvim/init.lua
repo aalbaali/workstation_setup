@@ -1,36 +1,21 @@
-require "user.options"
-require "user.keymaps"
-require "user.colorscheme"
-require "user.plugins"
-require "user.lsp"
-require "user.cmp"
-require "user.telescope"
-require "user.gitsigns"
-require "user.treesitter"
-require "user.autopairs"
-require "user.comment"
-require "user.nvim-tree"
-require "user.bufferline"
-require "user.lualine"
-require "user.toggleterm"
-require "user.project"
-require "user.impatient"
-require "user.indentline"
-require "user.whichkey"
-require "user.autocommands"
-require "user.fzf"
-require "user.cmake"
-require "user.asyncrun"
-require "user.clangformat"
-require "user.cmake"
-require "user.diffview"
-require "user.doxygentoolkit"
-require "user.fugitive"
-require "user.headerguard"
-require "user.nerdcommenter"
-require "user.startify"
-require "user.undotree"
-require "user.tagbar"
-require "user.easymotion"
---require "user.copilot" -- Loaded from plugins.lua
-require "user.chatgpt"
+require "core"
+
+local custom_init_path = vim.api.nvim_get_runtime_file("lua/custom/init.lua", false)[1]
+
+if custom_init_path then
+  dofile(custom_init_path)
+end
+
+require("core.utils").load_mappings()
+
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+
+-- bootstrap lazy.nvim!
+if not vim.loop.fs_stat(lazypath) then
+  require("core.bootstrap").gen_chadrc_template()
+  require("core.bootstrap").lazy(lazypath)
+end
+
+dofile(vim.g.base46_cache .. "defaults")
+vim.opt.rtp:prepend(lazypath)
+require "plugins"

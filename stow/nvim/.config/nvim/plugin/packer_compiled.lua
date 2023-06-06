@@ -74,6 +74,12 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["ChatGPT.nvim"] = {
+    config = { "\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fchatgpt\frequire\0" },
+    loaded = true,
+    path = "/home/amro/.local/share/nvim/site/pack/packer/start/ChatGPT.nvim",
+    url = "https://github.com/jackMort/ChatGPT.nvim"
+  },
   ["Comment.nvim"] = {
     loaded = true,
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/Comment.nvim",
@@ -229,6 +235,11 @@ _G.packer_plugins = {
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/lush.nvim",
     url = "https://github.com/rktjmp/lush.nvim"
   },
+  ["markdown-preview.nvim"] = {
+    loaded = true,
+    path = "/home/amro/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
+    url = "https://github.com/iamcco/markdown-preview.nvim"
+  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -279,6 +290,11 @@ _G.packer_plugins = {
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/nordic.nvim",
     url = "https://github.com/AlexvZyl/nordic.nvim"
   },
+  ["nui.nvim"] = {
+    loaded = true,
+    path = "/home/amro/.local/share/nvim/site/pack/packer/start/nui.nvim",
+    url = "https://github.com/MunifTanjim/nui.nvim"
+  },
   ["null-ls.nvim"] = {
     loaded = true,
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
@@ -309,6 +325,11 @@ _G.packer_plugins = {
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["nvim-treesitter-context"] = {
+    loaded = true,
+    path = "/home/amro/.local/share/nvim/site/pack/packer/start/nvim-treesitter-context",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-context"
+  },
   ["nvim-ts-context-commentstring"] = {
     loaded = true,
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
@@ -329,6 +350,11 @@ _G.packer_plugins = {
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/onenord.nvim",
     url = "https://github.com/rmehri01/onenord.nvim"
   },
+  ["open-browser.vim"] = {
+    loaded = true,
+    path = "/home/amro/.local/share/nvim/site/pack/packer/start/open-browser.vim",
+    url = "https://github.com/tyru/open-browser.vim"
+  },
   ["oxocarbon.nvim"] = {
     loaded = true,
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/oxocarbon.nvim",
@@ -343,6 +369,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/pear-tree",
     url = "https://github.com/tmsvg/pear-tree"
+  },
+  ["plantuml-previewer.vim"] = {
+    loaded = true,
+    path = "/home/amro/.local/share/nvim/site/pack/packer/start/plantuml-previewer.vim",
+    url = "https://github.com/weirongxu/plantuml-previewer.vim"
   },
   ["plenary.nvim"] = {
     loaded = true,
@@ -363,6 +394,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["todo-comments.nvim"] = {
+    config = { "\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18todo-comments\frequire\0" },
+    loaded = true,
+    path = "/home/amro/.local/share/nvim/site/pack/packer/start/todo-comments.nvim",
+    url = "https://github.com/folke/todo-comments.nvim"
   },
   ["toggleterm.nvim"] = {
     loaded = true,
@@ -429,6 +466,11 @@ _G.packer_plugins = {
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/vim-man",
     url = "https://github.com/vim-utils/vim-man"
   },
+  ["vim-markdown-toc"] = {
+    loaded = true,
+    path = "/home/amro/.local/share/nvim/site/pack/packer/start/vim-markdown-toc",
+    url = "https://github.com/mzlogin/vim-markdown-toc"
+  },
   ["vim-monokai-tasty"] = {
     loaded = true,
     path = "/home/amro/.local/share/nvim/site/pack/packer/start/vim-monokai-tasty",
@@ -492,6 +534,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: ChatGPT.nvim
+time([[Config for ChatGPT.nvim]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fchatgpt\frequire\0", "config", "ChatGPT.nvim")
+time([[Config for ChatGPT.nvim]], false)
+-- Config for: todo-comments.nvim
+time([[Config for todo-comments.nvim]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18todo-comments\frequire\0", "config", "todo-comments.nvim")
+time([[Config for todo-comments.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
