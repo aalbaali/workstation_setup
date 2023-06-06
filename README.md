@@ -54,8 +54,9 @@ sudo apt-get install tilix
 ```
 
 Ensure that the *Windowing system* is set to *X11*; *Wayland* option will have issues with Quake.
-- To check the windowing system, check the *About* section in Settings.
+- To check the windowing system, check the *About* section in Settings, or run `echo $XDG_SESSION_TYPE`.
 - To set X11, [uncomment](https://trendoceans.com/how-to-enable-x11-and-disable-wayland-window-system/) the `WaylandEnable=false` line in `/etc/gdm3/custom.conf`.
+The changes may not take place until a restart or re-login takes place.
 
 ## Configuring tilix
 Open tilix (by searching for the app) and then open the user preferences
