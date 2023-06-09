@@ -13,6 +13,7 @@ alias nv=nvim
 alias fd="fdfind"
 alias fdh="fdfind -H -I"
 alias agh="ag --hidden"
+alias agn="ag -l"
 alias rgh="rg --hidden"
 alias vsc="code -n ."
 alias jj=julia
@@ -166,7 +167,26 @@ fnv() {
   nv "$file"
 }
 
-# Search for strings in git-changed files
+####################
+# Git
+####################
+# Git fuzzy
+alias gf="git fuzzy"
+alias gll="git log --graph --oneline --decorate --pretty=format:'%C(auto)%h%C(reset)- %Cgreen%an%Creset: %C(auto)%s'"
+alias gla="gll --all"
+alias gss="git status -s"
+alias gs="git status"
+alias gm="git commit -s"
+alias ga="git add"
+alias gb="git branch"
+alias gc="git checkout"
+alias gd="git diff"
+alias gdn="git diff --name-only"
+alias gdc="git diff --cached"
+
+alias g="git"
+complete -o default -o nospace -F _git g
+
 agd() {
   local str file
   str="$1"
@@ -183,27 +203,6 @@ agd() {
   nv +$line_num "$file" +"normal $col_num|"
 }
 
-####################
-# Git
-####################
-# Git fuzzy
-alias gf="git fuzzy"
-
-alias gll="git log --graph --oneline --decorate"
-alias gla="git log --graph --oneline --all --decorate"
-alias gss="git status -s"
-alias gs="git status"
-alias gm="git commit -s"
-alias ga="git add"
-alias gb="git branch"
-alias gc="git checkout"
-alias gd="git diff"
-alias gdn="git diff --name-only"
-alias gdc="git diff --cached"
-
-alias g="git"
-complete -o default -o nospace -F _git g
-
 
 # Fuzzy checkout git branch with fzf
 gz() 
@@ -213,6 +212,21 @@ gz()
   branch=$(echo "$branches" |
            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+# Fuzzy checkout git *local* branch with fzf
+gbz() 
+{
+  local branches branch
+  branches=$(git branch -l | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+# Copy current branch to clipboard
+gbcp() {
+  git branch | grep '*' | awk '{printf "%s", $2}' | xclip -selection clipboard
 }
 
 # lazygit
