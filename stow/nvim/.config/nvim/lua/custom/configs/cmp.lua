@@ -1,5 +1,3 @@
-print "HIIIIIIII"
-
 local cmp = require "cmp"
 local setup = require "plugins.configs.cmp"
 
