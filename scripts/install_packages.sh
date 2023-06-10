@@ -69,13 +69,11 @@ then
     echo "Symbolic link created from bat to batcat"
 fi
 
+# Install nvim proper version
 source ./install_nvim.sh
 
-# Install lazygit using golang
-# go install github.com/jesseduffield/lazygit@latest
-
-# Install pre-commit
-#pip install pre-commit
+# Install node proper version
+source ./install_node.sh
 
 # Install fzf if it doesn't already exist
 if [ ! command -v fzf &> /dev/null ]; then
@@ -96,10 +94,4 @@ if [ ! command -v fzf &> /dev/null ]; then
       fi
     ;;
   esac
-fi
-
-# Check if NodeJS installed
-if [ ! command -v node &> /dev/null ]; then
-  curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-  sudo apt-get install -y nodejs
 fi
