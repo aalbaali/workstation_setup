@@ -54,8 +54,9 @@ sudo apt-get install tilix
 ```
 
 Ensure that the *Windowing system* is set to *X11*; *Wayland* option will have issues with Quake.
-- To check the windowing system, check the *About* section in Settings.
+- To check the windowing system, check the *About* section in Settings, or run `echo $XDG_SESSION_TYPE`.
 - To set X11, [uncomment](https://trendoceans.com/how-to-enable-x11-and-disable-wayland-window-system/) the `WaylandEnable=false` line in `/etc/gdm3/custom.conf`.
+The changes may not take place until a restart or re-login takes place.
 
 ## Configuring tilix
 Open tilix (by searching for the app) and then open the user preferences
@@ -144,6 +145,18 @@ To fix this issue, [change the default Docker detach binding](https://stackoverf
 {
     "detachKeys": "ctrl-z,z"
 }
+```
+
+## Quick bluetooth connections
+I use a Keychron K2 keyboard, which supports bluetooth connection.
+When the computer goes to sleep, the keyboard disconnects.
+However, reconnecting to the computer after waking it up takes quite some time.
+To fix this, make the following changes inside `sudo vim /etc/bluetooth/main.conf`:
+```bash
+# Uncomment the following lines
+FastConnectable = false
+ReconnectIntervals=1, 2, 4, 8, 16, 32, 64
+AutoEnable=true
 ```
 
 # Resources
