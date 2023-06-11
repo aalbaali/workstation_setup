@@ -3,41 +3,54 @@
 # Install packages I normally use
 sudo apt-get update
 
-sudo apt-get install -y \
-  vim-gtk \
-  tmux \
-  git \
-  htop \
-  curl \
-  ripgrep \
-  silversearcher-ag \
-  stow \
-  unzip \
-  libclang-dev \
-  clang-format \
-  clang-tidy \
-  cmake \
-  cmake-curses-gui \
-  build-essential \
-  gdb \
-  ncdu \
-  rsync \
-  xclip \
-  libpython3-dev \
-  gawk \
-  nodejs \
-  tree \
-  fd-find \
-  zsh \
-  brightnessctl \
-  tilix \
-  kitty \
-  exuberant-ctags \
-  software-properties-common \
-  bat \
-  python3-venv \
-  npm \
-  autojump
+sudo apt-get update
+
+pkgs=(
+  'stow'
+  'vim-gtk'
+  'tmux'
+  'git'
+  'htop'
+  'curl'
+  'ripgrep'
+  'silversearcher-ag'
+  'unzip'
+  'libclang-dev'
+  'clang-format'
+  'clang-tidy'
+  'cmake'
+  'cmake-curses-gui'
+  'build-essential'
+  'gdb'
+  'ncdu'
+  'rsync'
+  'xclip'
+  'libpython3-dev'
+  'gawk'
+  'nodejs'
+  'tree'
+  'fd-find'
+  'zsh'
+  'brightnessctl'
+  'tilix'
+  'kitty'
+  'exuberant-ctags'
+  'software-properties-common'
+  'bat'
+  'python3-venv'
+  'npm'
+  'autojump'
+)
+
+pids=()
+for pkg in "${pkgs[@]}"; do
+  sudo apt-get install -y "$pkg"
+  pids+=($!)
+done
+
+for pid in "${pids[@]}"; do
+  wait "$pid"
+done
 
 # To install gnome-tweaks
 # sudo apt-get install -y gnome-tweaks
