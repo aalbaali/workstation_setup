@@ -172,7 +172,7 @@ fnv() {
 ####################
 # Git fuzzy
 alias gf="git fuzzy"
-alias gll="git log --graph --oneline --decorate --pretty=format:'%C(auto)%h%C(reset)- %Cgreen%an%Creset: %C(auto)%s'"
+alias gll="git log --graph --oneline --decorate"
 alias gla="gll --all"
 alias gss="git status -s"
 alias gs="git status"
