@@ -189,6 +189,7 @@ case $yn in
       exit 1
     fi
 
+    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
     nvim +':call doge#install()' +qall
 
     ;;
