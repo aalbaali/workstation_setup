@@ -189,9 +189,6 @@ case $yn in
       exit 1
     fi
 
-    # Install plugin manager
-    git clone --depth 1 https://github.com/wbthomason/packer.nvim \
-         ~/.local/share/nvim/site/pack/packer/start/packer.nvim
     nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
     nvim +':call doge#install()' +qall
 

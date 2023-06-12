@@ -3,41 +3,54 @@
 # Install packages I normally use
 sudo apt-get update
 
-sudo apt-get install -y \
-  vim-gtk \
-  tmux \
-  git \
-  htop \
-  curl \
-  ripgrep \
-  silversearcher-ag \
-  stow \
-  unzip \
-  libclang-dev \
-  clang-format \
-  clang-tidy \
-  cmake \
-  cmake-curses-gui \
-  build-essential \
-  gdb \
-  ncdu \
-  rsync \
-  xclip \
-  libpython3-dev \
-  gawk \
-  nodejs \
-  tree \
-  fd-find \
-  zsh \
-  brightnessctl \
-  tilix \
-  kitty \
-  exuberant-ctags \
-  software-properties-common \
-  bat \
-  python3-venv \
-  npm \
-  autojump
+sudo apt-get update
+
+pkgs=(
+  'stow'
+  'vim-gtk'
+  'tmux'
+  'git'
+  'htop'
+  'curl'
+  'ripgrep'
+  'silversearcher-ag'
+  'unzip'
+  'libclang-dev'
+  'clang-format'
+  'clang-tidy'
+  'cmake'
+  'cmake-curses-gui'
+  'build-essential'
+  'gdb'
+  'ncdu'
+  'rsync'
+  'xclip'
+  'libpython3-dev'
+  'gawk'
+  'nodejs'
+  'tree'
+  'fd-find'
+  'zsh'
+  'brightnessctl'
+  'tilix'
+  'kitty'
+  'exuberant-ctags'
+  'software-properties-common'
+  'bat'
+  'python3-venv'
+  'npm'
+  'autojump'
+)
+
+pids=()
+for pkg in "${pkgs[@]}"; do
+  sudo apt-get install -y "$pkg"
+  pids+=($!)
+done
+
+for pid in "${pids[@]}"; do
+  wait "$pid"
+done
 
 # To install gnome-tweaks
 # sudo apt-get install -y gnome-tweaks
@@ -69,13 +82,13 @@ then
     echo "Symbolic link created from bat to batcat"
 fi
 
-source ./install_nvim.sh
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-# Install lazygit using golang
-# go install github.com/jesseduffield/lazygit@latest
+# Install nvim proper version
+source $SCRIPT_DIR/install_nvim.sh
 
-# Install pre-commit
-#pip install pre-commit
+# Install node proper version
+source $SCRIPT_DIR/install_node.sh
 
 # Install fzf if it doesn't already exist
 if [ ! command -v fzf &> /dev/null ]; then
@@ -96,10 +109,4 @@ if [ ! command -v fzf &> /dev/null ]; then
       fi
     ;;
   esac
-fi
-
-# Check if NodeJS installed
-if [ ! command -v node &> /dev/null ]; then
-  curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-  sudo apt-get install -y nodejs
 fi
