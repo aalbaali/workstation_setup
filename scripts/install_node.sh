@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Update nodejs if it's older than version 16
 
