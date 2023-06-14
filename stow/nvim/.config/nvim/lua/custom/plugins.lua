@@ -141,13 +141,16 @@ local plugins = {
   {
     "mzlogin/vim-markdown-toc",
     ft = "md",
+  },
+
+  --  Run commands / builds in background
+  {
+    "skywind3000/asyncrun.vim",
+    ft = { "cpp", "cmake" },
     config = function()
       require "custom.configs.asyncrun"
     end,
   },
-
-  --  Run commands / builds in background
-  { "skywind3000/asyncrun.vim", ft = { "cpp", "cmake" } },
 
   -- Seamless navigation between tmux and vim
   { "christoomey/vim-tmux-navigator", lazy = false },

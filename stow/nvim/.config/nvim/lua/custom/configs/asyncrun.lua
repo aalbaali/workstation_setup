@@ -1,4 +1,8 @@
 -- Catkin builds
+vim.keymap.set("n", vim.g.altleader .. "kb", ":AsyncRun -cwd=<root> catkin build<CR>")
+vim.keymap.set("n", vim.g.altleader .. "kt", ":AsyncRun -cwd=<root> catkin build --make-args tests<CR>")
+vim.keymap.set("n", vim.g.altleader .. "kn", ":AsyncStop<CR>")
+vim.keymap.set("n", vim.g.altleader .. "<space>", ":call asyncrun#quickfix_toggle(20)<CR>")
 vim.g.asyncrun_open = 4
 
 local function OnAsyncRunFinished()
