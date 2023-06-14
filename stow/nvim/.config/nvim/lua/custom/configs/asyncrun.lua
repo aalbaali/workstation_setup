@@ -5,7 +5,7 @@ vim.keymap.set("n", vim.g.altleader .. "kn", ":AsyncStop<CR>")
 vim.keymap.set("n", vim.g.altleader .. "<space>", ":call asyncrun#quickfix_toggle(20)<CR>")
 vim.g.asyncrun_open = 4
 
-local function OnAsyncRunFinished()
+function OnAsyncRunFinished()
   if vim.g.asyncrun_status == 'success' then
     vim.defer_fn(function() vim.cmd('cclose') end, 1000)
   else
@@ -13,5 +13,5 @@ local function OnAsyncRunFinished()
   end
 end
 
-vim.g.asyncrun_exit = "call OnAsyncRunFinished()"
+vim.g.asyncrun_exit = "lua OnAsyncRunFinished()"
 
