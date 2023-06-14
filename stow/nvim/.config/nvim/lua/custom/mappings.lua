@@ -86,7 +86,7 @@ M.git = {
     },
 
     -- altleader
-    [altleader .. "gb"] = { "<cmd>Git blame<CR>", "Git blame" },
+    [altleader .. "gb"] = { "<cmd>G blame<CR>", "Git blame" },
     [altleader .. "gc"] = { "<cmd>DiffviewClose<CR>", "Close diffview" },
     [altleader .. "gd"] = { "<cmd>DiffviewOpen<CR>", "Diff with current tree" },
     [altleader .. "gf"] = { "<cmd>DiffviewToggleFiles<CR>", "Toggle files sidebar" },
