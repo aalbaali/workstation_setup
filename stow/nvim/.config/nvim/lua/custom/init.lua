@@ -8,3 +8,4 @@
 
 require "custom.configs.autocommands"
 require "custom.configs.keymaps"
+require "custom.configs.asyncrun"

@@ -242,6 +242,18 @@ M.fzf = {
   },
 }
 
+M.build = {
+  ["n"] = {
+    [vim.g.altleader .. "kb"] = { ":AsyncRun -cwd=<root> catkin build<CR>", "Build catkin workspace" },
+    [vim.g.altleader .. "kt"] = {
+      ":AsyncRun -cwd=<root> catkin build --make-args tests<CR>",
+      "Build catkin workspace tests",
+    },
+    [vim.g.altleader .. "kn"] = { ":AsyncStop<CR>", "Stop asyncrun" },
+    [vim.g.altleader .. "<space>"] = { ":call asyncrun#quickfix_toggle(20},<CR>", "Toggle async quickfix" },
+  },
+}
+
 -- more keybinds!
 
 return M
