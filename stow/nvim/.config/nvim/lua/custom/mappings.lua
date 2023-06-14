@@ -56,6 +56,11 @@ M.general = {
     ["gN"] = { "<cmd>bprev<cr>", "Previous buffer" },
     ["gL"] = { "<cmd>blast<cr>", "Last buffer" },
 
+    -- Tagbar
+    [altleader .. "tt"] = { "<cmd>TagbarToggle f<CR>", "Toggle tagbar" },
+    [altleader .. "to"] = { "<cmd>TagbarOpen f<CR>", "Open tagbar" },
+    [altleader .. "tc"] = { "<cmd>TagbarClose<CR>", "Close tagbar" },
+
     -- Quickfix
     [altleader .. "qq"] = { "<cmd>copen<CR>", "Open quick fix" },
     [altleader .. "qc"] = { "<cmd>cclose<CR>", "Close quick fix" },
