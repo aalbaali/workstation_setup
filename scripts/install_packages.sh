@@ -1,4 +1,6 @@
 #!/bin/bash
+# Add ppa repo to install latest version of git
+sudo add-apt-repository ppa:git-core/ppa
 
 # Install packages I normally use
 sudo apt-get update
