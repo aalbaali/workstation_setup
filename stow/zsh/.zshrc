@@ -108,6 +108,7 @@ bindkey "^x^e" edit-command-line
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Load custom functions and aliases
+[ -f ~/.logger.sh ] && source ~/.logger.sh
 [ -f ~/.functions.sh ] && source ~/.functions.sh
 [ -f ~/.rosfunctions.sh ] && source ~/.rosfunctions.sh
 [[ $(docker --help 2>/dev/null) ]] && [ -f ~/.dockerfunctions.sh ] && source ~/.dockerfunctions.sh
