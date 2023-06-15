@@ -86,6 +86,42 @@ function vention_ses_start() {
     "Asmblr" \
     "~/vention/multirepo-build-system/vention_assembler/client" \
     "npm run dev"
+
+  # ML
+  _create_new_tmux_window_and_send_keys "$session" \
+     "ML" \
+    "~/vention/multirepo-build-system/vention_assembler/client/vse" \
+    "git submodule init && git submodule update"
+
+  # EE
+  _create_new_tmux_window_and_send_keys "$session" \
+     "EE" \
+    "~/vention/multirepo-build-system/mm-execution-engine" \
+    "npm run simulate-cad"
+
+  # ML-robot
+  _create_new_tmux_window_and_send_keys "$session" \
+     "ML-R" \
+    "~/vention/multirepo-build-system/mm-machine-logic-robot" \
+    "npm run dev"
+
+  # RMSA
+  _create_new_tmux_window_and_send_keys "$session" \
+     "RMSA" \
+    "~/vention/multirepo-build-system/robot-motion-simulation-apis" \
+    "npm run build:watch"
+
+  # DMIRS
+  _create_new_tmux_window_and_send_keys "$session" \
+     "DMIRS" \
+    "~/vention/multirepo-build-system/docker-multi-instance-run-server" \
+    "npm run start-simulate"
+
+  # Vention-ROS
+  _create_new_tmux_window_and_send_keys "$session" \
+     "ROS" \
+    "~/vention/multirepo-build-system/vention_ros" \
+    "npm run simulate-cad"
 }
 
 function vention_ses_restart() {
