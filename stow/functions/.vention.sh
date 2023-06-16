@@ -33,14 +33,17 @@ function _create_new_tmux_window_and_send_keys() {
   window="$2"
   wd="$3"      # Working directory
   cmd="$4"     # Command to send
+  msg="$5"     # Message to display (optional)
 
   _create_new_tmux_window $session "$window"
-  [[ -n "$wd" ]] && tmux send-keys -t "$session:$window" "cd $wd" Enter
+  [[ -n "$wd" ]]  && tmux send-keys -t "$session:$window" "cd $wd" Enter
+  tmux send-keys -t "$session:$window" "cd $wd" Enter
+  [[ -n "$msg" ]] && tmux send-keys -t "$session:$window" "echo -e \"$msg\"" Enter
   [[ -n "$cmd" ]] && tmux send-keys -t "$session:$window" "$cmd"
 }
 
 # Default session name
-DEFAULT_VENTION_SESSION_NAME="ven-run"
+DEFAULT_VENTION_SESSION_NAME="vention-run-all"
 
 function vention_ses_kill() {
   session="$1"
@@ -79,7 +82,10 @@ function vention_ses_start() {
   _create_new_tmux_window_and_send_keys "$session" \
     "Rails" \
     "~/vention/multirepo-build-system/vention_rails" \
-    "npm run start:vention-rails-run"
+    "npm run start:vention-rails-run" \
+    "To kill the docker containers, run
+      \033[93;1mdocker ps -a --format '{{.Names}}' | grep 'docker-' | xargs docker stop\033[0m
+    "
 
   # Assembler
   _create_new_tmux_window_and_send_keys "$session" \
@@ -133,3 +139,33 @@ function vention_ses_restart() {
   vention_ses_kill $session
   vention_ses_start "$session"
 }
+
+
+# Function combining that 'vention_ses_*' functions, and is controlled using flags
+function vention_ses() {
+  case "$1" in
+    --start|-s)
+      log_info "Starting tmux sessions"
+      vention_ses_start ${@:2}
+      ;;
+    --kill|-k)
+      log_info "Killing tmux session"
+      vention_ses_kill ${@:2}
+      ;;
+    --restart|-r)
+      log_info "Restarting tmux session"
+      vention_ses_restart ${@:2}
+      ;;
+    --help|-h)
+      echo "Valid flags:"
+      echo "  --start, -s   Start tmux vention session"
+      echo "  --kill, -k    Kill tmux vention session"
+      echo "  --restart, -r (default) restart tmux vention session"
+      ;;
+  esac
+}
+
+alias vs="vention_ses"
+alias vss="vention_ses -s"
+alias vsk="vention_ses -k"
+alias vsr="vention_ses -r"
