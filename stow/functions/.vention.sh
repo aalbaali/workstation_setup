@@ -26,7 +26,7 @@ source "$HOME/.asdf/asdf.sh"
 
 alias jmrbs="cd ~/vention/multirepo-build-system"
 
-function _create_new_tmux_window_and_send_keys() {
+function tmux_new_window_and_send_keys() {
   # Create a new tmux window, change working directory,
   # and send keys (without executing them)
   session="$1"
@@ -35,7 +35,7 @@ function _create_new_tmux_window_and_send_keys() {
   cmd="$4"     # Command to send
   msg="$5"     # Message to display (optional)
 
-  _create_new_tmux_window $session "$window"
+  tmux_new_window $session "$window"
   [[ -n "$wd" ]]  && tmux send-keys -t "$session:$window" "cd $wd" Enter
   tmux send-keys -t "$session:$window" "cd $wd" Enter
   [[ -n "$msg" ]] && tmux send-keys -t "$session:$window" "echo -e \"$msg\"" Enter
@@ -51,7 +51,7 @@ function vention_ses_kill() {
     session="$DEFAULT_VENTION_SESSION_NAME"
     log_info "No session name provided. Using default '$session'"
   fi
-  if ! _does_tmux_session_exist "$session"; then
+  if ! tmux_does_session_exist "$session"; then
     log_info "Attempting to delete a non-existing session. Ignoring."
     return 1
   fi
@@ -67,7 +67,7 @@ function vention_ses_start() {
     log_info "No session name provided. Using default '$session'"
   fi
 
-  if _does_tmux_session_exist "$session"; then
+  if tmux_does_session_exist "$session"; then
     if [[ -n "$should_kill" ]]; then
       vention_ses_kill "$session"
     else
@@ -79,7 +79,7 @@ function vention_ses_start() {
   first_window=1
 
   # Rails
-  _create_new_tmux_window_and_send_keys "$session" \
+  tmux_new_window_and_send_keys "$session" \
     "Rails" \
     "~/vention/multirepo-build-system/vention_rails" \
     "npm run start:vention-rails-run" \
@@ -88,43 +88,43 @@ function vention_ses_start() {
     "
 
   # Assembler
-  _create_new_tmux_window_and_send_keys "$session" \
+  tmux_new_window_and_send_keys "$session" \
     "Asmblr" \
     "~/vention/multirepo-build-system/vention_assembler/client" \
     "npm run dev"
 
   # ML
-  _create_new_tmux_window_and_send_keys "$session" \
+  tmux_new_window_and_send_keys "$session" \
      "ML" \
     "~/vention/multirepo-build-system/vention_assembler/client/vse" \
     "git submodule init && git submodule update"
 
   # EE
-  _create_new_tmux_window_and_send_keys "$session" \
+  tmux_new_window_and_send_keys "$session" \
      "EE" \
     "~/vention/multirepo-build-system/mm-execution-engine" \
     "npm run simulate-cad"
 
   # ML-robot
-  _create_new_tmux_window_and_send_keys "$session" \
+  tmux_new_window_and_send_keys "$session" \
      "ML-R" \
     "~/vention/multirepo-build-system/mm-machine-logic-robot" \
     "npm run dev"
 
   # RMSA
-  _create_new_tmux_window_and_send_keys "$session" \
+  tmux_new_window_and_send_keys "$session" \
      "RMSA" \
     "~/vention/multirepo-build-system/robot-motion-simulation-apis" \
     "npm run build:watch"
 
   # DMIRS
-  _create_new_tmux_window_and_send_keys "$session" \
+  tmux_new_window_and_send_keys "$session" \
      "DMIRS" \
     "~/vention/multirepo-build-system/docker-multi-instance-run-server" \
     "npm run start-simulate"
 
   # Vention-ROS
-  _create_new_tmux_window_and_send_keys "$session" \
+  tmux_new_window_and_send_keys "$session" \
      "ROS" \
     "~/vention/multirepo-build-system/vention_ros" \
     "npm run simulate-cad"
