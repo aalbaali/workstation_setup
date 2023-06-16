@@ -10,6 +10,7 @@ alias dps="docker ps"
 alias dpsa="docker ps -a"
 alias di="docker image"
 alias ds="docker start"
+alias dstop="docker stop"
 alias dils="docker image ls"
 alias drm="docker rm"
 alias drmi="docker rmi"
@@ -38,10 +39,14 @@ dex() {
 }
 
 # Complete `dex` with a list of running containers
-#   1. Get all docker *running* containers (i.e., witout the `-a` flag)
+#   1. Get all docker *running* containers
 #   2. Get all rows after the first row (FNR > 1)
 #   3. Print last column ($(NF))
-complete -C "dn" dex
+complete -C "dna" dex
+
+
+# Stop running containers
+complete -C "dn" dstop
 
 
 # Docker run with fully customizeable args
