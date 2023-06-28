@@ -375,9 +375,30 @@ psrc() {
 
 # Install requirements
 _default_requirements="requirements.txt"
+
+#######################################
+# Install Python pip requirements
+# Globals:
+#   None
+# Arguments:
+#   requirements_file: The requirements file to install.
+#     Defaults to `requirements.txt`
+#   run_outside_venv: If set, will run the command outside the virtual env.
+#     Defaults to nothing
+# Throws:
+#   If it isn't expected to run outside the virtual env, and it is.
+# Returns:
+#   None
 pinst() {
   local requirements_file
   requirements_file="$1"
+  run_outside_venv="$2"
+
+  # Throw error if it's expected to run outside the virtual env, and it is
+  if [[ -z "$run_outside_venv" ]] && [[ -z "$VIRTUAL_ENV" ]]; then
+    echo -e "\033[93mNot in a virtual environment. Run \033[1mpsrc\033[0;93m first\033[0m" >&2
+    return 1
+  fi
 
   if [[ -z "$requirements_file" ]]; then
     [[ -n $SHOW_WARNING ]] && echo -e "\033[95mRequirements not provided. Will use the default \033[93;1m$_default_requirements\033[0m"
