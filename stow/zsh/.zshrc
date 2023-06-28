@@ -111,6 +111,8 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 [ -f ~/.logger.sh ] && source ~/.logger.sh
 [ -f ~/.functions.sh ] && source ~/.functions.sh
 [ -f ~/.rosfunctions.sh ] && source ~/.rosfunctions.sh
+[ -f ~/.tmuxfunctions.sh ] && source ~/.tmuxfunctions.sh
+[ -f ~/.vention.sh ] && source ~/.vention.sh
 [[ $(docker --help 2>/dev/null) ]] && [ -f ~/.dockerfunctions.sh ] && source ~/.dockerfunctions.sh
 
 if [[ -f  ~/.zsh/git-completion.bash ]] then
@@ -126,8 +128,8 @@ export PATH="$PATH:/home/$USERNAME/go/bin"
 
 # Solve a tilix issue
 # https://gnunn1.github.io/tilix-web/manual/vteconfig/
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-        source /etc/profile.d/vte.sh
+if [ $TILIX_ID ] || [ $VTE_VERSION ] && [ -f /etc/profile.d/vte.sh ]; then
+ 	source /etc/profile.d/vte.sh
 fi
 
 # Import OPENAI_API_KEY
