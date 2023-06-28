@@ -126,8 +126,7 @@ function vention_ses_start() {
   # Vention-ROS
   tmux_new_window_and_send_keys "$session" \
      "ROS" \
-    "~/vention/multirepo-build-system/vention_ros" \
-    "npm run simulate-cad"
+    "~/vention/multirepo-build-system/vention_ros"
 }
 
 function vention_ses_restart() {
