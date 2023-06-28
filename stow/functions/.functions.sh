@@ -12,7 +12,7 @@
 alias nv=nvim
 alias fd="fdfind"
 alias fdh="fdfind -H -I"
-alias agh="ag --hidden"
+alias agh="ag --hidden -U"
 alias agn="ag -l"
 alias rgh="rg --hidden"
 alias vsc="code -n ."
