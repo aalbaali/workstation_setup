@@ -23,7 +23,7 @@ dn() {
 alias dna="dn -a"
 
 # Stopping containers using the dn(a) aliases
-alias dns="dn | xargs docker stop"
+alias dnstop="dn | xargs docker stop"
 alias dnarm="dna | xargs docker rm"
 
 # Execute already running containers
