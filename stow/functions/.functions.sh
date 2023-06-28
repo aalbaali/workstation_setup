@@ -412,3 +412,21 @@ pinst() {
 # Deactivate
 alias pdeact="deactivate"
 
+
+#########################################
+# Networking
+#########################################
+#######################################
+# Parse URL string query into key-value pairs
+# Globals:
+#   None
+# Arguments:
+#   url: URL to parse
+#     For example 'https://localhost:9090/run?arg1=val1&arg2=val2'
+# Output:
+#   Outputs key-value pairs into standard output
+# Returns:
+#   None
+function parse_url_kv() {
+  echo "$1" | awk -F '[?&]' '{for(i=2;i<=NF;i++){split($i,a,"=");print a[1],a[2]}}'
+} 
