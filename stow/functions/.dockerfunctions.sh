@@ -15,16 +15,19 @@ alias dils="docker image ls"
 alias drm="docker rm"
 alias drmi="docker rmi"
 
-# List running container names
+# List active container names
 dn() {
   docker ps $@ | awk 'FNR > 1 {print $(NF)}'
 }
 
+# List all docker containers (both active and inactive)
 alias dna="dn -a"
 
-# Stopping containers using the dn(a) aliases
-alias dnstop="dn | xargs docker stop"
-alias dnarm="dna | xargs docker rm"
+# Stop all running containers
+alias dstopall="dn | xargs docker stop"
+
+# Remove all inactive containers
+alias drmall="dna | xargs docker rm"
 
 # Execute already running containers
 dex() {
