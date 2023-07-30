@@ -29,6 +29,7 @@ alias tk=tokei               # Info about code
 alias c=sgpt                 # Shell GPT
 alias mex="chmod +x "        # Make executable
 alias pwdt="echo ${PWD##*/}" # Print truncated directory (i.e., without the full path)
+alias bm=hyperfine           # Benchmarking tool
 
 ################################################
 # System-related aliases and functions
@@ -181,6 +182,7 @@ alias gs="git status"
 alias gm="git commit -s"
 alias ga="git add"
 alias gb="git branch"
+alias gbc="git rev-parse --abbrev-ref HEAD" # Get current branch
 alias gc="git checkout"
 alias gd="git diff"
 alias gdn="git diff --name-only"
@@ -228,11 +230,34 @@ gbz()
 
 # Copy current branch to clipboard
 gbcp() {
-  git branch | grep '*' | awk '{printf "%s", $2}' | xclip -selection clipboard
+  gbc | xclip -selection clipboard
 }
 
 # lazygit
 alias lg=lazygit
+
+# Git cherry pick and push
+function git-cherry-pick-and-push() {
+  current_branch=$(gbc)
+  # stash changes
+  git stash
+
+  # switch to another branch
+  git checkout $1
+
+  # cherry pick the commit
+  git cherry-pick $current_branch
+
+  # push changes
+  git push
+
+  # switch back to original branch
+  git checkout -
+
+  # pop the stash
+  git stash pop
+}
+
 
 ghttptossh() {
   # First argument is the repo location. Default value is "."

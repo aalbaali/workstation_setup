@@ -1,0 +1,1 @@
+Checks: '-*,cppcoreguidelines*,modernize*,readability*,bugprone*,performance*,-modernize-use-trailing-return-type,-google-runtime-references,-cppcoreguidelines-pro-bounds-array-to-pointer-decay'

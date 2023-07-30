@@ -1,10 +1,28 @@
 #!/bin/bash
+
+# Check if version $1 is larger than $2
+function _is_version_larger {
+  v1="$1"
+  v2="$2"
+
+  v1_major=$(echo "$v1" | cut -d. -f1)
+  v1_minor=$(echo "$v1" | cut -d. -f2)
+  v2_major=$(echo "$v2" | cut -d. -f1)
+  v2_minor=$(echo "$v2" | cut -d. -f2)
+
+  [[ $v1_major -lt $v2_major ]] && return -1 # False (return error)
+  [[ $v1_major -gt $v2_major ]] && return 0 # True (return no error)
+  [[ $v1_minor -gt $v2_minor ]] && return 0 # True (return no error)
+  return -1 # False (return error)
+}
+
+# Current ubuntu version
+ubuntu_version=$(lsb_release -sr)
+
 # Add ppa repo to install latest version of git
 sudo add-apt-repository ppa:git-core/ppa
 
 # Install packages I normally use
-sudo apt-get update
-
 sudo apt-get update
 
 pkgs=(
@@ -25,18 +43,7 @@ pkgs=(
   'build-essential'
   'gdb'
   'ncdu'
-  'rsync'
-  'xclip'
-  'libpython3-dev'
-  'gawk'
-  'nodejs'
-  'tree'
-  'fd-find'
-  'zsh'
-  'brightnessctl'
-  'tilix'
-  'kitty'
-  'exuberant-ctags'
+  'rsyncexuberant-ctags'
   'software-properties-common'
   'bat'
   'python3-venv'
@@ -58,7 +65,9 @@ done
 # sudo apt-get install -y gnome-tweaks
 
 # Add exa apt packages. Installation depends on the system version
-if ! command dpkg -s exa > /dev/null 2>&1 && [ -f /etc/os-release ]; then
+if _is_version_larger "$ubunt_version" "20.04"
+      && ! command dpkg -s exa > /dev/null 2>&1
+      && [ -f /etc/os-release ]; then
   . /etc/os-release
   if [ "$NAME" == "Ubuntu" ]; then
     VERSION=$(echo $VERSION_ID | cut -d '.' -f 1)

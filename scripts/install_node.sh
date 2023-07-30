@@ -18,5 +18,6 @@ fi
 if [[ -n "$_should_update_node" ]]; then
   echo "Installing nodejs version 16"
   curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+  sudo apt-get update -y
   sudo apt-get install -y nodejs
 fi
