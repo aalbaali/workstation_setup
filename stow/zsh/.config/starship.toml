@@ -16,6 +16,7 @@ $git_status\
 $git_metrics\
 $line_break\
 $python\
+$nodejs\
 $container\
 $docker_context\
 $status\
@@ -42,7 +43,7 @@ format = '[$ssh_symbol$hostname]($style):'
 
 # Disable line break
 [line_break]
-disabled = true
+disabled = false
 
 # Inserts blank line between shell prompts.
 [package]
@@ -99,3 +100,5 @@ style = "bold yellow"
 format = "[$virtualenv]($style) "
 style = "bright-black"
 
+[nodejs]
+format = '[ $version](bold green) '

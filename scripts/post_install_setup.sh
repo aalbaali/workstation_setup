@@ -188,7 +188,6 @@ case $yn in
       echo -e "\033[0m"
       exit 1
     fi
-
     nvim +':call doge#install()' +qall
 
     ;;

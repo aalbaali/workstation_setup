@@ -22,7 +22,7 @@ if [[ -n "$_SHOULD_INSTALL_NVIM" ]]; then
   cd /tmp
   wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
   tar -xvf nvim-linux64.tar.gz
-  sudo mv /tmp/nvim-linux64 /opt
+  sudo mv -f /tmp/nvim-linux64 /opt
   sudo ln -s /opt/nvim-linux64/bin/nvim /usr/bin/nvim -f
   cd -
 fi

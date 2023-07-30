@@ -12,7 +12,7 @@
 alias nv=nvim
 alias fd="fdfind"
 alias fdh="fdfind -H -I"
-alias agh="ag --hidden"
+alias agh="ag --hidden -U"
 alias agn="ag -l"
 alias rgh="rg --hidden"
 alias vsc="code -n ."
@@ -171,7 +171,9 @@ fnv() {
 # Git
 ####################
 # Git fuzzy
-alias gf="git fuzzy"
+alias gf="git fetch"
+alias gfp="gf --prune"
+alias gl="git log"
 alias gll="git log --graph --oneline --decorate"
 alias gla="gll --all"
 alias gss="git status -s"
@@ -272,6 +274,16 @@ ghttptossh() {
   git remote -v
 }
 
+# Grep git log
+ggl() {
+  git log --all --grep="$1"
+}
+
+# Grep git log and show commits only
+ggm() {
+  git log --all --grep="$1" --pretty=format:'%C(auto)%h%C(reset)- %Cgreen%an%Creset: %C(auto)%s'
+}
+
 ####################
 # Zip/tar
 ####################
@@ -363,9 +375,30 @@ psrc() {
 
 # Install requirements
 _default_requirements="requirements.txt"
+
+#######################################
+# Install Python pip requirements
+# Globals:
+#   None
+# Arguments:
+#   requirements_file: The requirements file to install.
+#     Defaults to `requirements.txt`
+#   run_outside_venv: If set, will run the command outside the virtual env.
+#     Defaults to nothing
+# Throws:
+#   If it isn't expected to run outside the virtual env, and it is.
+# Returns:
+#   None
 pinst() {
   local requirements_file
   requirements_file="$1"
+  run_outside_venv="$2"
+
+  # Throw error if it's expected to run outside the virtual env, and it is
+  if [[ -z "$run_outside_venv" ]] && [[ -z "$VIRTUAL_ENV" ]]; then
+    echo -e "\033[93mNot in a virtual environment. Run \033[1mpsrc\033[0;93m first\033[0m" >&2
+    return 1
+  fi
 
   if [[ -z "$requirements_file" ]]; then
     [[ -n $SHOW_WARNING ]] && echo -e "\033[95mRequirements not provided. Will use the default \033[93;1m$_default_requirements\033[0m"
@@ -379,3 +412,21 @@ pinst() {
 # Deactivate
 alias pdeact="deactivate"
 
+
+#########################################
+# Networking
+#########################################
+#######################################
+# Parse URL string query into key-value pairs
+# Globals:
+#   None
+# Arguments:
+#   url: URL to parse
+#     For example 'https://localhost:9090/run?arg1=val1&arg2=val2'
+# Output:
+#   Outputs key-value pairs into standard output
+# Returns:
+#   None
+function parse_url_kv() {
+  echo "$1" | awk -F '[?&]' '{for(i=2;i<=NF;i++){split($i,a,"=");print a[1],a[2]}}'
+} 
