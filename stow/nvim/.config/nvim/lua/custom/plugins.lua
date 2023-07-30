@@ -198,7 +198,7 @@ local plugins = {
   { "kshenoy/vim-signature", lazy = false },
 
   -- Save undo actions
-  { "mbbill/undotree", cmd = "Undo" },
+  { "mbbill/undotree", cmd = "Undo", lazy = false },
 
   -- Buffer closure/deletion
   { "mhinz/vim-sayonara", lazy = false },
