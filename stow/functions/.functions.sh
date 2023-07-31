@@ -29,6 +29,9 @@ alias tk=tokei               # Info about code
 alias c=sgpt                 # Shell GPT
 alias mex="chmod +x "        # Make executable
 alias pwdt="echo ${PWD##*/}" # Print truncated directory (i.e., without the full path)
+alias bm=hyperfine           # Benchmark commands
+alias pc=pre-commit
+alias pca="pre-commit run -a"
 
 ################################################
 # System-related aliases and functions

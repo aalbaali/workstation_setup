@@ -155,6 +155,7 @@ return packer.startup(function(use)
       require("user.copilot")
     end,
   }
+
   -- Copilot autocompletion
   use {
     "zbirenbaum/copilot-cmp",

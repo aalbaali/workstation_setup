@@ -87,6 +87,13 @@ function vention_ses_start() {
       \033[93;1mdocker ps -a --format '{{.Names}}' | grep 'docker-' | xargs docker stop\033[0m
     "
 
+  # TODO: split commands into two splits
+  # Pendant
+  tmux_new_window_and_send_keys "$session" \
+    "Pendant" \
+    "~/vention/multirepo-build-system/mm-pendant" \
+    "npm run start && npm run dev:watch"
+
   # Assembler
   tmux_new_window_and_send_keys "$session" \
     "Asmblr" \
