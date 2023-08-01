@@ -79,6 +79,7 @@ drun_full() {
     -v ~/shared:/home/$cont_username/shared  \
     -v ~/.config/github-copilot:/home/$cont_username/.config/github-copilot/  \
     --network host \
+    --privileged \
     --hostname $cont_hostname \
     --add-host $cont_hostname:127.0.0.1 \
     --name $cont_name \
