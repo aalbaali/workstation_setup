@@ -16,9 +16,6 @@ function _is_version_larger {
   return -1 # False (return error)
 }
 
-# Current ubuntu version
-ubuntu_version=$(lsb_release -sr)
-
 # Add ppa repo to install latest version of git
 sudo add-apt-repository ppa:git-core/ppa
 
@@ -64,9 +61,12 @@ done
 # To install gnome-tweaks
 # sudo apt-get install -y gnome-tweaks
 
+# Current ubuntu version
+ubuntu_version=$(lsb_release -sr)
+
 # Add exa apt packages. Installation depends on the system version
-if _is_version_larger "$ubunt_version" "20.04"
-      && ! command dpkg -s exa > /dev/null 2>&1
+if _is_version_larger "$ubuntu_version" "20.04" \
+      && ! command dpkg -s exa > /dev/null 2>&1 \
       && [ -f /etc/os-release ]; then
   . /etc/os-release
   if [ "$NAME" == "Ubuntu" ]; then
