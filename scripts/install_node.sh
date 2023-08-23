@@ -9,8 +9,13 @@
 if [[ -z "$_should_update_node" ]]; then
   target_version=16
   # Check if node version is under 16
-  if [[ $(node -v | cut -d "." -f 1 | cut -d "v" -f 2) -lt $target_version ]]; then
-    echo "Current node version: $(node -v) is less than $target_version. Will update"
+  current_version=$(node -v | cut -d "." -f 1 | cut -d "v" -f 2)
+  if [[ $current_version -lt $target_version ]]; then
+    echo "Current node version '$(node -v)' is less than target version '$target_version'. Will remove older version and update"
+
+    # Remove all nodejs packages
+    dpkg -l | ag $(node -v | sed 's/v//') | awk '{print $2}' | xargs sudo apt-get -y remove
+
     _should_update_node=1
   fi
 fi
