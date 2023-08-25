@@ -12,3 +12,5 @@ stow/nvim/.config/**
 
 **/vscode/*
 **/.local/**
+
+**/packer_compiled.lua
