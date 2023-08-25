@@ -11,3 +11,4 @@ stow/nvim/.config/**
 **/*.log
 
 **/vscode/*
+**/.local/**

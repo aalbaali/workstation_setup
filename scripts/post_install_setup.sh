@@ -190,9 +190,6 @@ case $yn in
     nvim +CocUpdateSync +qall
     nvim +':call doge#install()' +qall
 
-    # This fixes a coc-ccls related typo/issue
-    ln -s ~/.config/coc/extensions/node_modules/coc-ccls/node_modules/ws/lib ~/.config/coc/extensions/node_modules/coc-ccls/lib
-
     ;;
     [Nn]* ) ;;
     * )     ;;
