@@ -1,21 +1,33 @@
 # Docker-related functions for starting containers
 
+# Do not source this file if docker is not installed
+if ! command -v docker &> /dev/null; then
+  return
+fi
+
 # Aliases
 alias dps="docker ps"
 alias dpsa="docker ps -a"
 alias di="docker image"
 alias ds="docker start"
+alias dstop="docker stop"
 alias dils="docker image ls"
 alias drm="docker rm"
 alias drmi="docker rmi"
-alias ds="docker start"
 
-# List running container names
+# List active container names
 dn() {
   docker ps $@ | awk 'FNR > 1 {print $(NF)}'
 }
 
+# List all docker containers (both active and inactive)
 alias dna="dn -a"
+
+# Stop all running containers
+alias dstopall="dn | xargs docker stop"
+
+# Remove all inactive containers
+alias drmall="dna | xargs docker rm"
 
 # Execute already running containers
 dex() {
@@ -30,10 +42,14 @@ dex() {
 }
 
 # Complete `dex` with a list of running containers
-#   1. Get all docker *running* containers (i.e., witout the `-a` flag)
+#   1. Get all docker *running* containers
 #   2. Get all rows after the first row (FNR > 1)
 #   3. Print last column ($(NF))
-complete -C "dn" dex
+complete -C "dna" dex
+
+
+# Stop running containers
+complete -C "dn" dstop
 
 
 # Docker run with fully customizeable args
@@ -61,8 +77,10 @@ drun_full() {
     -v ~/.ssh:/home/$cont_username/.ssh \
     -v ~/.zsh_history:/home/$cont_username/.zsh_history  \
     -v ~/shared:/home/$cont_username/shared  \
+    -v ~/.config/github-copilot:/home/$cont_username/.config/github-copilot/  \
     --network host \
     --hostname $cont_hostname \
+    --add-host $cont_hostname:127.0.0.1 \
     --name $cont_name \
     ${@:6} \
     "$1:$2"
@@ -87,9 +105,9 @@ drun() {
 
   # Container username is the image repo without the remote name (i.e., ignore string before '/')
   local cont_username=$(echo $image_repo | awk -F/ '{print $NF}')
-  local cont_hostname=$cont_name
+  local cont_hostname=$(hostname)
 
-  drun_full $1 $2 $cont_name $cont_username $cont_hostname
+  drun_full $1 $2 $cont_name $cont_username $cont_hostname ${@:4}
 }
 
 

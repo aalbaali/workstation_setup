@@ -17,6 +17,7 @@
 #     --gdb           Install gdb configs
 #     --latex         Install latex configs
 #     --vscode        Install vscode configs
+#     --terminal      Install terminal configs
 #
 #     --zsh-setup     Install zsh zplugins
 #     --nvim-setup    Install neovim plugins
@@ -59,7 +60,11 @@ declare -A STOW_PACKAGES=(
   [gdb]=false
   [latex]=false
   [vscode]=false
+  [terminal]=false
 )
+
+# If true, will prompt the user if a stow package is not found
+PROMPT_USER=false
 
 while true; do
   case "$1" in
@@ -90,12 +95,14 @@ while true; do
     --no-tmux-setup ) STOW_PACKAGES[tmux-setup]=false; shift ;;
     --vscode ) STOW_PACKAGES[vscode]=true; shift ;;
     --no-vscode ) STOW_PACKAGES[vscode]=false; shift ;;
+    --terminal ) STOW_PACKAGES[terminal]=true; shift ;;
     --zsh ) STOW_PACKAGES[zsh]=true; shift ;;
     --no-zsh ) STOW_PACKAGES[zsh]=false; shift ;;
     --zsh-setup ) STOW_PACKAGES[zsh-setup]=true; shift ;;
     --no-zsh-setup ) STOW_PACKAGES[zsh-setup]=false; shift ;;
     --functions ) STOW_PACKAGES[functions]=true; shift ;;
     --no-functions ) STOW_PACKAGES[no-functions]=false; shift ;;
+    --prompt ) PROMPT_USER=true; shift ;;
     -- ) shift; break ;;
     * ) shift; break ;;
   esac
@@ -124,7 +131,7 @@ for app_full in */; do
     yn=y
   elif [ "${STOW_PACKAGES[$app]}" = false ]; then
     yn=n
-  else
+  elif [ $PROMPT_USER = true ]; then
     # Prompt user if stow directory is not found in the dictionary
     read -p "Install $app? (y/N): " yn
   fi
@@ -173,7 +180,7 @@ else
 fi
 case $yn in
     [Yy]* )
-    # Ensure nodejs is installed (for COC plugin)
+    # Ensure nodejs is installed
     if [[ ! -a $(which node) ]]; then
       echo "Error: nodejs is not installed. Please install nodejs first by running."
       echo -e "\033[93;1m"
@@ -182,12 +189,7 @@ case $yn in
       exit 1
     fi
 
-    # Install vim-plug plugin manager
-    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-    nvim +'PlugInstall --sync' +'CocInstall -sync coc-json coc-ccls coc-git coc-cmake coc-clangd coc-ccls' +qa
-    nvim +CocUpdateSync +qall
+    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
     nvim +':call doge#install()' +qall
 
     ;;
@@ -208,8 +210,8 @@ case $yn in
     # Install vim plugins
     vim +PlugInstall +qall
 
-    # Compile YouCompleteMe
-    ~/.vim/plugged/YouCompleteMe/install.py --clangd-completer
+    ## Compile YouCompleteMe
+    #~/.vim/plugged/YouCompleteMe/install.py --clangd-completer
 
     ;;
     [Nn]* ) ;;
@@ -245,8 +247,43 @@ case $yn in
     * )     ;;
 esac
 
-# Zsh zplug
+# Zsh setup
 if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh-setup]}" = true ]; then
-  # Install only if zsh is installed
-  command -v zsh &>/dev/null && $SCRIPT_DIR/install_zplug.zsh
+
+  # Install items only if zsh is installed
+  if ! command -v zsh &>/dev/null ; then
+    echo "Zsh is not installed"
+    exit -1
+  fi
+
+  # Check if zshrc exists
+  if [ ! -f $HOME/.zshrc ]; then
+    echo -e "\033[93mZshrc does not exist. Make sure to run `--zsh` before running `--zsh-setup`\033[0m"
+    exit -1
+  fi
+
+  # Install zsh plug
+  source $HOME/.zshrc
+
+  # Apply the patch diff in zplug to allow zplug installation:
+  #  - https://github.com/zplug/zplug/issues/272#issuecomment-850644485
+  #  - https://github.com/nemanjan00/dev-environment/blob/53e946b3790642a13bbfbfe6598bea415f666a5e/zplug/patch/pipe_fix.diff
+  # Warn user if ~/.zplug directory doesn't exist
+  if [ -d $HOME/.zplug ]; then
+    patch $HOME/.zplug/base/core/add.zsh $SCRIPT_DIR/../zplug/patch/pipe_fix.diff
+  else
+    echo -e "\033[93mZplug directory does not exist\033[0m"
+    exit -1
+  fi
+  ZPLUG_PIPE_FIX=true
+  source ~/.zshrc
+  zplug install
+
+  # Install starship
+  curl -sS https://starship.rs/install.sh -o /tmp/install.sh
+  sudo sh /tmp/install.sh -y
+  rm /tmp/install.sh
+
+  # Link starship config
+  ln -s $SCRIPT_DIR/../stow/zsh/.config/starship.toml ~/.config -f
 fi

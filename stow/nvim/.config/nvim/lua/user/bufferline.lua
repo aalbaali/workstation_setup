@@ -73,7 +73,7 @@ bufferline.setup {
   },
   highlights = {
     fill = {
-      fg = { attribute = "fg", highlight = "Visual" },
+      fg = { attribute = "fg", highlight = "TabLine" },
       bg = { attribute = "bg", highlight = "TabLine" },
     },
     background = {
@@ -82,8 +82,8 @@ bufferline.setup {
     },
 
     buffer_selected = {
-      fg = { attribute = "fg", highlight = "Visual" },
-      bg = { attribute = "bg", highlight = "Visual" },
+      fg = { attribute = 'fg', highlight = "TabLine" },
+      bg = { attribute = 'bg', highlight = "TabLine" },
     },
     buffer_visible = {
       fg = { attribute = "fg", highlight = "TabLine" },

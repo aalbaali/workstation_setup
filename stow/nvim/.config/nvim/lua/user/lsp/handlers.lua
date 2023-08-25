@@ -8,6 +8,7 @@ end
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
+M.capabilities.offsetEncoding = { "utf-16" }
 
 M.setup = function()
 	local signs = {
@@ -60,6 +61,9 @@ local function lsp_keymaps(bufnr)
 	keymap(bufnr, "n", "gsD", "<cmd>vsplit<cr> <cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 	keymap(bufnr, "n", "gsd", "<cmd>vsplit<cr> <cmd>lua vim.lsp.buf.definition()<CR>", opts)
 	keymap(bufnr, "n", "gst", "<cmd>vsplit<cr> <cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+	keymap(bufnr, "n", "gh", "<cmd>ClangdSwitchSourceHeader<cr>", opts)
+	keymap(bufnr, "n", "gsh", "<cmd>vsplit<cr> <cmd>ClangdSwitchSourceHeader<cr>", opts)
+	keymap(bufnr, "n", "gsH", "<cmd>split<cr> <cmd>ClangdSwitchSourceHeader<cr>", opts)
 	keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   keymap(bufnr, "n", vim.g.altleader .. "k", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 	keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
@@ -78,11 +82,11 @@ end
 
 M.on_attach = function(client, bufnr)
 	if client.name == "tsserver" then
-		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentFormattingProvider = true
 	end
 
 	if client.name == "sumneko_lua" then
-		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentFormattingProvider = true
 	end
 
 	lsp_keymaps(bufnr)

@@ -54,8 +54,9 @@ sudo apt-get install tilix
 ```
 
 Ensure that the *Windowing system* is set to *X11*; *Wayland* option will have issues with Quake.
-- To check the windowing system, check the *About* section in Settings.
+- To check the windowing system, check the *About* section in Settings, or run `echo $XDG_SESSION_TYPE`.
 - To set X11, [uncomment](https://trendoceans.com/how-to-enable-x11-and-disable-wayland-window-system/) the `WaylandEnable=false` line in `/etc/gdm3/custom.conf`.
+The changes may not take place until a restart or re-login takes place.
 
 ## Configuring tilix
 Open tilix (by searching for the app) and then open the user preferences
@@ -83,8 +84,43 @@ This is done as follows:
 ## Dock settings
 The auto-dock can be customized so that it doesn't pop up when switching applications using shortcuts.
 To configure the autodock, an [editor is to be installed](https://linuxconfig.org/how-to-customize-dock-panel-on-ubuntu-22-04-jammy-jellyfish-linux).
+```bash
+sudo apt install dconf-editor
+```
 Once installed, launch the *dconf Editor* application and go to `/org/gnome/shell/extensions/dash-to-dock/hot-keys` and turn off the *hotkeys-overlay* and *hotkeys-show-dock* options.
 Also, set `/org/gnome/shell/extensions/dash-to-dock/shortcut-timeout` timeout value to `0` (you need to turn off `Use default value`, and set the `Custom value` to 0).
+
+To load dconf settings, run
+```bash
+dconf load / < dconf-settings.ini
+```
+
+## Borderless windows
+```
+sudo apt install gnome-tweaks
+```
+
+# Node
+To install different versions of NodeJS, you can use the [`n` npm package](https://blog.hubspot.com/website/update-node-js).
+```bash
+# Make sure npm is installed
+sudo apt-get install npm
+
+# Install n manager
+sudo npm install -g n
+
+# Install latest node version
+sudo n latest
+
+# Or, install specific version
+# sudo n 16.20
+```
+Alternatively, use the node version manager `nvm`:
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+source ~/.zshrc # Or source ~/.bashrc
+nvm install 16.20
+```
 
 # FAQs and common issues
 ## Neovim's [coc-ccls](https://github.com/Maxattax97/coc-ccls) may give an error of *unable to load global extension*.
@@ -100,6 +136,28 @@ Note that this script will only work after installing the `coc-ccls` plugin firs
 ## ZSH fonts
 Additional packages may be required for the ZSH font to be displayed correctly.
 Check the [spaceship-prompt](https://github.com/spaceship-prompt/spaceship-prompt) and [this answer](https://askubuntu.com/questions/271566/how-to-get-ubuntu-to-display-unicode-supplementary-characters).
+
+## Docker detach bindings
+Docker has detach binding set to `ctrl+p` by default.
+This causes issues while inside a container such as accessing the previous command.
+To fix this issue, [change the default Docker detach binding](https://stackoverflow.com/a/20863838/15749309) by modifying `~/.docker/config.json` to be
+```json
+{
+    "detachKeys": "ctrl-z,z"
+}
+```
+
+## Quick bluetooth connections
+I use a Keychron K2 keyboard, which supports bluetooth connection.
+When the computer goes to sleep, the keyboard disconnects.
+However, reconnecting to the computer after waking it up takes quite some time.
+To fix this, make the following changes inside `sudo vim /etc/bluetooth/main.conf`:
+```bash
+# Uncomment the following lines
+FastConnectable = false
+ReconnectIntervals=1, 2, 4, 8, 16, 32, 64
+AutoEnable=true
+```
 
 # Resources
 - Allison Thackston's [workstation setup](https://github.com/athackst/workstation_setup/)

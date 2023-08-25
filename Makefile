@@ -13,8 +13,19 @@ base: scripts/install_base.sh
 # Install packages for a full development environment (e.g., nvim, tmux, etc.)
 dev: scripts/install_packages.sh scripts/post_install_setup.sh
 	bash scripts/install_packages.sh
-	bash scripts/post_install_setup.sh --zsh --functions --git --nvim --clang_format --gdb --nvim-setup
-
+	bash scripts/post_install_setup.sh \
+					--zsh \
+          --zsh-setup \
+          --bash \
+          --functions \
+          --git \
+          --nvim \
+          --nvim-setup \
+          --clang_format \
+          --gdb \
+          --tmux \
+          --tmux-setup
+	bash scripts/install_nerd_fonts.sh
 
 vscode: scripts/install_vscode.sh
 	bash scripts/install_vscode.sh

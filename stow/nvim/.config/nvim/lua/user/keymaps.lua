@@ -29,8 +29,11 @@ keymap("n", vim.g.altleader .. "o", ":Files<CR>", opts)
 -- keymap("n", "<C-k>", "<C-w>k", opts)
 -- keymap("n", "<C-l>", "<C-w>l", opts)
 
--- Close tab
-keymap("n", "<C-w>C", "<cmd>tabclose<cr>", opts)
+-- Jumping between split lines should be the default
+keymap("n", "j", "gj", opts)
+keymap("n", "k", "gk", opts)
+keymap("n", "gj", "j", opts)
+keymap("n", "gk", "k", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -68,6 +71,7 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
+-- Copy to clipboard
 vim.keymap.set({"n", "v"}, vim.g.altleader .. "y", [["+y]])
 vim.keymap.set("n", vim.g.altleader .. "Y", [["+Y]])
 

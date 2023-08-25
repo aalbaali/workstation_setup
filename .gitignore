@@ -3,14 +3,24 @@
 *.pyc
 stow/i3/.config/*
 !stow/i3/.config/i3
-*dconf*
+dconf
 **/plugged/**
+**/packer_compiled.lua
 **/coc/**
-stow/nvim/.config/**
+stow/nvim/.config/nvim/plugin/**
 
 **/*.log
 
 **/vscode/*
-**/.local/**
 
 **/packer_compiled.lua
+
+stow/nvim/.config/nvim/spell/en.utf-8.add
+stow/nvim/.config/nvim/spell/en.utf-8.add.spl
+
+
+**/.chat_gpt_key.zsh
+**/.chat_gpt_secret.txt
+**/.zsh_history
+**/.local/**
+**/.cmake/**

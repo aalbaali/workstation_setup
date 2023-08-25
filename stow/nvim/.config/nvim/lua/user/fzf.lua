@@ -7,6 +7,7 @@ vim.keymap.set("n", vim.g.altleader .. "p", ":History<CR>")
 vim.keymap.set("n", vim.g.altleader .. ":", ":History:<CR>")
 vim.keymap.set("n", vim.g.altleader .. "/", ":History/<CR>")
 vim.keymap.set("n", vim.g.altleader .. "w", ":Windows<CR>")
+vim.keymap.set("n", vim.g.altleader .. "ts", ":BTags<CR>")
 
 -- Call commands for words under the curser
 vim.keymap.set("n", vim.g.altleader .. "eo", ":call fzf#vim#files('.', {'options':'--query '.expand('<cword>')})<CR>")

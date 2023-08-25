@@ -9,38 +9,64 @@
 ################################################
 # Application aliases
 ################################################
+alias nv=nvim
 alias fd="fdfind"
-alias fdh="fdfind -H"
-alias agh="ag --hidden"
+alias fdh="fdfind -H -I"
+alias agh="ag --hidden -U"
+alias agn="ag -l"
 alias rgh="rg --hidden"
 alias vsc="code -n ."
 alias jj=julia
 alias jfranklin="julia --project=Project.toml -e 'using Franklin; serve()'"
 alias jpluto="julia -e 'using Pluto; Pluto.run()'"
-alias vpdf="sioyek"
-alias sz=ncdu
-alias nv=nvim
-alias h=htop
-alias e="exa"  # Alternative to `ls`
+#alias vpdf=sioyek
+alias vpdf=evince            # Pdf viewer
+alias sz=ncdu                # view file usage
+alias h=htop                 # View system performance
+alias e=exa                  # Alternative to `ls`
+alias plot=gnuplot           # Data plotter
+alias tk=tokei               # Info about code
+alias c=sgpt                 # Shell GPT
+alias mex="chmod +x "        # Make executable
+alias pwdt="echo ${PWD##*/}" # Print truncated directory (i.e., without the full path)
+alias bm=hyperfine           # Benchmark commands
+alias pc=pre-commit
+alias pca="pre-commit run -a"
 
 ################################################
 # System-related aliases and functions
 ################################################
-alias ls='ls --color=auto'
-alias ll='ls -alF'
-alias l='ls -CF'
+# Set ls as exa, if the command is installed
+if command -v exa >/dev/null 2>&1; then
+  alias ls='exa'
+  alias ll='exa -alF'
+  alias l='exa -1'
+else
+  alias ls='ls --color=auto'
+  alias ll='ls -alF'
+  alias l='ls -1'
+fi
+
+# Set bat as cat, if the command is installed
+if command -v bat >/dev/null 2>&1; then
+  alias cat='bat'
+fi
+
 alias ta='tmux a -t'
 alias now='watch -x -t -n 0.01 date +%s.%N' 
 alias o=xdg-open
 alias k='k -h'
 alias cdg='cd "$(git rev-parse --show-cdup)"'
 alias cdr='cd "$(git rev-parse --show-superproject-working-tree)"' # Change to git root director
-alias cdd='cd ~/case/common/shared/data'
+alias cdd='cd ~/shared/data'
 alias cdsh='cd ~/shared'
 alias ja='ninja'
 alias ctest='ctest --output-on-failure'
-alias cm='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=RelWithDebInfo'
-alias cmd='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=Debug'
+alias cm='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=RelWithDebInfo -S . -B build'
+alias cmb='cmake --build build'
+alias cmd='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=Debug'
+alias cmn='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=RelWithDebInfo'
+alias cmnd='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=Debug'
 alias a="apt-cache search '' | sort | cut --delimiter ' ' --fields 1 | fzf --multi --cycle --reverse --preview 'apt-cache show {1}' | xargs -r sudo apt install -y"
 alias nn="nnn-static"
 alias zz="source ~/.zshrc"
@@ -85,7 +111,7 @@ lnn()
 
 # Link binaries to local
 lnb() {
-  CMD="ln -s "$(pwd)/$1" /usr/local/bin ${@:2}"
+  CMD="sudo ln -s "$(pwd)/$1" /usr/local/bin ${@:2}"
   echo "$CMD"
   eval "$CMD"
 }
@@ -95,11 +121,12 @@ lnb() {
 ###############################
 export FZF_DEFAULT_OPS="--extended"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+#export FZF_DEFAULT_COMMAND='fdfind -H -I'
 #export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # Preview file content using bat (https://github.com/sharkdp/bat)
 export FZF_CTRL_T_OPTS="
   --preview 'bat -n --color=always {}'
-  --bind 'ctrl-e:become(nvim {+})'
+  --bind 'ctrl-e:become(vim {+})'
   --bind 'ctrl-/:change-preview-window(down|hidden|)'
   --bind 'ctrl-y:execute-silent(echo -n {} | xclip -selection clipboard)+abort'"
 # CTRL-/ to toggle small preview window to see the full command
@@ -114,14 +141,44 @@ export FZF_CTRL_R_OPTS="
 # Print tree structure in the preview window
 export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
 
+# Find files that contain regex expressions and preview them using fzf previewer
+agp () {
+  local str files file
+  str="$1"
+  file=$(ag -l "$str" ${@:2} | fzf-tmux --preview 'bat -n --color=always {}')
+  
+  # Abort if no file is selected
+  [ -z "$file" ] && return
+
+  # Find line number
+  local line_num
+  line_nums=$(ag "$str" "$file" --column | ag "^[0-9]" | head -n 1)
+  line_num=$(echo "$line_nums" | awk -F':' '{print $1}')
+  col_num=$(echo "$line_nums" | awk -F':' '{print $2}')
+  nv +$line_num "$file" +"normal $col_num|"
+}
+
+# Takes a list of files as arguments and opens the selection in neovim
+fnv() {
+  files=$(cat - | tr ' ' '\n')
+  file=$( echo $files | fzf-tmux --preview 'bat -n --color=always {}')
+
+  # Abort if no file is selected
+  [ -z "$file" ] && return
+
+  # Find line number
+  nv "$file"
+}
+
 ####################
 # Git
 ####################
 # Git fuzzy
-alias gf="git fuzzy"
-
+alias gf="git fetch"
+alias gfp="gf --prune"
+alias gl="git log"
 alias gll="git log --graph --oneline --decorate"
-alias gla="git log --graph --oneline --all --decorate"
+alias gla="gll --all"
 alias gss="git status -s"
 alias gs="git status"
 alias gm="git commit -s"
@@ -129,10 +186,27 @@ alias ga="git add"
 alias gb="git branch"
 alias gc="git checkout"
 alias gd="git diff"
+alias gdn="git diff --name-only"
 alias gdc="git diff --cached"
 
 alias g="git"
 complete -o default -o nospace -F _git g
+
+agd() {
+  local str file
+  str="$1"
+  file=$(git diff --name-only -G "$str" | fzf-tmux --preview 'bat -n --color=always {}')
+
+  # Abort if no file is selected
+  [ -z "$file" ] && return
+
+  # Find line number
+  local line_num
+  line_nums=$(ag "$str" "$file" --column | ag "^[0-9]" | head -n 1)
+  line_num=$(echo "$line_nums" | awk -F':' '{print $1}')
+  col_num=$(echo "$line_nums" | awk -F':' '{print $2}')
+  nv +$line_num "$file" +"normal $col_num|"
+}
 
 
 # Fuzzy checkout git branch with fzf
@@ -143,6 +217,21 @@ gz()
   branch=$(echo "$branches" |
            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+# Fuzzy checkout git *local* branch with fzf
+gbz() 
+{
+  local branches branch
+  branches=$(git branch -l | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+# Copy current branch to clipboard
+gbcp() {
+  git branch | grep '*' | awk '{printf "%s", $2}' | xclip -selection clipboard
 }
 
 # lazygit
@@ -182,11 +271,20 @@ ghttptossh() {
     # Track current branch to master
     local local_branch=$(git branch | awk '{print $NF}')
     git branch -u origin/$local_branch
-
   fi
 
   echo "git remote -v"
   git remote -v
+}
+
+# Grep git log
+ggl() {
+  git log --all --grep="$1"
+}
+
+# Grep git log and show commits only
+ggm() {
+  git log --all --grep="$1" --pretty=format:'%C(auto)%h%C(reset)- %Cgreen%an%Creset: %C(auto)%s'
 }
 
 ####################
@@ -232,3 +330,106 @@ cmdef() {
     echo -e "CMake args:\n\033[96;1m${args}\033[0m"
     cmake $@ $args
 }
+
+# Temporary: read latest screenshot and copy to clipboard
+alias ri="ls /home/aa/Pictures/Screenshots/Screen* -t | head -n 1 | xargs -I{} tesseract "{}" ddd && cat ddd.txt | xclip -selection clipboard"
+
+####################
+# Python venv
+####################
+# Create a Python virtual environment
+_default_venv="venv"
+
+# Comment out this line if you don't want to see warnings if a venv doesn't exist
+#SHOW_WARNING=1
+
+# Checks if given virtual env exist, and updates variable if it doesn't
+_check_venv() {
+  if [[ -z "$venv_name" ]]; then
+    [[ -n $SHOW_WARNING ]] && echo -e "\033[95mVenv not provided. Will use the default \033[93;1m$_default_venv\033[0m"
+    venv_name=$_default_venv
+  fi
+}
+
+penv() {
+  local venv_name
+  venv_name="$1"
+  _check_venv
+
+  # Create the virtual environment
+  python3 -m venv "$venv_name"
+}
+
+# Source a Python virtual environment
+psrc() {
+  local venv_name
+  venv_name="$1"
+  _check_venv
+
+  # Check if the virtual environment exists
+  if [[ ! -d "$venv_name" ]]; then
+    echo -e "\033[93mVirtual environment \033[1m$_default_venv\033[0;93m doesn't exist\033[0m"
+    return
+  fi
+
+  # Source the virtual environment
+  source "$venv_name/bin/activate"
+}
+
+# Install requirements
+_default_requirements="requirements.txt"
+
+#######################################
+# Install Python pip requirements
+# Globals:
+#   None
+# Arguments:
+#   requirements_file: The requirements file to install.
+#     Defaults to `requirements.txt`
+#   run_outside_venv: If set, will run the command outside the virtual env.
+#     Defaults to nothing
+# Throws:
+#   If it isn't expected to run outside the virtual env, and it is.
+# Returns:
+#   None
+pinst() {
+  local requirements_file
+  requirements_file="$1"
+  run_outside_venv="$2"
+
+  # Throw error if it's expected to run outside the virtual env, and it is
+  if [[ -z "$run_outside_venv" ]] && [[ -z "$VIRTUAL_ENV" ]]; then
+    echo -e "\033[93mNot in a virtual environment. Run \033[1mpsrc\033[0;93m first\033[0m" >&2
+    return 1
+  fi
+
+  if [[ -z "$requirements_file" ]]; then
+    [[ -n $SHOW_WARNING ]] && echo -e "\033[95mRequirements not provided. Will use the default \033[93;1m$_default_requirements\033[0m"
+    requirements_file=$_default_requirements
+  fi
+
+  # Install requirements
+  pip install -r "$requirements_file"
+}
+
+# Deactivate
+alias pdeact="deactivate"
+
+
+#########################################
+# Networking
+#########################################
+#######################################
+# Parse URL string query into key-value pairs
+# Globals:
+#   None
+# Arguments:
+#   url: URL to parse
+#     For example 'https://localhost:9090/run?arg1=val1&arg2=val2'
+# Output:
+#   Outputs key-value pairs into standard output
+# Returns:
+#   None
+function parse_url_kv() {
+  echo "$1" | awk -F '[?&]' '{for(i=2;i<=NF;i++){split($i,a,"=");print a[1],a[2]}}'
+} 
