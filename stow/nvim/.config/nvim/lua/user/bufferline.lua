@@ -5,16 +5,16 @@ end
 
 bufferline.setup {
   options = {
-    numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-    close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
+    numbers = "none",                    -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+    close_command = "Bdelete! %d",       -- can be a string | function, see "Mouse actions"
     right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
-    left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
-    middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
+    left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
+    middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
     -- NOTE: this plugin is designed with this icon in mind,
     -- and so changing this is NOT recommended, this is intended
     -- as an escape hatch for people who cannot bear it for whatever reason
     indicator_icon = nil,
-    indicator = { style = "icon", icon = "▎"},
+    indicator = { style = "icon", icon = "▎" },
     buffer_close_icon = "",
     --buffer_close_icon = '',
     modified_icon = "●",
@@ -25,7 +25,7 @@ bufferline.setup {
     --- Please note some names can/will break the
     --- bufferline so use this at your discretion knowing that it has
     --- some limitations that will *NOT* be fixed.
-    name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
+    name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
       -- remove extension from markdown files for example
       if buf.name:match('%.md') then
         return vim.fn.fnamemodify(buf.name, ':t:r')
@@ -34,7 +34,7 @@ bufferline.setup {
     max_name_length = 30,
     max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
     tab_size = 21,
-    diagnostics = false, -- | "nvim_lsp" | "coc",
+    diagnostics = false,    -- | "nvim_lsp" | "coc",
     diagnostics_update_in_insert = false,
     --diagnostics_indicator = function(count, level, diagnostics_dict, context)
     --  return "("..count..")"
@@ -73,7 +73,7 @@ bufferline.setup {
   },
   highlights = {
     fill = {
-      fg = { attribute = "fg", highlight = "#ff0000" },
+      fg = { attribute = "fg", highlight = "Visual" },
       bg = { attribute = "bg", highlight = "TabLine" },
     },
     background = {
@@ -82,8 +82,8 @@ bufferline.setup {
     },
 
     buffer_selected = {
-      fg = {attribute='fg',highlight='#ff0000'},
-      bg = {attribute='bg',highlight='#0000ff'},
+      fg = { attribute = "fg", highlight = "Visual" },
+      bg = { attribute = "bg", highlight = "Visual" },
     },
     buffer_visible = {
       fg = { attribute = "fg", highlight = "TabLine" },
@@ -99,8 +99,8 @@ bufferline.setup {
       bg = { attribute = "bg", highlight = "TabLine" },
     },
     close_button_selected = {
-      fg = {attribute='fg',highlight='TabLineSel'},
-      bg ={attribute='bg',highlight='TabLineSel'}
+      fg = { attribute = 'fg', highlight = 'TabLineSel' },
+      bg = { attribute = 'bg', highlight = 'TabLineSel' }
     },
 
     tab_selected = {
@@ -155,8 +155,8 @@ bufferline.setup {
       bg = { attribute = "bg", highlight = "Normal" },
     },
     separator_visible = {
-      fg = {attribute='bg',highlight='TabLine'},
-      bg = {attribute='bg',highlight='TabLine'}
+      fg = { attribute = 'bg', highlight = 'TabLine' },
+      bg = { attribute = 'bg', highlight = 'TabLine' }
     },
     indicator_selected = {
       fg = { attribute = "fg", highlight = "LspDiagnosticsDefaultHint" },
