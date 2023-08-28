@@ -43,6 +43,7 @@ bindkey '^[l' clear-screen
 
 # Add local to path
 export PATH="$HOME/.local/bin:$PATH"
+export CPLUS_INCLUDE_PATH=/usr/include/c++/11:/usr/include/x86_64-linux-gnu/c++/11
 
 ## The set of commands below slow zsh
 #setopt autocd 
@@ -82,6 +83,13 @@ function create_${ws}() {
 };
 EOF
   done
+fi
+
+###############################
+## Github
+###############################
+if command -v gh &> /dev/null; then
+  eval "$(gh completion -s zsh)"
 fi
 
 ###############################
