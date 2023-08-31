@@ -280,9 +280,7 @@ if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh-setup]}" = true ]; then
   zplug install
 
   # Install starship
-  curl -sS https://starship.rs/install.sh -o /tmp/install.sh
-  sudo sh /tmp/install.sh -y
-  rm /tmp/install.sh
+  curl -sS https://starship.rs/install.sh | sudo sh -s - -y
 
   # Link starship config
   ln -s $SCRIPT_DIR/../stow/zsh/.config/starship.toml ~/.config -f
