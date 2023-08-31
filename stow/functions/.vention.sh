@@ -78,6 +78,12 @@ function vention_ses_start() {
   log_info "Session '$session' doesn't exist. It'll be created"
   first_window=1
 
+  # MRBS
+  tmux_new_window_and_send_keys "$session" \
+    "MRBS" \
+    "~/vention/multirepo-build-system" \
+    "npm run start"
+
   # Rails
   tmux_new_window_and_send_keys "$session" \
     "Rails" \
