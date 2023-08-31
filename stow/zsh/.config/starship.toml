@@ -68,7 +68,7 @@ error_symbol = "[❯](red)"
 format = '[(\($branch\))]($style)'
 style = "bold #909090"
 #style = "bold #CCFF00"
-truncation_length = 10
+truncation_length = 15
 #ignore_branches = ['master', 'main']
 symbol = ':'
 
