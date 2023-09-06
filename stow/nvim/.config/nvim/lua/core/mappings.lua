@@ -207,7 +207,7 @@ M.lspconfig = {
 
     ["]d"] = {
       function()
-        vim.diagnostic.goto_next { float = { border = "rounded" } }
+        vim.diagnostic.goto_next({ float = { border = "rounded" }})
       end,
       "Goto next",
     },
