@@ -5,8 +5,8 @@
 --local colorscheme = "darkplus"
 
 -- Gruvbox
-local colorscheme = "gruvbox"
-vim.g.gruvbox_contrast_dark = 'hard'
+--local colorscheme = "gruvbox"
+--vim.g.gruvbox_contrast_dark = 'soft'
 
 ---- Iceberg
 --local colorscheme = "iceberg"
