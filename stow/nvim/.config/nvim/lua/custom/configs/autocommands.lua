@@ -30,6 +30,8 @@ vim.cmd [[
     autocmd!
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
+
+  autocmd FileType python setlocal tabstop=4 shiftwidth=4
 ]]
 
 -- Autoformat
