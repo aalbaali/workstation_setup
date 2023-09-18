@@ -73,7 +73,7 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- Copy to clipboard
 vim.keymap.set({"n", "v"}, vim.g.altleader .. "y", [["+y]])
-vim.keymap.set("n", vim.g.altleader .. "Y", [["+Y]])
+vim.keymap.set("n", vim.g.altleader .. "Y", [[:%y+<CR>]])
 
 -- Terminal --
 -- Better terminal navigation
