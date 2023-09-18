@@ -41,6 +41,11 @@ lsp.on_attach = function(client, _)
   if client.name == "lua_ls" then
     client.server_capabilities.documentFormattingProvider = true
   end
+
+  if client.name == "autopep8" then
+    client.server_capabilities.documentFormattingProvider = true
+  end
+    
 end
 
 lsp.setup()
