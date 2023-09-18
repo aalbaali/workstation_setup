@@ -52,6 +52,21 @@ if command -v bat >/dev/null 2>&1; then
   alias cat='bat'
 fi
 
+# Set colordiff as diff, if the command is installed
+if command -v colordiff >/dev/null 2>&1; then
+  alias diff='colordiff'
+fi
+
+# Swap two files
+# https://stackoverflow.com/questions/1115904/shortest-way-to-swap-two-files-in-bash
+#
+# Arguments: swap file1 file2
+function swap()         
+{
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE "$2"
+}
+
 alias ta='tmux a -t'
 alias now='watch -x -t -n 0.01 date +%s.%N' 
 alias o=xdg-open
@@ -184,6 +199,9 @@ alias gs="git status"
 alias gm="git commit -s"
 alias ga="git add"
 alias gb="git branch"
+alias gw="git worktree"
+alias gwa="git worktree add"
+alias gwls="git worktree list"
 alias gc="git checkout"
 alias gd="git diff"
 alias gdn="git diff --name-only"
