@@ -8,14 +8,15 @@ fi
 # $1: bag name
 gettopics() { rosbag info -k topics "$1" -y | ag topic: | awk -F': ' '{print $2}'}
 
-
-# Ros workspace
-export ROS_WORKSPACE="/home/ros/ros_ws"
+# ROS workspace
+export ROS_WORKSPACE="$(cd; echo $PWD)/ros_ws"
+export ROS_OVERLAY_WS="/opt/ros/$ROS_DISTRO"
 
 # Change to ros workspace
 alias cdr="cd $ROS_WORKSPACE"
 alias cdi="cd $ROS_WORKSPACE"
 alias cds="cd $ROS_WORKSPACE/src"
+alias sroverlay="source $ROS_OVERLAY_WS/setup.zsh"
 
 # Rosdeup UPDATE existing packages
 alias rupdate="rosdep update"
