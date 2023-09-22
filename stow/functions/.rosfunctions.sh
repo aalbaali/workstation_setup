@@ -10,13 +10,13 @@ gettopics() { rosbag info -k topics "$1" -y | ag topic: | awk -F': ' '{print $2}
 
 # ROS workspace
 export ROS_WORKSPACE="$(cd; echo $PWD)/ros_ws"
-export ROS_OVERLAY_WS="/opt/ros/$ROS_DISTRO"
+export ROS_UNDERLAY_WS="/opt/ros/$ROS_DISTRO"
 
 # Change to ros workspace
 alias cdr="cd $ROS_WORKSPACE"
 alias cdi="cd $ROS_WORKSPACE"
 alias cds="cd $ROS_WORKSPACE/src"
-alias sroverlay="source $ROS_OVERLAY_WS/setup.zsh"
+alias sros="source $ROS_UNDERLAY_WS/setup.zsh"
 
 # Rosdeup UPDATE existing packages
 alias rupdate="rosdep update"
