@@ -75,6 +75,11 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 vim.keymap.set({"n", "v"}, vim.g.altleader .. "y", [["+y]])
 vim.keymap.set("n", vim.g.altleader .. "Y", [[:%y+<CR>]])
 
+-- Copy file name (without full path) to clipboard
+vim.keymap.set("n", vim.g.altleader .. "yn", [[:let @+ = expand("%:t")<CR>]], opts)
+-- Copy full file name to clipboard
+vim.keymap.set("n", vim.g.altleader .. "yN", [[:let @+ = expand("%")<CR>]], opts)
+
 -- Terminal --
 -- Better terminal navigation
 -- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
