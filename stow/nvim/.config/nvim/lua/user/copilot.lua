@@ -25,12 +25,12 @@ copilot.setup({
     auto_trigger = true,
     debounce = 75,
     keymap = {
-      accept = "<C-j>",
+      accept = "<A-j>",
       accept_word = false,
       accept_line = false,
-      next = "<C-l>",
-      prev = "<C-h>",
-      dismiss = "<C-]>",
+      next = "<A-l>",
+      prev = "<A-h>",
+      dismiss = "<A-]>",
     },
   },
   filetypes = {
