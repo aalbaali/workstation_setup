@@ -240,7 +240,7 @@ local mapping_alt = {
   t = {
     name = "Tab/Tag/Todo",
     ["n"] = { "<cmd>tabnext<cr>", "Next tab" },
-    ["c"] = { "<cmd>tabprev<cr>", "Prev tab" },
+    ["p"] = { "<cmd>tabprev<cr>", "Prev tab" },
     ["C"] = { "<cmd>tabclose<cr>", "Close tab" },
     ["d"] = { "<cmd>TodoQuickFix<cr>", "Populate quickfix with TODOs" },
   },
