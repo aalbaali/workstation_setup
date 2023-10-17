@@ -305,6 +305,21 @@ ggm() {
   git log --all --grep="$1" --pretty=format:'%C(auto)%h%C(reset)- %Cgreen%an%Creset: %C(auto)%s'
 }
 
+gbrmlocal() {
+  # Clean branches that have been deleted on remote
+  #
+  # Args:
+  #   $1: flag '--force' to force delete branches that have not been merged
+
+  # Check if the flag '--force' is passed
+  local delete_flag="-d"
+  if [[ "$1" == "--force" ]]; then
+    delete_flag="-D"
+  fi
+  git fetch --prune
+  git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch "$delete_flag"
+}
+
 ####################
 # Zip/tar
 ####################
