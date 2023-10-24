@@ -146,24 +146,24 @@ return packer.startup(function(use)
     run = function() vim.fn["mkdp#util#install"]() end,
   })
 
-  -- The configs are needed to be here to make sure the plugin is loaded before its used
-  use { --  Github copilot
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("user.copilot")
-    end,
-  }
+  ---- The configs are needed to be here to make sure the plugin is loaded before its used
+  --use { --  Github copilot
+  --  "zbirenbaum/copilot.lua",
+  --  cmd = "Copilot",
+  --  event = "InsertEnter",
+  --  config = function()
+  --    require("user.copilot")
+  --  end,
+  --}
 
-  -- Copilot autocompletion
-  use {
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua" },
-    config = function()
-      require("copilot_cmp").setup()
-    end
-  }
+  ---- Copilot autocompletion
+  --use {
+  --  "zbirenbaum/copilot-cmp",
+  --  after = { "copilot.lua" },
+  --  config = function()
+  --    require("copilot_cmp").setup()
+  --  end
+  --}
 
   -- ChatGPT
   use({

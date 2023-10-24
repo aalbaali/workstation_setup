@@ -1,0 +1,45 @@
+---
+  - name: "Playing with Ansible and Git"
+    hosts: localhost
+    connection: local 
+    tasks:
+
+    #- name: "just execute a ls -lrt command"
+    #  shell: "ls"
+    #  register: "output"
+
+    #- debug: var=output.stdout_lines
+
+    #- name: Print message
+    #  ansible.builtin.debug:
+    #    msg: Hello world
+
+    #- name: Update apt cache
+    #  become: yes
+    #  apt:
+    #    update_cache: yes
+
+    #- name: Install apt packages
+    #  become: yes
+    #  apt:
+    #    pkg:
+    #    - vim
+    #    - gnuplot
+
+    - name: Clone fzf
+      become: yes
+      git:
+        repo: 'https://github.com/junegunn/fzf.git'
+        dest: /opt/fzf
+        depth: 1
+        force: yes
+        update: yes
+        version: HEAD
+
+    # Run command to install fzf
+    - name: Install fzf
+      become: yes
+      shell:
+        chdir: /opt/fzf
+        cmd: /opt/fzf/install --all
+        creates: /opt/fzf/bin/fzf

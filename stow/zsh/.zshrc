@@ -43,19 +43,20 @@ bindkey '^[l' clear-screen
 
 # Add local to path
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$(which fzf):$PATH"
 
 ## The set of commands below slow zsh
 #setopt autocd 
-#autoload -Uz compinit
-#compinit
+autoload -Uz compinit
+compinit
 
 ## Networking alias
 #if [ -f ~/avidbots_networking/aliases ]; then
 #    . ~/avidbots_networking/aliases
 #fi
 
-# Source localrc
-[ -f ~/.localrc ] && source ~/.localrc
+## Source localrc
+#[ -f ~/.localrc ] && source ~/.localrc
 
 unsetopt menu_complete
 #setopt list_ambiguous
@@ -84,13 +85,6 @@ EOF
   done
 fi
 
-########################
-# Github
-########################
-if command -v gh &> /dev/null; then
-  eval "$(gh completion -s bash)"
-fi
-
 ###############################
 ## fzf
 ###############################
@@ -105,8 +99,6 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey "^x^e" edit-command-line
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
 # Load custom functions and aliases
 [ -f ~/.logger.sh ] && source ~/.logger.sh
 [ -f ~/.functions.sh ] && source ~/.functions.sh
@@ -118,19 +110,27 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 if [[ -f  ~/.zsh/git-completion.bash ]] then
   zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
   fpath=(~/.zsh $fpath)
-
   autoload -Uz compinit && compinit
 fi
 
-# Append PATHs (function imported from .functions)
-export PATH="$PATH:/home/$USERNAME/.local/bin"
-export PATH="$PATH:/home/$USERNAME/go/bin"
+## Append PATHs (function imported from .functions)
+#export PATH="$PATH:/home/$USERNAME/.local/bin"
+#export PATH="$PATH:/home/$USERNAME/go/bin"
+#export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Solve a tilix issue
 # https://gnunn1.github.io/tilix-web/manual/vteconfig/
 if [ $TILIX_ID ] || [ $VTE_VERSION ] && [ -f /etc/profile.d/vte.sh ]; then
- 	source /etc/profile.d/vte.sh
+  source /etc/profile.d/vte.sh
 fi
 
 # Import OPENAI_API_KEY
 [ -f ~/.chat_gpt_key.zsh ] && source ~/.chat_gpt_key.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#[ -f ~/.resh/shellrc ] && source ~/.resh/shellrc # this line was added by RESH
+
+source "$HOME/.cargo/env"
