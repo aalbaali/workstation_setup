@@ -27,6 +27,7 @@ alias e=exa                  # Alternative to `ls`
 alias plot=gnuplot           # Data plotter
 alias tk=tokei               # Info about code
 alias c=sgpt                 # Shell GPT
+alias g4="sgpt --model gpt-4"                 # Shell GPT
 alias mex="chmod +x "        # Make executable
 alias pwdt="echo ${PWD##*/}" # Print truncated directory (i.e., without the full path)
 alias bm=hyperfine           # Benchmark commands
@@ -366,7 +367,7 @@ cmdef() {
 }
 
 # Temporary: read latest screenshot and copy to clipboard
-alias ri="ls /home/aa/Pictures/Screenshots/Screen* -t | head -n 1 | xargs -I{} tesseract "{}" ddd && cat ddd.txt | xclip -selection clipboard"
+alias ri="/usr/bin/ls /home/$USER/Pictures/Screenshots/Screen* -t | head -n 1 | xargs -I{} tesseract "{}" ddd && cat ddd.txt | xclip -selection clipboard"
 
 ####################
 # Python venv
