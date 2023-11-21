@@ -230,10 +230,16 @@ agd() {
 
 
 # Fuzzy checkout git branch with fzf
+# Arguments:
+#   -l: local branches only
 gz() 
 {
-  local branches branch
-  branches=$(git branch --all | grep -v HEAD) &&
+  local branches branch gb_flags
+  gb_flags="--all"
+  if [[ "$1" == "-l" ]]; then
+    gb_flags=""
+  fi
+  branches=$(git branch ${gb_flags} | grep -v HEAD) &&
   branch=$(echo "$branches" |
            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
