@@ -41,6 +41,7 @@ bindkey '^@' autosuggest-accept
 bindkey '^[;' autosuggest-execute
 bindkey '^[l' clear-screen
 bindkey -s '^[p' 'git pull ^M'
+bindkey -s '^[P' 'git push ^M'
 bindkey -s '^[f' 'git fetch --prune ^M'
 
 # Add local to path
