@@ -123,6 +123,13 @@ if [ ! $? ]; then
   exit 1
 fi
 
+if [[ $ALL_STOW  ]] || [[ $INSTALL_ALL ]] || [[ "${STOW_PACKAGES[bash]}" = true ]]; then
+  if [ -f ~/.bashrc ]; then
+    echo "~/.bashrc already exists. Creating backup ~/.bashrc.bak"
+    mv ~/.bashrc ~/.bashrc.bak
+  fi
+fi
+
 # Install stow packages
 # Install without prompt if insallation config is set to true
 for app_full in */; do

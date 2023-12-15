@@ -245,15 +245,8 @@ gz()
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
-# Fuzzy checkout git *local* branch with fzf
-gbz() 
-{
-  local branches branch
-  branches=$(git branch -l | grep -v HEAD) &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
+alias gzl="gz -l"
+alias gbl="gz -l"
 
 # Copy current branch to clipboard
 gbcp() {

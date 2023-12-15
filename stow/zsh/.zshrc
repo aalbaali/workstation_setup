@@ -7,7 +7,7 @@ export ZSH=~/.oh-my-zsh
 
 # Get zplug if it doesn't exist
 if [[ ! -d $ZPLUG_HOME ]];then
-    git clone https://github.com/b4b4r07/zplug $ZPLUG_HOME
+    git clone https://github.com/zplug/zplug $ZPLUG_HOME
 fi
 
 # Source zplug
@@ -40,6 +40,8 @@ bindkey '^@' autosuggest-accept
 # Autosuggestion completion and execution ('^M' is the return key)
 bindkey '^[;' autosuggest-execute
 bindkey '^[l' clear-screen
+bindkey -s '^[p' 'git pull ^M'
+bindkey -s '^[f' 'git fetch --prune ^M'
 
 # Add local to path
 export PATH="$HOME/.local/bin:$PATH"
