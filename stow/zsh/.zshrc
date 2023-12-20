@@ -33,6 +33,18 @@ zplug load
 # Options
 setopt autopushd pushdignoredups
 
+# Retrieve and run last command
+function run-again {
+    # get previous history item
+    zle up-history
+    # confirm command
+    zle accept-line
+}
+# define run-again widget from function of the same name
+zle -N run-again
+# Set 'alt+:' to run last command
+bindkey '^[:' run-again
+
 # Autosuggestion colour
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#707880"
 # Autosuggest completion
@@ -131,8 +143,8 @@ fi
 [ -f ~/.chat_gpt_key.zsh ] && source ~/.chat_gpt_key.zsh
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm (it slows down loading zsh)
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #[ -f ~/.resh/shellrc ] && source ~/.resh/shellrc # this line was added by RESH
 
