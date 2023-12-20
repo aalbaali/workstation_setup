@@ -133,6 +133,21 @@ lnb() {
   eval "$CMD"
 }
 
+posix_to_datetime() {
+  # Convert posix to datetime
+  #
+  # Examples:
+  #   posix_to_datetime 1659216096
+  #
+  # Args:
+  #   - $1: posix time
+  #   - $2: format (optional)
+
+  local posix=$1
+  local format=${2:-"%Y-%m-%d %H:%M:%S"}
+  date -d "@$posix" +"$format"
+}
+
 ###############################
 ## fzf
 ###############################
