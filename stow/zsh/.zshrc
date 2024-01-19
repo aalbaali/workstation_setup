@@ -55,6 +55,9 @@ bindkey '^[l' clear-screen
 bindkey -s '^[p' 'git pull ^M'
 bindkey -s '^[P' 'git push ^M'
 bindkey -s '^[f' 'git fetch --prune ^M'
+bindkey -s '^[k' 'cd .. ^M'
+bindkey -s '^[j' 'cd - ^M'
+bindkey -s '^[r' '!!^M^M'
 
 # Add local to path
 export PATH="$HOME/.local/bin:$PATH"
@@ -143,8 +146,8 @@ fi
 [ -f ~/.chat_gpt_key.zsh ] && source ~/.chat_gpt_key.zsh
 
 export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm (it slows down loading zsh)
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm (it slows down loading zsh)
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #[ -f ~/.resh/shellrc ] && source ~/.resh/shellrc # this line was added by RESH
 

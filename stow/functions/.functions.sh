@@ -263,6 +263,10 @@ gz()
 alias gzl="gz -l"
 alias gbl="gz -l"
 
+bindkey -s '^[b' 'gzl^M'
+bindkey -s '^[B' 'gz^M'
+
+
 # Copy current branch to clipboard
 gbcp() {
   git branch | grep '*' | awk '{printf "%s", $2}' | xclip -selection clipboard
