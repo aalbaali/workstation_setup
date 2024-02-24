@@ -1,6 +1,7 @@
 # 'source' autocompletion from bash
 autoload bashcompinit
 bashcompinit
+autoload -U compinit && compinit -u
 
 export ZPLUG_HOME=~/.zplug
 export ZSH=~/.oh-my-zsh
@@ -73,8 +74,8 @@ compinit
 #    . ~/avidbots_networking/aliases
 #fi
 
-## Source localrc
-#[ -f ~/.localrc ] && source ~/.localrc
+# Source localrc
+[[ -f ~/.localrc ]] && source ~/.localrc
 
 unsetopt menu_complete
 #setopt list_ambiguous
@@ -103,6 +104,13 @@ EOF
   done
 fi
 
+########################
+# Github
+########################
+# if command -v gh &> /dev/null; then
+#   eval "$(gh completion -s bash)"
+# fi
+
 ###############################
 ## fzf
 ###############################
@@ -110,7 +118,6 @@ fi
 
 # Autojump
 [[ -s /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh
-autoload -U compinit && compinit -u
 
 # Enable Ctrl-x to edit command line in vim
 autoload -U edit-command-line
@@ -139,7 +146,7 @@ fi
 # Solve a tilix issue
 # https://gnunn1.github.io/tilix-web/manual/vteconfig/
 if [ $TILIX_ID ] || [ $VTE_VERSION ] && [ -f /etc/profile.d/vte.sh ]; then
-  source /etc/profile.d/vte.sh
+    source /etc/profile.d/vte.sh
 fi
 
 # Import OPENAI_API_KEY
@@ -151,4 +158,4 @@ export NVM_DIR="$HOME/.nvm"
 
 #[ -f ~/.resh/shellrc ] && source ~/.resh/shellrc # this line was added by RESH
 
-source "$HOME/.cargo/env"
+#source "$HOME/.cargo/env"

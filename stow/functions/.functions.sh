@@ -325,6 +325,9 @@ ggm() {
   git log --all --grep="$1" --pretty=format:'%C(auto)%h%C(reset)- %Cgreen%an%Creset: %C(auto)%s'
 }
 
+# Set default editor for
+export GH_EDITOR=nvim
+
 gbrmlocal() {
   # Clean branches that have been deleted on remote
   #
@@ -385,7 +388,7 @@ cmdef() {
 }
 
 # Temporary: read latest screenshot and copy to clipboard
-alias ri="/usr/bin/ls /home/$USER/Pictures/Screenshots/Screen* -t | head -n 1 | xargs -I{} tesseract "{}" ddd && cat ddd.txt | xclip -selection clipboard"
+alias ri="/usr/bin/ls $HOME/Pictures/Screenshots/Screen* -t | head -n 1 | xargs -I{} tesseract "{}" ddd && cat ddd.txt | xclip -selection clipboard"
 
 ####################
 # Python venv

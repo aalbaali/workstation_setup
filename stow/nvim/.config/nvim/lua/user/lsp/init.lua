@@ -42,10 +42,14 @@ lsp.on_attach = function(client, _)
     client.server_capabilities.documentFormattingProvider = true
   end
 
-  if client.name == "autopep8" then
+  --if client.name == "autopep8" then
+  --  client.server_capabilities.documentFormattingProvider = true
+  --end
+
+  -- Add flake8 formatter
+  if client.name == "flake8" then
     client.server_capabilities.documentFormattingProvider = true
   end
-    
 end
 
 lsp.setup()
