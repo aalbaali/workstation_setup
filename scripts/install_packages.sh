@@ -42,6 +42,8 @@ pkgs=(
   'python3-venv'
   'npm'
   'autojump'
+	'zoxide'
+  'gh'
 )
 
 pids=()

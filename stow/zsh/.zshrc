@@ -119,6 +119,9 @@ fi
 # Autojump
 [[ -s /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh
 
+# Zoxide
+eval "$(zoxide init --cmd cd zsh)"
+
 # Enable Ctrl-x to edit command line in vim
 autoload -U edit-command-line
 zle -N edit-command-line
