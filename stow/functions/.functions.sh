@@ -98,7 +98,7 @@ cpwd() { pwd | tr -d '\n' | xclip -selection clipboard; }
 mkcd()
 {
   mkdir -p -- "$1" &&
-  cd -P -- "$1"
+  builtin cd -P -- "$1"
 }
 
 # Log CPU and memory usage of a process
