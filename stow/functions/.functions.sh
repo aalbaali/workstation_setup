@@ -23,7 +23,8 @@ alias jpluto="julia -e 'using Pluto; Pluto.run()'"
 alias vpdf=evince            # Pdf viewer
 alias sz=ncdu                # view file usage
 alias h=htop                 # View system performance
-alias e=exa                  # Alternative to `ls`
+alias b=btop                 # View system performance
+alias e=eza                  # Alternative to `ls`
 alias plot=gnuplot           # Data plotter
 alias tk=tokei               # Info about code
 alias c=sgpt                 # Shell GPT
@@ -38,7 +39,11 @@ alias pca="pre-commit run -a"
 # System-related aliases and functions
 ################################################
 # Set ls as exa, if the command is installed
-if command -v exa >/dev/null 2>&1; then
+if command -v eza >/dev/null 2>&1; then
+  alias ls='eza'
+  alias ll='eza -alF --git'
+  alias l='eza -1'
+elif command -v exa >/dev/null 2>&1; then
   alias ls='exa'
   alias ll='exa -alF'
   alias l='exa -1'

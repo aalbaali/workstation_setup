@@ -58,19 +58,17 @@ done
 # sudo apt-get install -y gnome-tweaks
 
 # Add exa apt packages. Installation depends on the system version
-if ! command dpkg -s exa > /dev/null 2>&1 && [ -f /etc/os-release ]; then
+if ! command dpkg -s eza > /dev/null 2>&1 && [ -f /etc/os-release ]; then
   . /etc/os-release
   if [ "$NAME" == "Ubuntu" ]; then
     VERSION=$(echo $VERSION_ID | cut -d '.' -f 1)
     if [ $VERSION -gt 20 ]; then
-      # The current system is Ubuntu and its version is higher than 20.04"
-      wget http://archive.ubuntu.com/ubuntu/pool/universe/r/rust-exa/exa_0.10.1-2_amd64.deb
-      sudo apt install ./exa_0.10.1-2_amd64.deb
-      rm exa_0.10.1-2_amd64.deb
-    else
-      # The current system is Ubuntu but its version is not higher than 20.04
-      sudo add-apt-repository -y ppa:spvkgn/exa
-      sudo apt-get update && sudo apt-get install exa
+      sudo mkdir -p /etc/apt/keyrings
+      wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+      echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+      sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+      sudo apt update
+      sudo apt install -y eza
     fi
   fi
 fi
