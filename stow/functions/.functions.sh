@@ -63,6 +63,11 @@ if command -v colordiff >/dev/null 2>&1; then
   alias diff='colordiff'
 fi
 
+# Override 'du', if dust is installed
+if command -v dust >/dev/null 2>&1; then
+  alias du='dust'
+fi
+
 # Swap two files
 # https://stackoverflow.com/questions/1115904/shortest-way-to-swap-two-files-in-bash
 #

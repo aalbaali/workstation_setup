@@ -73,6 +73,12 @@ if ! command dpkg -s eza > /dev/null 2>&1 && [ -f /etc/os-release ]; then
   fi
 fi
 
+# Install dust if it doesn't already exist
+if [ ! command -v dust &> /dev/null ]; then
+  wget https://github.com/bootandy/dust/releases/download/v0.9.0/du-dust_0.9.0-1_amd64.deb -o /tmp/dust.deb
+  sudo dpkg -i /tmp/dust.deb
+  rm /tmp/dust.deb
+fi
 
 # Installing `bat` using apt-get creates `batcat` as the default binary. To set `bat`, create a
 # symbolic link
