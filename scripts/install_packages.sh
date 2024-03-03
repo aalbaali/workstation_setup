@@ -75,7 +75,7 @@ fi
 
 # Install dust if it doesn't already exist
 if [ ! command -v dust &> /dev/null ]; then
-  wget https://github.com/bootandy/dust/releases/download/v0.9.0/du-dust_0.9.0-1_amd64.deb -o /tmp/dust.deb
+  wget https://github.com/bootandy/dust/releases/download/v0.9.0/du-dust_0.9.0-1_amd64.deb -O /tmp/dust.deb
   sudo dpkg -i /tmp/dust.deb
   rm /tmp/dust.deb
 fi
