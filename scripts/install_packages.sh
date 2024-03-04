@@ -44,6 +44,7 @@ pkgs=(
   'autojump'
 	'zoxide'
   'gh'
+  'hyperfine'
 )
 
 pids=()
