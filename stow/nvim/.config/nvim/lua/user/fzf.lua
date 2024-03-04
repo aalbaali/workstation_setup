@@ -1,4 +1,5 @@
-vim.keymap.set("n", vim.g.altleader .. "o", ":Files<CR>")
+vim.keymap.set("n", vim.g.altleader .. "O", ":Files<CR>")
+vim.keymap.set("n", vim.g.altleader .. "o", ":GFiles<CR>")
 vim.keymap.set("n", vim.g.altleader .. "i", ":Buffers<CR>")
 vim.keymap.set("n", vim.g.altleader .. "l", ":BLines<CR>")
 vim.keymap.set("n", vim.g.altleader .. "L", ":Lines<CR>")
@@ -8,6 +9,7 @@ vim.keymap.set("n", vim.g.altleader .. ":", ":History:<CR>")
 vim.keymap.set("n", vim.g.altleader .. "/", ":History/<CR>")
 vim.keymap.set("n", vim.g.altleader .. "w", ":Windows<CR>")
 vim.keymap.set("n", vim.g.altleader .. "ts", ":BTags<CR>")
+vim.keymap.set("n", vim.g.altleader .. "J", ":Jumps<CR>")
 
 -- Call commands for words under the curser
 vim.keymap.set("n", vim.g.altleader .. "eo", ":call fzf#vim#files('.', {'options':'--query '.expand('<cword>')})<CR>")

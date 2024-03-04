@@ -116,8 +116,8 @@ fi
 ###############################
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Autojump
-[[ -s /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh
+# Zoxide
+eval "$(zoxide init --cmd cd zsh)"
 
 # Zoxide
 eval "$(zoxide init --cmd cd zsh)"
