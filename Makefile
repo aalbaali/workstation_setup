@@ -13,7 +13,7 @@ base: scripts/install_base.sh
 # Install packages for a full development environment (e.g., nvim, tmux, etc.)
 dev: scripts/install_packages.sh scripts/post_install_setup.sh
 	bash scripts/install_packages.sh
-	rm -f ~/.zshrc
+	[ -f ~/.zshrc ] && mv ~/.zshrc ~/.zshrc.bak
 	bash scripts/post_install_setup.sh \
 					--zsh \
           --zsh-setup \
