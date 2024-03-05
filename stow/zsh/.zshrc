@@ -69,11 +69,6 @@ export PATH="$(which fzf):$PATH"
 autoload -Uz compinit
 compinit
 
-## Networking alias
-#if [ -f ~/avidbots_networking/aliases ]; then
-#    . ~/avidbots_networking/aliases
-#fi
-
 # Source localrc
 [[ -f ~/.localrc ]] && source ~/.localrc
 
@@ -132,7 +127,7 @@ bindkey "^x^e" edit-command-line
 [ -f ~/.functions.sh ] && source ~/.functions.sh
 [ -f ~/.rosfunctions.sh ] && source ~/.rosfunctions.sh
 [ -f ~/.tmuxfunctions.sh ] && source ~/.tmuxfunctions.sh
-[ -f ~/.vention.sh ] && source ~/.vention.sh
+[ -f ~/.pickle.sh ] && source ~/.pickle.sh
 [[ $(docker --help 2>/dev/null) ]] && [ -f ~/.dockerfunctions.sh ] && source ~/.dockerfunctions.sh
 
 if [[ -f  ~/.zsh/git-completion.bash ]] then
