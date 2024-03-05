@@ -165,19 +165,6 @@ return packer.startup(function(use)
   --  end
   --}
 
-  -- ChatGPT
-  use({
-    "jackMort/ChatGPT.nvim",
-    config = function()
-      require("chatgpt").setup()
-    end,
-    requires = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
-    }
-  })
-
   -- Markdown table-of-contents generation
   use { "mzlogin/vim-markdown-toc" }
 
