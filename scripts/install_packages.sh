@@ -86,7 +86,7 @@ if [ ! command -v dust &> /dev/null ]; then
 fi
 
 # Install zoxide
-if [ ! command -v dust &> /dev/null ]; then
+if [ ! command -v zoxide &> /dev/null ]; then
   install_deb https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide_0.9.4-1_amd64.deb
 fi
 
