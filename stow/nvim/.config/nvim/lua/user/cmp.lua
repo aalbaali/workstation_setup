@@ -1,6 +1,5 @@
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
-  print("Couldn't load 'cmp'")
   return
 end
 
