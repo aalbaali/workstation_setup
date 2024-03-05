@@ -134,6 +134,7 @@ fi
 # Install without prompt if insallation config is set to true
 for app_full in */; do
   app=${app_full%/}
+  yn=n
   if [[ $ALL_STOW  ]] || [[ $INSTALL_ALL ]] || [[ "${STOW_PACKAGES[$app]}" = true ]]; then
     yn=y
   elif [ "${STOW_PACKAGES[$app]}" = false ]; then
