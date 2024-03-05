@@ -16,7 +16,6 @@ dev: scripts/install_packages.sh scripts/post_install_setup.sh
 	bash scripts/post_install_setup.sh \
 					--zsh \
           --zsh-setup \
-          --bash \
           --functions \
           --git \
           --nvim \
