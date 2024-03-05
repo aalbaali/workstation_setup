@@ -114,9 +114,6 @@ fi
 # Zoxide
 eval "$(zoxide init --cmd cd zsh)"
 
-# Zoxide
-eval "$(zoxide init --cmd cd zsh)"
-
 # Enable Ctrl-x to edit command line in vim
 autoload -U edit-command-line
 zle -N edit-command-line

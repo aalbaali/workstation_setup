@@ -1,10 +1,8 @@
 #!/bin/bash
 # Add ppa repo to install latest version of git
-sudo add-apt-repository ppa:git-core/ppa
+sudo add-apt-repository ppa:git-core/ppa -y
 
 # Install packages I normally use
-sudo apt-get update
-
 sudo apt-get update
 
 pkgs=(
@@ -42,7 +40,6 @@ pkgs=(
   'python3-venv'
   'npm'
   'autojump'
-	'zoxide'
   'gh'
   'hyperfine'
 )
@@ -70,7 +67,7 @@ if ! command dpkg -s eza > /dev/null 2>&1 && [ -f /etc/os-release ]; then
       wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
       echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
       sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
-      sudo apt update
+      sudo apt update -y
       sudo apt install -y eza
     fi
   fi
@@ -79,9 +76,10 @@ fi
 function install_deb() {
   local url="$1"
   wget "$url" -O /tmp/deb_to_install.deb
-  sudo dpkg -i /tmp/deb_to_install.debi
-  rm /tmp/deb_to_install.debim
+  sudo dpkg -i /tmp/deb_to_install.deb
+  rm /tmp/deb_to_install.deb
 }
+
 # Install dust if it doesn't already exist
 if [ ! command -v dust &> /dev/null ]; then
   install_deb https://github.com/bootandy/dust/releases/download/v0.9.0/du-dust_0.9.0-1_amd64.deb
@@ -110,7 +108,7 @@ source $SCRIPT_DIR/install_nvim.sh
 source $SCRIPT_DIR/install_node.sh
 
 # Install fzf if it doesn't already exist
-if [ ! command -v fzf &> /dev/null ]; then
+if ! command -v fzf &> /dev/null ; then
   read -p "Install fzf? (Y/n): " yn
   case $yn in
     "" | [Yy]* )
