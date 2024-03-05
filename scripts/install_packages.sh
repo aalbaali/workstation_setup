@@ -81,12 +81,12 @@ function install_deb() {
 }
 
 # Install dust if it doesn't already exist
-if [ ! command -v dust &> /dev/null ]; then
+if ! command -v dust &> /dev/null; then
   install_deb https://github.com/bootandy/dust/releases/download/v0.9.0/du-dust_0.9.0-1_amd64.deb
 fi
 
 # Install zoxide
-if [ ! command -v zoxide &> /dev/null ]; then
+if ! command -v zoxide &> /dev/null ; then
   install_deb https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide_0.9.4-1_amd64.deb
 fi
 
