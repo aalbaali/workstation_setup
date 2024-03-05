@@ -109,21 +109,16 @@ source $SCRIPT_DIR/install_node.sh
 
 # Install fzf if it doesn't already exist
 if ! command -v fzf &> /dev/null ; then
-  read -p "Install fzf? (Y/n): " yn
-  case $yn in
-    "" | [Yy]* )
-      # Check if repo already exists
-      if [ ! -d $HOME/.fzf ]; then
-        echo "Cloning fzf into ~/.fzf"
-        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-      fi
+  # Check if repo already exists
+  if [ ! -d $HOME/.fzf ]; then
+    echo "Cloning fzf into ~/.fzf"
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  fi
 
-      if [ -f $HOME/.fzf/install ]; then
-        echo "Installing fzf"
-        y | $HOME/.fzf/install
-      else
-        echo "$HOME/.fzf/install script does not exist"
-      fi
-    ;;
-  esac
+  if [ -f $HOME/.fzf/install ]; then
+    echo "Installing fzf"
+    y | $HOME/.fzf/install
+  else
+    echo "$HOME/.fzf/install script does not exist"
+  fi
 fi
