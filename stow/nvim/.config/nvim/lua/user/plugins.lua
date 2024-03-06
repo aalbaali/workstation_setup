@@ -143,18 +143,20 @@ return packer.startup(function(use)
   use('cdelledonne/vim-cmake')                                                            --  Construct and build CMake projects
   use({
     "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
   })
 
-  ---- The configs are needed to be here to make sure the plugin is loaded before its used
-  --use { --  Github copilot
-  --  "zbirenbaum/copilot.lua",
-  --  cmd = "Copilot",
-  --  event = "InsertEnter",
-  --  config = function()
-  --    require("user.copilot")
-  --  end,
-  --}
+  -- The configs are needed to be here to make sure the plugin is loaded before its used
+  use { --  Github copilot
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("user.copilot")
+    end,
+  }
 
   ---- Copilot autocompletion
   --use {

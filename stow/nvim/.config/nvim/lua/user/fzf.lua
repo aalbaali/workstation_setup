@@ -1,5 +1,5 @@
-vim.keymap.set("n", vim.g.altleader .. "O", ":Files<CR>")
-vim.keymap.set("n", vim.g.altleader .. "o", ":GFiles<CR>")
+vim.keymap.set("n", vim.g.altleader .. "o", ":Files<CR>")
+vim.keymap.set("n", vim.g.altleader .. "O", ":GFiles<CR>")
 vim.keymap.set("n", vim.g.altleader .. "i", ":Buffers<CR>")
 vim.keymap.set("n", vim.g.altleader .. "l", ":BLines<CR>")
 vim.keymap.set("n", vim.g.altleader .. "L", ":Lines<CR>")

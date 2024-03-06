@@ -33,4 +33,4 @@ require "user.undotree"
 require "user.tagbar"
 require "user.easymotion"
 --require "user.copilot" -- Loaded from plugins.lua
-require "user.chatgpt"
+require "user.dev-container"
