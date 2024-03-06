@@ -8,7 +8,7 @@ export LOGDNA_KEY=b43d4937f6e8055a2fb21e4758a3ea0d
 # Files to source
 #######################################
 [[ -f ~/.picklerc ]] && source ~/.picklerc
-# [[ -f ~/dev_profile.sh ]] && source ~/dev_profile.sh
+[[ -f ~/dev_profile.sh ]] && source ~/dev_profile.sh
 
 #######################################
 # Functions
