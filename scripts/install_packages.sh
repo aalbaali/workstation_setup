@@ -42,6 +42,7 @@ pkgs=(
   'autojump'
   'gh'
   'hyperfine'
+  'locales'
 )
 
 pids=()

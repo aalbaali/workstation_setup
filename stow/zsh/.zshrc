@@ -3,6 +3,11 @@ autoload bashcompinit
 bashcompinit
 autoload -U compinit && compinit -u
 
+# Ensure locale settings are valid
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US:en
+export LC_ALL=en_US.UTF-8
+
 # Source starship
 eval "$(starship init zsh)"
 
