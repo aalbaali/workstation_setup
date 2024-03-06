@@ -11,16 +11,6 @@ lsp.preset({
   suggest_lsp_servers = true,
 })
 
-local servers = {
-  "pyright",
-  "jsonls",
-  "clangd",
-  "lua_ls",
-  "cmake",
-  "rust_analyzer",
-}
-lsp.ensure_installed(servers)
-
 -- Fix Undefined global 'vim'
 lsp.configure('lua_ls', {
   settings = {

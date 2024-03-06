@@ -1,12 +1,12 @@
 local servers = {
-	-- "cssls",
-	-- "html",
-	-- "tsserver",
+  "bashls",
 	"pyright",
-	"jsonls",
   "clangd",
+  "cmake",
   "rust_analyzer",
+  "lua_ls",
   "tsserver",
+	"jsonls",
 }
 
 local settings = {
