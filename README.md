@@ -159,6 +159,17 @@ ReconnectIntervals=1, 2, 4, 8, 16, 32, 64
 AutoEnable=true
 ```
 
+## Neovim's Mason causing installation issues
+Sometimes, Mason encounters issues while installing some packages.
+For example,
+```bash
+.../start/mason.nvim/lua/mason-core/installer/init.lua:61: Lockfile already exists. Package(name=lua-language-server)
+```
+This is usually caused by a lock by npm to prevent multiple installs.
+Here are some checks to remove this error:
+1. check any running npm installations, and either wait for them to finish or kill them;
+2. if there are no installations are running, then it's possible that the lock file is stale and didn't update. To remove the lock, delete the files in `~/.local/share/nvim/mason/staging`
+
 # Resources
 - Allison Thackston's [workstation setup](https://github.com/athackst/workstation_setup/)
 - Hiding terminal titlebar: [AskUbuntu Question](https://askubuntu.com/questions/1230157/how-to-remove-title-bar-from-terminal-on-the-new-ubuntu-20-04)
