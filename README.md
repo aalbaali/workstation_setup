@@ -170,6 +170,21 @@ Here are some checks to remove this error:
 1. check any running npm installations, and either wait for them to finish or kill them;
 2. if there are no installations are running, then it's possible that the lock file is stale and didn't update. To remove the lock, delete the files in `~/.local/share/nvim/mason/staging`
 
+## Zsh autocompletion is acting funny
+Sometimes the autocompletion tends to act funny. One of the reasons I found was happening when loading starship.
+Specifically, when I commented out the `eval "$(starship init zsh)"` line from `~/.zshrc`, the issue would disappear.
+The solution was to install `locale` and set the region and language settings. The following are the debugging and solution steps:
+1. To ensure that the issue is a `locale` issue, then if you try to paste the character `❯` in the terminal would not paste properly
+2. Solution:
+```bash
+sudo apt-get install locales
+
+# Ensure the following env vars are stored in ~/.zshrc
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US:en
+export LC_ALL=en_US.UTF-8
+```
+
 # Resources
 - Allison Thackston's [workstation setup](https://github.com/athackst/workstation_setup/)
 - Hiding terminal titlebar: [AskUbuntu Question](https://askubuntu.com/questions/1230157/how-to-remove-title-bar-from-terminal-on-the-new-ubuntu-20-04)

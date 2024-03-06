@@ -123,3 +123,8 @@ if ! command -v fzf &> /dev/null ; then
     echo "$HOME/.fzf/install script does not exist"
   fi
 fi
+
+locale-gen en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US:en
+export LC_ALL=en_US.UTF-8
