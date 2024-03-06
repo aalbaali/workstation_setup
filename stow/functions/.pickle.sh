@@ -4,8 +4,15 @@ export GH_TOKEN_PATH="$HOME/src/pickle/TOKEN.txt"
 
 export LOGDNA_KEY=b43d4937f6e8055a2fb21e4758a3ea0d
 
+#######################################
+# Files to source
+#######################################
 [[ -f ~/.picklerc ]] && source ~/.picklerc
+[[ -f ~/dev_profile.sh ]] && source ~/dev_profile.sh
 
+#######################################
+# Functions
+#######################################
 function open-jira-issue() {
   """
   Open Pickle Jira issue in Google Chrome browser.
@@ -38,5 +45,8 @@ function open-pickle-jira-issue-from-clipboard() {
   open-jira-issue "${issue_num}" "${url}"
 }
 
+#######################################
+# Key bindings
+#######################################
 # Bind opening Pickle Jira issue
 bindkey -s '^[i' 'open-pickle-jira-issue-from-clipboard^M'
