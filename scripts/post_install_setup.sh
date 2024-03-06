@@ -265,9 +265,17 @@ if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh-setup]}" = true ]; then
   fi
 
   # Check if zshrc exists
+  local add_sym_link=false
   if [ ! -f $HOME/.zshrc ]; then
-    echo -e "\033[93mZshrc does not exist. Make sure to run `--zsh` before running `--zsh-setup`\033[0m"
-    exit -1
+    echo -e "\033[93mZshrc does not exist. Will add a symbolic link\033[0m"
+    add_sym_link=true
+  elif [ ! -L $HOME/.zshrc ]; then
+    echo -e "\033[93mZshrc is not a symbolic link. Will add a symbolic link\033[0m"
+    mv $HOME/.zshrc $HOME/.zshrc.bak
+    add_sym_link=true
+  fi
+  if [ $add_sym_link = true ]; then
+    ln -s $SCRIPT_DIR/../stow/zsh/.zshrc $HOME/.zshrc
   fi
 
   # Clone zsh plugins
