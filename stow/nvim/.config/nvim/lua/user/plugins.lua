@@ -172,7 +172,6 @@ return packer.startup(function(use)
 
   -- View PlantUML diagrams
   use { "tyru/open-browser.vim" }
-  use { "weirongxu/plantuml-previewer.vim" }
 
   -- Highlight and color todo comments
   use {
