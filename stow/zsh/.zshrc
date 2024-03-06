@@ -3,33 +3,13 @@ autoload bashcompinit
 bashcompinit
 autoload -U compinit && compinit -u
 
-export ZPLUG_HOME=~/.zplug
-export ZSH=~/.oh-my-zsh
-
-# Get zplug if it doesn't exist
-if [[ ! -d $ZPLUG_HOME ]];then
-    git clone https://github.com/zplug/zplug $ZPLUG_HOME
-fi
-
-# Source zplug
-source $ZPLUG_HOME/init.zsh
-
 # Source starship
 eval "$(starship init zsh)"
 
 # Plugins
-zplug "zsh-users/zsh-autosuggestions", as:plugin
-zplug "zsh-users/zsh-syntax-highlighting", as:plugin
-zplug "lib/history", as:plugin, from:oh-my-zsh
-
-# Install plugins if there are plugins that have not been installed
-# Toggle prompt by setting/unsetting the env variable `ZSH_NONINTERACTIVE`
-if ! zplug check --verbose; then
-  zplug install
-fi
-
-# Source plugins
-zplug load
+source $HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.config/zsh/oh-my-zsh/lib/history.zsh
 
 # Options
 setopt autopushd pushdignoredups

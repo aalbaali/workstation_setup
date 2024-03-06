@@ -270,26 +270,13 @@ if [ $INSTALL_ALL ] || [ "${STOW_PACKAGES[zsh-setup]}" = true ]; then
     exit -1
   fi
 
-  # Install zsh plug
-  source $HOME/.zshrc
+  # Clone zsh plugins
+  mkdir -p $HOME/.config/zsh
+  git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.config/zsh/oh-my-zsh
+  git clone https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.config/zsh/zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.config/zsh/zsh-syntax-highlighting
 
-  # Apply the patch diff in zplug to allow zplug installation:
-  #  - https://github.com/zplug/zplug/issues/272#issuecomment-850644485
-  #  - https://github.com/nemanjan00/dev-environment/blob/53e946b3790642a13bbfbfe6598bea415f666a5e/zplug/patch/pipe_fix.diff
-  # Warn user if ~/.zplug directory doesn't exist
-  if [ -d $HOME/.zplug ]; then
-    patch $HOME/.zplug/base/core/add.zsh $SCRIPT_DIR/../zplug/patch/pipe_fix.diff
-  else
-    echo -e "\033[93mZplug directory does not exist\033[0m"
-    exit -1
-  fi
-  ZPLUG_PIPE_FIX=true
-  source ~/.zshrc
-  zplug install
-
-  # Install starship
+  # Install and setup starship
   curl -sS https://starship.rs/install.sh | sudo sh -s - -y
-
-  # Link starship config
   ln -s $SCRIPT_DIR/../stow/zsh/.config/starship.toml ~/.config -f
 fi
