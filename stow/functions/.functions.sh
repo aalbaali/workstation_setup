@@ -479,11 +479,14 @@ pinst() {
 # Deactivate
 alias pdeact="deactivate"
 
+#########################################
+# Ranger
+#########################################
+export EDITOR=nvim
 
 #########################################
 # Networking
 #########################################
-#######################################
 # Parse URL string query into key-value pairs
 # Globals:
 #   None
