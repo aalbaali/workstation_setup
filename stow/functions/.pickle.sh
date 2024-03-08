@@ -1,4 +1,4 @@
-local TOKENS_PATH="/home/amro/src/pickle/TOKENS.sh"
+export TOKENS_PATH="/home/amro/src/pickle/TOKENS.sh"
 [[ -f "${TOKENS_PATH}" ]] && source "${TOKENS_PATH}"
 
 alias j=jira
@@ -52,7 +52,7 @@ function open-pickle-jira-issue-from-clipboard() {
 # Bind opening Pickle Jira issue
 bindkey -s '^[i' 'open-pickle-jira-issue-from-clipboard^M'
 
-[ "$USERNAME" != "dill" ] && exit
+[ "$USERNAME" != "dill" ] && return
 export HOME=/home/dill
 export PATH=${PROJDIR}/scripts:${HOME}/bin:${PATH}
 
