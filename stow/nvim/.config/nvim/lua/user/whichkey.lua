@@ -257,7 +257,7 @@ local opts_window = {
 }
 
 local mapping_window = {
-  ["q"] = { "<cmd>Sayonara<cr>", "Close window and delete from buffer" },
+  ["q"] = { "<cmd>w<cr><cmd>Sayonara<cr>", "Close window and delete from buffer" },
   ["c"] = { "<cmd>close<cr>", "Close window" },
   ["C"] = { "<cmd>tabclose<cr>", "Close tab" },
 }
