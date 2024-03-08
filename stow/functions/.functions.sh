@@ -19,8 +19,7 @@ alias vsc="code -n ."
 alias jj=julia
 alias jfranklin="julia --project=Project.toml -e 'using Franklin; serve()'"
 alias jpluto="julia -e 'using Pluto; Pluto.run()'"
-#alias vpdf=sioyek
-alias vpdf=evince            # Pdf viewer
+alias pdf=evince             # PDF viewer
 alias sz=ncdu                # view file usage
 alias h=htop                 # View system performance
 alias b=btop                 # View system performance
