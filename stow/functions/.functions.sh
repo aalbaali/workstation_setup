@@ -10,7 +10,7 @@
 # Application aliases
 ################################################
 alias nv=nvim
-alias fd="fdfind"
+alias fd="fdfind -L"
 alias fdh="fdfind -H -I"
 alias agh="ag --hidden -U"
 alias agn="ag -l"

@@ -1,6 +1,7 @@
-export PICKLE_PATH="$HOME/src/pickle"
-export GH_TOKEN_PATH="$HOME/src/pickle/TOKEN.txt"
-[[ -f $GH_TOKEN_PATH ]] && export GH_TOKEN=$(cat ${GH_TOKEN_PATH})
+local TOKENS_PATH="/home/amro/src/pickle/TOKENS.sh"
+[[ -f "${TOKENS_PATH}" ]] && source "${TOKENS_PATH}"
+
+alias j=jira
 
 export LOGDNA_KEY=b43d4937f6e8055a2fb21e4758a3ea0d
 
