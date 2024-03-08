@@ -80,7 +80,6 @@ function swap()
 alias ta='tmux a -t'
 alias now='watch -x -t -n 0.01 date +%s.%N' 
 alias o=xdg-open
-alias k='k -h'
 alias cdg='cd "$(git rev-parse --show-cdup)"'
 alias cdr='cd "$(git rev-parse --show-superproject-working-tree)"' # Change to git root director
 alias cdd='cd ~/shared/data'
@@ -94,10 +93,10 @@ alias cmd='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=Debug'
 alias cmn='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=RelWithDebInfo'
 alias cmnd='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=Debug'
 alias a="apt-cache search '' | sort | cut --delimiter ' ' --fields 1 | fzf --multi --cycle --reverse --preview 'apt-cache show {1}' | xargs -r sudo apt install -y"
-alias nn="nnn-static"
+alias nn="ranger"
 alias zz="source ~/.zshrc"
 
-# Open current path in file explorer (fe) for a given directory and current directory
+# Open current path in file explorer (fe) for a given directory (e.g., 'fe .')
 alias fe="nautilus --browser"
 
 # Copy current working directory
