@@ -9,6 +9,7 @@ vim.keymap.set("n", vim.g.altleader .. ":", ":History:<CR>")
 vim.keymap.set("n", vim.g.altleader .. "/", ":History/<CR>")
 vim.keymap.set("n", vim.g.altleader .. "w", ":Windows<CR>")
 vim.keymap.set("n", vim.g.altleader .. "ts", ":BTags<CR>")
+vim.keymap.set("n", vim.g.altleader .. "tS", ":Tags<CR>")
 vim.keymap.set("n", vim.g.altleader .. "J", ":Jumps<CR>")
 
 -- Call commands for words under the curser
