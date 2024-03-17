@@ -20,7 +20,7 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-  keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+  --keymap(bufnr, "n", "<leader>lf", "<cmd>LspZeroFormat<cr>", opts)
   keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", opts)
   keymap(bufnr, "n", "<leader>lI", "<cmd>Mason<cr>", opts)
   keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
@@ -68,7 +68,7 @@ lsp_zero.preset({
 })
 
 -- Fix Undefined global 'vim'
-lsp_zero.configure('lua_ls', {
+require('lspconfig').lua_ls.setup {
   settings = {
     Lua = {
       diagnostics = {
@@ -76,7 +76,20 @@ lsp_zero.configure('lua_ls', {
       }
     }
   }
-})
+}
+require('lspconfig').pylsp.setup {
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          ignore = { 'W391' },
+          maxLineLength = 100
+        }
+      }
+    }
+  }
+}
+
 
 lsp_zero.setup()
 
@@ -111,16 +124,16 @@ require('mason-lspconfig').setup({
 
 local opts = {}
 for _, server in pairs(servers) do
-	opts = {
-		capabilities = vim.lsp.protocol.make_client_capabilities(),
-	}
+  opts = {
+    capabilities = vim.lsp.protocol.make_client_capabilities(),
+  }
 
-	server = vim.split(server, "@")[1]
+  server = vim.split(server, "@")[1]
 
-	local require_ok, conf_opts = pcall(require, "user.lsp.settings." .. server)
-	if require_ok then
-		opts = vim.tbl_deep_extend("force", conf_opts, opts)
-	end
+  local require_ok, conf_opts = pcall(require, "user.lsp.settings." .. server)
+  if require_ok then
+    opts = vim.tbl_deep_extend("force", conf_opts, opts)
+  end
 
-	require('lspconfig')[server].setup(opts)
+  require('lspconfig')[server].setup(opts)
 end

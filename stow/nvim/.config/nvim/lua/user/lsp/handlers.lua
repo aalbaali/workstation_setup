@@ -29,19 +29,19 @@ M.setup = function()
 			active = signs, -- show signs
 		},
 		update_in_insert = true,
-		underline = false,
+    underline = true,
 		severity_sort = true,
 		float = {
 			focusable = true,
-			style = "minimal",
+			--style = "minimal",
 			border = "rounded",
 			source = "always",
-			header = "",
-			prefix = "",
+			--header = "",
+			--prefix = "",
 		},
 	}
 
-	vim.diagnostic.config(config)
+  vim.diagnostic.config(config)
 
 	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 		border = "rounded",

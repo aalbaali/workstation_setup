@@ -81,50 +81,38 @@ return packer.startup(function(use)
   use('jremmen/vim-ripgrep') --  Ripgrep fuzzy searcher
   use {
     'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
+    branch = 'v3.x',
     requires = {
+      --- Uncomment the two plugins below if you want to manage the language servers from neovim
+      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason-lspconfig.nvim' },
+
       -- LSP Support
-      { 'neovim/nvim-lspconfig' },             -- Required
-      { 'williamboman/mason.nvim' },           -- Optional
-      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-
+      { 'neovim/nvim-lspconfig' },
       -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },         -- Required
-      { 'hrsh7th/cmp-nvim-lsp' },     -- Required
-      { 'hrsh7th/cmp-buffer' },       -- Optional
-      { 'hrsh7th/cmp-path' },         -- Optional
-      { 'saadparwaiz1/cmp_luasnip' }, -- Optional
-      { 'hrsh7th/cmp-nvim-lua' },     -- Optional
-
-      -- Snippets
-      { 'L3MON4D3/LuaSnip' },             -- Required
-      { 'rafamadriz/friendly-snippets' }, -- Optional
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'L3MON4D3/LuaSnip' },
     }
   }
+  use { "stevearc/conform.nvim", config = function() require("user.conform").setup() end, }
   use 'simrat39/rust-tools.nvim'
 
-  use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
   use { "RRethy/vim-illuminate" }
   use { "nvim-telescope/telescope.nvim" }
   use { "nvim-treesitter/nvim-treesitter" }
-  use { "nvim-treesitter/nvim-treesitter-context" }   -- View context at the current cursor functions/classes
+  use { "nvim-treesitter/nvim-treesitter-context" } -- View context at the current cursor functions/classes
   use { "lewis6991/gitsigns.nvim" }
 
-  use('tpope/vim-fugitive')             --  Git comments
-  use('vim-utils/vim-man')              --  View `man` pages in vim
-  use('mrtazz/DoxygenToolkit.vim')      --  Auto-insert Doxygen comments
-  use('skywind3000/asyncrun.vim')       --  Run commands / builds in background
-  use('christoomey/vim-tmux-navigator') --  Seamless navigation between vim and tmux
-  --use('dense-analysis/ale')              --  Asynchronous linting
-  --use('sheerun/vim-polyglot')            --  Better syntax highlighting
-  use { 'junegunn/fzf', run = function() vim.cmd("silent! call fzf#install()") end } --  Install fzf (fast fuzzy searcher)
-  use('junegunn/fzf.vim')                                                            --  fzf vim extension
-  -- use('airblade/vim-gitgutter')          --  Git status on side bar and git operations
-  use('rhysd/vim-clang-format')                                                      --  Commands for applying clang-formatting
-  use('preservim/nerdtree')                                                          --  Navigate files using a tree structure
-  use('mhinz/vim-startify')                                                          --  Manage vim sessions
-  -- use('vim-airline/vim-airline')         --  Custom status bar
-  -- use('vim-airline/vim-airline-themes')  --  Themes
+  use('tpope/vim-fugitive')                                                               --  Git commands
+  use('vim-utils/vim-man')                                                                --  View `man` pages in vim
+  use('mrtazz/DoxygenToolkit.vim')                                                        --  Auto-insert Doxygen comments
+  use('skywind3000/asyncrun.vim')                                                         --  Run commands / builds in background
+  use('christoomey/vim-tmux-navigator')                                                   --  Seamless navigation between vim and tmux
+  use { 'junegunn/fzf', run = function() vim.cmd("silent! call fzf#install()") end }      --  Install fzf (fast fuzzy searcher)
+  use('junegunn/fzf.vim')                                                                 --  fzf vim extension
+  use('rhysd/vim-clang-format')                                                           --  Commands for applying clang-formatting
+  use('preservim/nerdtree')                                                               --  Navigate files using a tree structure
   use('lervag/vimtex')                                                                    --  latex support
   use('justinmk/vim-sneak')                                                               --  fast navigation
   use('tpope/vim-surround')                                                               --  operations for surrounding words with paranthesis
@@ -158,20 +146,8 @@ return packer.startup(function(use)
     end,
   }
 
-  ---- Copilot autocompletion
-  --use {
-  --  "zbirenbaum/copilot-cmp",
-  --  after = { "copilot.lua" },
-  --  config = function()
-  --    require("copilot_cmp").setup()
-  --  end
-  --}
-
   -- Markdown table-of-contents generation
   use { "mzlogin/vim-markdown-toc" }
-
-  -- View PlantUML diagrams
-  use { "tyru/open-browser.vim" }
 
   -- Highlight and color todo comments
   use {

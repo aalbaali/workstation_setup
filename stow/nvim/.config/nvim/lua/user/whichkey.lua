@@ -139,6 +139,7 @@ local mappings = {
       "Workspace Diagnostics",
     },
     f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
+    F = { "<cmd>lua conform.format()<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>Mason<cr>", "Installer Info" },
     j = {
