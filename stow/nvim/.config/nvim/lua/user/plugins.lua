@@ -77,6 +77,7 @@ return packer.startup(function(use)
   use { "sonph/onehalf" }
   use { "tomasr/molokai" }
   use { "w0ng/vim-hybrid" }
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   use('jremmen/vim-ripgrep') --  Ripgrep fuzzy searcher
   use {

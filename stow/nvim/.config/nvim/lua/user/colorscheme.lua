@@ -4,9 +4,12 @@
 ---- Darkplus (autocompletion not working properly on this color scheme)
 --local colorscheme = "darkplus"
 
--- Gruvbox
-local colorscheme = "gruvbox"
-vim.g.gruvbox_contrast_dark = 'hard'
+-- catppuccin-mocha
+local colorscheme = "catppuccino-mocha"
+
+---- Gruvbox
+--local colorscheme = "gruvbox"
+--vim.g.gruvbox_contrast_dark = 'hard'
 
 ---- Iceberg
 --local colorscheme = "iceberg"
@@ -92,7 +95,4 @@ vim.g.gruvbox_contrast_dark = 'hard'
 -- Background options
 vim.opt.background = 'dark'
 
-local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
-if not status_ok then
-  return
-end
+vim.cmd.colorscheme "catppuccin"
