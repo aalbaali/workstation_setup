@@ -77,7 +77,11 @@ return packer.startup(function(use)
   use { "sonph/onehalf" }
   use { "tomasr/molokai" }
   use { "w0ng/vim-hybrid" }
-  use { "catppuccin/nvim", as = "catppuccin" }
+  use {
+    "catppuccin/nvim",
+    as = "catppuccin",
+    colorscheme = "catppuccin-mocha",
+  }
 
   use('jremmen/vim-ripgrep') --  Ripgrep fuzzy searcher
   use {
@@ -108,7 +112,7 @@ return packer.startup(function(use)
   use { "RRethy/vim-illuminate" }
   use { "nvim-telescope/telescope.nvim" }
   use { "nvim-treesitter/nvim-treesitter" }
-  use { "nvim-treesitter/nvim-treesitter-context" }   -- View context at the current cursor functions/classes
+  use { "nvim-treesitter/nvim-treesitter-context" } -- View context at the current cursor functions/classes
   use { "lewis6991/gitsigns.nvim" }
 
   use('tpope/vim-fugitive')             --  Git comments
@@ -133,6 +137,7 @@ return packer.startup(function(use)
   use('preservim/tagbar')                                                                 --  Browse tags of current file
   use('preservim/nerdcommenter')                                                          --  Commenting plugin
   use('sindrets/diffview.nvim')                                                           --  Neovim diffview
+  use { 'NeogitOrg/neogit' }                                                              --  Neovim git plugin
   use('tmsvg/pear-tree')                                                                  --  Pair brackets, braces, etc.
   use('kshenoy/vim-signature')                                                            --  Place, toggle, and display marks
   use('drmikehenry/vim-headerguard')                                                      --  C++ header guards

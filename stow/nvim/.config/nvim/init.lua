@@ -32,5 +32,5 @@ require "user.startify"
 require "user.undotree"
 require "user.tagbar"
 require "user.easymotion"
---require "user.copilot" -- Loaded from plugins.lua
 require "user.doge"
+require "user.neogit"
