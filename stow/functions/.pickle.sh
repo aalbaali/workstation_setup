@@ -57,25 +57,3 @@ function open-pickle-jira-issue-from-clipboard() {
 # Bind opening Pickle Jira issue
 bindkey -s '^[i' 'open-pickle-jira-issue-from-clipboard^M'
 
-[ "$USERNAME" != "dill" ] && return
-export HOME=/home/dill
-export PATH=${PROJDIR}/scripts:${HOME}/bin:${PATH}
-
-export PROTO_HOME="$HOME/.proto"
-export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH"
-
-command -v proto &> /dev/null && eval "$(proto completions --shell bash)"
-
-eval "$(activate-global-python-argcomplete --dest=-)"
-
-eval "$(register-python-argcomplete spice -e ${PROJDIR}/scripts/spice)"
-
-# Register the entrypoint tab completer with scripts/start.
-# The parser gets registered separately, because then when we try to do tab-completion, the parser
-# runs on its own before the rest of the script does. This allows tab-completion to happen quickly
-# even if, for example, scripts/start does nothing after arg parsing other than sleep forever.
-eval "$(\
-register-python-argcomplete \
---external-argcomplete-script "${PROJDIR}/process_manager/argcomplete_entrypoints/start_dill_entrypoint.py" \
-start
-)"

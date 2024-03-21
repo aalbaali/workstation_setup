@@ -16,6 +16,8 @@ source $HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.config/zsh/oh-my-zsh/lib/history.zsh
 
+export USER="${USER:=${USERNAME}}"
+
 # Options
 setopt autopushd pushdignoredups
 
