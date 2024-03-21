@@ -43,6 +43,7 @@ pkgs=(
   'gh'
   'hyperfine'
   'locales'
+  'wget'
 )
 
 pids=()
