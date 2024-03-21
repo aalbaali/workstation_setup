@@ -138,4 +138,10 @@ export NVM_DIR="$HOME/.nvm"
 
 #[ -f ~/.resh/shellrc ] && source ~/.resh/shellrc # this line was added by RESH
 
-#source "$HOME/.cargo/env"
+[[ -f "${HOME}/.cargo/env" ]] && source "$HOME/.cargo/env"
+
+# Add julia, if it exists
+if [ -f "${HOME}/.juliaup/bin/julia" ]; then
+  path=('/home/amro/.juliaup/bin' $path)
+  export PATH
+fi
