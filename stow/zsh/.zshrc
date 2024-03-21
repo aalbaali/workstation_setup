@@ -105,11 +105,11 @@ zle -N edit-command-line
 bindkey "^x^e" edit-command-line
 
 # Load custom functions and aliases
+[ -f ~/.pickle.sh ] && source ~/.pickle.sh
 [ -f ~/.logger.sh ] && source ~/.logger.sh
 [ -f ~/.functions.sh ] && source ~/.functions.sh
 [ -f ~/.rosfunctions.sh ] && source ~/.rosfunctions.sh
 [ -f ~/.tmuxfunctions.sh ] && source ~/.tmuxfunctions.sh
-[ -f ~/.pickle.sh ] && source ~/.pickle.sh
 [[ $(docker --help 2>/dev/null) ]] && [ -f ~/.dockerfunctions.sh ] && source ~/.dockerfunctions.sh
 
 if [[ -f  ~/.zsh/git-completion.bash ]] then

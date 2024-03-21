@@ -1,22 +1,16 @@
-# Get rosbag topics
-
 # Do not continue sourcing this file if ROS is not installed
 if [[ -z $ROS_VERSION ]] then
   return
 fi
 
-# $1: bag name
-gettopics() { rosbag info -k topics "$1" -y | ag topic: | awk -F': ' '{print $2}'}
-
 # ROS workspace
-export ROS_WORKSPACE="$(cd; echo $PWD)/ros_ws"
+export ROS_WORKSPACE="${ROS_WORKSPACE:=$(cd; echo $PWD)/ros_ws}"
 export ROS_UNDERLAY_WS="/opt/ros/$ROS_DISTRO"
 
 # Change to ros workspace
 alias cdr="cd $ROS_WORKSPACE"
-alias cdi="cd $ROS_WORKSPACE"
 alias cds="cd $ROS_WORKSPACE/src"
-alias sros="source $ROS_UNDERLAY_WS/setup.zsh"
+alias source_underlay="source $ROS_UNDERLAY_WS/setup.zsh"
 
 # Rosdeup UPDATE existing packages
 alias rupdate="rosdep update"
@@ -39,10 +33,12 @@ rucbuild() {
 
 
 # Source overlay
-if [[ $ROS_VERSION -eq 1 ]] then
-  alias sro="source $ROS_WORKSPACE/devel/setup.zsh"
+if [[ -n "${ROS_INSTALLATION_DIRNAME}" ]]; then
+  alias source_overlay="source ${ROS_WORKSPACE}/${ROS_INSTALLATION_DIRNAME}/setup.zsh"
+elif [[ $ROS_VERSION -eq 1 ]]; then
+  alias source_overlay="source $ROS_WORKSPACE/devel/setup.zsh"
 else
-  alias sro="source $ROS_WORKSPACE/install/setup.zsh"
+  alias source_overlay="source $ROS_WORKSPACE/install/setup.zsh"
 fi
 
 

@@ -5,11 +5,16 @@ alias j=jira
 
 export LOGDNA_KEY=b43d4937f6e8055a2fb21e4758a3ea0d
 
+# ROS workspace in rosbridge
+export ROS_WORKSPACE="{$HOME}/catkin_ws"
+export ROS_INSTALLATION_DIRNAME="devel_isolated"
+
 #######################################
 # Files to source
 #######################################
 [[ -f ~/.picklerc ]] && source ~/.picklerc
-[[ -f ~/dev_profile.sh ]] && source ~/dev_profile.sh
+[[ -f ~/dev_profile.sh ]] && zsh ~/dev_profile.sh
+
 
 #######################################
 # Functions
@@ -59,7 +64,7 @@ export PATH=${PROJDIR}/scripts:${HOME}/bin:${PATH}
 export PROTO_HOME="$HOME/.proto"
 export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH"
 
-eval "$(proto completions --shell bash)"
+command -v proto &> /dev/null && eval "$(proto completions --shell bash)"
 
 eval "$(activate-global-python-argcomplete --dest=-)"
 
