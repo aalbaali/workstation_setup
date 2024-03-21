@@ -97,8 +97,10 @@ format = "[$duration]($style) "
 style = "bold yellow"
 
 [python]
-format = "[$virtualenv]($style) "
+format = "[${symbol}$version$virtualenv]($style) "
 style = "bright-black"
+symbol = "P"
+pyenv_version_name = true
 
 [nodejs]
-format = '[ $version](bold green) '
+format = '[$version](bold green) '
