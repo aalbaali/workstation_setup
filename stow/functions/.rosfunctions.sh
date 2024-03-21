@@ -8,8 +8,8 @@ export ROS_WORKSPACE="${ROS_WORKSPACE:=$(cd; echo $PWD)/ros_ws}"
 export ROS_UNDERLAY_WS="/opt/ros/$ROS_DISTRO"
 
 # Change to ros workspace
-alias cdr="cd $ROS_WORKSPACE"
-alias cds="cd $ROS_WORKSPACE/src"
+alias cdr="cd ${ROS_WORKSPACE}"
+alias cds="cd ${ROS_WORKSPACE}/src"
 alias source_underlay="source $ROS_UNDERLAY_WS/setup.zsh"
 
 # Rosdeup UPDATE existing packages
@@ -41,11 +41,12 @@ else
   alias source_overlay="source $ROS_WORKSPACE/install/setup.zsh"
 fi
 
-
-# https://github.com/ros2/ros2cli/issues/534#issuecomment-957516107
-# argcomplete for ros2 & colcon
-eval "$(register-python-argcomplete3 ros2)"
-eval "$(register-python-argcomplete3 colcon)"
+if [[ $ROS_VERSION -eq 2 ]]; then
+  # https://github.com/ros2/ros2cli/issues/534#issuecomment-957516107
+  # argcomplete for ros2 & colcon
+  eval "$(register-python-argcomplete3 ros2)"
+  eval "$(register-python-argcomplete3 colcon)"
+fi
 
 
 # Ros local
