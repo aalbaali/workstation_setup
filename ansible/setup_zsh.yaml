@@ -13,22 +13,6 @@
         - zsh
         - stow
 
-  - name: Backup existing ~/.zshrc
-    register: did_remove_zshrc
-    changed_when: did_remove_zshrc.rc != 0
-    shell:
-      cmd: |
-        [ -L ~/.zshrc ] && exit 0
-        mv ~/.zshrc ~/.zshrc.bak
-      creates: ~/.zshrc.bak
-
-
-  - name: Clone workstation_setup
-    git:
-      repo: 'https://github.com:aalbaali/workstation_setup.git'
-      dest: '{{ workstation_setup_dir }}'
-      update: false
-
   - name: Set ~/.config ownership
     become: yes
     file:
@@ -36,33 +20,58 @@
       mode: '700'
       owner: '{{ ansible_user_id }}'
 
-  - name: Stow zsh files
-    shell:
-      cmd: |
-        stow -t ${HOME} zsh
-        touch ${HOME}/.config/.did_stow_zsh
-      chdir: '{{ workstation_setup_dir }}/stow'
-      creates: ~/.did_stow_zsh
+  - name: Add zsh dotfiles
+    block:
+      - name: Backup existing ~/.zshrc
+        register: did_remove_zshrc
+        changed_when: did_remove_zshrc.rc != 0
+        shell:
+          cmd: |
+            [ -L ~/.zshrc ] && exit 0
+            mv ~/.zshrc ~/.zshrc.bak
+          creates: ~/.zshrc.bak
+
+
+      - name: Clone workstation_setup
+        when: should_link_dotfiles
+        git:
+          repo: 'https://github.com:aalbaali/workstation_setup.git'
+          dest: '{{ workstation_setup_dir }}'
+          update: false
+
+      - name: Stow zsh files
+        shell:
+          cmd: |
+            stow -t ${HOME} zsh
+            touch ~/.config/.did_stow_zsh
+          chdir: '{{ workstation_setup_dir }}/stow'
+          creates: ~/.config/did_stow_zsh
+
+    rescue:
+      - name: Revert zsh
+        when: did_remove_zshrc is succeeded
+        shell: mv ~/.zshrc.bak ~/.zshrc
+    
 
   - name: Setup zsh packages
     block:
-        - name: oh-my-zsh
-          git:
-            repo: https://github.com/robbyrussell/oh-my-zsh.git
-            dest: "${HOME}/.config/zsh/oh-my-zsh"
-            update: true
+      - name: oh-my-zsh
+        git:
+          repo: https://github.com/robbyrussell/oh-my-zsh.git
+          dest: "${HOME}/.config/zsh/oh-my-zsh"
+          update: true
 
-        - name: zsh-autosuggestions
-          git:
-            repo: https://github.com/zsh-users/zsh-autosuggestions.git 
-            dest: "${HOME}/.config/zsh/zsh-autosuggestions"
-            update: true
+      - name: zsh-autosuggestions
+        git:
+          repo: https://github.com/zsh-users/zsh-autosuggestions.git 
+          dest: "${HOME}/.config/zsh/zsh-autosuggestions"
+          update: true
 
-        - name: zsh-syntax-highlighting
-          git:
-            repo: https://github.com/zsh-users/zsh-syntax-highlighting.git 
-            dest: "${HOME}/.config/zsh/zsh-syntax-highlighting"
-            update: true
+      - name: zsh-syntax-highlighting
+        git:
+          repo: https://github.com/zsh-users/zsh-syntax-highlighting.git 
+          dest: "${HOME}/.config/zsh/zsh-syntax-highlighting"
+          update: true
 
   - name: Install starship
     shell: curl -sS https://starship.rs/install.sh | sudo sh -s - -y
