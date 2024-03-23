@@ -134,3 +134,20 @@
     shell: ". ~/.nvm/nvm.sh && nvm install 16 && nvm alias default 16"
     when: node_version.stdout != "v16"
 
+
+  - name: Install nvim
+    become: yes
+    block:
+    - name: Get nvim binary
+      ansible.builtin.unarchive:
+        src: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz 
+        dest: /opt
+        remote_src: yes
+        creates: /opt/nvim-linux64
+
+    - name: Symlink nvim
+      ansible.builtin.file:
+        src: /opt/nvim-linux64/bin/nvim 
+        dest: /usr/bin/nvim 
+        state: link
+
