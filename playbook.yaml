@@ -4,42 +4,93 @@
     connection: local 
     tasks:
 
-    #- name: "just execute a ls -lrt command"
-    #  shell: "ls"
-    #  register: "output"
-
-    #- debug: var=output.stdout_lines
-
-    #- name: Print message
-    #  ansible.builtin.debug:
-    #    msg: Hello world
-
-    #- name: Update apt cache
-    #  become: yes
-    #  apt:
-    #    update_cache: yes
-
-    #- name: Install apt packages
-    #  become: yes
-    #  apt:
-    #    pkg:
-    #    - vim
-    #    - gnuplot
-
-    - name: Clone fzf
+    - name: Install apt-packages
       become: yes
-      git:
-        repo: 'https://github.com/junegunn/fzf.git'
-        dest: /opt/fzf
-        depth: 1
-        force: yes
-        update: yes
-        version: HEAD
+      apt:
+        state: latest
+        update_cache: true
+        name:
+          - gnupg
+          - git
+          - bat
+          - stow
+          - vim-gtk
+          - tmux
+          - git
+          - htop
+          - curl
+          - ripgrep
+          - silversearcher-ag
+          - unzip
+          - libclang-dev
+          - clang-format
+          - clang-tidy
+          - cmake
+          - cmake-curses-gui
+          - build-essential
+          - gdb
+          - ncdu
+          - rsync
+          - xclip
+          - libpython3-dev
+          - gawk
+          - nodejs
+          - tree
+          - fd-find
+          - zsh
+          - brightnessctl
+          - tilix
+          - exuberant-ctags
+          - software-properties-common
+          - bat
+          - python3-venv
+          - npm
+          - autojump
+          - gh
+          - hyperfine
+          - locales
 
-    # Run command to install fzf
+
+    - name: Install latest git version
+      block:
+      - name: Add the repository
+        become: true
+        apt_repository:
+          repo: ppa:git-core/ppa
+          state: present
+          update_cache: yes
+
+      - name: Install latest version of git
+        become: yes
+        apt:
+          state: latest
+          name: git
+
+
     - name: Install fzf
-      become: yes
-      shell:
-        chdir: /opt/fzf
-        cmd: /opt/fzf/install --all
-        creates: /opt/fzf/bin/fzf
+      block:
+      - name: Clone fzf
+        become: yes
+        git:
+          repo: 'https://github.com/junegunn/fzf.git'
+          dest: /opt/fzf
+          depth: 1
+          force: yes
+          update: yes
+          version: HEAD
+
+      # Run command to install fzf
+      - name: Run installation script
+        become: false
+        shell:
+          chdir: /opt/fzf
+          cmd: /opt/fzf/install --all
+          creates: /opt/fzf/bin/fzf
+
+    - name: Install eza
+      block:
+        - name: Add deb repo
+          apt_repository:
+            repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/myrepo.asc] https://download.example.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+            state: present
+
