@@ -5,7 +5,13 @@
   vars:
     - home: '/home/{{ ansible_user_id }}'
     - workstation_setup_dir: ~/Dev/workstation_setup
+    - should_link_dotfiles: true
+
   tasks:
+  - name: Debug
+    debug:
+      msg: "The value is {{ should_link_dotfiles }}"
+
   - name: Install zsh
     become: yes
     apt:
@@ -21,6 +27,7 @@
       owner: '{{ ansible_user_id }}'
 
   - name: Add zsh dotfiles
+    when: should_link_dotfiles | bool
     block:
       - name: Backup existing ~/.zshrc
         register: did_remove_zshrc
@@ -33,11 +40,11 @@
 
 
       - name: Clone workstation_setup
-        when: should_link_dotfiles
         git:
           repo: 'https://github.com:aalbaali/workstation_setup.git'
           dest: '{{ workstation_setup_dir }}'
           update: false
+
 
       - name: Stow zsh files
         shell:
@@ -53,6 +60,20 @@
         shell: mv ~/.zshrc.bak ~/.zshrc
     
 
+  - name: Clone zshrc without linking
+    when: not should_link_dotfiles | bool
+    shell: |
+      mv ~/.zshrc ~/.zshrc.bak 2>/dev/null && \
+      curl -o ~/.zshrc \
+       -sS "https://raw.githubusercontent.com/aalbaali/workstation_setup/master/stow/zsh/.zshrc"
+
+  - name: Clone starship.toml without linking
+    when: not should_link_dotfiles | bool
+    shell: |
+      mv ~/.config/starship.toml ~/.config/starship.toml.bak 2>/dev/null && \
+      curl -o ~/.config/starship.toml \
+       -sS "https://raw.githubusercontent.com/aalbaali/workstation_setup/master/stow/zsh/.config/starship.toml"
+ 
   - name: Setup zsh packages
     block:
       - name: oh-my-zsh
