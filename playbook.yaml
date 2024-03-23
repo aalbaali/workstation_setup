@@ -1,96 +1,136 @@
 ---
-  - name: "Playing with Ansible and Git"
-    hosts: localhost
-    connection: local 
-    tasks:
+- name: "Installing packages for development"
+  hosts: localhost
+  connection: local 
+  tasks:
 
-    - name: Install apt-packages
+  - name: Install apt-packages
+    become: yes
+    apt:
+      state: latest
+      update_cache: true
+      name:
+        - gnupg
+        - git
+        - bat
+        - stow
+        - vim-gtk
+        - tmux
+        - git
+        - htop
+        - curl
+        - ripgrep
+        - silversearcher-ag
+        - unzip
+        - libclang-dev
+        - clang-format
+        - clang-tidy
+        - cmake
+        - cmake-curses-gui
+        - build-essential
+        - gdb
+        - ncdu
+        - rsync
+        - xclip
+        - libpython3-dev
+        - gawk
+        - tree
+        - fd-find
+        - zsh
+        - brightnessctl
+        - tilix
+        - exuberant-ctags
+        - software-properties-common
+        - python3-venv
+        - npm
+        - autojump
+        - gh
+        - hyperfine
+        - locales
+
+  - name: Create a symbolic link to bat
+    become: true
+    shell:
+      cmd: ln -s "$(command -v batcat)" /usr/bin/bat
+      creates: /usr/bin/bat
+
+  - name: Install latest git version
+    block:
+    - name: Add the repository
+      become: true
+      apt_repository:
+        repo: ppa:git-core/ppa
+        state: present
+        update_cache: yes
+
+    - name: Install latest version of git
       become: yes
       apt:
         state: latest
-        update_cache: true
-        name:
-          - gnupg
-          - git
-          - bat
-          - stow
-          - vim-gtk
-          - tmux
-          - git
-          - htop
-          - curl
-          - ripgrep
-          - silversearcher-ag
-          - unzip
-          - libclang-dev
-          - clang-format
-          - clang-tidy
-          - cmake
-          - cmake-curses-gui
-          - build-essential
-          - gdb
-          - ncdu
-          - rsync
-          - xclip
-          - libpython3-dev
-          - gawk
-          - nodejs
-          - tree
-          - fd-find
-          - zsh
-          - brightnessctl
-          - tilix
-          - exuberant-ctags
-          - software-properties-common
-          - bat
-          - python3-venv
-          - npm
-          - autojump
-          - gh
-          - hyperfine
-          - locales
+        name: git
 
 
-    - name: Install latest git version
-      block:
-      - name: Add the repository
-        become: true
+  - name: Install fzf
+    block:
+    - name: Clone fzf
+      become: yes
+      git:
+        repo: 'https://github.com/junegunn/fzf.git'
+        dest: /opt/fzf
+        depth: 1
+        force: yes
+        update: yes
+        version: HEAD
+
+    # Run command to install fzf
+    - name: Run installation script
+      become: false
+      shell:
+        chdir: /opt/fzf
+        cmd: /opt/fzf/install --all
+        creates: /opt/fzf/bin/fzf
+
+  - name: Install eza
+    become: yes
+    block:
+      - name: Get eza URL
+        ansible.builtin.get_url:
+          url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc 
+          dest: /etc/apt/keyrings/gierens.asc
+
+      - name: Add eza deb repo
         apt_repository:
-          repo: ppa:git-core/ppa
+          repo: "deb [signed-by=/etc/apt/keyrings/gierens.asc] http://deb.gierens.de stable main"
           state: present
-          update_cache: yes
 
-      - name: Install latest version of git
+      - name: Install eza deb
         become: yes
         apt:
-          state: latest
-          name: git
+          update_cache: yes
+          name: eza
 
+  - name: Install dust
+    become: yes
+    apt:
+      deb: https://github.com/bootandy/dust/releases/download/v0.9.0/du-dust_0.9.0-1_amd64.deb
 
-    - name: Install fzf
-      block:
-      - name: Clone fzf
-        become: yes
-        git:
-          repo: 'https://github.com/junegunn/fzf.git'
-          dest: /opt/fzf
-          depth: 1
-          force: yes
-          update: yes
-          version: HEAD
+  - name: Install zoxide
+    become: yes
+    apt:
+      deb: https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide_0.9.4-1_amd64.deb
 
-      # Run command to install fzf
-      - name: Run installation script
-        become: false
-        shell:
-          chdir: /opt/fzf
-          cmd: /opt/fzf/install --all
-          creates: /opt/fzf/bin/fzf
+  - name: Install nvm
+    ansible.builtin.shell: >
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    args:
+      creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 
-    - name: Install eza
-      block:
-        - name: Add deb repo
-          apt_repository:
-            repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/myrepo.asc] https://download.example.com/linux/ubuntu {{ ansible_distribution_release }} stable"
-            state: present
+  - name: Check current node version
+    shell: ". ~/.nvm/nvm.sh && nvm current"
+    register: node_version
+    changed_when: false
+
+  - name: Install and use Node.js 16
+    shell: ". ~/.nvm/nvm.sh && nvm install 16 && nvm alias default 16"
+    when: node_version.stdout != "v16.*"
 
