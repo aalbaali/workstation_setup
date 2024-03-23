@@ -1,0 +1,6 @@
+---
+- name: "Setting up neovim for development"
+  hosts: localhost
+  connection: local 
+  tasks:
+    - name: 

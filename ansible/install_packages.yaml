@@ -73,7 +73,6 @@
   - name: Install fzf
     block:
     - name: Clone fzf
-      become: yes
       git:
         repo: 'https://github.com/junegunn/fzf.git'
         dest: /opt/fzf
@@ -84,7 +83,6 @@
 
     # Run command to install fzf
     - name: Run installation script
-      become: false
       shell:
         chdir: /opt/fzf
         cmd: /opt/fzf/install --all
