@@ -126,11 +126,11 @@
       creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 
   - name: Check current node version
-    shell: ". ~/.nvm/nvm.sh && nvm current"
+    shell: ". ~/.nvm/nvm.sh && nvm current | sed 's/\\..*//'"
     register: node_version
     changed_when: false
 
   - name: Install and use Node.js 16
     shell: ". ~/.nvm/nvm.sh && nvm install 16 && nvm alias default 16"
-    when: node_version.stdout != "v16.*"
+    when: node_version.stdout != "v16"
 
