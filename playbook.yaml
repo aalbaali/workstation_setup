@@ -151,3 +151,13 @@
         dest: /usr/bin/nvim 
         state: link
 
+  - name: Check if locale should be updated
+    shell: "locale -a | grep -i en_us"
+    changed_when: false
+    register: should_update_locale
+
+  - name: Language and time zone
+    become: yes
+    shell: locale-gen en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+    when: should_update_locale.stdout != "en_US.utf8"
+
