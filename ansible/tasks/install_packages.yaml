@@ -74,9 +74,10 @@
   - name: Install fzf
     block:
     - name: Clone fzf
+      become: yes
       git:
         repo: 'https://github.com/junegunn/fzf.git'
-        dest: /tmp/fzf
+        dest: /opt/fzf
         depth: 1
         force: yes
         update: yes
@@ -85,7 +86,7 @@
     # Run command to install fzf
     - name: Run installation script
       shell:
-        cmd: /tmp/fzf/install --all
+        cmd: /opt/fzf/install --all
         creates: "{{ home }}/.fzf.zsh"
 
   - name: Install eza
