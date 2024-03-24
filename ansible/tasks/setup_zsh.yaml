@@ -36,11 +36,12 @@
             mv ~/.zshrc ~/.zshrc.bak 2>/dev/null
             mv ~/.config/starship.toml ~/.config/starship.toml.bak 2>/dev/null
             exit 0
-      - name: Stow zsh files
+      - name: Link zsh dotfiles
         shell:
           cmd: |
-            stow -t ${HOME} zsh
-          chdir: '{{ workstation_setup_dir }}/stow'
+            ln -s ${PWD}/.zshrc ${HOME}
+            ls -A .config/ | xargs -I{} ln -s ${PWD}/.config/{} ${HOME}/.config/{}
+          chdir: '{{ workstation_setup_dir }}/stow/zsh'
 
     rescue:
       - name: Revert zsh
