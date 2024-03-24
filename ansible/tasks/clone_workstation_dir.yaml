@@ -2,5 +2,5 @@
   git:
     repo: https://github.com/aalbaali/workstation_setup.git
     dest: '{{ workstation_setup_dir }}'
-    update: true
+    update: false
     force: false
