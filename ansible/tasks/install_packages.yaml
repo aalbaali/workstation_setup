@@ -77,7 +77,7 @@
       become: yes
       git:
         repo: 'https://github.com/junegunn/fzf.git'
-        dest: /opt/fzf
+        dest: "{{ home }}.fzf"
         depth: 1
         force: yes
         update: yes
@@ -86,7 +86,7 @@
     # Run command to install fzf
     - name: Run installation script
       shell:
-        cmd: /opt/fzf/install --all
+        cmd: "{{ home }}/.fzf/install --all"
         creates: "{{ home }}/.fzf.zsh"
 
   - name: Install eza
