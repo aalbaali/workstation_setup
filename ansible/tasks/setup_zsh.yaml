@@ -40,7 +40,7 @@
         shell:
           cmd: |
             ln -s ${PWD}/.zshrc ${HOME}
-            ls -A .config/ | xargs -I{} ln -s ${PWD}/.config/{} ${HOME}/.config/{}
+            ls -A .config/ | xargs -I{} ln -sfb ${PWD}/.config/{} ${HOME}/.config/{}
           chdir: '{{ workstation_setup_dir }}/stow/zsh'
 
     rescue:
