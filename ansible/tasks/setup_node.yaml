@@ -5,4 +5,4 @@
     creates: "{{ home }}/.nvm/nvm.sh"
 
 - name: Install and use Node.js 16
-  shell: "source ~/.nvm/nvm.sh && nvm install 16 && nvm alias default 16"
+  shell: ". ~/.nvm/nvm.sh && nvm install 16 && nvm alias default 16"
