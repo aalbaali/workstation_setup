@@ -5,9 +5,8 @@
     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 
 - name: Check current node version
-  shell: ". ~/.nvm/nvm.sh && nvm current | sed 's/\\..*//'"
+  shell: ". ~/.nvm/nvm.sh && nvm current | sed 's/\\..*//' 2>/dev/null"
   register: node_version
-  changed_when: false
 
 - name: Install and use Node.js 16
   shell: ". ~/.nvm/nvm.sh && nvm install 16 && nvm alias default 16"

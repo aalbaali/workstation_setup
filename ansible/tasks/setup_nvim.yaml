@@ -58,8 +58,9 @@
       recurse: true
 
   - name: Install nvim packages
-    become: yes
     shell:
       cmd: |
-        timeout 30 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-
+        timeout 30 nvim --headless -u NONE \
+           -c 'source ~/.config/nvim/lua/user/plugins.lua' \
+           -c 'autocmd User PackerComplete quitall' \
+           -c 'PackerSync'
