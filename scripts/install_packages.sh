@@ -103,11 +103,11 @@ fi
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-# Install nvim proper version
-source $SCRIPT_DIR/install_nvim.sh
-
 # Install node proper version
 source $SCRIPT_DIR/install_node.sh
+
+# Install nvim proper version
+source $SCRIPT_DIR/install_nvim.sh
 
 # Install fzf if it doesn't already exist
 if ! command -v fzf &> /dev/null ; then
