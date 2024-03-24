@@ -1,0 +1,6 @@
+- name: Clone workstation_setup
+  git:
+    repo: https://github.com/aalbaali/workstation_setup.git
+    dest: '{{ workstation_setup_dir }}'
+    update: true
+    force: false

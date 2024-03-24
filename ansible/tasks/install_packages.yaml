@@ -2,8 +2,10 @@
 - name: "Installing packages for development"
   hosts: localhost
   connection: local 
-  tasks:
+  vars:
+    - home: '/home/{{ ansible_user_id }}'
 
+  tasks:
   - name: Install apt-packages
     become: yes
     apt:
@@ -69,13 +71,12 @@
         state: latest
         name: git
 
-
   - name: Install fzf
     block:
     - name: Clone fzf
       git:
         repo: 'https://github.com/junegunn/fzf.git'
-        dest: /opt/fzf
+        dest: /tmp/fzf
         depth: 1
         force: yes
         update: yes
@@ -84,9 +85,8 @@
     # Run command to install fzf
     - name: Run installation script
       shell:
-        chdir: /opt/fzf
-        cmd: /opt/fzf/install --all
-        creates: /opt/fzf/bin/fzf
+        cmd: /tmp/fzf/install --all
+        creates: "{{ home }}/.fzf.zsh"
 
   - name: Install eza
     become: yes
@@ -117,38 +117,6 @@
     apt:
       deb: https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide_0.9.4-1_amd64.deb
 
-  - name: Install nvm
-    ansible.builtin.shell: >
-      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-    args:
-      creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
-
-  - name: Check current node version
-    shell: ". ~/.nvm/nvm.sh && nvm current | sed 's/\\..*//'"
-    register: node_version
-    changed_when: false
-
-  - name: Install and use Node.js 16
-    shell: ". ~/.nvm/nvm.sh && nvm install 16 && nvm alias default 16"
-    when: node_version.stdout != "v16"
-
-
-  - name: Install nvim
-    become: yes
-    block:
-    - name: Get nvim binary
-      ansible.builtin.unarchive:
-        src: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz 
-        dest: /opt
-        remote_src: yes
-        creates: /opt/nvim-linux64
-
-    - name: Symlink nvim
-      ansible.builtin.file:
-        src: /opt/nvim-linux64/bin/nvim 
-        dest: /usr/bin/nvim 
-        state: link
-
   - name: Check if locale should be updated
     shell: "locale -a | grep -i en_us"
     changed_when: false
@@ -159,3 +127,4 @@
     shell: locale-gen en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
     when: should_update_locale.stdout != "en_US.utf8"
 
+  - include: ./setup_node.yaml

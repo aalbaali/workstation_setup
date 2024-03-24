@@ -6,12 +6,9 @@
     - home: '/home/{{ ansible_user_id }}'
     - workstation_setup_dir: ~/Dev/workstation_setup
     - should_link_dotfiles: true
+    - set_as_default_shell: true
 
   tasks:
-  - name: Debug
-    debug:
-      msg: "The value is {{ should_link_dotfiles }}"
-
   - name: Install zsh
     become: yes
     apt:
@@ -23,12 +20,13 @@
     become: yes
     file:
       path: '{{ home }}/.config'
-      mode: '700'
+      mode: '755'
       owner: '{{ ansible_user_id }}'
 
   - name: Add zsh dotfiles
     when: should_link_dotfiles | bool
     block:
+      - include: ./clone_workstation_dir.yaml
       - name: Backup existing ~/.zshrc
         register: did_remove_zshrc
         changed_when: did_remove_zshrc.rc != 0
@@ -36,42 +34,44 @@
           cmd: |
             mv ~/.zshrc ~/.zshrc.bak 2>/dev/null
             mv ~/.config/starship.toml ~/.config/starship.toml.bak 2>/dev/null
-
-
-      - name: Clone workstation_setup
-        git:
-          repo: 'https://github.com:aalbaali/workstation_setup.git'
-          dest: '{{ workstation_setup_dir }}'
-          update: false
-
-
+            exit 0
       - name: Stow zsh files
         shell:
           cmd: |
             stow -t ${HOME} zsh
-            touch ~/.config/.did_stow_zsh
           chdir: '{{ workstation_setup_dir }}/stow'
-          creates: ~/.config/did_stow_zsh
 
     rescue:
       - name: Revert zsh
         when: did_remove_zshrc is succeeded
-        shell: mv ~/.zshrc.bak ~/.zshrc && rm ~/.config/did_stow_zsh 2> /dev/null
+        shell: mv ~/.zshrc.bak ~/.zshrc 2>/dev/null
     
 
   - name: Clone zshrc without linking
     when: not should_link_dotfiles | bool
-    shell: |
-      mv ~/.zshrc ~/.zshrc.bak 2>/dev/null
-      curl -o ~/.zshrc \
-       -sS "https://raw.githubusercontent.com/aalbaali/workstation_setup/master/stow/zsh/.zshrc"
+    block:
+    - name: Install zshrc
+      shell: |
+        mv ~/.zshrc ~/.zshrc.bak 2>/dev/null
+        curl -o ~/.zshrc \
+         -sS "https://raw.githubusercontent.com/aalbaali/workstation_setup/master/stow/zsh/.zshrc"
 
-  - name: Clone starship.toml without linking
-    when: not should_link_dotfiles | bool
-    shell: |
-      mv ~/.config/starship.toml ~/.config/starship.toml.bak 2>/dev/null
-      curl -o ~/.config/starship.toml \
-       -sS "https://raw.githubusercontent.com/aalbaali/workstation_setup/master/stow/zsh/.config/starship.toml"
+    - name: Clone starship.toml without linking
+      when: not should_link_dotfiles | bool
+      shell: |
+        mv ~/.config/starship.toml ~/.config/starship.toml.bak 2>/dev/null
+        curl -o ~/.config/starship.toml \
+         -sS "https://raw.githubusercontent.com/aalbaali/workstation_setup/master/stow/zsh/.config/starship.toml"
+        curl -o ~/.config/.functions.sh \
+         -sS "https://raw.githubusercontent.com/aalbaali/workstation_setup/master/stow/zsh/.config/.functions.sh"
+        curl -o ~/.config/.logger.sh \
+         -sS "https://raw.githubusercontent.com/aalbaali/workstation_setup/master/stow/zsh/.config/.logger.sh"
+        curl -o ~/.config/.pickle.sh \
+         -sS "https://raw.githubusercontent.com/aalbaali/workstation_setup/master/stow/zsh/.config/.pickle.sh"
+        curl -o ~/.config/.rosfunctions.sh \
+         -sS "https://raw.githubusercontent.com/aalbaali/workstation_setup/master/stow/zsh/.config/.rosfunctions.sh"
+        curl -o ~/.config/.tmuxfunctions.sh \
+         -sS "https://raw.githubusercontent.com/aalbaali/workstation_setup/master/stow/zsh/.config/.tmuxfunctions.sh"
  
   - name: Setup zsh packages
     block:
@@ -80,21 +80,28 @@
           repo: https://github.com/robbyrussell/oh-my-zsh.git
           dest: "${HOME}/.config/zsh/oh-my-zsh"
           update: true
+          force: true
 
       - name: zsh-autosuggestions
         git:
           repo: https://github.com/zsh-users/zsh-autosuggestions.git 
           dest: "${HOME}/.config/zsh/zsh-autosuggestions"
           update: true
+          force: true
 
       - name: zsh-syntax-highlighting
         git:
           repo: https://github.com/zsh-users/zsh-syntax-highlighting.git 
           dest: "${HOME}/.config/zsh/zsh-syntax-highlighting"
           update: true
+          force: true
 
   - name: Install starship
     shell: curl -sS https://starship.rs/install.sh | sudo sh -s - -y
     args:
       creates: /usr/local/bin/starship
 
+  - name: Set zsh as default shell
+    when: not set_as_default_shell | bool
+    become: yes
+    shell: chsh -s $(which zsh)

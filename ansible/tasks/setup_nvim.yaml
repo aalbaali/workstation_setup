@@ -1,0 +1,64 @@
+---
+- name: "Setting up neovim for development"
+  hosts: localhost
+  connection: local 
+  vars:
+    - home: '/home/{{ ansible_user_id }}'
+    - nvim_dir: "{{ home }}/.config/nvim"
+    - workstation_setup_dir: "{{ home }}/Dev/workstation_setup"
+    - should_link_dotfiles: true
+
+  tasks:
+  - name: Install nvim
+    become: yes
+    block:
+    - name: Get nvim binary
+      ansible.builtin.unarchive:
+        src: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz 
+        dest: /opt
+        creates: /opt/nvim-linux64
+
+    - name: Symlink nvim
+      ansible.builtin.file:
+        src: /opt/nvim-linux64/bin/nvim 
+        dest: /usr/bin/nvim 
+        state: link
+
+  - name: Link nvim dotfiles
+    when: should_link_dotfiles | bool
+    block:
+      - include: ./clone_workstation_dir.yaml
+      - name: Backup existing nvim dir
+        register: did_remove_nvim_configs
+        changed_when: did_remove_nvim_configs.rc != 0
+        shell: |
+          "mv {{ nvim_dir }} {{ nvim_dir }}.bak 2>/dev/null"
+          exit 0
+      - name: Link nvim dir
+        file:
+          src: "{{ workstation_setup_dir }}/stow/nvim/.config/nvim"
+          dest: "{{ home }}/.config/nvim"
+          state: link
+    rescue:
+      - name: Revert nvim dotfile linking
+        when: did_remove_nvim_configs is succeeded
+        shell: "mv {{ nvim_dir }}.bak {{ nvim_dir }} 2>/dev/null"
+
+  - name: Get Packer
+    git:
+      repo: 'https://github.com/wbthomason/packer.nvim'
+      dest: "{{ home }}/.local/share/nvim/site/pack/packer/start/packer.nvim"
+      force: true
+  - name: Set local permissions
+    become: yes
+    file:
+      path: '{{ home }}/.local'
+      mode: '755'
+      recurse: true
+
+  - name: Install nvim packages
+    become: yes
+    shell:
+      cmd: |
+        timeout 30 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+

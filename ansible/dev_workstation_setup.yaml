@@ -1,0 +1,17 @@
+- name: "Setup workstation for development"
+  hosts: localhost
+  connection: local 
+  pre_tasks:
+  - name: Update Apt
+    become: true
+    apt:
+      force_apt_get: true
+      update_cache: true
+      state: present
+    #tags:
+    #  - install
+    #  - core
+  - import_playbok: ./tasks/install_packages.yaml
+  - import_playbok: ./tasks/setup_zsh.yaml
+  - import_playbok: ./tasks/setup_nvim.yaml
+
