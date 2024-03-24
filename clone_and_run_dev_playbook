@@ -1,0 +1,26 @@
+#!/usr/bin/bash
+
+# Processes to wait for before exiting the script
+pids=()
+
+# Install ansible
+echo "Installing ansible..."
+sudo apt-get update
+sudo apt-get install -y software-properties-common ansible &
+pids+=($!)
+
+# Clone the repo with ansible configs
+git clone git@github.com:aalbaali/workstation_setup.git ~/Dev/workstation_setup --depth 1 &
+pids+=($!)
+
+
+echo "Cloning workstation setup repo..."
+# Wait for all processes to finish
+for pid in "${pids[@]}"; do
+  wait "$pid"
+done
+
+# Run ansible playbook
+echo "Running ansible playbook..."
+cd ~/Dev/workstation_setup/ansible
+ansible-playbook -i inventory dev_workstation_setup.yaml
