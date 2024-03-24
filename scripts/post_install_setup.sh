@@ -8,7 +8,6 @@
 #     --all-stow      Install all stow packages but do not necessarily setup all packages
 #     --bash          Install bash stow
 #     --zsh           Install zsh stow
-#     --function      Install .functions.sh stow
 #     --git           Install .gitignore stow
 #     --nvim          Install nvim configs
 #     --vim           Install vim configs
@@ -24,7 +23,7 @@
 #     --vim-setup     Install vim plugins
 #
 # Example
-#   ./scripts/post_install_setup.sh --zsh --functions --git --nvim --clang_format --gdb --nvim-setup
+#   ./scripts/post_install_setup.sh --zsh --git --nvim --clang_format --gdb --nvim-setup
 #
 # Note that the --no-[package] option is currently not working as expected.
 #
@@ -48,7 +47,6 @@ declare -A STOW_PACKAGES=(
   [bash]=false
   [zsh]=false
   [zsh-setup]=false
-  [functions]=false
   [git]=false
   [nvim]=false
   [nvim-setup]=false
@@ -100,8 +98,6 @@ while true; do
     --no-zsh ) STOW_PACKAGES[zsh]=false; shift ;;
     --zsh-setup ) STOW_PACKAGES[zsh-setup]=true; shift ;;
     --no-zsh-setup ) STOW_PACKAGES[zsh-setup]=false; shift ;;
-    --functions ) STOW_PACKAGES[functions]=true; shift ;;
-    --no-functions ) STOW_PACKAGES[no-functions]=false; shift ;;
     --prompt ) PROMPT_USER=true; shift ;;
     -- ) shift; break ;;
     * ) shift; break ;;

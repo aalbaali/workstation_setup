@@ -43,7 +43,7 @@ For example, running (from the root of this repo)
 ```bash
 ./scripts/post_install_setup.sh --zsh --functions --git --nvim --clang_format --gdb --nvim-setup
 ```
-will install the config files for zsh, git, neovim, clang-format, gdb debugginer, the custom [`.functions.sh`](`stow/functions/.functions.sh`) script, and install the packages for neovim.
+will install the config files for zsh, git, neovim, clang-format, gdb debugginer, and install the packages for neovim.
 
 
 
