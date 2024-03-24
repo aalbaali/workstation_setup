@@ -86,7 +86,7 @@
     - name: Run installation script
       shell:
         cmd: "{{ home }}/.fzf/install --all"
-        creates: "{{ home }}/.fzf.zsh"
+        creates: "{{ home }}/.fzf/bin/fzf"
 
   - name: Install eza
     become: yes
