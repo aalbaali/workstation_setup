@@ -15,7 +15,8 @@
       name:
         - zsh
         - stow
-
+  - name: Create ~/.config
+    shell: mkdir -p ~/.config
   - name: Set ~/.config ownership
     become: yes
     file:
