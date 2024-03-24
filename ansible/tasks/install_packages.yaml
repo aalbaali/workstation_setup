@@ -74,7 +74,6 @@
   - name: Install fzf
     block:
     - name: Clone fzf
-      become: yes
       git:
         repo: 'https://github.com/junegunn/fzf.git'
         dest: "{{ home }}.fzf"
