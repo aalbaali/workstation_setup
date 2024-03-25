@@ -1,7 +1,6 @@
 - name: Install nvm
-  ansible.builtin.shell: >
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-  args:
+  shell:
+    cmd: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
     creates: "{{ home }}/.nvm/nvm.sh"
 
 - name: Install and use Node.js 16
