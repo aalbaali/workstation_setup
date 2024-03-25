@@ -67,6 +67,11 @@ if command -v dust >/dev/null 2>&1; then
   alias du='dust'
 fi
 
+# Zoxide
+if command -v zoxicde >/dev/null 2>&1; then
+  eval "$(zoxide init --cmd cd zsh)"
+fi
+
 # Swap two files
 # https://stackoverflow.com/questions/1115904/shortest-way-to-swap-two-files-in-bash
 #
