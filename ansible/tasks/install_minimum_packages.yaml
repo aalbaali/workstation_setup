@@ -1,0 +1,111 @@
+---
+- name: "Installing packages for development"
+  hosts: localhost
+  connection: local 
+  vars:
+    - home: '/home/{{ ansible_user_id }}'
+
+  tasks:
+  - name: Install apt-packages
+    become: yes
+    apt:
+      state: latest
+      update_cache: true
+      name:
+        - git
+        - bat
+        - stow
+        - vim-gtk
+        - curl
+        - ripgrep
+        - silversearcher-ag
+        - ncdu
+        - xclip
+        - libpython3-dev
+        - gawk
+        - tree
+        - fd-find
+        - zsh
+        - brightnessctl
+        - exuberant-ctags
+        - software-properties-common
+        - python3-venv
+        - hyperfine
+        - locales
+
+  - name: Create a symbolic link to bat
+    become: true
+    shell:
+      cmd: ln -s "$(command -v batcat)" /usr/bin/bat
+      creates: /usr/bin/bat
+
+  - name: Install latest git version
+    block:
+    - name: Add the repository
+      become: true
+      apt_repository:
+        repo: ppa:git-core/ppa
+        state: present
+        update_cache: yes
+
+    - name: Install latest version of git
+      become: yes
+      apt:
+        state: latest
+        name: git
+
+  - name: Install fzf
+    block:
+    - name: Clone fzf
+      git:
+        repo: 'https://github.com/junegunn/fzf.git'
+        dest: "{{ home }}/.fzf"
+        depth: 1
+        force: yes
+        update: yes
+        version: HEAD
+
+    # Run command to install fzf
+    - name: Run installation script
+      shell:
+        cmd: "{{ home }}/.fzf/install --all"
+        creates: "{{ home }}/.fzf/bin/fzf"
+
+  - name: Install eza
+    become: yes
+    block:
+      - name: Get eza URL
+        ansible.builtin.get_url:
+          url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc 
+          dest: /etc/apt/keyrings/gierens.asc
+
+      - name: Add eza deb repo
+        apt_repository:
+          repo: "deb [signed-by=/etc/apt/keyrings/gierens.asc] http://deb.gierens.de stable main"
+          state: present
+
+      - name: Install eza deb
+        become: yes
+        apt:
+          update_cache: yes
+          name: eza
+
+  - name: Install dust
+    become: yes
+    apt:
+      deb: https://github.com/bootandy/dust/releases/download/v0.9.0/du-dust_0.9.0-1_amd64.deb
+
+  - name: Install zoxide
+    become: yes
+    apt:
+      deb: https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide_0.9.4-1_amd64.deb
+
+  - name: Check if locale should be updated
+    shell: "locale -a | grep -i en_us"
+    changed_when: false
+    register: should_update_locale
+
+  - name: Language and time zone
+    become: yes
+    shell: locale-gen en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+    when: should_update_locale.stdout != "en_US.utf8"
