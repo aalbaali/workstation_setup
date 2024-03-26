@@ -6,7 +6,7 @@ alias j=jira
 export LOGDNA_KEY=b43d4937f6e8055a2fb21e4758a3ea0d
 
 # ROS workspace in rosbridge
-export ROS_WORKSPACE="{$HOME}/catkin_ws"
+export ROS_WORKSPACE="${HOME}/catkin_ws"
 export ROS_INSTALLATION_DIRNAME="devel_isolated"
 
 #######################################
