@@ -12,6 +12,7 @@ git clone git@github.com:aalbaali/workstation_setup.git ~/.dot
 ```bash
 # Install minimum requirements
 sudo apt-get update
+sudo apt-get upgrade
 sudo apt-get install -y curl ca-certificates git
 curl -sS https://raw.githubusercontent.com/aalbaali/workstation_setup/master/clone_and_run_dev_playbook | bash -
 ```
