@@ -101,7 +101,7 @@
       deb: https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide_0.9.4-1_amd64.deb
 
   - name: Check if locale should be updated
-    shell: "locale -a | grep -i en_us"
+    shell: (locale -a | grep -i en_us) || true
     changed_when: false
     register: should_update_locale
 
