@@ -68,7 +68,7 @@ if command -v dust >/dev/null 2>&1; then
 fi
 
 # Zoxide
-if command -v zoxicde >/dev/null 2>&1; then
+if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init --cmd cd zsh)"
 fi
 
