@@ -23,4 +23,6 @@ done
 # Run ansible playbook
 echo "Running ansible playbook..."
 cd /tmp/workstation_setup/ansible
-ansible-playbook dev_workstation_setup.yaml
+ansible-playbook tasks/dev_workstation_setup.yaml
+ansible-playbook tasks/setup_zsh.yaml
+ansible-playbook tasks/setup_nvim.yaml
