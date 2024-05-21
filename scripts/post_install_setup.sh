@@ -39,7 +39,6 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 PACKAGES_TO_CHECK=(
   git
   stow
-  tmux
 )
 
 # Stow packages to install. If set to true, then will install without a prompt
