@@ -57,3 +57,11 @@ function open-pickle-jira-issue-from-clipboard() {
 # Bind opening Pickle Jira issue
 bindkey -s '^[i' 'open-pickle-jira-issue-from-clipboard^M'
 
+
+#######################################
+# Dev container setup
+#######################################
+[[ ! "${DILL_DEVCONTAINER}" = "true" ]] && return
+
+# Add scripts to binary dir
+export PATH=${PROJDIR}/scripts:${HOME}/bin:${PATH}
