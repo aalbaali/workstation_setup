@@ -23,6 +23,7 @@
     user = aalbaali
 [push]
     default = simple
+    autoSetupRemote = true
 [diff]
     tool = meld
 [difftool]
