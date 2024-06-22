@@ -28,6 +28,7 @@ alias plot=gnuplot           # Data plotter
 alias tk=tokei               # Info about code
 alias c=sgpt                 # Shell GPT
 alias g4="sgpt --model gpt-4"                 # Shell GPT
+alias g4o="sgpt --model gpt-4o"                 # Shell GPT
 alias mex="chmod +x "        # Make executable
 alias pwdt="echo ${PWD##*/}" # Print truncated directory (i.e., without the full path)
 alias bm=hyperfine           # Benchmark commands
@@ -355,6 +356,14 @@ gbrmlocal() {
   git fetch --prune
   git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch "$delete_flag"
 }
+
+####################
+# Quick math
+####################
+math() {
+  python -c "from math import *; print($@)"
+}
+alias m=math
 
 ####################
 # Zip/tar
