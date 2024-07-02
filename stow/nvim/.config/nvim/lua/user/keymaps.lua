@@ -79,6 +79,8 @@ vim.keymap.set("n", vim.g.altleader .. "Y", [[:%y+<CR>]])
 vim.keymap.set("n", vim.g.altleader .. "yn", [[:let @+ = expand("%:t")<CR>]], opts)
 -- Copy full file name to clipboard
 vim.keymap.set("n", vim.g.altleader .. "yN", [[:let @+ = expand("%")<CR>]], opts)
+-- Copy full file name and line number to clipboard
+vim.keymap.set("n", vim.g.altleader .. "yl", [[:let @+ = expand("%") . "#L" . line(".")<CR>]], opts)
 
 -- Terminal --
 -- Better terminal navigation
