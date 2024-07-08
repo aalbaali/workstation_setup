@@ -54,3 +54,7 @@ export ROS_MASTER_URI=http://localhost:11311
 export ROS_HOSTNAME=localhost
 unset ROS_IP
 
+# Source overlay and set domain ID to communicate with Turtlebot4
+source_overlay
+export ROS_DOMAIN_ID=0
+export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
