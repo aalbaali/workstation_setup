@@ -113,7 +113,7 @@ return packer.startup(function(use)
   use { "nvim-telescope/telescope.nvim" }
   use { "nvim-treesitter/nvim-treesitter" }
   use { "nvim-treesitter/nvim-treesitter-context" } -- View context at the current cursor functions/classes
-  use { "lewis6991/gitsigns.nvim" }
+  use { "lewis6991/gitsigns.nvim", commit = "v0.8.1" }
 
   use('tpope/vim-fugitive')             --  Git comments
   use('vim-utils/vim-man')              --  View `man` pages in vim
