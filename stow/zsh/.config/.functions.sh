@@ -230,6 +230,7 @@ alias gs="git status"
 alias gm="git commit -s"
 alias ga="git add"
 alias gb="git branch"
+alias glb="git lb" # Last used branch
 alias gw="git worktree"
 alias gwa="git worktree add"
 alias gwls="git worktree list"
@@ -261,7 +262,7 @@ agd() {
 # Fuzzy checkout git branch with fzf
 # Arguments:
 #   -l: local branches only
-gz() 
+fzf_checkout_branch() 
 {
   local branches branch gb_flags
   gb_flags="--all"
@@ -274,11 +275,21 @@ gz()
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
+# List most-recently used branches using fzf and check them out
+fzf_checkout_last_branches()
+{
+  # Assumes 'git lb' is defined and lists the most-recently used branches
+  branch=$(git lb | fzf-tmux --ansi | awk '{print $NF}')
+  git checkout $branch
+}
+
+alias gz="fzf_checkout_branch"
 alias gzl="gz -l"
-alias gbl="gz -l"
+alias gbl="fzf_checkout_last_branches"
 
 bindkey -s '^[b' 'gzl^M'
 bindkey -s '^[B' 'gz^M'
+bindkey -s '^[L' 'gbl^M'
 
 
 # Copy current branch to clipboard
