@@ -55,7 +55,7 @@ return packer.startup(function(use)
   use { "lewis6991/impatient.nvim" }
   use { "lukas-reineke/indent-blankline.nvim", commit = 'v2.20.8' }
   -- use { "goolord/alpha-nvim" }
-  use { "folke/which-key.nvim" }
+  use { "folke/which-key.nvim", commit = "v2.1.0"}
 
   -- Colorschemes
   use { "folke/tokyonight.nvim" }
