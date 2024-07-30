@@ -20,31 +20,28 @@ export ROS_INSTALLATION_DIRNAME="devel_isolated"
 # Functions
 #######################################
 function open-jira-issue() {
-  """
-  Open Pickle Jira issue in Google Chrome browser.
+  # Open Pickle Jira issue in Google Chrome browser.
+  #
+  # Usage:
+  #   open_jira_issue <issue_num>
+  #
+  # Args:
+  #   issue_num: Jira issue number
+  #   url: Jira issue URL (e.g., https://picklerobot.atlassian.net/browse)
 
-  Usage:
-    open_jira_issue <issue_num>
-
-  Args:
-    issue_num: Jira issue number
-    url: Jira issue URL (e.g., https://picklerobot.atlassian.net/browse)
-  """
-
-  local issue_num="$1"
+  # Match the issue number from any string
+  local issue_num=`echo ${1} | ag -o 'en-\d*' | tr '[:lower:]' '[:upper:]'`
   local website="${url}/${issue_num}"
   google-chrome "${website}" &>/dev/null &
 }
 
 function open-pickle-jira-issue-from-clipboard() {
-  """
-  Open Pickle Jira issue in Google Chrome browser, where the issue number is obtained from the
-  clipboard.
-
-  Usage:
-    # Copy Jira issue number
-    open_pickle_jira_issue
-  """
+  # Open Pickle Jira issue in Google Chrome browser, where the issue number is obtained from the
+  # clipboard.
+  #
+  # Usage:
+  #   # Copy Jira issue number
+  #   open_pickle_jira_issue
 
   local issue_num="$(xclip -selection clipboard -o)"
   local url="https://picklerobot.atlassian.net/browse"
