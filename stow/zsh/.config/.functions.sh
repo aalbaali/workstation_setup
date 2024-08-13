@@ -105,8 +105,15 @@ alias zz="source ~/.zshrc"
 # Open current path in file explorer (fe) for a given directory (e.g., 'fe .')
 alias fe="nautilus --browser"
 
-# Copy current working directory
-cpwd() { pwd | tr -d '\n' | xclip -selection clipboard; }
+# pwd relative to home (use '~' instead of '/home/user')
+hpwd() { pwd | sed "s|/home/$(whoami)/|~/|" }
+
+# Copy current working directory relative to home to clipboard
+cpwd() { hpwd | tr -d '\n' | xclip -selection clipboard; }
+
+# Copy Full Workig Directory to clipboard
+cfwd() { pwd | tr -d '\n' | xclip -selection clipboard; }
+
 
 # Make and change into a directory
 mkcd()
