@@ -30,7 +30,7 @@ function open-jira-issue() {
   #   url: Jira issue URL (e.g., https://picklerobot.atlassian.net/browse)
 
   # Match the issue number from any string
-  local issue_num=`echo ${1} | ag -o 'en-\d*' | tr '[:lower:]' '[:upper:]'`
+  local issue_num=`echo ${1} | ag -o '\w*-\d+' | tr '[:lower:]' '[:upper:]'`
   local website="${url}/${issue_num}"
   google-chrome "${website}" &>/dev/null &
 }
