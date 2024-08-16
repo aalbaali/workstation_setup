@@ -192,6 +192,12 @@ export LANGUAGE=en_US:en
 export LC_ALL=en_US.UTF-8
 ```
 
+# Keyboard shortcuts
+I use keyboard shortcuts to run some bash functions. For example, I use the shortcut `Alt + c` to run `open-chrome-from-clipboard()`. Steps to add the shortcut:
+1. Look for keyboard shortcuts in settings.
+2. Go to `Vide and Customize Shortcuts` > `Custom Shortcuts`
+3. Create a new shortcut. Under `Command`, add `/usr/bin/zsh -c "source ~/.config/.functions.sh && open-chrome-from-clipboard"`
+
 # Resources
 - Allison Thackston's [workstation setup](https://github.com/athackst/workstation_setup/)
 - Hiding terminal titlebar: [AskUbuntu Question](https://askubuntu.com/questions/1230157/how-to-remove-title-bar-from-terminal-on-the-new-ubuntu-20-04)
