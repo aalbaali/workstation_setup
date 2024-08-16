@@ -527,3 +527,15 @@ alias pdeact="deactivate"
 function parse_url_kv() {
   echo "$1" | awk -F '[?&]' '{for(i=2;i<=NF;i++){split($i,a,"=");print a[1],a[2]}}'
 } 
+
+function open-chrome-from-clipboard() {
+  # Open a URL from the clipboard in Google Chrome.
+  #
+  # Usage:
+  #   # Copy URL
+  #   open-chrome-from-clipboard
+
+  local url="$(xclip -selection clipboard -o)"
+  google-chrome "${url}" &>/dev/null &
+}
+bindkey -s '^[c' 'open-chrome-from-clipboard^M'
