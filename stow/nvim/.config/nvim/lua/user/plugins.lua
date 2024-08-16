@@ -188,6 +188,9 @@ return packer.startup(function(use)
     end
   }
 
+  -- Open GH links
+  use { 'ruanyl/vim-gh-line' }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

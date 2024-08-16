@@ -99,6 +99,6 @@ end
 -- Function to set executable
 vim.keymap.set("n", vim.g.altleader .. "ms", SetLocalMakeprgFromPrompt)
 
- -- Run :make
+-- Run :make
 vim.keymap.set("n", vim.g.altleader .. "mm", ":make<cr>")
 

@@ -227,6 +227,7 @@ local mapping_alt = {
       g = { "<cmd>diffget<cr>", "Get changes from other buffer" },
       p = { "<cmd>diffput<cr>", "Put changes from other buffer" },
     },
+    y = { "<Plug>(gh-line)", "Yank GH remote URL to clipboard" },
   },
   h = {
     name = "Hunk",
