@@ -228,6 +228,7 @@ local mapping_alt = {
       p = { "<cmd>diffput<cr>", "Put changes from other buffer" },
     },
     y = { "<Plug>(gh-line)", "Yank GH remote URL to clipboard" },
+    o = { "<Plug>(gh-line) <cmd>lua vim.fn.jobstart('xdg-open ' .. vim.fn.getreg('+'), {detach = true})<CR>", "Open GH remote URL" },
   },
   h = {
     name = "Hunk",
