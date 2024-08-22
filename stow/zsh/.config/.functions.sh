@@ -237,6 +237,7 @@ alias gs="git status"
 alias gm="git commit -s"
 alias ga="git add"
 alias gb="git branch"
+alias gbc="git rev-parse --abbrev-ref HEAD" # Current branch
 alias glb="git lb" # Last used branch
 alias gw="git worktree"
 alias gwa="git worktree add"
