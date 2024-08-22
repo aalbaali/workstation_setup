@@ -301,9 +301,7 @@ bindkey -s '^[L' 'gbl^M'
 
 
 # Copy current branch to clipboard
-gbcp() {
-  git branch | grep '*' | awk '{printf "%s", $2}' | xclip -selection clipboard
-}
+gbcp() { gbc | xclip -selection clipboard }
 
 # lazygit
 alias lg=lazygit
