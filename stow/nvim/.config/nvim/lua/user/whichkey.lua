@@ -280,13 +280,11 @@ local opts_no_pref = {
 
 local mapping_no_pref = {
   ["]"] = {
-    c = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     q = { "<cmd>cnext<cr>", "Next quickfix" },
     t = { "<cmd>TagbarJumpNext<CR>", "Next tag" },
   },
 
   ["["] = {
-    c = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Next Hunk" },
     q = { "<cmd>cprev<cr>", "Previous quickfix" },
     t = { "<cmd>TagbarJumpPrev<CR>", "Prev tag" },
   },
