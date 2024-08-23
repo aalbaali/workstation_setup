@@ -203,6 +203,10 @@ local opts_alt = {
 }
 
 local mapping_alt = {
+  b = {
+    name = "Buffer",
+    c = { "<cmd>term less -R %<CR>", "color buffer using ANSI colors" },
+  },
   d = {
     name = "Documentation",
     a = { ":DoxAuth<CR>", "Doxygen author (documents)" },
