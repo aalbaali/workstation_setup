@@ -47,3 +47,7 @@
 	defaultBranch = main
 [pull]
 	rebase = true
+[rerere]
+	enabled = false
+[rebase]
+	autoStash = true
