@@ -41,7 +41,7 @@ alias pca="pre-commit run -a"
 # Set ls as exa, if the command is installed
 if command -v eza >/dev/null 2>&1; then
   alias ls='eza'
-  alias ll='eza -alF --git'
+  alias ll='eza -alF -r -s date --git'
   alias l='eza -1'
 elif command -v exa >/dev/null 2>&1; then
   alias ls='exa'
@@ -537,4 +537,7 @@ function open-chrome-from-clipboard() {
   local url="$(xclip -selection clipboard -o)"
   google-chrome "${url}" &>/dev/null &
 }
-bindkey -s '^[c' 'open-chrome-from-clipboard^M'
+
+# This conflicts with fzf directory search key bindings. I have a system shortcut that can be
+# activated outside zsh
+#bindkey -s '^[c' 'open-chrome-from-clipboard^M'
