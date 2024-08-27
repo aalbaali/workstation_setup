@@ -1,5 +1,5 @@
 # Do not continue sourcing this file if ROS is not installed
-if [[ -z $ROS_VERSION ]] then
+if [[ -z $ROS_VERSION && -z $ROS_DISTRO ]] then
   return
 fi
 
