@@ -6,7 +6,20 @@
     - home: '/home/{{ ansible_user_id }}'
 
   tasks:
-  - name: Install apt-packages
+  - name: Get OS version
+    command: lsb_release -rs
+    register: os_version
+
+  - name: Install apt-packages for Ubuntu 22.04 or after
+    become: yes
+    apt:
+      state: latest
+      update_cache: true
+      name:
+        - hyperfine
+    when: os_version.stdout is version('22.04', '>=')
+
+  - name: Install apt-packages for Ubuntu 20.04 or after
     become: yes
     apt:
       state: latest
@@ -30,8 +43,10 @@
         - exuberant-ctags
         - software-properties-common
         - python3-venv
-        - hyperfine
         - locales
+        - npm
+    when: os_version.stdout is version('20.04', '>=')
+
 
   - name: Create a symbolic link to bat
     become: true
@@ -89,11 +104,13 @@
         apt:
           update_cache: yes
           name: eza
+    when: os_version.stdout is version('22.04', '>=')
 
   - name: Install dust
     become: yes
     apt:
       deb: https://github.com/bootandy/dust/releases/download/v0.9.0/du-dust_0.9.0-1_amd64.deb
+    when: os_version.stdout is version('20.04', '>=')
 
   - name: Install zoxide
     become: yes
