@@ -84,3 +84,6 @@ bindkey -s '^[g' 'open-dill-file-from-clipboard^M'
 
 # Add scripts to binary dir
 export PATH=${PROJDIR}/scripts:${HOME}/bin:${PATH}
+
+# Start MB apps in sim
+alias start-sim="start --apps motor_controller navigation scan_perception amr_localization"
