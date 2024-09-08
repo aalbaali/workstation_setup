@@ -9,6 +9,8 @@
     - should_link_dotfiles: true
 
   tasks:
+  - include: ./setup_node.yaml
+
   - name: Install nvim
     become: yes
     block:
