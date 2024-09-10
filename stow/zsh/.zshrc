@@ -49,7 +49,12 @@ bindkey -s '^[r' '!!^M^M'
 
 # Add local to path
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$(which fzf):$PATH"
+
+# Add vcpkg
+export VCPKG_ROOT=${HOME}/Dev/vcpkg
+if [[ -d $VCPKG_ROOT ]] && [[ ! ":$PATH:" == *":/vcpkg:"* ]]; then
+  export PATH=$VCPKG_ROOT:$PATH
+fi
 
 ## The set of commands below slow zsh
 #setopt autocd 
