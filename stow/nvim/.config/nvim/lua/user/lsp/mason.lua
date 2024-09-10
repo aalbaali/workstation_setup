@@ -5,7 +5,6 @@ local servers = {
   "cmake",
   "rust_analyzer",
   "lua_ls",
-  "ts_ls",
 	"jsonls",
 }
 
