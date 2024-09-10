@@ -24,7 +24,7 @@ lsp.configure('lua_ls', {
 
 
 lsp.on_attach = function(client, _)
-  if client.name == "tsserver" then
+  if client.name == "ts_ls" then
     client.server_capabilities.documentFormattingProvider = true
   end
 
