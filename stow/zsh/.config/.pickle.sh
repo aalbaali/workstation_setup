@@ -69,6 +69,29 @@ function open-dill-file-from-clipboard() {
   open-dill-file "${filepath}"
 }
 
+function gsutil-download() {
+  """
+  Take a glob pattern of a bag in GCloud, prompt the user to select the bag to download, and
+  download it to the current directory.
+
+  Args:
+    pattern: Glob pattern of the bag in GCloud
+    download_dir: Directory to download the bag to (default: current directory)
+  """
+  local pattern="$1"
+  local download_dir="${2:-${PWD}}"
+  #local path="${2:-${PWD}}"
+  #local path="."
+  gcloud_bag=$(gsutil ls "${pattern}" | fzf)
+  bag_name=$(basename "${gcloud_bag}")
+  if [[ -z "${gcloud_bag}" ]]; then
+    echo "No bag selected. Exiting."
+    return
+  fi
+  echo "Downloading bag to ${download_dir}/${bag_name}"
+  gsutil cp "${gcloud_bag}" "${download_dir}/${bag_name}"
+}
+
 #######################################
 # Key bindings
 #######################################
@@ -76,7 +99,48 @@ function open-dill-file-from-clipboard() {
 bindkey -s '^[i' 'open-pickle-jira-issue-from-clipboard^M'
 bindkey -s '^[g' 'open-dill-file-from-clipboard^M'
 
+#######################################
+# Parse navigation inputs/output
+#######################################
+function parse_nav_plotter_params() {
+  text="$1"
+  should_yank="$2"
+  should_debug="$3"
+  # Bounds
+  bounds=$(echo "$text" | rg "MobileBaseBoundsKey\.(\w+)" -o -r '$1' | tr '[:upper:]' '[:lower:]')
 
+  # Planner
+  planner_txt=$(echo "$text" | rg "(\w*)+ line plan initial conditions" -o -r '$1')
+  if [ "$planner_txt" = "Straight" ]; then
+      planner="StraightLinePlanner"
+  elif [ "$planner_txt" = "Global" ]; then
+      planner="GlobalPlanner"
+  fi
+
+  # Initial conditions
+  initial_conditions_txt=$(echo "$text" | rg "Straight line plan initial conditions: x0=\[([^\]]*)\]" -o -r '$1')
+  initial_conditions=$(echo "$initial_conditions_txt" | rg '(-?\d+\.\d+)' -o -r '$1' | head -n 3 | tr '\n' ' ')
+  width=$(echo "$text" | rg 'initial.*width: (-?\d+\.\d+)' -o -r '$1')
+
+  # Final conditions
+  final_conditions_txt=$(echo "$text" | rg "Straight line plan final conditions: xf=\[([^\]]*)\]" -o -r '$1')
+  final_conditions=$(echo "$final_conditions_txt" | rg '(-?\d+\.\d+)' -o -r '$1' | head -n 3 | tr '\n' ' ')
+
+  if [[ "$should_debug" ]]; then
+    echo "Bounds: $bounds"
+    echo "Planner: $planner"
+    echo "Initial conditions: $initial_conditions"
+    echo "Final conditions: $final_conditions"
+    echo "Width: $width\n"
+  fi
+
+  # Output
+  output="--width $width -t$planner -b$bounds $initial_conditions $final_conditions"
+  if [[ "$should_yank" ]]; then
+    echo $output | xclip -selection clipboard
+  fi
+  echo $output
+}
 #######################################
 # Dev container setup
 #######################################
