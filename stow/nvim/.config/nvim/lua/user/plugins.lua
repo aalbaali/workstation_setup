@@ -191,6 +191,9 @@ return packer.startup(function(use)
   -- Open GH links
   use { 'ruanyl/vim-gh-line' }
 
+  -- Document generation
+  use { "danymat/neogen", tag = "2.19.4" }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
