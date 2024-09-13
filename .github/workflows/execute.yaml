@@ -17,4 +17,4 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: base
-        run: clone_and_run_dev_playbook
+        run: bash ./clone_and_run_dev_playbook
