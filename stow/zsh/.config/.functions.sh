@@ -198,7 +198,7 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
 agp () {
   local str files file
   str="$1"
-  file=$(ag -l "$str" ${@:2} | fzf-tmux --preview 'bat -n --color=always {}')
+  file=$(ag -l "$str" ${@:2} | fzf --preview 'bat -n --color=always {}')
   
   # Abort if no file is selected
   [ -z "$file" ] && return
@@ -214,7 +214,7 @@ agp () {
 # Takes a list of files as arguments and opens the selection in neovim
 fnv() {
   files=$(cat - | tr ' ' '\n')
-  file=$( echo $files | fzf-tmux --preview 'bat -n --color=always {}')
+  file=$( echo $files | fzf --preview 'bat -n --color=always {}')
 
   # Abort if no file is selected
   [ -z "$file" ] && return
@@ -253,7 +253,7 @@ complete -o default -o nospace -F _git g
 agd() {
   local str file
   str="$1"
-  file=$(git diff --name-only -G "$str" | fzf-tmux --preview 'bat -n --color=always {}')
+  file=$(git diff --name-only -G "$str" | fzf --preview 'bat -n --color=always {}')
 
   # Abort if no file is selected
   [ -z "$file" ] && return
@@ -279,7 +279,7 @@ fzf_checkout_branch()
   fi
   branches=$(git branch ${gb_flags} | grep -v HEAD) &&
   branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+           fzf -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
@@ -287,7 +287,7 @@ fzf_checkout_branch()
 fzf_checkout_last_branches()
 {
   # Assumes 'git lb' is defined and lists the most-recently used branches
-  branch=$(git lb | fzf-tmux --ansi | awk '{print $NF}')
+  branch=$(git lb | fzf --ansi | awk '{print $NF}')
   git checkout $branch
 }
 

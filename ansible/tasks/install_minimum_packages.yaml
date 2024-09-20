@@ -44,7 +44,6 @@
         - software-properties-common
         - python3-venv
         - locales
-        - npm
     when: os_version.stdout is version('20.04', '>=')
 
 
