@@ -36,7 +36,6 @@
         - libpython3-dev
         - locales
         - ncdu
-        - npm
         - python3-venv
         - ripgrep
         - silversearcher-ag
