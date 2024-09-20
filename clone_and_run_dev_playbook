@@ -26,3 +26,4 @@ cd /tmp/workstation_setup/ansible
 ansible-playbook tasks/install_minimum_packages.yaml
 ansible-playbook tasks/setup_zsh.yaml
 ansible-playbook tasks/setup_nvim.yaml
+ansible-playbook tasks/setup_vim.yaml

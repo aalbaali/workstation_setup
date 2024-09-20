@@ -1,0 +1,53 @@
+---
+- name: "Setting up neovim for development"
+  hosts: localhost
+  connection: local 
+  vars:
+    - home: '/home/{{ ansible_user_id }}'
+    - vimrc: "{{ home }}/.vimrc"
+    - workstation_setup_dir: "{{ home }}/Dev/workstation_setup"
+    - should_link_dotfiles: true
+
+  tasks:
+  - name: Install vim
+    become: yes
+    apt:
+      state: latest
+      update_cache: true
+      name:
+        - vim
+        - vim-gtk3
+
+  - name: Link dotfiles
+    when: should_link_dotfiles | bool
+    block:
+      - include: ./clone_workstation_dir.yaml
+      - name: Backup existing config
+        register: did_remove_vim_configs
+        changed_when: did_remove_vim_configs.rc != 0
+        shell: |
+          "mv {{ vimrc }} {{ vimrc }}.bak 2>/dev/null"
+          exit 0
+      - name: Link vimrc
+        file:
+          src: "{{ workstation_setup_dir }}/stow/vim/.vimrc"
+          dest: "{{ home }}/.vimrc"
+          state: link
+    rescue:
+      - name: Revert vim dotfile linking
+        when: did_remove_vim_configs is succeeded
+        shell: "mv {{ vimrc }}.bak {{ vimrc }} 2>/dev/null"
+
+  - name: Set local permissions
+    become: yes
+    file:
+      path:
+        - '{{ home }}/.vimrc'
+      mode: '755'
+      recurse: true
+
+  - name: Install vim packages
+    register: did_install_vim_packages
+    changed_when: did_install_vim_packages.rc != 0
+    shell:
+      cmd: vim +PlugInstall +qall

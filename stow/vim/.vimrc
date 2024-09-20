@@ -62,7 +62,7 @@ nnoremap k gk
 " set rulerformat=%60(%=%t\ %c\ %{g:asyncrun_status}%)
 
 " colorscheme
-colorscheme gruvbox
+silent! colorscheme gruvbox
 set background=dark
 
 " allows rg to always to detect root and use .gitignore for faster searching
