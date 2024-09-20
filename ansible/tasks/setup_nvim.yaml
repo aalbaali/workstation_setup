@@ -56,7 +56,9 @@
   - name: Set local permissions
     become: yes
     file:
-      path: '{{ home }}/.local'
+      path:
+        - '{{ home }}/.local/share/nvim'
+        - '{{ home }}/.local/state/nvim'
       mode: '755'
       recurse: true
 
