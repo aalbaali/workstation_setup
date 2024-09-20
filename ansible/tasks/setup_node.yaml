@@ -3,12 +3,12 @@
   register: node_version
   ignore_errors: yes
 
-- name: Set node_version fact
+- name: Set a flag indicating if required node version is installed
   set_fact:
-    node_version_installed: "{{ node_version.stdout | regex_replace('^v', '') is version('16.0.0', '<') }}"
+      required_node_version_installed: "{{ node_version.stdout | regex_replace('^v', '') is version('16.0.0', '>=') }}"
 
 - name: Install nvm and node
-  when: node_version_installed is not defined or not node_version_installed
+  when: not required_node_version_installed
   block:
     - name: Install nvm
       shell:
