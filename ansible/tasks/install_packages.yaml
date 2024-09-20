@@ -6,49 +6,31 @@
     - home: '/home/{{ ansible_user_id }}'
 
   tasks:
+  - name: Install minimum packages
+    include_tasks: ./install_minimum_packages.yaml
+
   - name: Install apt-packages
     become: yes
     apt:
       state: latest
       update_cache: true
       name:
-        - gnupg
-        - git
-        - bat
-        - stow
-        - vim-gtk
-        - tmux
-        - git
-        - htop
-        - curl
-        - ripgrep
-        - silversearcher-ag
-        - unzip
-        - libclang-dev
-        - clang-format
-        - clang-tidy
-        - cmake
-        - cmake-curses-gui
-        - build-essential
-        - gdb
-        - ncdu
-        - rsync
-        - xclip
-        - libpython3-dev
-        - gawk
-        - tree
-        - fd-find
-        - zsh
-        - brightnessctl
-        - tilix
-        - exuberant-ctags
-        - software-properties-common
-        - python3-venv
-        - npm
-        - autojump
-        - gh
-        - hyperfine
-        - locales
+         - tilix
+         - unzip
+         - gh
+         - gdb
+         - cmake-curses-gui
+         - hyperfine
+         - htop
+         - clang-format
+         - autojump
+         - libclang-dev
+         - tmux
+         - gnupg
+         - clang-tidy
+         - cmake
+         - rsync
+         - build-essential
 
   - name: Create a symbolic link to bat
     become: true

@@ -139,6 +139,9 @@ ln -s node_modules/ws/lib lib
 This snippet is executed in the [`post_install_setup.sh`](`scripts/post_install_setup.sh`) script when passing the `--nvim-setup` flag.
 Note that this script will only work after installing the `coc-ccls` plugin first (i.e., it sufficies to launch `nvim` before launching the script).
 
+## Mason installation error
+Sometimes Mason has permission issues and results in errors such as `npm failed with exit code - and signal -. npm is not executable` when running `:MasonLog`
+
 
 ## ZSH fonts
 Additional packages may be required for the ZSH font to be displayed correctly.

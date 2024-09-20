@@ -1,3 +1,4 @@
+# This is more than the 'minimum' packages. Move them to install_packages
 ---
 - name: "Installing packages for development"
   hosts: localhost
@@ -25,22 +26,20 @@
       state: latest
       update_cache: true
       name:
-        - git
         - bat
-        - stow
-        - vim-gtk
+        - brightnessctl
         - curl
+        - exuberant-ctags
+        - fd-find
+        - gawk
+        - git
+        - libpython3-dev
+        - locales
+        - ncdu
+        - npm
+        - python3-venv
         - ripgrep
         - silversearcher-ag
-        - ncdu
-        - xclip
-        - libpython3-dev
-        - gawk
-        - tree
-        - fd-find
-        - zsh
-        - brightnessctl
-        - exuberant-ctags
         - software-properties-common
         - python3-venv
         - locales
