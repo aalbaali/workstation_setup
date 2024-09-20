@@ -1,7 +1,19 @@
-- name: Install nvm
-  shell:
-    cmd: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-    creates: "{{ home }}/.nvm/nvm.sh"
+- name: Set node version
+  command: node -v
+  register: node_version
+  ignore_errors: yes
 
-- name: Install and use Node.js 16
-  shell: ". ~/.nvm/nvm.sh && nvm install 16 && nvm alias default 16"
+- name: Set node_version fact
+  set_fact:
+    node_version_installed: "{{ node_version.stdout | regex_replace('^v', '') is version('16.0.0', '<') }}"
+
+- name: Install nvm and node
+  when: node_version_installed is not defined or not node_version_installed
+  block:
+    - name: Install nvm
+      shell:
+        cmd: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+        creates: "{{ home }}/.nvm/nvm.sh"
+
+    - name: Install and use Node.js 16
+      shell: ". ~/.nvm/nvm.sh && nvm install 16 && nvm alias default 16"
