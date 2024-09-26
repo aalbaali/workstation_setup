@@ -9,16 +9,16 @@ telescope.setup {
   defaults = {
 
     -- prompt_prefix = " ",
-    -- selection_caret = " ",
+     selection_caret = " ",
     path_display = { "smart" },
 
     mappings = {
       i = {
-        ["<C-n>"] = actions.cycle_history_next,
-        ["<C-p>"] = actions.cycle_history_prev,
+        ["<M-n>"] = actions.cycle_history_next,
+        ["<M-p>"] = actions.cycle_history_prev,
 
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
+        ["<C-n>"] = actions.move_selection_next,
+        ["<C-p>"] = actions.move_selection_previous,
 
         ["<C-c>"] = actions.close,
 
@@ -30,7 +30,7 @@ telescope.setup {
         ["<C-v>"] = actions.select_vertical,
         ["<C-t>"] = actions.select_tab,
 
-        ["<C-u>"] = actions.preview_scrolling_up,
+        ["<C-u>"] = false,
         ["<C-d>"] = actions.preview_scrolling_down,
 
         ["<PageUp>"] = actions.results_scrolling_up,

@@ -140,7 +140,7 @@ return packer.startup(function(use)
   use('preservim/nerdcommenter')                                                          --  Commenting plugin
   use('sindrets/diffview.nvim')                                                           --  Neovim diffview
   use { 'NeogitOrg/neogit' }                                                              --  Neovim git plugin
-  use('tmsvg/pear-tree')                                                                  --  Pair brackets, braces, etc.
+  --use('tmsvg/pear-tree')                                                                  --  Pair brackets, braces, etc.
   use('kshenoy/vim-signature')                                                            --  Place, toggle, and display marks
   use('drmikehenry/vim-headerguard')                                                      --  C++ header guards
   use('easymotion/vim-easymotion')                                                        --  Quick jumping around documents
