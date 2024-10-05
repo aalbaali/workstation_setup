@@ -28,15 +28,6 @@ lsp.on_attach = function(client, _)
     client.server_capabilities.documentFormattingProvider = true
   end
 
-  --if client.name == "autopep8" then
-  --  client.server_capabilities.documentFormattingProvider = true
-  --end
-
-  -- Add flake8 formatter
-  if client.name == "flake8" then
-    client.server_capabilities.documentFormattingProvider = true
-  end
-
   -- Disable some keymappings. Custom mappings are defined in the handlers.lua file.
   --lsp.default_keymaps({buffer = bufnr})
 end
