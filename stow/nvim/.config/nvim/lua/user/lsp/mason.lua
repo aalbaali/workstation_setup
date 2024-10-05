@@ -1,6 +1,6 @@
 local servers = {
   "bashls",
-	"pyright",
+	"ruff",
   "clangd",
   "cmake",
   "rust_analyzer",

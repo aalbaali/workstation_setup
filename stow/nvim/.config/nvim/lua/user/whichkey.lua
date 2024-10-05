@@ -288,11 +288,13 @@ local mapping_no_pref = {
   ["]"] = {
     q = { "<cmd>cnext<cr>", "Next quickfix" },
     t = { "<cmd>TagbarJumpNext<CR>", "Next tag" },
+    d = { "<nop>", "Disabled" },
   },
 
   ["["] = {
     q = { "<cmd>cprev<cr>", "Previous quickfix" },
     t = { "<cmd>TagbarJumpPrev<CR>", "Prev tag" },
+    d = { "<nop>", "Disabled" },
   },
 
   g = {
