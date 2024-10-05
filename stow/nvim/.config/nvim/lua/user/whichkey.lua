@@ -70,7 +70,7 @@ local setup = {
 }
 
 local opts = {
-  mode = "n",    -- NORMAL mode
+  mode = { "n", "v" },    -- NORMAL mode
   prefix = "<leader>",
   buffer = nil,  -- Global mappings. Specify a buffer number for buffer local mappings
   silent = true, -- use `silent` when creating keymaps
@@ -139,7 +139,7 @@ local mappings = {
       "<cmd>Telescope diagnostics<cr>",
       "Workspace Diagnostics",
     },
-    f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
+    --f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" }, -> Use <leader>ff instead for now
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>Mason<cr>", "Installer Info" },
     j = {
@@ -214,6 +214,11 @@ local mapping_alt = {
     d = { ":Dox<CR>", "Doxygen documentation" },
     g = { ":Neogen<CR>", "Generate documentation" },
     s = { "O/**<space><space>*/<Esc>F<space>i", "C++ inline member comment" },
+  },
+  f = {
+    name = "Format",
+    f = { "<cmd>Format<cr>", "Format" },
+    i = { "<cmd>ConformInfo<cr>", "Conform info" },
   },
   g = {
     name = "Git",

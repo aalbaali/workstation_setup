@@ -55,7 +55,7 @@ return packer.startup(function(use)
   use { "lewis6991/impatient.nvim" }
   use { "lukas-reineke/indent-blankline.nvim", commit = 'v2.20.8' }
   -- use { "goolord/alpha-nvim" }
-  use { "folke/which-key.nvim", commit = "v2.1.0"}
+  use { "folke/which-key.nvim", commit = "v2.1.0" }
 
   -- Colorschemes
   use { "folke/tokyonight.nvim" }
@@ -105,12 +105,13 @@ return packer.startup(function(use)
       { 'L3MON4D3/LuaSnip' },             -- Required
       { 'rafamadriz/friendly-snippets' }, -- Optional
 
-      { 'nvimdev/lspsaga.nvim', after = 'nvim-lspconfig' }
+      { 'nvimdev/lspsaga.nvim',             after = 'nvim-lspconfig' },
     }
   }
-  use 'simrat39/rust-tools.nvim'
-
+  use { "simrat39/rust-tools.nvim"}
   use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
+  use { "stevearc/conform.nvim" }
+
   use { "RRethy/vim-illuminate" }
   use { "nvim-telescope/telescope.nvim" }
   use { "nvim-treesitter/nvim-treesitter" }
