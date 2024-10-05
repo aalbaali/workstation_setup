@@ -9,7 +9,7 @@ return {
         yapf = { enabled = false },
 
         -- linter options
-        pylint = { enabled = true, executable = "pylint" },
+        pylint = { enabled = false, executable = "pylint" },
         pyflakes = { enabled = false },
         pycodestyle = { enabled = false },
 
