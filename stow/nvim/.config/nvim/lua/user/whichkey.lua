@@ -90,7 +90,7 @@ local mappings = {
 
   r = {
     name = "run",
-    p = { "<cmd>split<CR><cmd>term python %<CR>", "Run python" },
+    p = { "<cmd>split<CR><cmd>term python %<CR>i", "Run python" },
     r = { "<cmd>split<CR><cmd>term ./%<CR>", "Run script" },
   },
 
