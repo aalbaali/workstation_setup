@@ -156,3 +156,4 @@ export PATH=${PROJDIR}/scripts:${HOME}/bin:${PATH}
 
 # Start MB apps in sim
 alias start-sim="start --apps motor_controller navigation scan_perception amr_localization"
+alias start-safety="start --apps scan_perception safety_interface"
