@@ -55,7 +55,7 @@ return packer.startup(function(use)
   use { "lewis6991/impatient.nvim" }
   use { "lukas-reineke/indent-blankline.nvim", commit = 'v2.20.8' }
   -- use { "goolord/alpha-nvim" }
-  use { "folke/which-key.nvim", commit = "v2.1.0"}
+  use { "folke/which-key.nvim", commit = "v2.1.0" }
 
   -- Colorschemes
   use { "folke/tokyonight.nvim" }
@@ -105,7 +105,7 @@ return packer.startup(function(use)
       { 'L3MON4D3/LuaSnip' },             -- Required
       { 'rafamadriz/friendly-snippets' }, -- Optional
 
-      { 'nvimdev/lspsaga.nvim', after = 'nvim-lspconfig' }
+      { 'nvimdev/lspsaga.nvim',             after = 'nvim-lspconfig' }
     }
   }
   use 'simrat39/rust-tools.nvim'
@@ -195,6 +195,24 @@ return packer.startup(function(use)
 
   -- Document generation
   use { "danymat/neogen", tag = "2.19.4" }
+
+  use { "ThePrimeagen/refactoring.nvim" }
+  use { "folke/trouble.nvim" }
+  use {
+    "nvim-telescope/telescope-file-browser.nvim",
+    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  }
+
+  use {
+  "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    requires = { 
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    }
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
