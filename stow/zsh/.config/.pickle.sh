@@ -30,7 +30,8 @@ function open-jira-issue() {
   #   url: Jira issue URL (e.g., https://picklerobot.atlassian.net/browse)
 
   # Match the issue number from any string
-  local issue_num=`echo ${1} | ag -o '\w*-\d+' | tr '[:lower:]' '[:upper:]'`
+  #local issue_num=`echo ${1} | ag -o '\w*-\d+' -m 1 | tr '[:lower:]' '[:upper:]'`
+  local issue_num="${1}"
   local website="${url}/${issue_num}"
   google-chrome "${website}" &>/dev/null &
 }
@@ -43,9 +44,13 @@ function open-pickle-jira-issue-from-clipboard() {
   #   # Copy Jira issue number
   #   open_pickle_jira_issue
 
-  local issue_num="$(xclip -selection clipboard -o)"
   local url="https://picklerobot.atlassian.net/browse"
-  open-jira-issue "${issue_num}" "${url}"
+
+  # Parse multiple issues from clipboard
+  for issue in $(xclip -selection clipboard -o | ag -o '\w*-\d+' | tr '[:lower:]' '[:upper:]'); do
+    open-jira-issue "${issue}" "${url}"
+  done
+  #open-jira-issue "${issue_num}" "${url}"
 }
 
 function open-dill-file() {
@@ -151,3 +156,4 @@ export PATH=${PROJDIR}/scripts:${HOME}/bin:${PATH}
 
 # Start MB apps in sim
 alias start-sim="start --apps motor_controller navigation scan_perception amr_localization"
+alias start-safety="start --apps scan_perception safety_interface"
