@@ -27,7 +27,7 @@ declare -a fonts=(
     JetBrainsMono
 )
 
-version='2.1.0'
+version='3.2.1'
 fonts_dir="${HOME}/.local/share/fonts"
 
 if [[ ! -d "$fonts_dir" ]]; then
