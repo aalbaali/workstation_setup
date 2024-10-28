@@ -250,7 +250,8 @@ local mapping_alt = {
     d = { "<cmd>DiffviewOpen<CR>", "Diff with current tree" },
     g = { "<cmd>diffget<cr>", "Get changes from other buffer" },
     p = { "<cmd>diffput<cr>", "Put changes from other buffer" },
-    y = { "<Plug>(gh-line)", "Yank GH remote URL to clipboard" },
+    y = { "<cmd>lua require('user.vim-gh-line').yank_gh_line(true)<CR>", "Yank GH remote URL (commit) to clipboard" },
+    Y = { "<cmd>lua require('user.vim-gh-line').yank_gh_line(false)<CR>", "Yank GH remote URL (branch) to clipboard" },
     o = {
       "<Plug>(gh-line) <cmd>lua vim.fn.jobstart('xdg-open ' .. vim.fn.getreg('+'), {detach = true})<CR>",
       "Open GH remote URL",
