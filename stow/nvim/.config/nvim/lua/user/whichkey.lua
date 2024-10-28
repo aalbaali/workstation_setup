@@ -79,14 +79,30 @@ local opts = {
 }
 
 local mappings = {
-  ["e"] = { "<cmd>NvimTreeToggle<cr>", "Toggle explorer" },
-  ["E"] = { "<cmd>NvimTreeFocus<cr>", "Toggle explorer" },
-  ["w"] = { "<cmd>w!<CR>", "Save" },
-  ["x"] = { "<cmd>q!<CR>", "Quit without save" },
-  ["W"] = { "<cmd>wa!<CR>", "Save all" },
-  ["q"] = { "<cmd>wqa<CR>", "Save all and quit" },
-  ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-  ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+  e = { "<cmd>NvimTreeToggle<cr>", "Toggle explorer" },
+  E = { "<cmd>NvimTreeFocus<cr>", "Toggle explorer" },
+  w = { "<cmd>w!<CR>", "Save" },
+  x = { "<cmd>q!<CR>", "Quit without save" },
+  W = { "<cmd>wa!<CR>", "Save all" },
+  q = { "<cmd>wqa<CR>", "Save all and quit" },
+  c = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+  h = {
+    name = "Harpoon",
+    a = { "<cmd>lua require('harpoon.mark').add_file()<CR>", "Add file" },
+    o = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Open Harpoon" },
+    m = { "<cmd>Telescope harpoon marks<CR>", "Marks" },
+    n = { "<cmd>lua require('harpoon.ui').nav_next()<CR>", "Next" },
+    p = { "<cmd>lua require('harpoon.ui').nav_prev()<CR>", "Previous" },
+    ["1"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<CR>", "Navigate to file 1" },
+    ["2"] = { "<cmd>lua require('harpoon.ui').nav_file(2)<CR>", "Navigate to file 2" },
+    ["3"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<CR>", "Navigate to file 3" },
+    ["4"] = { "<cmd>lua require('harpoon.ui').nav_file(4)<CR>", "Navigate to file 4" },
+    ["5"] = { "<cmd>lua require('harpoon.ui').nav_file(5)<CR>", "Navigate to file 5" },
+    ["6"] = { "<cmd>lua require('harpoon.ui').nav_file(6)<CR>", "Navigate to file 6" },
+    ["7"] = { "<cmd>lua require('harpoon.ui').nav_file(7)<CR>", "Navigate to file 7" },
+    ["8"] = { "<cmd>lua require('harpoon.ui').nav_file(8)<CR>", "Navigate to file 8" },
+    ["9"] = { "<cmd>lua require('harpoon.ui').nav_file(9)<CR>", "Navigate to file 9" },
+  },
 
   r = {
     name = "run",
@@ -217,7 +233,7 @@ local mapping_alt = {
   },
   e = {
     name = "Neotree",
-    e = { ":Neotree<CR>", "Focus on side bar" },
+    e = { ":Neotree reveal<CR>", "Open Neotree on current file" },
     q = { ":Neotree close<CR>", "Close side bar" },
   },
   g = {

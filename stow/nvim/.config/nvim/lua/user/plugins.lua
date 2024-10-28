@@ -204,15 +204,17 @@ return packer.startup(function(use)
   }
 
   use {
-  "nvim-neo-tree/neo-tree.nvim",
+    "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
-    requires = { 
+    requires = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     }
   }
+
+  use { "ThePrimeagen/harpoon" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
