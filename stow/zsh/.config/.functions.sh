@@ -169,6 +169,18 @@ posix_to_datetime() {
   date -d "@$posix" +"$format"
 }
 
+# Past a string to terminal/shell after escaping special characters
+function paste_and_escape() {
+  local clipboard_content
+  clipboard_content=$(xclip -selection clipboard -o | sed 's/["!\\\$]/\\&/g')
+
+  # Add the contents directly to the line buffer so it's 'pasted' to the terminal/shell
+  LBUFFER+="$clipboard_content"
+}
+
+zle -N paste-and-escape paste_and_escape
+bindkey '^V' paste-and-escape
+
 ###############################
 ## fzf
 ###############################
