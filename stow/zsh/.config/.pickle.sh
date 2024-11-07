@@ -2,6 +2,10 @@ export TOKENS_PATH="/home/amro/src/pickle/TOKENS.sh"
 [[ -f "${TOKENS_PATH}" ]] && source "${TOKENS_PATH}"
 
 alias j=jira
+alias mytasks="jira issue list -a amro -s~Done"
+
+alias dev="dex dill_devcontainer zsh"
+
 
 export LOGDNA_KEY=b43d4937f6e8055a2fb21e4758a3ea0d
 
