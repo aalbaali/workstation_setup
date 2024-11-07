@@ -442,7 +442,7 @@ cmdef() {
 alias ri="/usr/bin/ls $HOME/Pictures/Screenshots/Screen* -t | head -n 1 | xargs -I{} tesseract "{}" ddd && cat ddd.txt | xclip -selection clipboard"
 
 ####################
-# Python venv
+# Python
 ####################
 # Create a Python virtual environment
 _default_venv="venv"
