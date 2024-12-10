@@ -105,7 +105,13 @@ return packer.startup(function(use)
       { 'L3MON4D3/LuaSnip' },             -- Required
       { 'rafamadriz/friendly-snippets' }, -- Optional
 
-      { 'nvimdev/lspsaga.nvim',             after = 'nvim-lspconfig' }
+      { 'nvimdev/lspsaga.nvim',
+        after = 'nvim-lspconfig',
+        requires = {
+          { 'nvim-treesitter/nvim-treesitter' },
+          { 'nvim-tree/nvim-web-devicons' },
+        }
+      }
     }
   }
   use 'simrat39/rust-tools.nvim'
