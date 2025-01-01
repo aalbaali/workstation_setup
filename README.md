@@ -203,7 +203,7 @@ gpg -o ~/.chat_gpt_key.zsh -d .chat_gpt_key.zsh.gpg
 # Keyboard shortcuts
 I use keyboard shortcuts to run some bash functions. For example, I use the shortcut `Alt + c` to run `open-chrome-from-clipboard()`. Steps to add the shortcut:
 1. Look for keyboard shortcuts in settings.
-2. Go to `Vide and Customize Shortcuts` > `Custom Shortcuts`
+2. Go to `View and Customize Shortcuts` > `Custom Shortcuts`
 3. Create a new shortcut. Under `Command`, add `/usr/bin/zsh -c "source ~/.config/.functions.sh && open-chrome-from-clipboard"`
 
 # Resources
