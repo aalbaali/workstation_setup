@@ -27,7 +27,7 @@
   - name: Add zsh dotfiles
     when: should_link_dotfiles | bool
     block:
-      - include: ./clone_workstation_dir.yaml
+      - include_tasks: ./clone_workstation_dir.yaml
       - name: Backup existing ~/.zshrc
         register: did_remove_zshrc
         changed_when: did_remove_zshrc.rc != 0

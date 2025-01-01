@@ -21,7 +21,7 @@
   - name: Link dotfiles
     when: should_link_dotfiles | bool
     block:
-      - include: ./clone_workstation_dir.yaml
+      - include_tasks: ./clone_workstation_dir.yaml
       - name: Backup existing config
         register: did_remove_vim_configs
         changed_when: did_remove_vim_configs.rc != 0
