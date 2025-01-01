@@ -195,6 +195,11 @@ export LANGUAGE=en_US:en
 export LC_ALL=en_US.UTF-8
 ```
 
+# Decrypting encrypted files
+To decrypt an encrypted file (e.g., zsh_history):
+```bash
+gpg -o ~/.chat_gpt_key.zsh -d .chat_gpt_key.zsh.gpg
+```
 # Keyboard shortcuts
 I use keyboard shortcuts to run some bash functions. For example, I use the shortcut `Alt + c` to run `open-chrome-from-clipboard()`. Steps to add the shortcut:
 1. Look for keyboard shortcuts in settings.
