@@ -9,7 +9,7 @@
     - should_link_dotfiles: true
 
   tasks:
-  - include: ./setup_node.yaml
+  - include_tasks: ./setup_node.yaml
 
   - name: Install nvim
     become: yes
@@ -30,7 +30,7 @@
   - name: Link nvim dotfiles
     when: should_link_dotfiles | bool
     block:
-      - include: ./clone_workstation_dir.yaml
+      - include_tasks: ./clone_workstation_dir.yaml
       - name: Backup existing nvim dir
         register: did_remove_nvim_configs
         changed_when: did_remove_nvim_configs.rc != 0
