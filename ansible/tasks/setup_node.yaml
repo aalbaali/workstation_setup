@@ -1,3 +1,11 @@
+- name: Ensure nodejs is installed
+  become: yes
+  apt:
+    state: latest
+    update_cache: true
+    name:
+      - nodejs
+
 - name: Set node version
   command: node -v
   register: node_version
