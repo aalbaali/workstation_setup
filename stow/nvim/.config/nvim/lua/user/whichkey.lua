@@ -79,13 +79,18 @@ local opts = {
 }
 
 local mappings = {
+  a = {
+    name = "Sessions",
+    l = { "<cmd>Telescope possession<cr>", "List sessions" },
+    s = { "<cmd>PossessionSaveCwd<cr>", "Save session" },
+  },
+  c = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   e = { "<cmd>NvimTreeToggle<cr>", "Toggle explorer" },
   E = { "<cmd>NvimTreeFocus<cr>", "Toggle explorer" },
   w = { "<cmd>w!<CR>", "Save" },
-  x = { "<cmd>q!<CR>", "Quit without save" },
   W = { "<cmd>wa!<CR>", "Save all" },
+  x = { "<cmd>q!<CR>", "Quit without save" },
   q = { "<cmd>wqa<CR>", "Save all and quit" },
-  c = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   --h = {
   --  name = "Harpoon",
   --  a = { "<cmd>lua require('harpoon'):list():add()<CR>", "Add file" },
