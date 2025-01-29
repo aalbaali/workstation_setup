@@ -16,14 +16,14 @@
     block:
     - name: Get nvim binary
       ansible.builtin.unarchive:
-        src: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz 
+        src: "https://github.com/neovim/neovim/releases/download/v0.10.4/nvim-linux-x86_64.tar.gz"
         dest: /opt
         remote_src: true
-        creates: /opt/nvim-linux64
+        creates: /opt/nvim-linux-x86_64
 
     - name: Symlink nvim
       ansible.builtin.file:
-        src: /opt/nvim-linux64/bin/nvim 
+        src: /opt/nvim-linux-x86_64/bin/nvim 
         dest: /usr/bin/nvim 
         state: link
 
