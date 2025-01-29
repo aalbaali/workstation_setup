@@ -6,9 +6,8 @@ local servers = {
   "rust_analyzer",
   "lua_ls",
 	"jsonls",
-  --"pyright",
-  --"pylsp",
-  --"pyright",
+  "pyright",
+  "pylsp",
 }
 
 local settings = {
