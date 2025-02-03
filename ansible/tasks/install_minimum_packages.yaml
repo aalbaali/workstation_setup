@@ -80,7 +80,7 @@
         version: HEAD
 
     # Run command to install fzf
-    - name: Run installation script
+    - name: Run fzf installation script
       shell:
         cmd: "{{ home }}/.fzf/install --all"
         creates: "{{ home }}/.fzf/bin/fzf"
