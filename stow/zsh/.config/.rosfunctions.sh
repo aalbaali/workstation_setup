@@ -4,7 +4,10 @@ if [[ -z $ROS_VERSION && -z $ROS_DISTRO ]] then
 fi
 
 # ROS workspace
-export ROS_WORKSPACE="${ROS_WORKSPACE:=$(cd; echo $PWD)/ros_ws}"
+export ROS_WORKSPACE="${ROS_WORKSPACE:=${HOME}/ros_ws}"
+if [ ! -e ${ROS_WORKSPACE} ]; then
+  echo "WARNING: ROS_WS '${ROS_WORKSPACE}' does not exist"
+fi
 export ROS_UNDERLAY_WS="/opt/ros/$ROS_DISTRO"
 
 # Change to ros workspace

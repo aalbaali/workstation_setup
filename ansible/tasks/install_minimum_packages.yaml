@@ -43,6 +43,7 @@
         - python3-venv
         - locales
         - xclip
+        - unzip
     when: os_version.stdout is version('20.04', '>=')
 
 
