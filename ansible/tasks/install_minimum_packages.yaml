@@ -82,8 +82,8 @@
     # Run command to install fzf
     - name: Run fzf installation script
       shell:
-        cmd: "{{ home }}/.fzf/install --all"
-        creates: "{{ home }}/.fzf/bin/fzf"
+        cmd: "{{ home }}/.fzf/install --all && touch {{ home }}/.fzf/.installed"
+        creates: "{{ home }}.fzf/.installed"
 
   - name: Install eza
     become: yes
