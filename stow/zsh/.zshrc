@@ -102,7 +102,7 @@ fi
 ## fzf
 ###############################
 export PATH="$HOME/.fzf/bin:$PATH"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf/bin/fzf ] && source <(~/.fzf/bin/fzf --zsh)
 
 # Enable Ctrl-x to edit command line in vim
 autoload -U edit-command-line
