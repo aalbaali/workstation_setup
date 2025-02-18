@@ -85,7 +85,10 @@ local mappings = {
     s = { "<cmd>PossessionSaveCwd<cr>", "Save session" },
   },
   c = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-  e = { "<cmd>NvimTreeToggle<cr>", "Toggle explorer" },
+  --e = { "<cmd>NvimTreeToggle<cr>", "Toggle explorer" },
+  e = {
+    { ":Neotree action=focus reveal<CR>", "Toggle file system on current file" },
+  },
   E = { "<cmd>NvimTreeFocus<cr>", "Toggle explorer" },
   w = { "<cmd>w!<CR>", "Save" },
   W = { "<cmd>wa!<CR>", "Save all" },
@@ -235,12 +238,6 @@ local mapping_alt = {
     d = { ":Dox<CR>", "Doxygen documentation" },
     g = { ":Neogen<CR>", "Generate documentation" },
     s = { "O/**<space><space>*/<Esc>F<space>i", "C++ inline member comment" },
-  },
-  e = {
-    { ":Neotree action=focus reveal<CR>", "Toggle file system on current file" },
-  },
-  E = {
-    { ":Neotree action=focus toggle reveal<CR>", "Toggle file system on current file" },
   },
   g = {
     name = "Git",
