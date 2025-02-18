@@ -237,9 +237,10 @@ local mapping_alt = {
     s = { "O/**<space><space>*/<Esc>F<space>i", "C++ inline member comment" },
   },
   e = {
-    name = "Neotree",
-    e = { ":Neotree reveal<CR>", "Open Neotree on current file" },
-    q = { ":Neotree close<CR>", "Close side bar" },
+    { ":Neotree action=focus reveal<CR>", "Toggle file system on current file" },
+  },
+  E = {
+    { ":Neotree action=focus toggle reveal<CR>", "Toggle file system on current file" },
   },
   g = {
     name = "Git",
