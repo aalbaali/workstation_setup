@@ -17,7 +17,7 @@ neotree.setup(
         },
         ["/"] = "",
         ["F"] = "fuzzy_finder",
-        ["<cr>"] = "open_drop",
+        ["l"] = "open_drop",
         ["a"] = {
           "add",
           -- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
