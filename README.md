@@ -202,7 +202,7 @@ gpg -o ~/.chat_gpt_key.zsh -d .chat_gpt_key.zsh.gpg
 ```
 
 # Tmux
-Resurrect files (to restore sessions) are stored in `~/.local/share/tmux/resurrect`.
+Resurrect files (to restore sessions) are stored in `~/.local/share/tmux/resurrect`. To link to a different session, add a symbolic link from `last` (e.g., `ln -s -f tmux_resurrect_<date and time>.txt last`)
 
 # Keyboard shortcuts
 I use keyboard shortcuts to run some bash functions. For example, I use the shortcut `Alt + c` to run `open-chrome-from-clipboard()`. Steps to add the shortcut:
