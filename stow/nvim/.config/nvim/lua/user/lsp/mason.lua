@@ -7,7 +7,7 @@ local servers = {
   "lua_ls",
 	"jsonls",
   "pyright",
-  "pylsp",
+  --"pylsp",
 }
 
 local settings = {

@@ -87,7 +87,7 @@ local mappings = {
   c = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   --e = { "<cmd>NvimTreeToggle<cr>", "Toggle explorer" },
   e = {
-    { ":Neotree action=focus reveal<CR>", "Toggle file system on current file" },
+    { ":Neotree action=focus toggle reveal<CR>", "Toggle file system on current file" },
   },
   E = { "<cmd>NvimTreeFocus<cr>", "Toggle explorer" },
   w = { "<cmd>w!<CR>", "Save" },
