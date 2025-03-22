@@ -18,8 +18,8 @@ fi
 #######################################
 # Files to source
 #######################################
-[[ -f ~/.picklerc ]] && source ~/.picklerc
-[[ -f ~/pickle_data_v1/amro/pickle-sandbox/pickle_configs/robot_info.bash ]] && source ~/pickle_data_v1/amro/pickle-sandbox/pickle_configs/robot_info.bash
+safe_source "${HOME}/.picklerc"
+safe_source "${HOME}/pickle_data_v1/amro/pickle-sandbox/pickle_configs/robot_info.bash"
 
 
 #######################################
