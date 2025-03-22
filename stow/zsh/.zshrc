@@ -110,7 +110,7 @@ zle -N edit-command-line
 bindkey "^x^e" edit-command-line
 
 # Error out if the file doesn't exist
-export LOG_LEVEL=10
+export LOG_LEVEL=30
 source ~/.config/.logger.sh
 
 safe_source() {
