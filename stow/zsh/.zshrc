@@ -109,13 +109,20 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey "^x^e" edit-command-line
 
+# Error out if the file doesn't exist
+export LOG_LEVEL=10
+source ~/.config/.logger.sh
+
+safe_source() {
+  [ -f $1 ] && source $1
+}
+
 # Load custom functions and aliases
-[ -f ~/.config/.pickle.sh ] && source ~/.config/.pickle.sh
-[ -f ~/.config/.logger.sh ] && source ~/.config/.logger.sh
-[ -f ~/.config/.functions.sh ] && source ~/.config/.functions.sh
-[ -f ~/.config/.rosfunctions.sh ] && source ~/.config/.rosfunctions.sh
-[ -f ~/.config/.tmuxfunctions.sh ] && source ~/.config/.tmuxfunctions.sh
-[[ $(docker --help 2>/dev/null) ]] && [ -f ~/.config/.dockerfunctions.sh ] && source ~/.config/.dockerfunctions.sh
+safe_source "${HOME}/.config/.pickle.sh"
+source "${HOME}/.config/.functions.sh"
+source "${HOME}/.config/.tmuxfunctions.sh"
+safe_source "${HOME}/.config/.rosfunctions.sh"
+command -v docker >/dev/null && safe_source "${HOME}/.config/.dockerfunctions.sh"
 
 if [[ -f  ~/.zsh/git-completion.bash ]] then
   zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
