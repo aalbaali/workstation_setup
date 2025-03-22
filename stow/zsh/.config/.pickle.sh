@@ -19,7 +19,7 @@ fi
 # Files to source
 #######################################
 [[ -f ~/.picklerc ]] && source ~/.picklerc
-[[ -f ~/dev_profile.sh ]] && zsh ~/dev_profile.sh
+[[ -f ~/pickle_data_v1/amro/pickle-sandbox/pickle_configs/robot_info.bash ]] && source ~/pickle_data_v1/amro/pickle-sandbox/pickle_configs/robot_info.bash
 
 
 #######################################
@@ -59,27 +59,6 @@ function open-pickle-jira-issue-from-clipboard() {
   #open-jira-issue "${issue_num}" "${url}"
 }
 
-function open-dill-file() {
-  """
-  Open a file in the Dill github repository.
-
-  Usage:
-    open-dill-file <filepath>
-
-  Args:
-    filepath: File path relative to the dill repository
-  """
-
-  local filepath="$1"
-  local url="https://github.com/Pickle-Robot/dill/blob/main/${filepath}"
-  google-chrome "${url}" &>/dev/null &
-}
-
-function open-dill-file-from-clipboard() {
-  local filepath="$(xclip -selection clipboard -o)"
-  open-dill-file "${filepath}"
-}
-
 function gsutil-download() {
   """
   Take a glob pattern of a bag in GCloud, prompt the user to select the bag to download, and
@@ -108,7 +87,6 @@ function gsutil-download() {
 #######################################
 # Bind opening Pickle Jira issue
 bindkey -s '^[i' 'open-pickle-jira-issue-from-clipboard^M'
-bindkey -s '^[g' 'open-dill-file-from-clipboard^M'
 
 #######################################
 # Parse navigation inputs/output
