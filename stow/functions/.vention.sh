@@ -1,1 +1,0 @@
-/home/amro/Dev/workstation_setup/stow/zsh/.config/.vention.sh
