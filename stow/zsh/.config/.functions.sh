@@ -172,7 +172,7 @@ posix_to_datetime() {
 # Past a string to terminal/shell after escaping special characters
 function paste_and_escape() {
   local clipboard_content
-  clipboard_content=$(xclip -selection clipboard -o | sed 's/["!\\\$]/\\&/g')
+  clipboard_content=$(xclip -selection clipboard -o | sed 's/[`"!\\\$]/\\&/g')
 
   # Add the contents directly to the line buffer so it's 'pasted' to the terminal/shell
   LBUFFER+="$clipboard_content"
@@ -390,7 +390,7 @@ gbrmlocal() {
 # Quick math
 ####################
 math() {
-  python -c "from math import *; print($@)"
+  python -c "from math import *; import numpy as np; print($@)"
 }
 alias m=math
 
