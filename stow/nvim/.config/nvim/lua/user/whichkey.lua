@@ -3,6 +3,15 @@ if not status_ok then
   return
 end
 
+-- Populate quickfix list with todos, at the queried directory
+-- Default directory is the current file's directory
+function _TodoCwd()
+  local cwd = vim.fn.expand('%:p:h')
+  local input = vim.fn.input('TodoQuickFix cwd=', cwd, 'file')
+  vim.cmd('TodoQuickFix cwd=' .. input)
+end
+vim.api.nvim_create_user_command('TodoCwd', _TodoCwd, {})
+
 local setup = {
   plugins = {
     marks = true,       -- shows a list of your marks on ' and `
@@ -269,7 +278,9 @@ local mapping_alt = {
     ["n"] = { "<cmd>tabnext<cr>", "Next tab" },
     ["N"] = { "<cmd>tabprev<cr>", "Prev tab" },
     ["C"] = { "<cmd>tabclose<cr>", "Close tab" },
-    ["d"] = { "<cmd>TodoQuickFix<cr>", "Populate quickfix with TODOs" },
+    ["q"] = { "<cmd>Trouble todo close<cr>", "Show current buffer TODOs in Trouble" },
+    ["d"] = { "<cmd>Trouble todo filter.buf=0 focus=true<cr>", "Show current buffer TODOs in Trouble" },
+    ["D"] = { "<cmd>TodoCwd<cr>", "Directory TODOs qf list" },
   },
   q = {
     name = "Quickfix",
