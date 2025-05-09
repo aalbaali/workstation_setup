@@ -1,10 +1,10 @@
 local lsp = require('lsp-zero')
-lsp.preset({
-  name = 'minimal',
-  set_lsp_keymaps = false,
-  manage_nvim_cmp = true,
-  suggest_lsp_servers = true,
-})
+-- Doesn't seem to be used anymore?
+--lsp.setup({
+--  set_lsp_keymaps = false,
+--  manage_nvim_cmp = true,
+--  suggest_lsp_servers = true,
+--})
 
 -- Fix Undefined global 'vim'
 lsp.configure('lua_ls', {

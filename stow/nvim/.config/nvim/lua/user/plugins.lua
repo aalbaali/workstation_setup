@@ -86,12 +86,12 @@ return packer.startup(function(use)
   use('jremmen/vim-ripgrep') --  Ripgrep fuzzy searcher
   use {
     'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
+    branch = 'v4.x',
     requires = {
       -- LSP Support
-      { 'neovim/nvim-lspconfig' },             -- Required
-      { 'williamboman/mason.nvim' },           -- Optional
-      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+      { 'neovim/nvim-lspconfig', commit = 'v1.8.0' },             -- Required
+      { 'williamboman/mason.nvim', commit = 'v1.11.0' },           -- Optional
+      { 'williamboman/mason-lspconfig.nvim', commit = 'v1.32.0' }, -- Optional
 
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },         -- Required
