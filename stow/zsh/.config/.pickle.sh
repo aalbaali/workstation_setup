@@ -130,6 +130,13 @@ function parse_nav_plotter_params() {
   fi
   echo $output
 }
+
+function kr70fk() {
+  # Run forward kinematics on the KR70 robot
+  q=$(xclip -selection clipboard -o)
+  docker exec -it dill_devcontainer python -c "from app.arm.kuka.kinematics.kinematics import make_kr70_kin; kin = make_kr70_kin(None); print(kin.forward(${q}))"
+}
+
 #######################################
 # Dev container setup
 #######################################
