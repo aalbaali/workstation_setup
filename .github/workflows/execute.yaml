@@ -34,9 +34,10 @@ jobs:
         uses: actions/checkout@v2
         # Install minimum requirements
       - name: Run installation script
-        run: sudo apt-get update
-        sudo apt-get install -y curl ca-certificates git
-        curl -sS https://raw.githubusercontent.com/aalbaali/workstation_setup/master/clone_and_run_dev_playbook | bash -
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl ca-certificates git
+          curl -sS https://raw.githubusercontent.com/aalbaali/workstation_setup/master/clone_and_run_dev_playbook | bash -
 
   install-docker:
     runs-on: ubuntu-latest
