@@ -7,7 +7,7 @@
     - nvim_dir: "{{ home }}/.config/nvim"
     - workstation_setup_dir: "{{ home }}/Dev/workstation_setup"
     - should_link_dotfiles: true
-    - nvim_version: "v0.10.0"
+    - nvim_version: "v0.11.3"
 
   tasks:
   - include_tasks: ./setup_node.yaml
@@ -19,13 +19,13 @@
     # Download the neovim version only if it's not installed locally
     - name: Get nvim binary
       ansible.builtin.unarchive:
-        src: "https://github.com/neovim/neovim/releases/download/{{ nvim_version }}/nvim-linux64.tar.gz"
+        src: "https://github.com/neovim/neovim/releases/download/{{ nvim_version }}/nvim-linux-x86_64.tar.gz"
         dest: "/tmp"
         remote_src: true
         creates: "/opt/nvim-linux64-{{ nvim_version }}"
 
     - name: Move from temp to opt
-      ansible.builtin.command: mv /tmp/nvim-linux64 "/opt/nvim-linux64-{{ nvim_version }}"
+      ansible.builtin.command: mv /tmp/nvim-linux-x86_64 "/opt/nvim-linux64-{{ nvim_version }}"
       args:
         creates: "/opt/nvim-linux64-{{ nvim_version }}"
 
