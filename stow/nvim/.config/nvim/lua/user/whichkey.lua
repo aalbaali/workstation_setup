@@ -173,6 +173,8 @@ local mappings = {
       "Workspace Diagnostics",
     },
     f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
+    F = { "<cmd>!python -m ruff check % --fix --select F841 --fixable F841 --select F401 --fixable F401 && python -m ruff format %<cr>", "Format" },
+    J = { "<cmd>!prettier --write % --log-level warn<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>Mason<cr>", "Installer Info" },
     j = {
