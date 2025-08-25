@@ -1,13 +1,11 @@
 local servers = {
   "bashls",
-	"ruff",
   "clangd",
   "cmake",
   "rust_analyzer",
   "lua_ls",
 	"jsonls",
   "pyright",
-  --"pylsp",
 }
 
 local settings = {
