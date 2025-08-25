@@ -94,8 +94,8 @@ return packer.startup(function(use)
       { 'williamboman/mason-lspconfig.nvim', commit = 'v1.32.0' }, -- Optional
 
       -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },         -- Required
-      { 'hrsh7th/cmp-nvim-lsp' },     -- Required
+      { 'hrsh7th/nvim-cmp', commit ='v0.0.2' },         -- Required
+      { 'hrsh7th/cmp-nvim-lsp', commit ='a8912b88c' },     -- Required
       { 'hrsh7th/cmp-buffer' },       -- Optional
       { 'hrsh7th/cmp-path' },         -- Optional
       { 'saadparwaiz1/cmp_luasnip' }, -- Optional
