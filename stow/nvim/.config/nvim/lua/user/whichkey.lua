@@ -10,6 +10,7 @@ function _TodoCwd()
   local input = vim.fn.input('TodoQuickFix cwd=', cwd, 'file')
   vim.cmd('TodoQuickFix cwd=' .. input)
 end
+
 vim.api.nvim_create_user_command('TodoCwd', _TodoCwd, {})
 
 local setup = {
@@ -94,7 +95,32 @@ local mappings = {
     s = { "<cmd>PossessionSaveCwd<cr>", "Save session" },
   },
   c = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-  --e = { "<cmd>NvimTreeToggle<cr>", "Toggle explorer" },
+  d = {
+    name = "Debugging",
+    d = { function() require('dap').continue() end, "Continue debugging session" },
+    p = { function() require('dap').run_last() end, "Re-run previous debug config" },
+    r = { function() require('dap').restart() end, "Restart the current session" },
+    b = { "<cmd>PBToggleBreakpoint<cr>", "Toggle breakpoint" },
+    B = { "<cmd>PBSetConditionalBreakpoint<cr>", "Toggle conditional brakpoint" },
+    t = { function() require('dap').terminate() end, "Terminate" },
+    L = { function() require('dap').list_breakpoints() end, "List breakpoints in quickfix window" },
+    C = { "<cmd>PBClearAllBreakpoints<cr>", "Clear all breakpoints" },
+
+    -- Stepping
+    l = { function() require('dap').step_over() end, "Step over" },
+    j = { function() require('dap').step_into() end, "Step into" },
+    k = { function() require('dap').step_out() end, "Step out" },
+    h = { function() require('dap').step_back() end, "Step back" },
+    c = { function() require('dap').run_to_cursor() end, "Run to cursor" },
+
+    -- Scope
+    K = { function() require('dap').up() end, "Go up in stacktrace" },
+    J = { function() require('dap').down() end, "Go down in stacktrace" },
+    g = { function() require('dap').goto_() end, "Go to line under cursor" },
+
+    f = { function() require('dap').focus_frame() end, "Focus frame" },
+    F = { function() require('dap').restart_frame() end, "Restart frame" },
+  },
   e = {
     { ":Neotree action=focus toggle reveal<CR>", "Toggle file system on current file" },
   },
