@@ -89,17 +89,17 @@ return packer.startup(function(use)
     branch = 'v4.x',
     requires = {
       -- LSP Support
-      { 'neovim/nvim-lspconfig', commit = 'v1.8.0' },             -- Required
-      { 'williamboman/mason.nvim', commit = 'v1.11.0' },           -- Optional
+      { 'neovim/nvim-lspconfig',             commit = 'v1.8.0' },  -- Required
+      { 'williamboman/mason.nvim',           commit = 'v1.11.0' }, -- Optional
       { 'williamboman/mason-lspconfig.nvim', commit = 'v1.32.0' }, -- Optional
 
       -- Autocompletion
-      { 'hrsh7th/nvim-cmp', commit ='v0.0.2' },         -- Required
-      { 'hrsh7th/cmp-nvim-lsp', commit ='a8912b88c' },     -- Required
-      { 'hrsh7th/cmp-buffer' },       -- Optional
-      { 'hrsh7th/cmp-path' },         -- Optional
-      { 'saadparwaiz1/cmp_luasnip' }, -- Optional
-      { 'hrsh7th/cmp-nvim-lua' },     -- Optional
+      { 'hrsh7th/nvim-cmp',                  commit = 'v0.0.2' },    -- Required
+      { 'hrsh7th/cmp-nvim-lsp',              commit = 'a8912b88c' }, -- Required
+      { 'hrsh7th/cmp-buffer' },                                      -- Optional
+      { 'hrsh7th/cmp-path' },                                        -- Optional
+      { 'saadparwaiz1/cmp_luasnip' },                                -- Optional
+      { 'hrsh7th/cmp-nvim-lua' },                                    -- Optional
 
       -- Snippets
       { 'L3MON4D3/LuaSnip' },             -- Required
@@ -145,7 +145,7 @@ return packer.startup(function(use)
   use('preservim/tagbar')                                                                 --  Browse tags of current file
   use('preservim/nerdcommenter')                                                          --  Commenting plugin
   use('sindrets/diffview.nvim')                                                           --  Neovim diffview
-  use { 'NeogitOrg/neogit', commit = "v2.0.0" }                                                              --  Neovim git plugin
+  use { 'NeogitOrg/neogit', commit = "v2.0.0" }                                           --  Neovim git plugin
   --use('tmsvg/pear-tree')                                                                  --  Pair brackets, braces, etc.
   use('kshenoy/vim-signature')                                                            --  Place, toggle, and display marks
   use('drmikehenry/vim-headerguard')                                                      --  C++ header guards
@@ -236,4 +236,28 @@ return packer.startup(function(use)
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
+
+  use { "folke/lazydev.nvim", }
+  use { "rcarriga/nvim-dap-ui",
+    requires = {
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio",
+      "mortepau/codicons.nvim",
+    }
+  }
+  use {
+    'mfussenegger/nvim-dap',
+    requires = {
+      'mfussenegger/nvim-dap-python',
+    },
+    --commit = '0.10.0',
+  }
+  use {
+    'Weissle/persistent-breakpoints.nvim',
+    config = function()
+      require('persistent-breakpoints').setup {
+        load_breakpoints_event = { "BufReadPost" }
+      }
+    end
+  }
 end)
