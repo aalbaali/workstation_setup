@@ -105,6 +105,8 @@ local mappings = {
     t = { function() require('dap').terminate() end, "Terminate" },
     L = { function() require('dap').list_breakpoints() end, "List breakpoints in quickfix window" },
     C = { "<cmd>PBClearAllBreakpoints<cr>", "Clear all breakpoints" },
+    U = { function() require("dapui").toggle({ reset = true }) end, "Toggle UI" },
+    ["="] = { function() require("dapui").eval() end, "Evaluate variable under cursor" },
 
     -- Stepping
     l = { function() require('dap').step_over() end, "Step over" },

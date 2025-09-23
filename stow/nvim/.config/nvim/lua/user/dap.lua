@@ -3,7 +3,21 @@ local dapui = require("dapui")
 dapui.setup()
 
 -- Setup DAP adapters
-require("dap-python").setup()
+require("dap-python").setup(result)
+--local python_path = 'python3'
+--dap.adapters.debugpy = function(cb, config)
+--  if config.request == 'attach' then
+--    error('Attach request not supported')
+--  end
+--  cb({
+--    type = 'executable',
+--    command = python_path,
+--    args = { '-m', 'debugpy.adapter' },
+--    options = {
+--      source_filetype = 'python',
+--    },
+--  })
+--end
 
 -- Setup UI
 dap.listeners.before.attach.dapui_config = function()
