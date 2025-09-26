@@ -142,6 +142,11 @@ Note that this script will only work after installing the `coc-ccls` plugin firs
 ## Mason installation error
 Sometimes Mason has permission issues and results in errors such as `npm failed with exit code - and signal -. npm is not executable` when running `:MasonLog`
 
+To fix, ensure:
+- `node` is installed (run `node --version`)
+- `npm` is installed (run `npm --version`)
+- `~/.npm` path exists and has the correct access level
+
 
 ## ZSH fonts
 Additional packages may be required for the ZSH font to be displayed correctly.
