@@ -228,6 +228,7 @@ return packer.startup(function(use)
 
   use {
     "jedrzejboczar/possession.nvim",
+    commit = "8fb21fabae4",
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
