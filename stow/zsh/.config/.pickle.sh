@@ -82,11 +82,39 @@ function gsutil-download() {
   gsutil cp "${gcloud_bag}" "${download_dir}/${bag_name}"
 }
 
+function open-dill-pr() {
+  txt="${1}"
+  # Filter for the number directly after # (e.g., #1234)
+  pr_num=$(echo "$txt" | rg -o '#\d+' | head -n 1 | tr -d '#')
+  repo="${2:-dill}"
+  # Set url based on the repo, which could be roots or dill
+  if [[ "${repo}" = "dill" ]]; then
+    url="https://github.com/Pickle-Robot/dill/pull/"
+  elif [[ "${repo}" = "roots" ]]; then
+    url="https://github.com/Pickle-Robot/roots/pull/"
+  fi
+
+  echo "Opening PR: ${url}${pr_num}"
+  google-chrome "${url}${pr_num}" &>/dev/null &
+}
+
+
+function open-dill-pr-from-clipboard() {
+  # Open Dill PR in Google Chrome browser, where the PR number is obtained from the clipboard.
+  #
+  # Usage:
+  #   open_dill_pr_from_clipboard
+  for issue in $(xclip -selection clipboard -o | ag -o '#\d+'); do
+    open-dill-pr "${issue}" "${2:-dill}"
+  done
+
+}
 #######################################
 # Key bindings
 #######################################
 # Bind opening Pickle Jira issue
 bindkey -s '^[i' 'open-pickle-jira-issue-from-clipboard^M'
+bindkey -s '^[d' 'open-dill-pr-from-clipboard^M'
 
 #######################################
 # Parse navigation inputs/output
