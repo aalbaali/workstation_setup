@@ -7,8 +7,6 @@ alias mytasks="jira issue list -a amro -s~Done"
 alias dev="dex dill_devcontainer zsh"
 
 
-export LOGDNA_KEY=b43d4937f6e8055a2fb21e4758a3ea0d
-
 # ROS workspace in rosbridge
 if [ -e "${HOME}/catkin_ws" ]; then
   export ROS_WORKSPACE="${HOME}/catkin_ws"
