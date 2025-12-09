@@ -107,6 +107,12 @@ dconf load / < dconf-settings.ini
 sudo apt install gnome-tweaks
 ```
 
+## CopyQ - Clipboard queue
+```bash
+sudo apt-get install copyq
+```
+Open `Preferences` > `Shortcuts` > set `Show main window under cursor` to `Alt + U`.
+
 # Node
 To install different versions of NodeJS, you can use the [`n` npm package](https://blog.hubspot.com/website/update-node-js).
 ```bash
