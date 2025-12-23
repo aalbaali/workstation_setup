@@ -163,6 +163,18 @@ function kr70fk() {
   docker exec -it dill_devcontainer python -c "from app.arm.kuka.kinematics.kinematics import make_kr70_kin; kin = make_kr70_kin(None); print(kin.forward(${q}))"
 }
 
+
+# `rosbag` function run through rosbridge
+function rbag() {
+  bag_path=""
+  if [ "$#" -ge 2 ]; then
+    host_path=$(realpath "${2}" --relative-to="${HOME}/pickle_data_v1")
+    bag_path="/app/${host_path}"
+  fi
+
+  docker run -it --rm --network=host -v ${HOME}/pickle_data_v1:/app rosbridge:latest bash -c "rosbag $1 ${bag_path} ${@:3}"
+}
+
 #######################################
 # Dev container setup
 #######################################
