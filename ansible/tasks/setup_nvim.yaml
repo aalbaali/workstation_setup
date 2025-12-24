@@ -24,10 +24,11 @@
         remote_src: true
         creates: "/opt/nvim-linux64-{{ nvim_version }}"
 
-    - name: Move from temp to opt
-      ansible.builtin.command: mv /tmp/nvim-linux64 "/opt/nvim-linux64-{{ nvim_version }}"
-      args:
-        creates: "/opt/nvim-linux64-{{ nvim_version }}"
+    - name: Copy from temp to opt
+      ansible.builtin.copy:
+        src: /tmp/nvim-linux64/
+        dest:  "/opt/nvim-linux64-{{ nvim_version }}"
+        remote_src: true
 
     - name: Symlink nvim
       ansible.builtin.file:
