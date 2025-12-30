@@ -30,8 +30,6 @@ function run-again {
 }
 # define run-again widget from function of the same name
 zle -N run-again
-# Set 'alt+:' to run last command
-bindkey '^[:' run-again
 
 # Autosuggestion colour
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#707880"
@@ -45,7 +43,7 @@ bindkey -s '^[P' 'git push ^M'
 bindkey -s '^[f' 'git fetch --prune ^M'
 bindkey -s '^[k' 'cd .. ^M'
 bindkey -s '^[j' 'cd - ^M'
-bindkey -s '^[r' '!!^M^M'
+bindkey '^[r' run-again
 
 # Add local to path
 export PATH="$HOME/.local/bin:$PATH"
