@@ -5,6 +5,22 @@ alias j=jira
 alias mytasks="jira issue list -a amro -s~Done"
 
 alias dev="dex dill_devcontainer zsh"
+alias pl=pickle-tui
+bindkey -s '^[o' 'pickle-tui^M'
+
+function get_rot() {
+  r=${1}
+  p=${2}
+  y=${3}
+  should_copy=${4:-0}
+  echo "RPY: ${r} ${p} ${y} [deg]."
+  echo "Should copy: ${should_copy}"
+  output=$(euler -e -s xyz -p --ros -- ${1} ${2} ${3})
+  if [[ ${should_copy} -eq 1 ]]; then
+    echo "${output}" | tail -n 6 | xclip -selection clipboard
+    echo "Copied quaternion to clipboard."
+  fi
+}
 
 
 # ROS workspace in rosbridge
@@ -163,6 +179,213 @@ function kr70fk() {
   docker exec -it dill_devcontainer python -c "from app.arm.kuka.kinematics.kinematics import make_kr70_kin; kin = make_kr70_kin(None); print(kin.forward(${q}))"
 }
 
+# Function to delete git branches
+delete-branch() {
+    # Check for help option first
+    if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+        echo "Usage: delete-branch [-f] [-l | -r] [--fzf] <branch-name> [<branch-name> ...]"
+        echo "Delete git branches locally and/or remotely."
+        echo ""
+        echo "Options:"
+        echo "  -f        Force delete (use -D instead of -d for local branches)"
+        echo "  -l        Delete only local branches"
+        echo "  -r        Delete only remote branches"
+        echo "  --fzf     Use fzf to interactively select branches to delete"
+        echo "  -h, --help    Show this help message"
+        echo ""
+        echo "Arguments:"
+        echo "  <branch-name>    Name(s) of branch(es) to delete (ignored when --fzf is used)"
+        echo ""
+        echo "If neither -l nor -r is specified, both local and remote branches will be deleted."
+        return 0
+    fi
+
+    local force_delete=false
+    local delete_local=false
+    local delete_remote=false
+    local use_fzf=false
+
+    # Parse options to handle combined flags like -lf or -rf
+    while [[ "$1" == -* ]]; do
+        case "$1" in
+            --fzf)
+                use_fzf=true
+                shift
+                ;;
+            -*)
+                # Handle combined options like -lf, -rf, etc.
+                local opt="${1#-}"
+                while [[ -n "$opt" ]]; do
+                    case "${opt:0:1}" in
+                        f)
+                            force_delete=true
+                            ;;
+                        l)
+                            delete_local=true
+                            ;;
+                        r)
+                            delete_remote=true
+                            ;;
+                        *)
+                            echo "Invalid option: -${opt:0:1}" >&2
+                            return 1
+                            ;;
+                    esac
+                    opt="${opt:1}"
+                done
+                shift
+                ;;
+        esac
+    done
+
+    # Default to deleting both local and remote if neither -l nor -r is specified
+    if [ "$delete_local" = false ] && [ "$delete_remote" = false ]; then
+        delete_local=true
+        delete_remote=true
+    fi
+
+    local branches_to_delete=()
+
+    if [ "$use_fzf" = true ]; then
+        # Use fzf to select branches
+        local branches
+
+        # Get the list of branches based on the specified options
+        if [ "$delete_local" = true ]; then
+            branches+=$(git branch --format='%(refname:short)' 2>/dev/null)$'\n'
+        fi
+        if [ "$delete_remote" = true ]; then
+            branches+=$(git branch -r --format='%(refname:short)' 2>/dev/null)$'\n'
+        fi
+
+        # Use fzf to select branches to delete
+        branches_to_delete=($(echo "$branches" | grep -v HEAD | fzf -m --prompt="Select branches to delete: "))
+
+        if [ ${#branches_to_delete[@]} -eq 0 ]; then
+            echo "No branches selected for deletion."
+            return 0
+        fi
+
+        # Show selected branches and ask for confirmation
+        echo "The following branches will be deleted:"
+        for branch in "${branches_to_delete[@]}"; do
+            echo "  - $branch"
+        done
+        echo ""
+
+        local delete_type=""
+        if [ "$delete_local" = true ] && [ "$delete_remote" = true ]; then
+            delete_type="locally and remotely"
+        elif [ "$delete_local" = true ]; then
+            delete_type="locally"
+        elif [ "$delete_remote" = true ]; then
+            delete_type="remotely"
+        fi
+
+        if [ "$force_delete" = true ]; then
+            echo "Branches will be force deleted $delete_type."
+        else
+            echo "Branches will be deleted $delete_type."
+        fi
+
+        read -p "Are you sure you want to proceed? (y/N): " -n 1 -r
+        echo ""
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            echo "Deletion cancelled."
+            return 0
+        fi
+    else
+        # Use command line arguments
+        if [ $# -eq 0 ]; then
+            echo "Usage: delete-branch [-f] [-l | -r] [--fzf] <branch-name> [<branch-name> ...]"
+            return 1
+        fi
+        branches_to_delete=("$@")
+    fi
+
+    for branch in "${branches_to_delete[@]}"; do
+        # Strip origin/ prefix from remote branch names if present
+        local clean_branch_name="${branch#origin/}"
+
+        if [ "$delete_local" = true ]; then
+            if [ "$force_delete" = true ]; then
+                # Force delete local branch
+                git branch -D "$clean_branch_name"
+            else
+                # Delete local branch
+                git branch -d "$clean_branch_name"
+            fi
+        fi
+
+        if [ "$delete_remote" = true ]; then
+            # Check if the branch exists on the remote before attempting to delete it
+            if git show-ref --verify --quiet refs/remotes/origin/"$clean_branch_name"; then
+                # Delete remote branch
+                git push origin --delete "$clean_branch_name" --no-verify
+            else
+                echo "Branch '$clean_branch_name' does not exist on the remote."
+            fi
+        fi
+    done
+}
+
+# Bash completion for delete-branch function
+_delete_branch_completions() {
+    local cur prev opts branches
+    local delete_local=false delete_remote=false
+
+    # Get the current word being typed
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+    # Define available options
+    opts="-f -l -r --fzf -h --help"
+
+    # If current word starts with -, provide option completions
+    if [[ "$cur" == -* ]]; then
+        COMPREPLY=($(compgen -W "$opts" -- "$cur"))
+        return 0
+    fi
+
+    # Parse existing arguments to determine what branches to show
+    local i
+    for (( i=1; i < COMP_CWORD; i++ )); do
+        case "${COMP_WORDS[i]}" in
+            -l)
+                delete_local=true
+                ;;
+            -r)
+                delete_remote=true
+                ;;
+            --fzf)
+                # When --fzf is used, no branch name arguments are needed
+                return 0
+                ;;
+        esac
+    done
+
+    # Default to both local and remote if neither -l nor -r is specified
+    if [ "$delete_local" = false ] && [ "$delete_remote" = false ]; then
+        delete_local=true
+        delete_remote=true
+    fi
+
+    # Build branch list based on flags
+    branches=""
+    if [ "$delete_local" = true ]; then
+        branches+=$(git branch --format='%(refname:short)' 2>/dev/null)$'\n'
+    fi
+    if [ "$delete_remote" = true ]; then
+        # Get remote branches and strip the origin/ prefix
+        branches+=$(git branch -r --format='%(refname:short)' 2>/dev/null | grep -v HEAD | sed 's#^origin/##')$'\n'
+    fi
+
+    # Provide completions for the current word
+    COMPREPLY=($(compgen -W "$branches" -- "$cur"))
+}
+
+# Register the completion function for delete-branch
+complete -F _delete_branch_completions delete-branch
 
 # `rosbag` function run through rosbridge
 function rbag() {
