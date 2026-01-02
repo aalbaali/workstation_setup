@@ -173,11 +173,49 @@ function parse_nav_plotter_params() {
   echo $output
 }
 
-function kr70fk() {
+function robot_fk() {
+  # Run forward kinematics on the KR70 robot
+  docker exec -it dill_devcontainer python -c \
+"""
+import numpy as np
+from app.arm.kuka.kinematics.kinematics import make_kr70_kin
+kin = make_kr70_kin(None)
+tf=kin.forward($@)
+print(tf)
+
+np.set_printoptions(precision=3, suppress=True)
+print(f'RPY: {np.rad2deg(tf.rpy)} [deg]')
+print(f'Pos: {tf.position_np} [m]')
+"""
+}
+
+function robot_ik() {
   # Run forward kinematics on the KR70 robot
   q=$(xclip -selection clipboard -o)
-  docker exec -it dill_devcontainer python -c "from app.arm.kuka.kinematics.kinematics import make_kr70_kin; kin = make_kr70_kin(None); print(kin.forward(${q}))"
+  docker exec -it dill_devcontainer python -c \
+    """
+import numpy as np
+from app.shared.measurements import Transform
+from app.arm.kuka.kinematics.kinematics import make_kr70_kin
+kin = make_kr70_kin(None);
+iks = kin.inverse(Transform.from_rpy_and_position(rpy=np.deg2rad([${1}, ${2}, ${3}]), position=np.array([${4}, ${5}, ${6}])))
+
+np.set_printoptions(precision=3, suppress=True)
+for idx, ik in enumerate(iks):
+    print(f'q{idx}:', np.array2string(np.rad2deg(ik), separator=','), '[deg]');
+"""
 }
+
+
+
+function robot_neutral_q() {
+  echo '[92.4, -128.23, 129.17, 0.0, 89.07, 60.0]'
+}
+
+function robot_view_frames() {
+  docker exec -it dill_devcontainer python /home/dill/pickle_data_v1/amro/pickle-sandbox/py_playground/view_robot_frames.py $@
+}
+
 
 # Function to delete git branches
 delete-branch() {
