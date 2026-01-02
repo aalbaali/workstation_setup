@@ -201,8 +201,8 @@ kin = make_kr70_kin(None);
 iks = kin.inverse(Transform.from_rpy_and_position(rpy=np.deg2rad([${1}, ${2}, ${3}]), position=np.array([${4}, ${5}, ${6}])))
 
 np.set_printoptions(precision=3, suppress=True)
-for idx, ik in enumerate(iks):
-    print(f'q{idx}:', np.array2string(np.rad2deg(ik), separator=','), '[deg]');
+for ik in iks:
+    print(f'q:', np.array2string(np.rad2deg(ik), separator=','), '[deg]');
 """
 }
 
