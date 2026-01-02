@@ -180,7 +180,7 @@ function robot_fk() {
 import numpy as np
 from app.arm.kuka.kinematics.kinematics import make_kr70_kin
 kin = make_kr70_kin(None)
-tf=kin.forward($@)
+tf=kin.forward(np.deg2rad($@))
 print(tf)
 
 np.set_printoptions(precision=3, suppress=True)
