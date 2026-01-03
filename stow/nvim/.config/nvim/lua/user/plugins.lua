@@ -116,7 +116,6 @@ return packer.startup(function(use)
   }
   use 'simrat39/rust-tools.nvim'
 
-  use { "nvimtools/none-ls.nvim" } -- for formatters and linters
   use { "RRethy/vim-illuminate" }
   use { "nvim-telescope/telescope.nvim", commit = "84b9ba06" }
   use { "nvim-treesitter/nvim-treesitter", commit = "v0.10.0" }
