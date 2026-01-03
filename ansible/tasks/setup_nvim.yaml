@@ -26,7 +26,7 @@
 
     - name: Copy from temp to opt
       ansible.builtin.copy:
-        src: /tmp/nvim-linux64/
+        src: /tmp/nvim-linux-x86_64/
         dest:  "/opt/nvim-linux64-{{ nvim_version }}"
         remote_src: true
 
