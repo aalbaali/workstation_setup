@@ -118,7 +118,7 @@ return packer.startup(function(use)
 
   use { "nvimtools/none-ls.nvim" } -- for formatters and linters
   use { "RRethy/vim-illuminate" }
-  use { "nvim-telescope/telescope.nvim" }
+  use { "nvim-telescope/telescope.nvim", commit = "84b9ba06" }
   use { "nvim-treesitter/nvim-treesitter" }
   use { "nvim-treesitter/nvim-treesitter-context" } -- View context at the current cursor functions/classes
   use { "lewis6991/gitsigns.nvim", commit = "v0.8.1" }
@@ -228,6 +228,7 @@ return packer.startup(function(use)
 
   use {
     "jedrzejboczar/possession.nvim",
+    commit = "8fb21fabae4",
     requires = { 'nvim-lua/plenary.nvim' },
   }
 

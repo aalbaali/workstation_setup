@@ -107,6 +107,12 @@ dconf load / < dconf-settings.ini
 sudo apt install gnome-tweaks
 ```
 
+## CopyQ - Clipboard queue
+```bash
+sudo apt-get install copyq
+```
+Open `Preferences` > `Shortcuts` > set `Show main window under cursor` to `Alt + U`.
+
 # Node
 To install different versions of NodeJS, you can use the [`n` npm package](https://blog.hubspot.com/website/update-node-js).
 ```bash
@@ -141,6 +147,11 @@ Note that this script will only work after installing the `coc-ccls` plugin firs
 
 ## Mason installation error
 Sometimes Mason has permission issues and results in errors such as `npm failed with exit code - and signal -. npm is not executable` when running `:MasonLog`
+
+To fix, ensure:
+- `node` is installed (run `node --version`)
+- `npm` is installed (run `npm --version`)
+- `~/.npm` path exists and has the correct access level
 
 
 ## ZSH fonts
