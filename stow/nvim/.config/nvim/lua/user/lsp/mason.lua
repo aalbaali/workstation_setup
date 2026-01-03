@@ -6,6 +6,7 @@ local servers = {
   "lua_ls",
   "jsonls",
   "pyright",
+  "ruff",
 }
 
 local settings = {

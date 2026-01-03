@@ -119,8 +119,8 @@ return packer.startup(function(use)
   use { "nvimtools/none-ls.nvim" } -- for formatters and linters
   use { "RRethy/vim-illuminate" }
   use { "nvim-telescope/telescope.nvim", commit = "84b9ba06" }
-  use { "nvim-treesitter/nvim-treesitter" }
-  use { "nvim-treesitter/nvim-treesitter-context" } -- View context at the current cursor functions/classes
+  use { "nvim-treesitter/nvim-treesitter", commit = "v0.10.0" }
+  use { "nvim-treesitter/nvim-treesitter-context", commit = "660861b" } -- View context at the current cursor functions/classes
   use { "lewis6991/gitsigns.nvim", commit = "v0.8.1" }
 
   use('tpope/vim-fugitive')             --  Git comments
@@ -261,4 +261,5 @@ return packer.startup(function(use)
       }
     end
   }
+  use { 'Vigemus/iron.nvim' }
 end)

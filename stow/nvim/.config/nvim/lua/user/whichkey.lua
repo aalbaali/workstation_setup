@@ -152,7 +152,9 @@ local mappings = {
   r = {
     name = "run",
     p = { "<cmd>split<CR><cmd>term python %<CR>", "Run python" },
-    r = { "<cmd>split<CR><cmd>term ./%<CR>", "Run script" },
+    s = { "<cmd>split<CR><cmd>term ./%<CR>", "Run script" },
+    f = { "<cmd>IronFocus<cr>", "Run focus" },
+    h = { "<cmd>IronHide<cr>", "Run hide" },
   },
 
   p = {
@@ -179,7 +181,6 @@ local mappings = {
       "Undo Stage Hunk",
     },
     o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-    b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
     d = {
       "<cmd>Gitsigns diffthis HEAD<cr>",
@@ -201,7 +202,7 @@ local mappings = {
       "Workspace Diagnostics",
     },
     f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
-    F = { "<cmd>!python -m ruff check % --fix --select F841 --fixable F841 --select F401 --fixable F401 && python -m ruff format %<cr>", "Format" },
+    F = { "<cmd>!python -m ruff check % --fix && python -m ruff format %<cr>", "Format" },
     J = { "<cmd>!prettier --write % --log-level warn<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>Mason<cr>", "Installer Info" },
@@ -232,8 +233,6 @@ local mappings = {
   s = {
     name = "Search",
     a = { "<cmd>Ag<cr>", "Ag search" },
-    b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-    c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
     h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
