@@ -89,9 +89,9 @@ return packer.startup(function(use)
     branch = 'v4.x',
     requires = {
       -- LSP Support
-      { 'neovim/nvim-lspconfig',             commit = 'v1.8.0' },  -- Required
-      { 'williamboman/mason.nvim',           commit = 'v1.11.0' }, -- Optional
-      { 'williamboman/mason-lspconfig.nvim', commit = 'v1.32.0' }, -- Optional
+      { 'neovim/nvim-lspconfig',             commit = 'v2.5.0' },  -- Required
+      { 'williamboman/mason.nvim',           commit = 'v2.1.0' }, -- Optional
+      { 'williamboman/mason-lspconfig.nvim', commit = 'v2.1.0' }, -- Optional
 
       -- Autocompletion
       { 'hrsh7th/nvim-cmp',                  commit = 'v0.0.2' },    -- Required
