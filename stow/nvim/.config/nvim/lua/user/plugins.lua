@@ -137,7 +137,7 @@ return packer.startup(function(use)
   use('preservim/tagbar')                                                                 --  Browse tags of current file
   use('preservim/nerdcommenter')                                                          --  Commenting plugin
   use('sindrets/diffview.nvim')                                                           --  Neovim diffview
-  use { 'NeogitOrg/neogit', commit = "v2.0.0" }                                           --  Neovim git plugin
+  use { 'NeogitOrg/neogit', commit = "v3.0.0" }                                           --  Neovim git plugin
   use('kshenoy/vim-signature')                                                            --  Place, toggle, and display marks
   use('drmikehenry/vim-headerguard')                                                      --  C++ header guards
   use('easymotion/vim-easymotion')                                                        --  Quick jumping around documents
