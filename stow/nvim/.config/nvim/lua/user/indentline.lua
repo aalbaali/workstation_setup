@@ -1,11 +1,11 @@
-local status_ok, ibl = pcall(require, "ibl")
+local status_ok, ibl = pcall(require, 'ibl')
 if not status_ok then
   return
 end
 
 ibl.setup({
   indent = {
-    char = "▏",
+    char = '▏',
   },
   scope = {
     enabled = true,
@@ -13,15 +13,15 @@ ibl.setup({
     show_end = false,
   },
   exclude = {
-    buftypes = { "terminal", "nofile" },
+    buftypes = { 'terminal', 'nofile' },
     filetypes = {
-      "help",
-      "startify",
-      "dashboard",
-      "packer",
-      "neogitstatus",
-      "NvimTree",
-      "Trouble",
+      'help',
+      'startify',
+      'dashboard',
+      'packer',
+      'neogitstatus',
+      'NvimTree',
+      'Trouble',
     },
   },
 })

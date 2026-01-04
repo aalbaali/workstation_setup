@@ -1,7 +1,7 @@
 ----------------------------------------------------------------------
 -- Breadcrumbs
 ----------------------------------------------------------------------
-require("lspsaga").setup({
+require('lspsaga').setup({
   ui = {
     use_nerd = true,
   },
@@ -10,5 +10,5 @@ require("lspsaga").setup({
   },
   symbol_in_winbar = {
     enable = true,
-  }
+  },
 })

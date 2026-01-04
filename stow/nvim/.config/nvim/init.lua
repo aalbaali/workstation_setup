@@ -1,46 +1,46 @@
-require "user.options"
-require "user.keymaps"
-require "user.colorscheme"
-require "user.plugins"
-require "user.lsp"
-require "user.cmp"
-require "user.telescope"
-require "user.gitsigns"
-require "user.treesitter"
-require "user.autopairs"
-require "user.comment"
-require "user.nvim-tree"
-require "user.bufferline"
-require "user.lualine"
-require "user.toggleterm"
-require "user.project"
-require "user.impatient"
-require "user.indentline"
-require "user.whichkey"
-require "user.autocommands"
-require "user.fzf"
-require "user.cmake"
-require "user.asyncrun"
-require "user.clangformat"
-require "user.cmake"
-require "user.diffview"
-require "user.doxygentoolkit"
-require "user.fugitive"
-require "user.headerguard"
-require "user.nerdcommenter"
-require "user.startify"
-require "user.undotree"
-require "user.tagbar"
-require "user.easymotion"
-require "user.doge"
-require "user.neogit"
-require "user.vim-gh-line"
-require "user.neogen"
+require('user.options')
+require('user.keymaps')
+require('user.colorscheme')
+require('user.plugins')
+require('user.lsp')
+require('user.cmp')
+require('user.telescope')
+require('user.gitsigns')
+require('user.treesitter')
+require('user.autopairs')
+require('user.comment')
+require('user.nvim-tree')
+require('user.bufferline')
+require('user.lualine')
+require('user.toggleterm')
+require('user.project')
+require('user.impatient')
+require('user.indentline')
+require('user.whichkey')
+require('user.autocommands')
+require('user.fzf')
+require('user.cmake')
+require('user.asyncrun')
+require('user.clangformat')
+require('user.cmake')
+require('user.diffview')
+require('user.doxygentoolkit')
+require('user.fugitive')
+require('user.headerguard')
+require('user.nerdcommenter')
+require('user.startify')
+require('user.undotree')
+require('user.tagbar')
+require('user.easymotion')
+require('user.doge')
+require('user.neogit')
+require('user.vim-gh-line')
+require('user.neogen')
 --require "user.lspsaga"
-require "user.trouble"
-require "user.neo-tree"
-require "user.harpoon"
-require "user.possession"
-require "user.dap"
-require "user.lazydev"
-require "user.iron"
+require('user.trouble')
+require('user.neo-tree')
+require('user.harpoon')
+require('user.possession')
+require('user.dap')
+require('user.lazydev')
+require('user.iron')

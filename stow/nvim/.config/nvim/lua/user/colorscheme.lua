@@ -8,7 +8,7 @@
 --local colorscheme = "catppuccin-mocha"
 
 ---- Gruvbox
-local colorscheme = "gruvbox"
+local colorscheme = 'gruvbox'
 vim.g.gruvbox_contrast_dark = 'hard'
 
 ---- Iceberg
@@ -34,7 +34,6 @@ vim.g.gruvbox_contrast_dark = 'hard'
 ----vim.g.gruvbox_baby_transparent_mode = 1
 --vim.g.use_original_palette = false
 --local colorscheme = "gruvbox-baby"
-
 
 -- -- Monokai (somewhat dark)
 -- vim.g.vim_monokai_tasty_machine_tint = 1

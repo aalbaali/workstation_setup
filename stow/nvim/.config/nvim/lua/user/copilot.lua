@@ -1,4 +1,4 @@
-local status_ok, copilot = pcall(require, "copilot")
+local status_ok, copilot = pcall(require, 'copilot')
 if not status_ok then
   print("Couldn't load 'copilot'")
   return
@@ -9,15 +9,15 @@ copilot.setup({
     enabled = true,
     auto_refresh = true,
     keymap = {
-      jump_prev = "[[",
-      jump_next = "]]",
-      accept = "<CR>",
-      refresh = "gr",
-      open = "<M-CR>"
+      jump_prev = '[[',
+      jump_next = ']]',
+      accept = '<CR>',
+      refresh = 'gr',
+      open = '<M-CR>',
     },
     layout = {
-      position = "top",       -- | top | left | right
-      ratio = 0.4
+      position = 'top', -- | top | left | right
+      ratio = 0.4,
     },
   },
   suggestion = {
@@ -25,12 +25,12 @@ copilot.setup({
     auto_trigger = true,
     debounce = 75,
     keymap = {
-      accept = "<A-j>",
+      accept = '<A-j>',
       accept_word = false,
       accept_line = false,
-      next = "<A-l>",
-      prev = "<A-h>",
-      dismiss = "<A-]>",
+      next = '<A-l>',
+      prev = '<A-h>',
+      dismiss = '<A-]>',
     },
   },
   filetypes = {
@@ -42,9 +42,9 @@ copilot.setup({
     hgcommit = false,
     svn = false,
     cvs = false,
-    ["."] = false,
+    ['.'] = false,
   },
-  copilot_node_command = 'node',       -- Node.js version must be > 16.x
+  copilot_node_command = 'node', -- Node.js version must be > 16.x
   server_opts_overrides = {},
 })
 

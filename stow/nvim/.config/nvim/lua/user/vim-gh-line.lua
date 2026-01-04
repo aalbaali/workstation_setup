@@ -20,5 +20,5 @@ function yank_gh_line(use_commit)
 end
 
 return {
-  yank_gh_line = yank_gh_line
+  yank_gh_line = yank_gh_line,
 }

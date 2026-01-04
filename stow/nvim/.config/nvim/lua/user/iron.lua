@@ -1,8 +1,8 @@
-local iron = require("iron.core")
-local view = require("iron.view")
-local common = require("iron.fts.common")
+local iron = require('iron.core')
+local view = require('iron.view')
+local common = require('iron.fts.common')
 
-iron.setup {
+iron.setup({
   config = {
     -- Whether a repl should be discarded or not
     scratch_repl = true,
@@ -12,15 +12,15 @@ iron.setup {
       sh = {
         -- Can be a table or a function that
         -- returns a table (see below)
-        command = { "zsh" }
+        command = { 'zsh' },
       },
       python = {
-        command = { "ipython", "--no-autoindent" },
+        command = { 'ipython', '--no-autoindent' },
         --command = { "python3" }, -- or { "ipython", "--no-autoindent" }
         format = common.bracketed_paste_python,
-        block_dividers = { "# %%", "#%%" },
-        env = { PYTHON_BASIC_REPL = "1" } --this is needed for python3.13 and up.
-      }
+        block_dividers = { '# %%', '#%%' },
+        env = { PYTHON_BASIC_REPL = '1' }, --this is needed for python3.13 and up.
+      },
     },
     -- set the file type of the newly created repl to ft
     -- bufnr is the buffer id of the REPL and ft is the filetype of the
@@ -46,41 +46,40 @@ iron.setup {
     -- For example,
     --
     repl_open_cmd = {
-      view.split.vertical.rightbelow("%40"), -- cmd_1: open a repl to the right
-      view.split.rightbelow("%25")           -- cmd_2: open a repl below
-    }
-
+      view.split.vertical.rightbelow('%40'), -- cmd_1: open a repl to the right
+      view.split.rightbelow('%25'), -- cmd_2: open a repl below
+    },
   },
   -- Iron doesn't set keymaps by default anymore.
   -- You can set them here or manually add keymaps to the functions in iron.core
   keymaps = {
-    toggle_repl = "<space>rt", -- toggles the repl open and closed.
+    toggle_repl = '<space>rt', -- toggles the repl open and closed.
     -- If repl_open_command is a table as above, then the following keymaps are
     -- available
-    toggle_repl_with_cmd_1 = "<space>r\\",
-    toggle_repl_with_cmd_2 = "<space>r-",
-    restart_repl = "<space>rR", -- calls `IronRestart` to restart the repl
-    send_motion = "<space>rc",
-    visual_send = "<space>rr",
-    send_file = "<space>rF",
-    send_line = "<space>rl",
-    send_paragraph = "<space>sp",
-    send_until_cursor = "<space>ru",
-    send_mark = "<space>rm",
-    send_code_block = "<space>rb",
-    send_code_block_and_move = "<space>rn",
-    mark_motion = "<space>mc",
-    mark_visual = "<space>mc",
-    remove_mark = "<space>md",
-    cr = "<space>r<cr>",
-    interrupt = "<space>r<space>",
-    exit = "<space>rq",
-    clear = "<space>rk",
+    toggle_repl_with_cmd_1 = '<space>r\\',
+    toggle_repl_with_cmd_2 = '<space>r-',
+    restart_repl = '<space>rR', -- calls `IronRestart` to restart the repl
+    send_motion = '<space>rc',
+    visual_send = '<space>rr',
+    send_file = '<space>rF',
+    send_line = '<space>rl',
+    send_paragraph = '<space>sp',
+    send_until_cursor = '<space>ru',
+    send_mark = '<space>rm',
+    send_code_block = '<space>rb',
+    send_code_block_and_move = '<space>rn',
+    mark_motion = '<space>mc',
+    mark_visual = '<space>mc',
+    remove_mark = '<space>md',
+    cr = '<space>r<cr>',
+    interrupt = '<space>r<space>',
+    exit = '<space>rq',
+    clear = '<space>rk',
   },
   -- If the highlight is on, you can change how it looks
   -- For the available options, check nvim_set_hl
   highlight = {
-    italic = true
+    italic = true,
   },
   ignore_blank_lines = false, -- ignore blank lines when sending visual select lines
-}
+})

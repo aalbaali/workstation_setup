@@ -1,9 +1,9 @@
-local dap = require("dap")
-local dapui = require("dapui")
+local dap = require('dap')
+local dapui = require('dapui')
 dapui.setup()
 
 -- Setup DAP adapters
-require("dap-python").setup(result)
+require('dap-python').setup(result)
 --local python_path = 'python3'
 --dap.adapters.debugpy = function(cb, config)
 --  if config.request == 'attach' then
@@ -40,14 +40,14 @@ codicons.setup({})
 vim.fn.sign_define('DapBreakpoint', {
   text = '🔴', -- 🛑🔴
   linehl = 'DapBreakpoint',
-  numhl = 'DapBreakpoint'
+  numhl = 'DapBreakpoint',
 })
 
 vim.fn.sign_define('DapBreakpointCondition', {
   text = '🟡',
   linehl = 'DapBreakpointCondition',
-  numhl = 'DapBreakpointCondition'
+  numhl = 'DapBreakpointCondition',
 })
 
 -- Trigger auto-completion automatically
-vim.cmd [[ au FileType dap-repl lua require('dap.ext.autocompl').attach() ]]
+vim.cmd([[ au FileType dap-repl lua require('dap.ext.autocompl').attach() ]])
