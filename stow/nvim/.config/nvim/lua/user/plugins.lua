@@ -115,7 +115,7 @@ return packer.startup(function(use)
   use 'simrat39/rust-tools.nvim'
 
   use { "RRethy/vim-illuminate" }
-  use { "nvim-telescope/telescope.nvim", commit = "84b9ba06" }
+  use { "nvim-telescope/telescope.nvim", commit = "v0.2.1" }
   use { "nvim-treesitter/nvim-treesitter", commit = "v0.10.0" }
   use { "nvim-treesitter/nvim-treesitter-context", commit = "660861b" } -- View context at the current cursor functions/classes
   use { "lewis6991/gitsigns.nvim", commit = "v0.8.1" }
