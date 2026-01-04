@@ -51,10 +51,8 @@ return packer.startup(function(use)
   use { "moll/vim-bbye" }
   use { "nvim-lualine/lualine.nvim" }
   use { "akinsho/toggleterm.nvim" }
-  --use { "ahmedkhalf/project.nvim" }
   use { "lewis6991/impatient.nvim" }
   use { "lukas-reineke/indent-blankline.nvim", commit = 'v3.9.0' }
-  -- use { "goolord/alpha-nvim" }
   use { "folke/which-key.nvim", commit = "v2.1.0" }
 
   -- Colorschemes
@@ -127,16 +125,11 @@ return packer.startup(function(use)
   use('mrtazz/DoxygenToolkit.vim')      --  Auto-insert Doxygen comments
   use('skywind3000/asyncrun.vim')       --  Run commands / builds in background
   use('christoomey/vim-tmux-navigator') --  Seamless navigation between vim and tmux
-  --use('dense-analysis/ale')              --  Asynchronous linting
-  --use('sheerun/vim-polyglot')            --  Better syntax highlighting
   use { 'junegunn/fzf', run = function() vim.cmd("silent! call fzf#install()") end } --  Install fzf (fast fuzzy searcher)
   use('junegunn/fzf.vim')                                                            --  fzf vim extension
-  -- use('airblade/vim-gitgutter')          --  Git status on side bar and git operations
   use('rhysd/vim-clang-format')                                                      --  Commands for applying clang-formatting
   use('preservim/nerdtree')                                                          --  Navigate files using a tree structure
   use('mhinz/vim-startify')                                                          --  Manage vim sessions
-  -- use('vim-airline/vim-airline')         --  Custom status bar
-  -- use('vim-airline/vim-airline-themes')  --  Themes
   use('lervag/vimtex')                                                                    --  latex support
   use('justinmk/vim-sneak')                                                               --  fast navigation
   use('tpope/vim-surround')                                                               --  operations for surrounding words with paranthesis
@@ -145,7 +138,6 @@ return packer.startup(function(use)
   use('preservim/nerdcommenter')                                                          --  Commenting plugin
   use('sindrets/diffview.nvim')                                                           --  Neovim diffview
   use { 'NeogitOrg/neogit', commit = "v2.0.0" }                                           --  Neovim git plugin
-  --use('tmsvg/pear-tree')                                                                  --  Pair brackets, braces, etc.
   use('kshenoy/vim-signature')                                                            --  Place, toggle, and display marks
   use('drmikehenry/vim-headerguard')                                                      --  C++ header guards
   use('easymotion/vim-easymotion')                                                        --  Quick jumping around documents
@@ -179,12 +171,6 @@ return packer.startup(function(use)
   --    require("copilot_cmp").setup()
   --  end
   --}
-
-  -- Markdown table-of-contents generation
-  use { "mzlogin/vim-markdown-toc" }
-
-  -- View PlantUML diagrams
-  use { "tyru/open-browser.vim" }
 
   -- Highlight and color todo comments
   use {
