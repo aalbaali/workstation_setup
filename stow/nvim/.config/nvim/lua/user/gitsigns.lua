@@ -3,57 +3,70 @@ if not status_ok then
   return
 end
 
-gitsigns.setup {
-  signs = {
-    add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-    change = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-    delete = { hl = "GitSignsDelete", text = "-", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-    topdelete = { hl = "GitSignsDelete", text = "-", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-    changedelete = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+gitsigns.setup({
+  signs                   = {
+    add          = { text = "▎" },
+    change       = { text = "▎" },
+    delete       = { text = "-" },
+    topdelete    = { text = "-" },
+    changedelete = { text = "▎" },
+    untracked    = { text = "┆" },
   },
-  signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-  numhl = false,     -- Toggle with `:Gitsigns toggle_numhl`
-  linehl = false,    -- Toggle with `:Gitsigns toggle_linehl`
-  word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
-  watch_gitdir = {
-    interval = 1000,
+  signcolumn              = true,  -- Toggle with `:Gitsigns toggle_signs`
+  numhl                   = false, -- Toggle with `:Gitsigns toggle_numhl`
+  linehl                  = false, -- Toggle with `:Gitsigns toggle_linehl`
+  word_diff               = false, -- Toggle with `:Gitsigns toggle_word_diff`
+
+  watch_gitdir            = {
     follow_files = true,
   },
-  attach_to_untracked = true,
-  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+
+  auto_attach             = true,
+  attach_to_untracked     = true,
+  current_line_blame      = false,
   current_line_blame_opts = {
     virt_text = true,
-    virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+    virt_text_pos = "eol",
     delay = 1000,
     ignore_whitespace = false,
   },
-  current_line_blame_formatter_opts = {
-    relative_time = false,
-  },
-  sign_priority = 6,
-  update_debounce = 100,
-  status_formatter = nil, -- Use default
-  max_file_length = 40000,
-  preview_config = {
-    -- Options passed to nvim_open_win
-    border = "single",
+
+  sign_priority           = 6,
+  update_debounce         = 100,
+  status_formatter        = nil,
+  max_file_length         = 40000,
+
+  preview_config          = {
+    border = "rounded",
     style = "minimal",
     relative = "cursor",
     row = 0,
     col = 1,
   },
-  yadm = {
-    enable = false,
-  },
 
-  on_attach = function(bufnr)
-    local function map(mode, lhs, rhs, opts)
-        opts = vim.tbl_extend('force', {noremap = true, silent = true}, opts or {})
-        vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
+  -- on_attach is modernized to use vim.keymap.set
+  on_attach               = function(bufnr)
+    local gs = package.loaded.gitsigns
+
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
     end
 
-    -- Navigation
-    map('n', ']c', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", {expr=true})
-    map('n', '[c', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", {expr=true})
+    map('n', ']c', function()
+      if vim.wo.diff then return ']c' end
+      vim.schedule(function() gs.next_hunk() end)
+      return '<Ignore>'
+    end, { expr = true, desc = "Next Hunk" })
+
+    map('n', '[c', function()
+      if vim.wo.diff then return '[c' end
+      vim.schedule(function() gs.prev_hunk() end)
+      return '<Ignore>'
+    end, { expr = true, desc = "Prev Hunk" })
+
+    -- TODO: You can now remove these from your WhichKey config
+    -- and define them here instead to keep things centralized.
   end
-}
+})

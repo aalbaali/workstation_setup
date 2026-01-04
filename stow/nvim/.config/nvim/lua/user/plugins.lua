@@ -116,9 +116,9 @@ return packer.startup(function(use)
 
   use { "RRethy/vim-illuminate" }
   use { "nvim-telescope/telescope.nvim", commit = "v0.2.1" }
-  use { "nvim-treesitter/nvim-treesitter", commit = "v0.10.0" }
-  use { "nvim-treesitter/nvim-treesitter-context", commit = "660861b" } -- View context at the current cursor functions/classes
-  use { "lewis6991/gitsigns.nvim", commit = "v0.8.1" }
+  use { "nvim-treesitter/nvim-treesitter", commit = "v0.10.0" } -- TODO: Upgrade to main
+  use { "nvim-treesitter/nvim-treesitter-context", commit = "v1.0.0" } -- View context at the current cursor functions/classes
+  use { "lewis6991/gitsigns.nvim", commit = "v1.0.2" }
 
   use('tpope/vim-fugitive')             --  Git comments
   use('vim-utils/vim-man')              --  View `man` pages in vim
