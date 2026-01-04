@@ -93,7 +93,7 @@ return packer.startup(function(use)
 
       -- Autocompletion
       { 'hrsh7th/nvim-cmp',                  commit = 'v0.0.2' },    -- Required
-      { 'hrsh7th/cmp-nvim-lsp',              commit = 'a8912b88c' }, -- Required
+      { 'hrsh7th/cmp-nvim-lsp',              commit = 'cbc7b02b' },  -- Required
       { 'hrsh7th/cmp-buffer' },                                      -- Optional
       { 'hrsh7th/cmp-path' },                                        -- Optional
       { 'saadparwaiz1/cmp_luasnip' },                                -- Optional
