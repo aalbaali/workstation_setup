@@ -58,7 +58,7 @@
 
   - name: Get Packer
     git:
-      repo: 'https://github.com/wbthomason/packer.nvim'
+      repo: 'https://github.com/aalbaali/packer.nvim'
       dest: "{{ home }}/.local/share/nvim/site/pack/packer/start/packer.nvim"
       force: true
 

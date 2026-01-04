@@ -8,7 +8,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
     "clone",
     "--depth",
     "1",
-    "https://github.com/wbthomason/packer.nvim",
+    "https://github.com/aalbaali/packer.nvim",
     install_path,
   })
   print("Installing packer close and reopen Neovim...")
@@ -40,7 +40,7 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-  use { "wbthomason/packer.nvim" } -- Have packer manage itself
+  use { "aalbaali/packer.nvim" } -- Have packer manage itself
   use { "nvim-lua/plenary.nvim" }  -- Useful lua functions used by lots of plugins
   use { "windwp/nvim-autopairs" }  -- Autopairs, integrates with both cmp and treesitter
   use { "numToStr/Comment.nvim" }
