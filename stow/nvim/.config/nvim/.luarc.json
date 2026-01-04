@@ -1,0 +1,13 @@
+{
+    "Lua": {
+        "format": {
+            "enable": true,
+            "defaultConfig": {
+                "quote_style": "single"
+            }
+        },
+        "runtime": {
+            "version": "LuaJIT"
+        }
+    }
+}

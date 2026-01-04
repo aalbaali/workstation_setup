@@ -1,17 +1,17 @@
 local fn = vim.fn
 
 -- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system({
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/aalbaali/packer.nvim",
+    'git',
+    'clone',
+    '--depth',
+    '1',
+    'https://github.com/aalbaali/packer.nvim',
     install_path,
   })
-  print("Installing packer close and reopen Neovim...")
+  print('Installing packer close and reopen Neovim...')
   vim.cmd([[packadd packer.nvim]])
 end
 
@@ -24,7 +24,7 @@ vim.cmd([[
 ]])
 
 -- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
+local status_ok, packer = pcall(require, 'packer')
 if not status_ok then
   return
 end
@@ -33,71 +33,71 @@ end
 packer.init({
   display = {
     open_fn = function()
-      return require("packer.util").float({ border = "rounded" })
+      return require('packer.util').float({ border = 'rounded' })
     end,
   },
 })
 
 -- Install your plugins here
 return packer.startup(function(use)
-  use { "aalbaali/packer.nvim" } -- Have packer manage itself
-  use { "nvim-lua/plenary.nvim" }  -- Useful lua functions used by lots of plugins
-  use { "windwp/nvim-autopairs" }  -- Autopairs, integrates with both cmp and treesitter
-  use { "numToStr/Comment.nvim" }
-  use { "JoosepAlviste/nvim-ts-context-commentstring" }
-  use { "kyazdani42/nvim-web-devicons" }
-  use { "kyazdani42/nvim-tree.lua", commit = 'v1.14.0' }
-  use { "akinsho/bufferline.nvim" }
-  use { "moll/vim-bbye" }
-  use { "nvim-lualine/lualine.nvim" }
-  use { "akinsho/toggleterm.nvim" }
-  use { "lewis6991/impatient.nvim" }
-  use { "lukas-reineke/indent-blankline.nvim", commit = 'v3.9.0' }
-  use { "folke/which-key.nvim", commit = "v2.1.0" }
+  use { 'aalbaali/packer.nvim' }  -- Have packer manage itself
+  use { 'nvim-lua/plenary.nvim' } -- Useful lua functions used by lots of plugins
+  use { 'windwp/nvim-autopairs' } -- Autopairs, integrates with both cmp and treesitter
+  use { 'numToStr/Comment.nvim' }
+  use { 'JoosepAlviste/nvim-ts-context-commentstring' }
+  use { 'kyazdani42/nvim-web-devicons' }
+  use { 'kyazdani42/nvim-tree.lua', commit = 'v1.14.0' }
+  use { 'akinsho/bufferline.nvim' }
+  use { 'moll/vim-bbye' }
+  use { 'nvim-lualine/lualine.nvim' }
+  use { 'akinsho/toggleterm.nvim' }
+  use { 'lewis6991/impatient.nvim' }
+  use { 'lukas-reineke/indent-blankline.nvim', commit = 'v3.9.0' }
+  use { 'folke/which-key.nvim', commit = 'v2.1.0' } -- TODO: upgrade to v3.x
 
   -- Colorschemes
-  use { "folke/tokyonight.nvim" }
-  use { "lunarvim/darkplus.nvim" }
-  use { "morhetz/gruvbox" }
-  use { "bluz71/vim-moonfly-colors", as = "moonfly" }
-  use { "savq/melange-nvim" }
-  use { "mcchrish/zenbones.nvim", requires = "rktjmp/lush.nvim" }
-  use { "nyoom-engineering/oxocarbon.nvim" }
-  use { "patstockwell/vim-monokai-tasty" }
-  use { "rmehri01/onenord.nvim" }
-  use { "luisiacc/gruvbox-baby", branch = 'main' }
-  use { "Shatur/neovim-ayu" }
-  use { "AlexvZyl/nordic.nvim" }
-  use { "kartikp10/noctis.nvim" }
-  use { "doums/darcula" }
-  use { "briones-gabriel/darcula-solid.nvim", requires = "rktjmp/lush.nvim" }
-  use { "cocopon/iceberg.vim" }
-  use { "sonph/onehalf" }
-  use { "tomasr/molokai" }
-  use { "w0ng/vim-hybrid" }
+  use { 'folke/tokyonight.nvim' }
+  use { 'lunarvim/darkplus.nvim' }
+  use { 'morhetz/gruvbox' }
+  use { 'bluz71/vim-moonfly-colors', as = 'moonfly' }
+  use { 'savq/melange-nvim' }
+  use { 'mcchrish/zenbones.nvim', requires = 'rktjmp/lush.nvim' }
+  use { 'nyoom-engineering/oxocarbon.nvim' }
+  use { 'patstockwell/vim-monokai-tasty' }
+  use { 'rmehri01/onenord.nvim' }
+  use { 'luisiacc/gruvbox-baby', branch = 'main' }
+  use { 'Shatur/neovim-ayu' }
+  use { 'AlexvZyl/nordic.nvim' }
+  use { 'kartikp10/noctis.nvim' }
+  use { 'doums/darcula' }
+  use { 'briones-gabriel/darcula-solid.nvim', requires = 'rktjmp/lush.nvim' }
+  use { 'cocopon/iceberg.vim' }
+  use { 'sonph/onehalf' }
+  use { 'tomasr/molokai' }
+  use { 'w0ng/vim-hybrid' }
   use {
-    "catppuccin/nvim",
-    as = "catppuccin",
-    colorscheme = "catppuccin-mocha",
+    'catppuccin/nvim',
+    as = 'catppuccin',
+    colorscheme = 'catppuccin-mocha',
   }
 
-  use('jremmen/vim-ripgrep') --  Ripgrep fuzzy searcher
+  use { 'jremmen/vim-ripgrep' } --  Ripgrep fuzzy searcher
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v4.x',
     requires = {
       -- LSP Support
-      { 'neovim/nvim-lspconfig',             commit = 'v2.5.0' },  -- Required
+      { 'neovim/nvim-lspconfig',             commit = 'v2.5.0' }, -- Required
       { 'williamboman/mason.nvim',           commit = 'v2.1.0' }, -- Optional
       { 'williamboman/mason-lspconfig.nvim', commit = 'v2.1.0' }, -- Optional
 
       -- Autocompletion
-      { 'hrsh7th/nvim-cmp',                  commit = 'v0.0.2' },    -- Required
-      { 'hrsh7th/cmp-nvim-lsp',              commit = 'cbc7b02b' },  -- Required
-      { 'hrsh7th/cmp-buffer' },                                      -- Optional
-      { 'hrsh7th/cmp-path' },                                        -- Optional
-      { 'saadparwaiz1/cmp_luasnip' },                                -- Optional
-      { 'hrsh7th/cmp-nvim-lua' },                                    -- Optional
+      { 'hrsh7th/nvim-cmp',                  commit = 'v0.0.2' },   -- Required
+      { 'hrsh7th/cmp-nvim-lsp',              commit = 'cbc7b02b' }, -- Required
+      { 'hrsh7th/cmp-buffer' },                                     -- Optional
+      { 'hrsh7th/cmp-path' },                                       -- Optional
+      { 'saadparwaiz1/cmp_luasnip' },                               -- Optional
+      { 'hrsh7th/cmp-nvim-lua' },                                   -- Optional
 
       -- Snippets
       { 'L3MON4D3/LuaSnip' },             -- Required
@@ -114,52 +114,53 @@ return packer.startup(function(use)
   }
   use 'simrat39/rust-tools.nvim'
 
-  use { "RRethy/vim-illuminate" }
-  use { "nvim-telescope/telescope.nvim", commit = "v0.2.1" }
-  use { "nvim-treesitter/nvim-treesitter", commit = "v0.10.0" } -- TODO: Upgrade to main
-  use { "nvim-treesitter/nvim-treesitter-context", commit = "v1.0.0" } -- View context at the current cursor functions/classes
-  use { "lewis6991/gitsigns.nvim", commit = "v1.0.2" }
+  use { 'RRethy/vim-illuminate' }
+  use { 'nvim-telescope/telescope.nvim', commit = 'v0.2.1' }
+  use { 'nvim-treesitter/nvim-treesitter', commit = 'v0.10.0' }        -- TODO: Upgrade to main
+  use { 'nvim-treesitter/nvim-treesitter-context', commit = 'v1.0.0' } -- View context at the current cursor functions/classes
+  use { 'lewis6991/gitsigns.nvim', commit = 'v1.0.2' }
 
-  use('tpope/vim-fugitive')             --  Git comments
-  use('vim-utils/vim-man')              --  View `man` pages in vim
-  use('mrtazz/DoxygenToolkit.vim')      --  Auto-insert Doxygen comments
-  use('skywind3000/asyncrun.vim')       --  Run commands / builds in background
-  use('christoomey/vim-tmux-navigator') --  Seamless navigation between vim and tmux
-  use { 'junegunn/fzf', run = function() vim.cmd("silent! call fzf#install()") end } --  Install fzf (fast fuzzy searcher)
-  use('junegunn/fzf.vim')                                                            --  fzf vim extension
-  use('rhysd/vim-clang-format')                                                      --  Commands for applying clang-formatting
-  use('preservim/nerdtree')                                                          --  Navigate files using a tree structure
-  use('mhinz/vim-startify')                                                          --  Manage vim sessions
-  use('lervag/vimtex')                                                                    --  latex support
-  use('justinmk/vim-sneak')                                                               --  fast navigation
-  use('tpope/vim-surround')                                                               --  operations for surrounding words with paranthesis
-  use { 'kkoomen/vim-doge', run = function() vim.cmd("silent! call doge#install()") end } --  (Do)cument (Ge)nerator for various file systems
-  use('preservim/tagbar')                                                                 --  Browse tags of current file
-  use('preservim/nerdcommenter')                                                          --  Commenting plugin
-  use('sindrets/diffview.nvim')                                                           --  Neovim diffview
-  use { 'NeogitOrg/neogit', commit = "v3.0.0" }                                           --  Neovim git plugin
-  use('kshenoy/vim-signature')                                                            --  Place, toggle, and display marks
-  use('drmikehenry/vim-headerguard')                                                      --  C++ header guards
-  use('easymotion/vim-easymotion')                                                        --  Quick jumping around documents
-  use('mbbill/undotree')
-  use('mhinz/vim-sayonara')                                                               --  Kill buffers well
-  use('asheq/close-buffers.vim')                                                          --  Kill buffers well
-  use('mindriot101/vim-yapf')                                                             --  Python formatting using Yapf
-  use('cdelledonne/vim-cmake')                                                            --  Construct and build CMake projects
-  use({
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
-  })
+  use { 'tpope/vim-fugitive' }                                                            --  Git comments
+  use { 'vim-utils/vim-man' }                                                             --  View `man` pages in vim
+  use { 'mrtazz/DoxygenToolkit.vim' }                                                     --  Auto-insert Doxygen comments
+  use { 'skywind3000/asyncrun.vim' }                                                      --  Run commands / builds in background
+  use { 'christoomey/vim-tmux-navigator' }                                                --  Seamless navigation between vim and tmux
+  use { 'junegunn/fzf', run = function() vim.cmd('silent! call fzf#install()') end }      --  Install fzf (fast fuzzy searcher)
+  use { 'junegunn/fzf.vim' }                                                              --  fzf vim extension
+  use { 'rhysd/vim-clang-format' }                                                        --  Commands for applying clang-formatting
+  use { 'preservim/nerdtree' }                                                            --  Navigate files using a tree structure
+  use { 'mhinz/vim-startify' }                                                            --  Manage vim sessions
+  use { 'lervag/vimtex' }                                                                 --  latex support
+  use { 'justinmk/vim-sneak' }                                                            --  fast navigation
+  use { 'tpope/vim-surround' }                                                            --  operations for surrounding words with paranthesis
+  use { 'kkoomen/vim-doge', run = function() vim.cmd('silent! call doge#install()') end } --  (Do)cument (Ge)nerator for various file systems
+  use { 'preservim/tagbar' }                                                              --  Browse tags of current file
+  use { 'preservim/nerdcommenter' }                                                       --  Commenting plugin
+  use { 'sindrets/diffview.nvim' }                                                        --  Neovim diffview
+  use { 'NeogitOrg/neogit', commit = 'v3.0.0' }                                           --  Neovim git plugin
+  use { 'kshenoy/vim-signature' }                                                         --  Place, toggle, and display marks
+  use { 'drmikehenry/vim-headerguard' }                                                   --  C++ header guards
+  use { 'easymotion/vim-easymotion' }                                                     --  Quick jumping around documents
+  use { 'mbbill/undotree' }
+  use { 'mhinz/vim-sayonara' }                                                            --  Kill buffers well
+  use { 'asheq/close-buffers.vim' }                                                       --  Kill buffers well
+  use { 'mindriot101/vim-yapf' }                                                          --  Python formatting using Yapf
+  use { 'cdelledonne/vim-cmake' }                                                         --  Construct and build CMake projects
+  use {
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    ft = { 'markdown' },
+    build = function() vim.fn['mkdp#util#install']() end,
+  }
+
 
   -- The configs are needed to be here to make sure the plugin is loaded before its used
   use { --  Github copilot
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter',
     config = function()
-      require("user.copilot")
+      require('user.copilot')
     end,
   }
 
@@ -174,10 +175,10 @@ return packer.startup(function(use)
 
   -- Highlight and color todo comments
   use {
-    "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
+    'folke/todo-comments.nvim',
+    requires = 'nvim-lua/plenary.nvim',
     config = function()
-      require("todo-comments").setup {}
+      require('todo-comments').setup {}
     end
   }
 
@@ -185,50 +186,50 @@ return packer.startup(function(use)
   use { 'ruanyl/vim-gh-line' }
 
   -- Document generation
-  use { "danymat/neogen", tag = "2.19.4" }
+  use { 'danymat/neogen', tag = '2.19.4' }
 
-  use { "ThePrimeagen/refactoring.nvim" }
-  use { "folke/trouble.nvim" }
+  use { 'ThePrimeagen/refactoring.nvim' }
+  use { 'folke/trouble.nvim' }
   use {
-    "nvim-telescope/telescope-file-browser.nvim",
-    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    'nvim-telescope/telescope-file-browser.nvim',
+    requires = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' }
   }
 
   use {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
     requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     }
   }
 
   use {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    requires = { "nvim-lua/plenary.nvim" }
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    requires = { 'nvim-lua/plenary.nvim' }
   }
 
   use {
-    "jedrzejboczar/possession.nvim",
-    commit = "8fb21fabae4",
+    'jedrzejboczar/possession.nvim',
+    commit = '8fb21fabae4',
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
-    require("packer").sync()
+    require('packer').sync()
   end
 
-  use { "folke/lazydev.nvim", }
-  use { "rcarriga/nvim-dap-ui",
+  use { 'folke/lazydev.nvim', }
+  use { 'rcarriga/nvim-dap-ui',
     requires = {
-      "mfussenegger/nvim-dap",
-      "nvim-neotest/nvim-nio",
-      "mortepau/codicons.nvim",
+      'mfussenegger/nvim-dap',
+      'nvim-neotest/nvim-nio',
+      'mortepau/codicons.nvim',
     }
   }
   use {
@@ -236,13 +237,12 @@ return packer.startup(function(use)
     requires = {
       'mfussenegger/nvim-dap-python',
     },
-    --commit = '0.10.0',
   }
   use {
     'Weissle/persistent-breakpoints.nvim',
     config = function()
       require('persistent-breakpoints').setup {
-        load_breakpoints_event = { "BufReadPost" }
+        load_breakpoints_event = { 'BufReadPost' }
       }
     end
   }
