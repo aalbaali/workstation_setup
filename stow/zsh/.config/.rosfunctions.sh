@@ -19,7 +19,7 @@ alias source_underlay="source $ROS_UNDERLAY_WS/setup.zsh"
 alias rupdate="rosdep update"
 
 # Rosdep INSTALL necessary packages
-alias rinstall="rosdep install -i --from-path $ROS_WORKSPACE/src --rosdistro $ROS_DISTRO -y"
+alias rinstall="rosdep install -i --from-path $ROS_WORKSPACE/src --rosdistro $ROS_DISTRO -y -r"
 
 # (Ros) Colcon BUILD with merge install
 rcbuild() {
