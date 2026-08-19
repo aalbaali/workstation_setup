@@ -8,9 +8,6 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US:en
 export LC_ALL=en_US.UTF-8
 
-# Source starship
-eval "$(starship init zsh)"
-
 # Plugins
 source $HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -155,3 +152,6 @@ if [ -f "${HOME}/.juliaup/bin/julia" ]; then
   path=('/home/amro/.juliaup/bin' $path)
   export PATH
 fi
+
+# Source starship
+eval "$(starship init zsh)"

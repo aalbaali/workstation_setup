@@ -4,7 +4,7 @@
   hosts: localhost
   connection: local 
   vars:
-    - home: '/home/{{ ansible_user_id }}'
+    home: '/home/{{ ansible_user_id }}'
 
   tasks:
   - name: Get OS version

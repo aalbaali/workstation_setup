@@ -33,7 +33,7 @@ fi
 # Files to source
 #######################################
 safe_source "${HOME}/.picklerc"
-safe_source "${HOME}/pickle_data_v1/amro/pickle-sandbox/pickle_configs/robot_info.bash"
+safe_source "${HOME}/src/pickle/tech-tools/cli-tools/robot_info.bash"
 
 
 #######################################
