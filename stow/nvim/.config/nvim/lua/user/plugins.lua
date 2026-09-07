@@ -116,7 +116,7 @@ return packer.startup(function(use)
   use('simrat39/rust-tools.nvim')
 
   use({ 'RRethy/vim-illuminate' })
-  use({ 'nvim-telescope/telescope.nvim', commit = 'v0.2.1' })
+  use({ 'nvim-telescope/telescope.nvim', commit = 'v0.1.9' }) -- v0.2.x requires nvim >= 0.10.4
   use({ 'nvim-treesitter/nvim-treesitter', commit = 'v0.10.0' }) -- TODO: Upgrade to main
   use({ 'nvim-treesitter/nvim-treesitter-context', commit = 'v1.0.0' }) -- View context at the current cursor functions/classes
   use({ 'lewis6991/gitsigns.nvim', commit = 'v1.0.2' })
@@ -167,14 +167,14 @@ return packer.startup(function(use)
   })
 
   -- The configs are needed to be here to make sure the plugin is loaded before its used
-  use({ --  Github copilot
-    'zbirenbaum/copilot.lua',
-    cmd = 'Copilot',
-    event = 'InsertEnter',
-    config = function()
-      require('user.copilot')
-    end,
-  })
+  -- use({ --  Github copilot
+    -- 'zbirenbaum/copilot.lua',
+    -- cmd = 'Copilot',
+    -- event = 'InsertEnter',
+    -- config = function()
+      -- require('user.copilot')
+    -- end,
+  -- })
 
   ---- Copilot autocompletion
   --use {
@@ -200,7 +200,6 @@ return packer.startup(function(use)
   -- Document generation
   use({ 'danymat/neogen', tag = '2.19.4' })
 
-  use({ 'ThePrimeagen/refactoring.nvim' })
   use({ 'folke/trouble.nvim' })
   use({
     'nvim-telescope/telescope-file-browser.nvim',
